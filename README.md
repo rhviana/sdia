@@ -15,7 +15,7 @@
 **Repository:** Zenodo (CERN)  
 **License:** CC BY 4.0 International  
 
-📥 **[Download Full Paper (PDF)](https://zenodo.org/records/18582469)**
+📥 **[Download Full Paper (PDF)](https://zenodo.org/records/18582493)**
 
 ---
 
