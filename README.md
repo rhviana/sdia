@@ -264,8 +264,8 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 
 **Connect:**
 - 📧 Email: [rhviana@gmail.com]
-- 💼 LinkedIn: [https://www.linkedin.com/in/ricardo-viana-br1984/]
-- 🆔 ORCID: [https://orcid.org/0009-0009-9549-5862]
+- 💼 LinkedIn: [Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
+- 🆔 ORCID: [0009-0009-9549-5862](https://orcid.org/0009-0009-9549-5862)
 - 📝 Medium: [@rhviana](https://medium.com/@rhviana)
 
 **Questions?**
