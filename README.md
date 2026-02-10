@@ -1,8 +1,8 @@
 # Gateway Domain-Centric Routing (GDCR)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582469.svg)](https://doi.org/10.5281/zenodo.18582469)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582469.svg)]([https://doi.org/10.5281/zenodo.18582469]
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18582469)
+[![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)]([https://zenodo.org/records/18582469](https://zenodo.org/records/18582493))
 
 > **A vendor-agnostic, metadata-driven architecture for enterprise API governance**
 
@@ -19,7 +19,7 @@
 
 ---
 
-## 🎯 What is GDCR?
+## What is GDCR?
 
 Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic by **business domain** (e.g., Sales, Finance, Logistics) instead of backend endpoints.
 
@@ -32,7 +32,7 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ---
 
-## 🏗️ Core Patterns
+## Core Patterns
 
 ### DCRP (Domain-Centric Routing Pattern)
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
@@ -54,7 +54,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 
 ---
 
-## 📂 Repository Contents
+## Repository Contents
 
 ```
 gdcr-github/
@@ -83,7 +83,7 @@ gdcr-github/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Understand the Architecture
 
@@ -104,7 +104,7 @@ Follow the [Implementation Guide](docs/implementation-guide.md) for step-by-step
 
 ---
 
-## 🎨 Architecture Diagram
+## Architecture Diagram
 
 ```
 ┌──────────────────────────────────────────────────────┐
@@ -146,7 +146,7 @@ Follow the [Implementation Guide](docs/implementation-guide.md) for step-by-step
 
 ---
 
-## 🌐 Vendor-Agnostic Implementation
+## Vendor-Agnostic Implementation
 
 GDCR works with **any API Gateway** that supports:
 - ✅ Request inspection (path, headers, body)
@@ -170,7 +170,7 @@ See [Implementation Guide](docs/implementation-guide.md) for platform-specific e
 
 ---
 
-## 📊 Results Summary
+## Results Summary
 
 ### Complexity Reduction
 | Metric | Before | After | Improvement |
@@ -191,7 +191,7 @@ See [Implementation Guide](docs/implementation-guide.md) for platform-specific e
 
 ---
 
-## 📚 Academic Resources
+## Academic Resources
 
 ### Citation (APA):
 ```
@@ -214,13 +214,13 @@ https://doi.org/10.5281/zenodo.18582469
 ```
 
 ### Related Publications:
-- [Medium - GDCR Introduction](https://medium.com/@rhviana)
+- [Medium - GDCR Introduction]([https://medium.com/@rhviana](https://medium.com/@rhviana/gateway-domain-centric-routing-a-vendor-agnostic-api-architecture-52ad30d1d1d9))
 - [SAP Community - DCRP Part I](https://community.sap.com/t5/technology-blog-posts-by-members/sap-btp-apim-domain-centric-routing-pattern-dcrp-governing-apis-via-cpi/ba-p/14312788)
 - [SAP Community - PDCP Part II](https://community.sap.com/t5/technology-blog-posts-by-members/sap-btp-cpi-package-domain-centric-pattern-pdcp-solving-package-sprawl-at/ba-p/14318864)
 
 ---
 
-## 🔤 Equivalent Terminology
+## Equivalent Terminology
 
 All these terms refer to the same architecture published under **DOI: 10.5281/zenodo.18582469**:
 
@@ -245,27 +245,27 @@ All these terms refer to the same architecture published under **DOI: 10.5281/ze
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
 
 ### Ways to Contribute:
-- 🐛 Report bugs or issues
-- 💡 Suggest new features or improvements
-- 📝 Improve documentation
-- 🔧 Submit platform-specific implementations
-- 📊 Share your implementation results
+- Report bugs or issues
+- Suggest new features or improvements
+- Improve documentation
+- Submit platform-specific implementations
+- Share your implementation results
 
 ---
 
-## 📬 Contact & Support
+## Contact & Support
 
 **Author:** Ricardo Luz Holanda Viana
 
 **Connect:**
-- 📧 Email: [your-email@example.com]
-- 💼 LinkedIn: [Your Profile]
-- 🆔 ORCID: [Your ORCID ID]
+- 📧 Email: [rhviana@gmail.com]
+- 💼 LinkedIn: [https://www.linkedin.com/in/ricardo-viana-br1984/]
+- 🆔 ORCID: [https://orcid.org/0009-0009-9549-5862]
 - 📝 Medium: [@rhviana](https://medium.com/@rhviana)
 
 **Questions?**
@@ -275,32 +275,32 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 
 ---
 
-## 📜 License
+## License
 
 This work is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
 
 You are free to:
-- ✅ **Share** — copy and redistribute the material
-- ✅ **Adapt** — remix, transform, and build upon the material
-- ✅ **Commercial use** — use for commercial purposes
+- **Share** — copy and redistribute the material
+- **Adapt** — remix, transform, and build upon the material
+- **Commercial use** — use for commercial purposes
 
 Under the following terms:
-- 📌 **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
 
 ---
 
-## 🌟 Star History
+## Star History
 
-If this project helped you, please ⭐ **star this repository** and cite the academic paper!
+If this project helped you, please **star this repository** and cite the academic paper!
 
 ---
 
-## 📈 Project Status
+## Project Status
 
-- ✅ **Academic Paper:** Published (DOI: 10.5281/zenodo.18582469)
-- ✅ **Sandbox Validation:** Complete (SAP BTP)
-- 🔄 **Community Implementations:** In Progress
-- 🔄 **Multi-Platform Examples:** In Progress
+- **Academic Paper:** Published (DOI: 10.5281/zenodo.18582469)
+- **Sandbox Validation:** Complete (SAP BTP)
+- **Community Implementations:** In Progress
+- **Multi-Platform Examples:** In Progress
 
 ---
 
