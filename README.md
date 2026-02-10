@@ -29,8 +29,10 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 - ✅ **69% reduction** in technical users (39 → 12)
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
 - ✅ **35,000+ messages** tested with 68ms average latency, 100% success rate, zero timeouts
-- Architecture Overview
-- ![GDCR Architecture Overview](gdcr-architecture-overview.png)
+
+Architecture Overview
+
+[GDCR Architecture Overview](gdcr-architecture-overview.png)
 
 ---
 
