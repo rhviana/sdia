@@ -29,7 +29,7 @@ Focus: SAP Cloud Integration (CPI)
 
 The SAP Solution: 
 
-    . Organizes the packages into Unified Domain Packages per business process (e.g., nx.sales.o2c.integrations, nx.logistic.tm.integrations).
+    . Organizes the packages into Unified Domain Packages per business process (e.g., nx.sales.o2c.integrations, nx.logistic.tm.integrations)
 
 The Mirror Strategy: 
 
