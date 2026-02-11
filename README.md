@@ -61,7 +61,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 ## Repository Contents
 
 ```
-GDRC-github/
+GDCR-github/
 ├── README.md                                    # This file
 ├── LICENSE                                      # CC BY 4.0
 ├── JavaScript/
@@ -73,8 +73,10 @@ GDRC-github/
 │       ├── kvm-samples
 |         ├── readme.md                          # Samples of Key Value Mapping specific for SAP BTP Integratio Suite - APIM
 ├── Presentations/
-│   ├── DCPR-Domain-Centric-Routing-Pattern.pdf  # Architectural blueprint for the Gateway Domain-Centric Routing Pattern, focusing on 96% proxy sprawl reduction and centralized governance.
-│   ├── PDCP-Package-Domain-Centric-Pattern.pdf  # Technical deep-dive into the Package Domain-Centric Pattern, detailing the Mirror Strategy and metadata-driven orchestration for SAP CPI.
+│   ├── DCPR-Domain-Centric-Routing-Pattern.pdf  # Architectural blueprint for the Gateway Domain-Centric Routing Pattern,
+│   │                                              focusing on 96% proxy sprawl reduction and centralized governance.
+│   ├── PDCP-Package-Domain-Centric-Pattern.pdf  # Technical deep-dive into the Package Domain-Centric Pattern,
+│   │                                              detailing the Mirror Strategy and metadata-driven orchestration for SAP CPI.
 │   └── tdb
 ├── Under Constrution/
 │   ├── tdb
