@@ -15,7 +15,7 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
 ### Folder Structure
 
 * **/js**: The core JavaScript routing logic ('routing-engine.js').
-* **/kvm-sample**: templates for - Key Value Mapping - metadata-driven Domain mappings especifics for SAP BTP Integration Suite - APIM.
+* **/kvm-sample**: templates for - "Key Value Mapping (KVM): Metadata-driven domain mappings specific to the SAP BTP Integration Suite (API Management).
 
 ### 🛠️ Key Features (V14.2)
 
