@@ -2,38 +2,38 @@
 
 Thank you for your interest in contributing to the Gateway Domain-Centric Routing (GDCR) project!
 
-## 🎯 Ways to Contribute
+## Ways to Contribute
 
-### 1. 🐛 Report Bugs or Issues
+### 1. Report Bugs or Issues
 - Search existing issues first
 - Use the issue template
 - Provide clear reproduction steps
 - Include environment details (platform, version)
 
-### 2. 💡 Suggest Enhancements
+### 2. Suggest Enhancements
 - Explain the use case
 - Describe expected behavior
 - Consider backward compatibility
 
-### 3. 📝 Improve Documentation
+### 3. Improve Documentation
 - Fix typos or unclear explanations
 - Add examples or diagrams
 - Translate documentation
 
-### 4. 🔧 Submit Code
+### 4. Submit Code
 - Platform-specific implementations
 - Bug fixes
 - Performance improvements
 - New features (discuss first in Issues)
 
-### 5. 📊 Share Results
+### 5. Share Results
 - Implementation case studies
 - Performance benchmarks
 - ROI calculations
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Fork the Repository
 Click the "Fork" button at the top right of this page.
@@ -81,7 +81,7 @@ git push origin feature/your-feature-name
 
 ---
 
-## 📋 Pull Request Guidelines
+##  Pull Request Guidelines
 
 ### Before Submitting
 - [ ] Code follows existing style
@@ -98,7 +98,7 @@ git push origin feature/your-feature-name
 
 ---
 
-## 🎨 Code Style
+## Code Style
 
 ### JavaScript
 ```javascript
@@ -125,7 +125,7 @@ function extractMetadata(message) {
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### For Code Contributions
 1. Test on target platform (SAP BTP, Apigee, Kong, etc.)
@@ -139,7 +139,7 @@ function extractMetadata(message) {
 
 ---
 
-## 📄 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the [CC BY 4.0 License](LICENSE).
 
@@ -154,7 +154,7 @@ License: CC BY 4.0
 
 ---
 
-## 🤝 Code of Conduct
+## Code of Conduct
 
 ### Our Standards
 - **Be respectful** to all contributors
@@ -170,7 +170,7 @@ License: CC BY 4.0
 
 ---
 
-## 💬 Communication
+## Communication
 
 ### Questions?
 - Open an [Issue](https://github.com/yourusername/gdcr/issues) with the "question" label
@@ -187,7 +187,7 @@ For sensitive matters, contact: [your-email@example.com]
 
 ---
 
-## 🏆 Recognition
+## Recognition
 
 Contributors will be:
 - Listed in [CONTRIBUTORS.md](CONTRIBUTORS.md)
@@ -196,7 +196,7 @@ Contributors will be:
 
 ---
 
-## 📚 Resources
+## Resources
 
 ### Understanding GDCR
 - [Architecture Overview](docs/architecture.md)
@@ -209,7 +209,7 @@ Contributors will be:
 
 ---
 
-## 🎯 Priority Areas
+## Priority Areas
 
 We especially welcome contributions in:
 
