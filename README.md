@@ -68,8 +68,8 @@ GDCR-github/
 │   ├── README.md                                # This Content
 │   ├── JavaScript/                              # DCRP implementation guide
 │       ├── js/  
-|         ├── Maverick-v-14.2.png                # Representative image of this state of art code
-|         |── Maverickv14.2.js                   # Full code detail
+|         ├── Maverick-v-15.1.png                # Representative image of this state of art code
+|         |── Maverickv15.1.js                   # Full code detail
 │       ├── kvm-samples
 |         ├── readme.md                          # Samples of Key Value Mapping specific for SAP BTP Integratio Suite - APIM
 ├── Presentations/
