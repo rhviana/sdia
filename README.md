@@ -4,7 +4,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)]([https://zenodo.org/records/18582469](https://zenodo.org/records/18582493))
 
-> **A vendor-agnostic, metadata-driven architecture for enterprise API governance**
+> **A vendor-agnostic, metadata-driven architecture for enterprise API & Orquestraion Layers Domain-Centric Governance**
 
 ---
 
