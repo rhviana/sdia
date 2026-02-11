@@ -2,7 +2,7 @@
 
 This folder contains the **Production-Hardened** implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
 
-![DCRP Engine - Maverick Style](./maverick v14.2/Maverick-v-14.2.png)
+![DCRP Engine - Maverick Style](./maverick%20v14.2/Maverick-v-14.2.png)
 
 ### Performance & Architecture Specs
 The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
@@ -15,7 +15,7 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
 ### Folder Structure
 
 * **/js**: The core JavaScript routing logic ('routing-engine.js').
-* **/kvm**: XML/JSON templates for metadata-driven Domain mappings.
+* **/kvm-samples**: templates for - Key Value Mapping - metadata-driven Domain mappings especifics for SAP BTP Integration Suite - APIM.
 
 ### 🛠️ Key Features (V14.2)
 
