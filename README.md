@@ -64,25 +64,19 @@ Backend integration consolidation pattern that organizes integration artifacts b
 gdcr-github/
 ├── README.md                          # This file
 ├── LICENSE                            # CC BY 4.0
-├── docs/
-│   ├── architecture.md                # Architecture overview
-│   ├── dcrp-pattern.md                # DCRP implementation guide
-│   ├── pdcp-pattern.md                # PDCP implementation guide
-│   ├── implementation-guide.md        # Step-by-step implementation
+├── JavaScript/
+│   ├── README.md                      # This Content
+│   ├── JavaScript/                    # DCRP implementation guide
+│       ├── js/
+|         ├── Maverick-v-14.2.png      # Representative image of this state of art code
+|         |── Maverickv14.2.js         # Full code detail
+│       ├── kvm-samples
+|         ├── readme.md                # Samples of Key Value Mapping specific for SAP BTP Integratio Suite - APIM
 │   └── faq.md                         # Frequently asked questions
-├── code/
-│   ├── javascript-routing-engine.js   # JavaScript routing engine v14.2
-│   ├── action-normalization.js        # Action normalization table
-│   └── kvm-examples.json              # Key-Value Map examples
-├── templates/
-│   ├── kvm-structure.xml              # KVM structure template
-│   ├── iflow-naming-convention.md     # iFlow naming standards
-│   └── routing-config-template.json   # Routing configuration template
-└── diagrams/
-    ├── gdcr-architecture.png          # High-level architecture
-    ├── dcrp-flow.png                  # DCRP flow diagram
-    ├── pdcp-structure.png             # PDCP structure diagram
-    └── before-after-comparison.png    # Results visualization
+├── Under Constrution/
+│   ├── tdb
+│   ├── tdb
+│   └── tdb
 ```
 
 ---
@@ -91,20 +85,20 @@ gdcr-github/
 
 ### 1. Understand the Architecture
 
-Read the [Architecture Overview](docs/architecture.md) to understand GDCR's core concepts.
+Read the [Architecture Overview]tdb) to understand GDCR's core concepts.
 
 ### 2. Review the Patterns
 
-- **Gateway Layer:** [DCRP Pattern Guide](docs/dcrp-pattern.md)
-- **Backend Layer:** [PDCP Pattern Guide](docs/pdcp-pattern.md)
+- **Gateway Layer:** [DCRP Pattern Guide Under Construction]
+- **Backend Layer:** [PDCP Pattern Guide Under Construction]
 
 ### 3. Explore the Code
 
-See the [JavaScript Routing Engine](code/javascript-routing-engine.js) for a production-ready implementation.
+See the [JavaScript Routing Engine Under Construction] for a production-ready implementation.
 
 ### 4. Implement in Your Platform
 
-Follow the [Implementation Guide](docs/implementation-guide.md) for step-by-step instructions.
+Follow the [Implementation Guide Under Construction ] for step-by-step instructions.
 
 ---
 
@@ -170,7 +164,7 @@ GDCR works with **any API Gateway** that supports:
 - Tyk Gateway
 - Nginx Plus
 
-See [Implementation Guide](docs/implementation-guide.md) for platform-specific examples.
+See [Implementation Guide Under Construction ](tdb) for platform-specific examples.
 
 ---
 
