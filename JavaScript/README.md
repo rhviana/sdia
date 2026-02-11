@@ -1,4 +1,4 @@
-# DCRP Engine: "The Commander's Brain" (V14.2) - The Brain Logic from Ricardo Luz Holanda Viana
+# DCRP Engine: "The Brain" V15.0 - The Maverick Ghost Edition - Logic from Ricardo Luz Holanda Viana
 
 This folder contains the **Production-Hardened** implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
 
