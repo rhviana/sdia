@@ -10,9 +10,9 @@ For the "Commander's Brain" (JavaScript Engine) to function correctly, the KVM s
      . kvm.sapprocess: Required for business process identification.
      . kvm.packagename: Essential for the Mirror Strategy with the PDCP backend.
 
-### Note on Design: While a fully dynamic, "loose" mapping was considered, it would introduce unnecessary complexity and latency. To ensure ultra-low latency (<2ms) and reliable Metadata-Driven execution, the engine relies on this static, well-defined contract between the Gateway and the Key Value Map.
+Note on Design: While a fully dynamic, "loose" mapping was considered, it would introduce unnecessary complexity and latency. To ensure ultra-low latency (<2ms) and reliable Metadata-Driven execution, the engine relies on this static, well-defined contract between the Gateway and the Key Value Map.
 
-### This configuration was strictly utilized for Sandbox Validation within the SAP BTP Integration Suite (API Management) environment. It serves as a high-performance template for the DCRP solution.
+This configuration was strictly utilized for Sandbox Validation within the SAP BTP Integration Suite (API Management) environment. It serves as a high-performance template for the DCRP solution.
 
 | SAP Business Process (kvm.sapprocess) | CPI Package Name (kvm.packagename) | KVM ID Interface (kvm.idinterface) |
 | :--- | :--- | :--- |
