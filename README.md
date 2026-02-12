@@ -255,8 +255,10 @@ GDCR-github/
 │   └── kvm-samples/         # SAP BTP KVM Samples
 ├── Presentations/           # Architecture Blueprints (PDF)
 └── StressTest/              # Validation Screenshots
+```text
 
 The Maverick Ghost Edition (v15.1) represents the peak of performance optimization for SAP APIM:
+
 Expected Improvements over v14.2:
 
   ⚡ Pre-compiled regex: 30% reduction in path parsing time
