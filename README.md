@@ -132,7 +132,7 @@ gdrc-github/
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
 - ✅ **33,000+ messages** tested with 68ms average latency, 100% success rate
 
-[The 4th MilesStones StressTest)](./stress-test) - 4 different tested to valided the soluttion and the results above.
+* **[The 4th MilesStones StressTest)](./stress-test) - 4 different tested to valided the soluttion and the results above.
 
 ---
 ### Final Technical Conclusion
