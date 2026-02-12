@@ -8,7 +8,7 @@
 
 ---
 
-## 📄 Published Academic Paper
+# 📄 Published Academic Paper
 
 **Official DOI:** 10.5281/zenodo.18619641  
 **Published:** February 12, 2026  
@@ -19,14 +19,14 @@
 
 ---
 
-## What is GDCR?
+# What is GDCR?
 
 Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic by **business domain** (e.g., Sales, Finance, Logistics) instead of backend endpoints.
 ---
 
-## Core Patterns
+# Core Patterns
 
-### DCRP (Domain-Centric Routing Pattern)
+# DCRP (Domain-Centric Routing Pattern)
 
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -36,7 +36,7 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-### PDCP (Package Domain-Centric Pattern)
+# PDCP (Package Domain-Centric Pattern)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
@@ -46,6 +46,9 @@ Backend integration consolidation pattern that organizes integration artifacts b
 - Faster deployment cycles
 
   Architecture Diagram
+## 🏗️ Architecture Diagram
+
+```text
 ┌──────────────────────────────────────────────────────┐
 │          External Consumers / AI Agents              │
 │      (Mobile Apps, Web Apps, Third Parties)          │
@@ -84,7 +87,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 
 ---
 
-### Key Results (Sandbox Validation on SAP BTP):
+# Key Results (Sandbox Validation on SAP BTP):
 - ✅ **90% reduction** in API proxies (41 → 4)
 - ✅ **90% reduction** in integration packages (39 → 4)
 - ✅ **69% reduction** in technical users (39 → 12)
