@@ -8,7 +8,7 @@
 
 ---
 
-# 📄 Published Academic Paper
+## 📄 Published Academic Paper
 
 **Official DOI:** 10.5281/zenodo.18619641  
 **Published:** February 12, 2026  
@@ -19,9 +19,10 @@
 
 ---
 
-#What is GDCR?
+## What is GDCR?
 
 Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic by **business domain** (e.g., Sales, Finance, Logistics) instead of backend endpoints.
+
 ---
 
 # Core Patterns
