@@ -27,9 +27,9 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ---
 
-### Core Patterns
+## Core Patterns
 
-## DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
+### DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
 
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -39,7 +39,7 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-## PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
+### PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
@@ -219,8 +219,8 @@ The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provi
 - These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
 
 ---
-##⚠️ **No Support Policy**
-This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+###⚠️ **No Support Policy**
+- This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
 I do not provide:
 
@@ -229,7 +229,7 @@ I do not provide:
   - ❌Troubleshooting assistance
   - ❌ Custom development
 
-- The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
+- The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC.
 
 For commercial inquiries contact details below.
 
