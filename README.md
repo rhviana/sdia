@@ -1,4 +1,3 @@
-
 Gateway Domain-Centric Routing (GDCR)
 DOI License: CC BY 4.0 Paper
 
@@ -16,11 +15,11 @@ What is GDCR?
 Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic by business domain (e.g., Sales, Finance, Logistics) instead of backend endpoints.
 
 Key Results (Sandbox Validation on SAP BTP):
-  ✅ 90% reduction in API proxies (41 → 4)
-  ✅ 90% reduction in integration packages (39 → 4)
-  ✅ 69% reduction in technical users (39 → 12)
-  ✅ 95% faster deployment times (273 min → 14.5 min)
-  ✅ 35,000+ messages tested with 68ms average latency, 100% success rate, zero timeouts
+✅ 90% reduction in API proxies (41 → 4)
+✅ 90% reduction in integration packages (39 → 4)
+✅ 69% reduction in technical users (39 → 12)
+✅ 95% faster deployment times (273 min → 14.5 min)
+✅ 35,000+ messages tested with 68ms average latency, 100% success rate, zero timeouts
 Architecture Overview
 GDCR Architecture Overview
 
@@ -67,9 +66,7 @@ GDCR-github/
     ├── [TBD]
     ├── [TBD]
     └── [TBD]
-
 Quick Start
-
 1. Understand the Architecture
 Read the Architecture Overview (see diagram above) to understand GDCR's core concepts.
 
@@ -86,14 +83,11 @@ Backend Layer implementation with Mirror Strategy, naming conventions, and iFlow
 No additional step-by-step guides will be provided in this repository.
 
 3. Explore the Code
-   
 See the JavaScript Routing Engine v15.1 for production-ready implementation.
 
-5. Advanced Resources
-   
+4. Advanced Resources
 Academic Paper: Deep-dive into theoretical foundations (Zenodo)
 Presentations: Architecture blueprints in /Presentations/
-
 Architecture Diagram
 ┌──────────────────────────────────────────────────────┐
 │          External Consumers / AI Agents              │
@@ -139,15 +133,15 @@ GDCR works with any API Gateway that supports:
 ✅ Metadata storage (KVM, config, external DB)
 Validated Platform:
 SAP BTP Integration Suite (API Management + Cloud Integration)
-
 Theoretical Implementations:
-  Google Apigee
-  Kong Gateway
-  AWS API Gateway
-  Azure API Management
-  MuleSoft Anypoint Platform
-  Tyk Gateway
-  Nginx Plus
+Google Apigee
+Kong Gateway
+AWS API Gateway
+Azure API Management
+MuleSoft Anypoint Platform
+Tyk Gateway
+Nginx Plus
+See Implementation Guide (coming soon) for platform-specific examples.
 
 🧪 Sandbox Validation & Testing
 Overview: Infrastructure Consolidation
@@ -174,7 +168,6 @@ Region: Europe (Frankfurt) - cf-eu10
 Runtime: Cloud Foundry
 Test Period: February 2026
 JavaScript Engine: v8.0 (Nashorn)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Milestone 1: Gateway Resilience — The 25k "Soak Test"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -207,6 +200,7 @@ Key Findings:
 Milestone 1 - Soak Test Results
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -227,10 +221,12 @@ What Was Validated:
 All vendors related to Sales (O2C) and Procurement (S2P/P2P) were exposed through only two DCRP proxies (one per domain).
 
 This replaces the traditional model of:
-  ❌ 20–40 individual API proxies (1:1 vendor mapping)
+
+❌ 20–40 individual API proxies (1:1 vendor mapping)
 With:
-  ✅ 2 domain-based DCRP proxies
-  ✅ Deployment time: ~5 minutes (template-based)
+
+✅ 2 domain-based DCRP proxies
+✅ Deployment time: ~5 minutes (template-based)
 Results:
 
 Success Rate: 100%
@@ -281,7 +277,6 @@ Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Objective:
-
 Validate system stability during extended operation with minimal cloud infrastructure contention.
 
 Setup:
@@ -300,15 +295,13 @@ P95 Latency: 87 ms
 P99 Latency: 108 ms
 Timeouts: 0
 Errors: 0
-Key Findings
+Key Findings:
 
 ✅ Off-hours performance slightly better (lower network contention)
 ✅ System remained stable throughout extended test
 ✅ No memory leaks or resource exhaustion
 ✅ Cache TTL (60s) performed optimally
 Milestone 4 - Extended Off-Hours Validation
-
-
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -327,7 +320,6 @@ Messages Tested: 35,000+
 Success Rate: 100%
 Average Latency: 68 ms (includes backend processing)
 GDCR Routing Overhead: ~1-2 ms (v15.1 optimizations)
-
 📊 Full v15.1 validation report coming soon.
 
 Test Reproducibility
@@ -347,31 +339,26 @@ Copynewman run tests/postman/GDCR-Test-Collection.json \
   --delay-request 100 \
   --iteration-count 5000
 Known Limitations (Sandbox Environment)
-
 ⚠️ The following were NOT tested and may behave differently in production:
 
 High Concurrent Load: Trial limited to ~10 req/s (production may handle 100-1,000+ req/s)
-  
-  Large Payloads: Tested up to 2MB (production may require tuning for 10MB+)
-  Multi-Tenant Scenarios: Single tenant only (production may need cache isolation)
-  Cross-Region Routing: EU network only (global production not tested)
-  Disaster Recovery: No HA/failover testing conducted
-
+Large Payloads: Tested up to 2MB (production may require tuning for 10MB+)
+Multi-Tenant Scenarios: Single tenant only (production may need cache isolation)
+Cross-Region Routing: EU network only (global production not tested)
+Disaster Recovery: No HA/failover testing conducted
 Results Summary
-  Complexity Reduction (Sandbox Environment)
-  Metric	Before	After	Improvement
-  API Proxies	41	4	90% ↓
-  Integration Packages	39	4	90% ↓
-  Technical Users	39	12	69% ↓
-  Deployment Time	273 min	14.5 min	95% ↓
-  Performance (35,000+ messages tested in sandbox)
-  Average Latency: 68ms
-  Success Rate: 100%
-  Timeouts: 0
-  Error Rate: 0%
-
+Complexity Reduction (Sandbox Environment)
+Metric	Before	After	Improvement
+API Proxies	41	4	90% ↓
+Integration Packages	39	4	90% ↓
+Technical Users	39	12	69% ↓
+Deployment Time	273 min	14.5 min	95% ↓
+Performance (35,000+ messages tested in sandbox)
+Average Latency: 68ms
+Success Rate: 100%
+Timeouts: 0
+Error Rate: 0%
 Projected ROI (Theoretical Estimation)
-
 ⚠️ IMPORTANT: The ROI calculation below is a theoretical projection based on sandbox validation metrics and industry standard hourly rates. This is NOT based on production deployment and should be considered an estimated potential value for cost-benefit analysis purposes only.
 
 Estimated Savings: €198,500 over 5 years
@@ -394,16 +381,14 @@ Organizational structure
 Existing technical debt
 Team skill levels
 Specific platform configuration
-
 Academic Resources
 Citation (APA):
 Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
 Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
 https://doi.org/10.5281/zenodo.18619641
-
 Citation (BibTeX):
 @article{viana2026gdcr,
-  title{Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
+  title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
          Architecture for Enterprise API Governance},
   author={Viana, Ricardo Luz Holanda},
   journal={Zenodo},
@@ -412,11 +397,9 @@ Citation (BibTeX):
   url={https://zenodo.org/records/18619641}
 }
 Related Publications:
-
 Medium - GDCR Introduction
 SAP Community - DCRP Part I
 SAP Community - PDCP Part II
-
 Equivalent Terminology
 All these terms refer to the same architecture published under DOI: 10.5281/zenodo.18619641:
 
@@ -443,7 +426,6 @@ Contributing
 Contributions are welcome! Please read our Contributing Guidelines (coming soon) first.
 
 Ways to Contribute:
-
 Report bugs or issues
 Suggest new features or improvements
 Improve documentation
@@ -471,7 +453,6 @@ I do not provide:
 ❌ Consulting services
 ❌ Troubleshooting assistance
 ❌ Custom development
-
 The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
 
 For commercial inquiries only: rhviana@gmail.com
@@ -491,7 +472,6 @@ Star History
 If this project helped you, please ⭐ star this repository and cite the academic paper!
 
 Project Status
-
 ✅ Academic Paper: Published (DOI: 10.5281/zenodo.18619641)
 ✅ Sandbox Validation: Complete (35,000+ messages, 4 milestones)
 ⚠️ Production Validation: Not yet tested
