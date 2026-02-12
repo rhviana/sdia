@@ -205,7 +205,7 @@ The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provi
 ### Final Technical Conclusion
 ---
 - The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
-- These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
+- These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
 
 ---
 ##⚠️ **No Support Policy**
@@ -220,7 +220,7 @@ I do not provide:
 
 - The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
 
-For commercial inquiries only: rhviana@gmail.com
+For commercial inquiries contact details below.
 
 ---
 
