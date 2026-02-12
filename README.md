@@ -37,8 +37,7 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ## Core Patterns
 
-### DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
-
+### DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management-008fd3)
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
 **Benefits:**
@@ -47,7 +46,7 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-### PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
+### PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
@@ -64,6 +63,8 @@ Backend integration consolidation pattern that organizes integration artifacts b
 | **System Footprint** | 100+ Proxies | 4 Strategic Domains | **96% Reduction** |
 | **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
 | **Reliability (Success)** | Variable | 99.92% | **Optimized** |
+
+---
 
 ## Architecture Diagram
 
@@ -121,7 +122,6 @@ gdrc-github/
 └── StressTest/              # Validation Screenshots
 
 ```
-
 ---
 
 ## Key Results (Sandbox Validation on SAP BTP):
@@ -132,6 +132,8 @@ gdrc-github/
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
 - ✅ **33,000+ messages** tested with 68ms average latency, 100% success rate
 
+[The 4th MilesStones StressTest)](./stress-test) - 4 different tested to valided the soluttion and the results above.
+
 ---
 ### Final Technical Conclusion
 ---
@@ -140,6 +142,7 @@ gdrc-github/
 
 ---
 ###⚠️ **No Support Policy**
+
 - This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
 I do not provide:
@@ -199,34 +202,6 @@ Calculation Breakdown:
 -Deployment time savings: 258.5 min per cycle × recurring deployments
 -Maintenance overhead reduction: 90% fewer artifacts to manage
 -Onboarding time reduction: Simplified architecture accelerates team ramp-up
-
----
-
-Validation Status - All metrics validated in SAP BTP Trial sandbox environment only.
-
-# Production results may vary based on:
-
--Actual integration complexity
--Organizational structure
--Existing technical debt
--Team skill levels
--Specific platform configuration
--⚡ Performance Highlights (Maverick Ghost Edition v15.1)
--The Maverick Ghost Edition (v15.1) represents peak performance optimization for SAP APIM:
-
----
-# Improvements over v14.2:
-
--⚡ Pre-compiled regex: 30% reduction in path parsing time
--⚡ DJB2 hash: 50% faster than FNV-1a
--⚡ O(1) action lookup: Eliminates O(n) loop (241 action variants)
--⚡ Target latency: 8-15 ms routing overhead (vs 12-22 ms in v14.2)
-
-# Breakdown:
--Path Parsing: <0.2ms (regex-optimized)
--Hash Computation: <0.05ms (DJB2 algorithm)
--Action Normalization: <0.05ms (O(1) lookup for 241 variants)
--Full Routing Overhead: 8-15ms average
 
 ---
 # Academic Citation
