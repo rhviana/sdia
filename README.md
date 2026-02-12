@@ -54,29 +54,29 @@ Backend integration consolidation pattern that organizes integration artifacts b
 │      (Mobile Apps, Web Apps, Third Parties)          │
 └───────────────────────┬──────────────────────────────┘
                         │
-         ┌──────────────┴──────────────┐
-         │   DCRP Layer (API Gateway)  │
-         │   ┌─────────────────────┐   │
-         │   │ 4 Domain Proxies:   │   │
-         │   │ • Sales             │   │
-         │   │ • Finance           │   │
-         │   │ • Logistics         │   │
-         │   │ • Customer          │   │
-         │   └─────────────────────┘   │
-         │   Metadata-Driven Routing   │
-         └──────────────┬──────────────┘
+         ┌──────────────┴───────────────────┐
+         │   DCRP Layer (API Gateway)       │
+         │   ┌──────────────────────────┐   │
+         │   │ 4 Domain Proxies:        │   │
+         │   │ • Sales  10 bprocess     │   │
+         │   │ • Finance 10 bprocess    │   │
+         │   │ • Logistics  10 bprocess │   │
+         │   │ • Customer 10 bprocess   │   │
+         │   └──────────────────────────┘   │
+         │   Metadata-Driven Routing        │
+         └──────────────┬───────────────────┘
                         │
-         ┌──────────────┴──────────────┐
-         │  PDCP Layer (Integration)   │
-         │   ┌─────────────────────┐   │
-         │   │ 4 Domain Packages:  │   │
-         │   │ • Sales             │   │
-         │   │ • Finance           │   │
-         │   │ • Logistics         │   │
-         │   │ • Customer          │   │
-         │   └─────────────────────┘   │
-         │   Domain-Driven Design      │
-         └──────────────┬──────────────┘
+         ┌──────────────┴─────────────────┐
+         │  PDCP Layer (Integration)      │
+         │   ┌────────────────────────┐   │
+         │   │ 4 Domain Packages:     │   │
+         │   │ • Sales - 10 Iflows    │   │
+         │   │ • Finance 10 Iflows    │   │
+         │   │ • Logistics 10 Iflows  │   │
+         │   │ • Customer  10 Iflows  │   │
+         │   └────────────────────────┘   │
+         │   Domain-Driven Design         │
+         └──────────────┬─────────────────┘
                         │
     ┌───────────────────┼───────────────────┐
     │                   │                   │
