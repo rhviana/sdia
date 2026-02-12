@@ -84,7 +84,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 │ Salesforce│   │    SAP     │   │   Custom   │
 │    API    │   │  S/4HANA   │   │  Backend   │
 └───────────┘   └────────────┘   └────────────┘
-
+```
 ---
 
 # Key Results (Sandbox Validation on SAP BTP):
