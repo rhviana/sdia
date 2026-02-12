@@ -38,8 +38,8 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **KVM Reliability:**  
 - Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routing decisions did not introduce backend latency.
 
-![Milestone 1 - Part A](StressTest/1.png)
-![Milestone 1 - Part B](StressTest/2.png)
+![Milestone 1 - Part A](./stress-imagens/1.png)
+![Milestone 1 - Part B](./stress-imagens/2.png)
 
 ---
 ### Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
@@ -54,7 +54,7 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **Baseline Latency:**  
 - Established a stable system-wide average latency of **68ms**, confirming that metadata-driven routing does not penalize performance.
 
-![Milestone 2](StressTest/3.png)
+![Milestone 2](./stress-imagens/3.png)
 
 ---
 ### Milestone 3: Multi-Domain Stress Test — JavaScript v14.2
@@ -69,8 +69,8 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **Tail Latency Control:**  
 - The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
 
-![Milestone 3](StressTest/4.png)
-![Milestone 3](StressTest/5.png)
+![Milestone 3](./stress-imagens/4.png)
+![Milestone 3](./stress-imagens/5.png)
 
 ---
 ### Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
@@ -85,7 +85,7 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **TTL Performance:**  
 - Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
 
-![Milestone 4](StressTest/5.png)
+![Milestone 4](./stress-imagens/5.png)
 
 ---
 
