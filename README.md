@@ -158,7 +158,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 * **Cache Efficiency**: 98.1%
 * 
 ![Milestone 3](StressTest/4.png)
-![Milestone 4](StressTest/5.png)
+![Milestone 3](StressTest/5.png)
 
 ---
 
@@ -166,11 +166,11 @@ Backend integration consolidation pattern that organizes integration artifacts b
 
 **Objective:** Validate system stability during minimal cloud infrastructure contention (04:00 AM).
 
-![Milestone 4](StressTest/5.png)
-
 * **Total Requests**: 5,000
 * **Average Latency**: 65ms (improved due to lower network contention)
 * **Key Finding**: System remained stable with optimal cache TTL performance.
+
+![Milestone 4](StressTest/5.png)
 
 ---
 
