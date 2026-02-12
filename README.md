@@ -21,6 +21,14 @@
 
 ---
 
+## Multi-Layer Governance
+* **[Gateway Layer (DCRP)](./src/gateway-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+* **[Backend Layer (PDCP)](./src/backend-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
+* **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
+* **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
+
+---
+
 ### What is GDCR?
 
 Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic based on **business domain and business process** (e.g., Sales (o2c), Finance (r2r), Logistics (le) instead of backend endpoints applied in the Gateway layer and Orquestration Layer.
