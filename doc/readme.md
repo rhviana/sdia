@@ -43,9 +43,9 @@ Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A Vendor-Agnostic Metad
 
 ⚠️ **No Support Policy**
 
-- This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
-I do not provide:
+I do not provide free consulting:
 
   - ❌Implementation support
   - ❌Consulting services
