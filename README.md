@@ -45,8 +45,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 - Consistent naming conventions
 - Faster deployment cycles
 
-  Architecture Diagram
-## 🏗️ Architecture Diagram
+## Architecture Diagram
 
 ```text
 ┌──────────────────────────────────────────────────────┐
@@ -85,6 +84,20 @@ Backend integration consolidation pattern that organizes integration artifacts b
 │    API    │   │  S/4HANA   │   │  Backend   │
 └───────────┘   └────────────┘   └────────────┘
 ```
+
+---
+## 📂 Repository Structure
+```text
+GDCR-github/
+├── README.md                # Documentation
+├── LICENSE                  # CC BY 4.0
+├── JavaScript/
+│   ├── js/                  
+│   │   └── Maverickv15.2.js # Phantom Edition (Hyper-Optimized)
+│   └── kvm-samples/         # SAP BTP KVM Samples
+├── Presentations/           # Architecture Blueprints (PDF)
+└── StressTest/              # Validation Screenshots
+```text
 ---
 
 # Key Results (Sandbox Validation on SAP BTP):
@@ -110,10 +123,8 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 * **Messages Tested**: 33,000+
 * **Success Rate**: 100% (Zero timeouts)
 * **Average Latency**: 68ms (v14.2 baseline)
-
 ---
 #Test Environment Setup
-
 * **Platform**: SAP BTP Integration Suite (Trial)
 * **Region**: Europe (Frankfurt) - cf-eu10
 * **Runtime**: Cloud Foundry
@@ -122,20 +133,16 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 
 ---
 ### Milestone 1: Gateway Resilience — The 25k "Soak Test"
-
 ---
 
 **Objective:**  
-To validate the long-running stability of the SAP APIM Gateway, focusing on JavaScript heap behavior and KVM lookup consistency under sustained load.
-
+- To validate the long-running stability of the SAP APIM Gateway, focusing on JavaScript heap behavior and KVM lookup consistency under sustained load.
 **Performance Stability:**  
-The engine processed ~25,000 requests within a one-hour window with a **100% success rate**.
-
+- The engine processed ~25,000 requests within a one-hour window with a **100% success rate**.
 **Memory Management:**  
-Telemetry confirmed that the JavaScript heap remained stable, indicating **zero memory leaks** and efficient garbage collection within the Nashorn/V8 environment.
-
+- Telemetry confirmed that the JavaScript heap remained stable, indicating **zero memory leaks** and efficient garbage collection within the Nashorn/V8 environment.
 **KVM Reliability:**  
-Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routing decisions did not introduce backend latency.
+- Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routing decisions did not introduce backend latency.
 
 ![Milestone 1 - Part A](StressTest/1.png)
 ![Milestone 1 - Part B](StressTest/2.png)
@@ -145,16 +152,13 @@ Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routi
 ---
 
 **Objective:**  
-To validate domain-centric consolidation by routing multiple third-party vendors through a single architectural layer.
-
+- To validate domain-centric consolidation by routing multiple third-party vendors through a single architectural layer.
 **Architectural Consolidation:**  
-Successfully reduced **39 potential individual vendor proxies** down to just **2 domain-based proxies** (Sales and Procurement), achieving a **95% reduction in proxy sprawl**.
-
+- Successfully reduced **39 potential individual vendor proxies** down to just **2 domain-based proxies** (Sales and Procurement), achieving a **95% reduction in proxy sprawl**.
 **Operational Agility:**  
-Deployment of this multi-vendor routing logic was completed in **~5 minutes** using standardized templates.
-
+- Deployment of this multi-vendor routing logic was completed in **~5 minutes** using standardized templates.
 **Baseline Latency:**  
-Established a stable system-wide average latency of **68ms**, confirming that metadata-driven routing does not penalize performance.
+- Established a stable system-wide average latency of **68ms**, confirming that metadata-driven routing does not penalize performance.
 
 ![Milestone 2](StressTest/3.png)
 
@@ -163,16 +167,13 @@ Established a stable system-wide average latency of **68ms**, confirming that me
 ---
 
 **Objective:**  
-To confirm that a consolidated **4-proxy architecture** (Finance, Sales, Logistics, Procurement) can replace **40 legacy proxies** without performance degradation.
-
+- To confirm that a consolidated **4-proxy architecture** (Finance, Sales, Logistics, Procurement) can replace **40 legacy proxies** without performance degradation.
 **High-Concurrency Resilience:**  
-Processed **3,000 requests** across all four domains simultaneously with **zero errors or timeouts**.
-
+- Processed **3,000 requests** across all four domains simultaneously with **zero errors or timeouts**.
 **Cache Optimization:**  
-Achieved a **98.1% cache efficiency**, proving that the 60-second TTL strategy optimally balances data freshness with gateway speed.
-
+- Achieved a **98.1% cache efficiency**, proving that the 60-second TTL strategy optimally balances data freshness with gateway speed.
 **Tail Latency Control:**  
-The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
+- The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
 
 ![Milestone 3](StressTest/4.png)
 ![Milestone 3](StressTest/5.png)
@@ -182,126 +183,123 @@ The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requ
 ---
 
 **Objective:**  
-To validate baseline system stability during minimal cloud infrastructure contention (executed at 04:00 AM).
-
+- To validate baseline system stability during minimal cloud infrastructure contention (executed at 04:00 AM).
 **Infrastructure Benchmark:**  
-By testing outside of business hours, the average latency improved to **65ms**, isolating the pure performance of the Maverick Engine from external network jitter.
-
+- By testing outside of business hours, the average latency improved to **65ms**, isolating the pure performance of the Maverick Engine from external network jitter.
 **System Recovery:**  
-The system showed **perfect recovery after 5,000 iterations**, confirming that the GDCR architecture is suitable for **24/7 global operations**.
-
+- The system showed **perfect recovery after 5,000 iterations**, confirming that the GDCR architecture is suitable for **24/7 global operations**.
 **TTL Performance:**  
-Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
+- Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
 
 ![Milestone 4](StressTest/5.png)
 
 Final Technical Conclusion
 The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provides a 90% reduction in infrastructure complexity while maintaining a 100% success rate across 33,000+ messages. These results are now immortalized under DOI: 10.5281/zenodo.18619641.
 ------
-
 ### Final Technical Conclusion
-
-The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
-
-These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
-
 ---
-### Test Reproducibility - Under construction.
+- The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
+- These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
+
 ---
 ⚠️ **No Support Policy**
 This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
 I do not provide:
 
-  ❌Implementation support
-  ❌Consulting services
-  ❌Troubleshooting assistance
-  ❌ Custom development
+  - ❌Implementation support
+  - ❌Consulting services
+  - ❌Troubleshooting assistance
+  - ❌ Custom development
 
-The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
+- The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
 
 For commercial inquiries only: rhviana@gmail.com
 ---
 
 Quick Start
-    1. Understand the Architecture
-        Read the Architecture Overview (see diagram above) to understand GDCR's core concepts.
-    2. Review the Patterns
-        📖 Step-by-step implementation guides are available in the SAP Community blog series:
-    Part I (DCRP): Domain-Centric Routing Pattern
-        Complete walkthrough of the Gateway Layer with screenshots, KVM configuration, and JavaScript implementation
-    Part II (PDCP): Package Domain-Centric Pattern
-        Backend Layer implementation with Mirror Strategy, naming conventions, and iFlow templates
+
+1. Understand the Architecture
+Read the Architecture Overview (see diagram above) to grasp GDCR's core concepts: domain-centric routing, metadata-driven decisions, and vendor-agnostic design.
+
+2. Review the Implementation Guides
+-Step-by-step implementation guides are available in the SAP Community blog series:
+
+-Part I (DCRP): Domain-Centric Routing Pattern
+-[Complete walkthrough of the Gateway Layer with screenshots, KVM configuration, and JavaScript implementation](https://community.sap.com/t5/technology-blog-posts-by-members/sap-btp-apim-domain-centric-routing-pattern-dcrp-governing-apis-via-cpi/ba-p/14312788)
+
+-Part II (PDCP): Package Domain-Centric Pattern
+-[Backend Layer implementation with Mirror Strategy, naming conventions, and iFlow templates](https://community.sap.com/t5/technology-blog-posts-by-members/sap-btp-cpi-package-domain-centric-pattern-pdcp-solving-package-sprawl-at/ba-p/14318864)
 
 💡 These two blog posts contain everything needed to implement a complete Proof of Concept (PoC) on SAP BTP.
-No additional step-by-step guides will be provided in this repository.
+    No additional step-by-step tutorials will be provided in this repository.
+
+3. Explore the Code
+See the JavaScript Routing Engine v15.1 for production-ready implementation.
+
+4. Run the Tests (Optional)
+Reproduce the validation using the Newman test collection with 35,000+ message scenarios.
 
 ---
 
 Projected ROI (Theoretical Estimation)
-
 ⚠️ IMPORTANT: The ROI calculation below is a theoretical projection based on sandbox validation metrics and industry standard hourly rates. This is NOT based on production deployment and should be considered an estimated potential value for cost-benefit analysis purposes only.
 
 Estimated Savings: €198,500 over 5 years
 Basis: €100/hour for integration development work
+
 Assumptions:
 
 Sandbox complexity reduction metrics apply to production
 Linear scaling of time savings to cost savings
-Standard European integration consultant hourly rate
+Standard European integration consultant hourly rate (€100/hour)
+
 5-year TCO (Total Cost of Ownership) analysis
-Calculation breakdown:
+Calculation Breakdown:
 
-Deployment time savings: 258.5 min per cycle
-Maintenance overhead reduction: 90% fewer artifacts to manage
-Onboarding time reduction: Simplified architecture
+-Deployment time savings: 258.5 min per cycle × recurring deployments
+-Maintenance overhead reduction: 90% fewer artifacts to manage
+-Onboarding time reduction: Simplified architecture accelerates team ramp-up
 ---
+📊 Validation Status
+All metrics validated in SAP BTP Trial sandbox environment only.
 
-📊 Validation Status: All metrics validated in SAP BTP Trial sandbox environment only. Production results may vary based on:
+Production results may vary based on:
 
+-Actual integration complexity
+-Organizational structure
+-Existing technical debt
+-Team skill levels
+-Specific platform configuration
+-⚡ Performance Highlights (Maverick Ghost Edition v15.1)
+-The Maverick Ghost Edition (v15.1) represents peak performance optimization for SAP APIM:
 ---
-Actual integration complexity
-Organizational structure
-Existing technical debt
-Team skill levels
-Specific platform configuration
+Improvements over v14.2:
 
+-⚡ Pre-compiled regex: 30% reduction in path parsing time
+-⚡ DJB2 hash: 50% faster than FNV-1a
+-⚡ O(1) action lookup: Eliminates O(n) loop (241 action variants)
+-⚡ Target latency: 8-15 ms routing overhead (vs 12-22 ms in v14.2)
+
+Breakdown:
+-Path Parsing: <0.2ms (regex-optimized)
+-Hash Computation: <0.05ms (DJB2 algorithm)
+-Action Normalization: <0.05ms (O(1) lookup for 241 variants)
+-Full Routing Overhead: 8-15ms average
 ---
+Academic Citation
+If you use this architecture in your research or implementation, please cite:
 
-## 📂 Repository Structure
-```text
-GDCR-github/
-├── README.md                # Documentation
-├── LICENSE                  # CC BY 4.0
-├── JavaScript/
-│   ├── js/                  
-│   │   └── Maverickv15.2.js # Phantom Edition (Hyper-Optimized)
-│   └── kvm-samples/         # SAP BTP KVM Samples
-├── Presentations/           # Architecture Blueprints (PDF)
-└── StressTest/              # Validation Screenshots
-```text
+APA:
 
-The Maverick Ghost Edition (v15.1) represents the peak of performance optimization for SAP APIM:
+Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
+Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
+https://doi.org/10.5281/zenodo.18619641
+BibTeX:
 
-Expected Improvements over v14.2:
-
-  ⚡ Pre-compiled regex: 30% reduction in path parsing time
-  ⚡ DJB2 hash: 50% faster than FNV-1a (v14.2)
-  ⚡ O(1) action lookup: Eliminates O(n) loop (241 action variants)
-  ⚡ Target latency: 8-15 ms routing overhead (vs 12-22 ms in v14.2)
-  ⚡ Path Parsing: <0.2ms using pre-compiled regex.
-  ⚡ Hash Computation: <0.05ms using DJB2 algorithm.
-  ⚡ Action Normalization: <0.05ms (O(1) lookup for 241 variants).
-  ⚡ Average Latency: 8-15ms routing overhead.
----
-
-🏛️ Academic Citation
-
-If you use this architecture, please cite the original work:
-
-Fragment kodu
 @article{viana2026gdcr,
-  title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance},
+  title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
+         Architecture for Enterprise API Governance},
   author={Viana, Ricardo Luz Holanda},
   journal={Zenodo},
   year={2026},
@@ -309,9 +307,13 @@ Fragment kodu
   url={https://zenodo.org/records/18619641}
 }
 ---
-
-Commercial Inquiries: Contact rhviana@gmail.com.
-
+📞 Contact
 Author: Ricardo Luz Holanda Viana
+Connect:
+📧 Email: rhviana@gmail.com
+💼 LinkedIn: [Ricardo Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
+🆔 ORCID: 0009-0009-9549-5862
+📝 Medium: @rhviana
+For commercial inquiries only: rhviana@gmail.com
 
 Project Status: ✅ Academic Paper Published | ✅ Sandbox Validated | 🚧 Documentation In
