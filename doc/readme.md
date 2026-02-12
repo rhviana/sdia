@@ -39,5 +39,20 @@ Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A Vendor-Agnostic Metad
   doi          = {10.5281/zenodo.18582469},
   url          = {[https://doi.org/10.5281/zenodo.18582469](https://doi.org/10.5281/zenodo.18582469)}
 }
+
+⚠️ **No Support Policy**
+
+- This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+
+I do not provide:
+
+  - ❌Implementation support
+  - ❌Consulting services
+  - ❌Troubleshooting assistance
+  - ❌ Custom development
+
+- The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC.
+
+For commercial inquiries contact details below.
                    
 ---
