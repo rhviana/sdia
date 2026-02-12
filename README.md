@@ -100,7 +100,7 @@ gdrc-github/
 ├── Presentations/           # Architecture Blueprints (PDF)
 └── StressTest/              # Validation Screenshots
 
-```text
+```
 
 ---
 
