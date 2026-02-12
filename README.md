@@ -123,7 +123,7 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 ---
 ### Milestone 1: Gateway Resilience — The 25k "Soak Test"
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
 **Objective:**  
 To validate the long-running stability of the SAP APIM Gateway, focusing on JavaScript heap behavior and KVM lookup consistency under sustained load.
@@ -141,10 +141,8 @@ Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routi
 ![Milestone 1 - Part B](StressTest/2.png)
 
 ---
-
 ### Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
 **Objective:**  
 To validate domain-centric consolidation by routing multiple third-party vendors through a single architectural layer.
@@ -161,10 +159,8 @@ Established a stable system-wide average latency of **68ms**, confirming that me
 ![Milestone 2](StressTest/3.png)
 
 ---
-
 ### Milestone 3: Multi-Domain Stress Test — JavaScript v14.2
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
 **Objective:**  
 To confirm that a consolidated **4-proxy architecture** (Finance, Sales, Logistics, Procurement) can replace **40 legacy proxies** without performance degradation.
@@ -182,10 +178,8 @@ The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requ
 ![Milestone 3](StressTest/5.png)
 
 ---
-
 ### Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
 **Objective:**  
 To validate baseline system stability during minimal cloud infrastructure contention (executed at 04:00 AM).
@@ -203,9 +197,7 @@ Validated that the internal cache mechanism remained consistent even with low tr
 
 Final Technical Conclusion
 The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provides a 90% reduction in infrastructure complexity while maintaining a 100% success rate across 33,000+ messages. These results are now immortalized under DOI: 10.5281/zenodo.18619641.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
----
+------
 
 ### Final Technical Conclusion
 
@@ -214,10 +206,8 @@ The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** p
 These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
 
 ---
-
 ### Test Reproducibility - Under construction.
 ---
-
 ⚠️ **No Support Policy**
 This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
@@ -231,7 +221,6 @@ I do not provide:
 The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
 
 For commercial inquiries only: rhviana@gmail.com
-
 ---
 
 Quick Start
