@@ -25,9 +25,9 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ---
 
-# Core Patterns
+### Core Patterns
 
-# DCRP (Domain-Centric Routing Pattern)
+## DCRP (Domain-Centric Routing Pattern)
 
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -37,7 +37,7 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-# PDCP (Package Domain-Centric Pattern)
+## PDCP (Package Domain-Centric Pattern)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
@@ -105,7 +105,7 @@ gdrc-github/
 
 ---
 
-# Key Results (Sandbox Validation on SAP BTP):
+## Key Results (Sandbox Validation on SAP BTP):
 
 - ✅ **90% reduction** in API proxies (41 → 4)
 - ✅ **90% reduction** in integration packages (39 → 4)
@@ -208,7 +208,7 @@ The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provi
 - These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
 
 ---
-⚠️ **No Support Policy**
+##⚠️ **No Support Policy**
 This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
 
 I do not provide:
@@ -224,7 +224,7 @@ For commercial inquiries only: rhviana@gmail.com
 
 ---
 
-Quick Start
+### Quick Start
 
 1. Understand the Architecture
 Read the Architecture Overview (see diagram above) to grasp GDCR's core concepts: domain-centric routing, metadata-driven decisions, and vendor-agnostic design.
@@ -249,7 +249,8 @@ Reproduce the validation using the Newman test collection with 35,000+ message s
 
 ---
 
-Projected ROI (Theoretical Estimation)
+### Projected ROI (Theoretical Estimation)
+
 ⚠️ IMPORTANT: The ROI calculation below is a theoretical projection based on sandbox validation metrics and industry standard hourly rates. This is NOT based on production deployment and should be considered an estimated potential value for cost-benefit analysis purposes only.
 
 Estimated Savings: €198,500 over 5 years
@@ -270,10 +271,9 @@ Calculation Breakdown:
 
 ---
 
-Validation Status
-All metrics validated in SAP BTP Trial sandbox environment only.
+Validation Status - All metrics validated in SAP BTP Trial sandbox environment only.
 
-Production results may vary based on:
+# Production results may vary based on:
 
 -Actual integration complexity
 -Organizational structure
@@ -284,29 +284,30 @@ Production results may vary based on:
 -The Maverick Ghost Edition (v15.1) represents peak performance optimization for SAP APIM:
 
 ---
-Improvements over v14.2:
+# Improvements over v14.2:
 
 -⚡ Pre-compiled regex: 30% reduction in path parsing time
 -⚡ DJB2 hash: 50% faster than FNV-1a
 -⚡ O(1) action lookup: Eliminates O(n) loop (241 action variants)
 -⚡ Target latency: 8-15 ms routing overhead (vs 12-22 ms in v14.2)
 
-Breakdown:
+# Breakdown:
 -Path Parsing: <0.2ms (regex-optimized)
 -Hash Computation: <0.05ms (DJB2 algorithm)
 -Action Normalization: <0.05ms (O(1) lookup for 241 variants)
 -Full Routing Overhead: 8-15ms average
 
 ---
-Academic Citation
+# Academic Citation
 If you use this architecture in your research or implementation, please cite:
 
-APA:
+# APA:
 
 Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
 Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
-https://doi.org/10.5281/zenodo.18619641
-BibTeX:
+[https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18619641)
+
+# BibTeX:
 
 @article{viana2026gdcr,
   title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
@@ -317,14 +318,21 @@ BibTeX:
   doi={10.5281/zenodo.18619641},
   url={https://zenodo.org/records/18619641}
 }
+
 ---
-📞 Contact
+
+### 📞 Contact
 Author: Ricardo Luz Holanda Viana
-Connect:
+
+## Connect:
 📧 Email: rhviana@gmail.com
 💼 LinkedIn: [Ricardo Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
 🆔 ORCID: 0009-0009-9549-5862
 📝 Medium: @rhviana
 For commercial inquiries only: rhviana@gmail.com
 
+---
+
 Project Status: ✅ Academic Paper Published | ✅ Sandbox Validated | 🚧 Documentation In
+
+---
