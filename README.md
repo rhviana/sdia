@@ -121,66 +121,101 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 * **JavaScript Engine**: v8.0 and v14.2 (Nashorn)
 
 ---
-###Milestone 1: Gateway Resilience — The 25k "Soak Test"
+### Milestone 1: Gateway Resilience — The 25k "Soak Test"
 
-Objective: To validate the long-running stability of the SAP APIM Gateway, focusing on JavaScript heap behavior and KVM lookup consistency under sustained load.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Performance Stability: The engine processed ~25,000 requests within a one-hour window with a 100% success rate.
+**Objective:**  
+To validate the long-running stability of the SAP APIM Gateway, focusing on JavaScript heap behavior and KVM lookup consistency under sustained load.
 
-Memory Management: Telemetry confirmed that the JavaScript heap remained stable, indicating zero memory leaks and efficient garbage collection within the Nashorn/V8 environment.
+**Performance Stability:**  
+The engine processed ~25,000 requests within a one-hour window with a **100% success rate**.
 
-KVM Reliability: Key-Value Map lookups maintained a 99.2% cache hit rate, ensuring that routing decisions did not introduce backend latency.
+**Memory Management:**  
+Telemetry confirmed that the JavaScript heap remained stable, indicating **zero memory leaks** and efficient garbage collection within the Nashorn/V8 environment.
+
+**KVM Reliability:**  
+Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routing decisions did not introduce backend latency.
 
 ![Milestone 1 - Part A](StressTest/1.png)
 ![Milestone 1 - Part B](StressTest/2.png)
 
 ---
 
-#Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
+### Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
 
-Objective: To validate domain-centric consolidation by routing multiple third-party vendors through a single architectural layer.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Architectural Consolidation: Successfully reduced 39 potential individual vendor proxies down to just 2 domain-based proxies (Sales and Procurement), achieving a 95% reduction in proxy sprawl.
+**Objective:**  
+To validate domain-centric consolidation by routing multiple third-party vendors through a single architectural layer.
 
-Operational Agility: Deployment of this multi-vendor routing logic was completed in ~5 minutes using standardized templates.
+**Architectural Consolidation:**  
+Successfully reduced **39 potential individual vendor proxies** down to just **2 domain-based proxies** (Sales and Procurement), achieving a **95% reduction in proxy sprawl**.
 
-Baseline Latency: Established a stable system-wide average latency of 68ms, confirming that metadata-driven routing does not penalize performance.
+**Operational Agility:**  
+Deployment of this multi-vendor routing logic was completed in **~5 minutes** using standardized templates.
 
+**Baseline Latency:**  
+Established a stable system-wide average latency of **68ms**, confirming that metadata-driven routing does not penalize performance.
 
 ![Milestone 2](StressTest/3.png)
 
 ---
 
-#Milestone 3: Multi-Domain Stress Test — JavaScript v14.2
+### Milestone 3: Multi-Domain Stress Test — JavaScript v14.2
 
-Objective: To confirm that a consolidated 4-proxy architecture (Finance, Sales, Logistics, Procurement) can replace 40 legacy proxies without performance degradation.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-High-Concurrency Resilience: Processed 3,000 requests across all four domains simultaneously with zero errors or timeouts.
+**Objective:**  
+To confirm that a consolidated **4-proxy architecture** (Finance, Sales, Logistics, Procurement) can replace **40 legacy proxies** without performance degradation.
 
-Cache Optimization: Achieved a 98.1% cache efficiency, proving that the 60-second TTL strategy optimally balances data freshness with gateway speed.
+**High-Concurrency Resilience:**  
+Processed **3,000 requests** across all four domains simultaneously with **zero errors or timeouts**.
 
-Tail Latency Control: The P99 latency was 112ms, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
+**Cache Optimization:**  
+Achieved a **98.1% cache efficiency**, proving that the 60-second TTL strategy optimally balances data freshness with gateway speed.
+
+**Tail Latency Control:**  
+The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
 
 ![Milestone 3](StressTest/4.png)
 ![Milestone 3](StressTest/5.png)
 
 ---
 
-#Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
+### Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
 
-Objective: To validate baseline system stability during minimal cloud infrastructure contention (executed at 04:00 AM).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Infrastructure Benchmark: By testing outside of business hours, the average latency improved to 65ms, isolating the pure performance of the Maverick Engine from external network jitter.
+**Objective:**  
+To validate baseline system stability during minimal cloud infrastructure contention (executed at 04:00 AM).
 
-System Recovery: The system showed perfect recovery after 5,000 iterations, confirming that the GDCR architecture is suitable for 24/7 global operations.
+**Infrastructure Benchmark:**  
+By testing outside of business hours, the average latency improved to **65ms**, isolating the pure performance of the Maverick Engine from external network jitter.
 
-TTL Performance: Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
+**System Recovery:**  
+The system showed **perfect recovery after 5,000 iterations**, confirming that the GDCR architecture is suitable for **24/7 global operations**.
+
+**TTL Performance:**  
+Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
 
 ![Milestone 4](StressTest/5.png)
 
 Final Technical Conclusion
 The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provides a 90% reduction in infrastructure complexity while maintaining a 100% success rate across 33,000+ messages. These results are now immortalized under DOI: 10.5281/zenodo.18619641.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+---
+
+### Final Technical Conclusion
+
+The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
+
+These results are now **immortalized** under **DOI: 10.5281/zenodo.18619641**.
+
+---
+
+### Test Reproducibility - Under construction.
 ---
 
 ⚠️ **No Support Policy**
