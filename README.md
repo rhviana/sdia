@@ -89,7 +89,8 @@ Backend integration consolidation pattern that organizes integration artifacts b
 ## 📂 Repository Structure
 
 ```text
-GDCR-github/
+
+gdrc-github/
 ├── README.md                # Documentation
 ├── LICENSE                  # CC BY 4.0
 ├── JavaScript/
@@ -98,6 +99,7 @@ GDCR-github/
 │   └── kvm-samples/         # SAP BTP KVM Samples
 ├── Presentations/           # Architecture Blueprints (PDF)
 └── StressTest/              # Validation Screenshots
+
 ```text
 
 ---
