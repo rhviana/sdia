@@ -87,6 +87,7 @@ Backend integration consolidation pattern that organizes integration artifacts b
 
 ---
 ## 📂 Repository Structure
+
 ```text
 GDCR-github/
 ├── README.md                # Documentation
@@ -98,6 +99,7 @@ GDCR-github/
 ├── Presentations/           # Architecture Blueprints (PDF)
 └── StressTest/              # Validation Screenshots
 ```text
+
 ---
 
 # Key Results (Sandbox Validation on SAP BTP):
