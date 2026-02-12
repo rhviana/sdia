@@ -33,6 +33,20 @@ Backend integration consolidation pattern that organizes integration artifacts b
 * **Benefits**: Eliminates package/credential sprawl and ensures consistent naming conventions.
 
 ---
+⚠️ No Support Policy
+This project is published for academic transparency and reproducibility.
+
+I do not provide:
+
+❌ Implementation support
+❌ Consulting services
+❌ Troubleshooting assistance
+❌ Custom development
+
+The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
+
+For commercial inquiries only: rhviana@gmail.com
+---
 
 ## 📂 Repository Structure
 ```text
@@ -45,3 +59,43 @@ GDCR-github/
 │   └── kvm-samples/         # SAP BTP KVM Samples
 ├── Presentations/           # Architecture Blueprints (PDF)
 └── StressTest/              # Validation Screenshots
+
+🧪 Validation Milestones (JavaScript v15.2)
+The Maverick Ghost Edition (v15.1) represents the peak of performance optimization for SAP APIM:
+
+  Path Parsing: <0.2ms using pre-compiled regex.
+  Hash Computation: <0.05ms using DJB2 algorithm.
+  Action Normalization: <0.05ms (O(1) lookup for 241 variants).
+  Average Latency: 8-15ms routing overhead.
+
+📖 Implementation Guides
+
+Step-by-step guides are available via the SAP Community blog series:
+
+  Medium - GDCR Introduction
+  SAP Community - DCRP Part I
+  SAP Community - PDCP Part II
+  Part III (The Final Step): Conclusion and results.
+
+🏛️ Academic Citation
+
+If you use this architecture, please cite the original work:
+
+Fragment kodu
+@article{viana2026gdcr,
+  title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance},
+  author={Viana, Ricardo Luz Holanda},
+  journal={Zenodo},
+  year={2026},
+  doi={10.5281/zenodo.18619641},
+  url={https://zenodo.org/records/18619641}
+}
+
+⚠️ Policy & Support
+No Support: This project is for academic transparency. No implementation or troubleshooting support is provided.
+
+Commercial Inquiries: Contact rhviana@gmail.com.
+
+Author: Ricardo Luz Holanda Viana
+
+Project Status: ✅ Academic Paper Published | ✅ Sandbox Validated | 🚧 Documentation In
