@@ -1,10 +1,17 @@
-# Gateway Domain-Centric Routing (GDCR)
+Gateway Domain-Centric Routing (GDCR)
+DOI License: CC BY 4.0 Paper
 
-A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers.
+A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance
 
-> **Official DOI:** [10.5281/zenodo.18619641](https://doi.org/10.5281/zenodo.18619641)
-> **Published:** February 12, 2026
-> **License:** CC BY 4.0 International
+📄 Published Academic Paper
+Official DOI: 10.5281/zenodo.18619641
+Published: February 12, 2026
+Repository: Zenodo (CERN)
+License: CC BY 4.0 International
+
+📥 Download Full Paper (PDF)
+
+
 
 ---
 
