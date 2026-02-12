@@ -5,8 +5,6 @@
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
 ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
-![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
-![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
 
 **A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance.**
 
@@ -31,7 +29,7 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ### Core Patterns
 
-## DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
+## DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
 
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -41,7 +39,7 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-## PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
+## PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3) | ![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
