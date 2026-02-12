@@ -39,6 +39,7 @@ Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A Vendor-Agnostic Metad
   doi          = {10.5281/zenodo.18582469},
   url          = {[https://doi.org/10.5281/zenodo.18582469](https://doi.org/10.5281/zenodo.18582469)}
 }
+```
 
 ⚠️ **No Support Policy**
 
