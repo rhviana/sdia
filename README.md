@@ -38,14 +38,15 @@ This project is published for academic transparency and reproducibility.
 
 I do not provide:
 
-❌ Implementation support
-❌ Consulting services
-❌ Troubleshooting assistance
+❌Implementation support
+❌Consulting services
+❌Troubleshooting assistance
 ❌ Custom development
 
 The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC. No additional tutorials will be provided.
 
 For commercial inquiries only: rhviana@gmail.com
+
 ---
 
 ## 📂 Repository Structure
