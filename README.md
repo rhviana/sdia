@@ -4,7 +4,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
-![SAP](https://img.shields.io/badge/Platform-SAP%20BTP-008fd3)
+![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
 ![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
 ![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
 
@@ -25,34 +25,30 @@
 
 ### What is GDCR?
 
-Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic by **business domain** (e.g., Sales, Finance, Logistics) instead of backend endpoints.
+Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural pattern** that routes API traffic based on **business domain and business process** (e.g., Sales (o2c), Finance (r2r), Logistics (le) instead of backend endpoints applied in the Gateway layer and Orquestration Layer.
 
 ---
 
 ### Core Patterns
 
-## DCRP (Domain-Centric Routing Pattern)
+## DCRP (Domain-Centric Routing Pattern) SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
 
 API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
 **Benefits:**
-- Eliminates proxy sprawl
+- Eliminates proxy sprawl - 1:1
 - Enables semantic routing for AI agents
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-## PDCP (Package Domain-Centric Pattern)
+## PDCP (Package Domain-Centric Pattern) - SAP Specfic - ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
 Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
-- Eliminates package sprawl
-- Reduces credential sprawl
+- Eliminates package sprawl - 1:1 
+- Reduces credential sprawl - 1:1 per package
 - Consistent naming conventions
 - Faster deployment cycles
-
-  **Project Maverick** collapses the integration layer into a metadata-driven neural network using two core frameworks:
-1. **DCRP (Gateway):** Metadata-driven routing (The Brain).
-2. **PDCP (Backend):** Domain-centric consolidation (The Body).
 
 ### Hard Efficiency Metrics
 
