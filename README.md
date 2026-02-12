@@ -4,7 +4,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
-![Platform](https://img.shields.io/badge/Platform-SAP-API-Management-blue)
+![SAP](https://img.shields.io/badge/Platform-SAP%20BTP-008fd3)
 ![Platform](https://img.shields.io/badge/Platform-SAP-Cloud-Platform-Integration-blue)
 
 **A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance.**
