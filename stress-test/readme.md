@@ -6,7 +6,7 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 
 | Metric | Before | After | Improvement |
 | :--- | :--- | :--- | :--- |
-| **API Proxies** | 41 | 4 | **90% ↓** |
+| **API Proxies** | 40 | 4 | **90% ↓** |
 | **Integration Packages** | 39 | 4 | **90% ↓** |
 | **Technical Users** | 39 | 12 | **69% ↓** |
 | **Deployment Time** | 273 min | 14.5 min | **95% Faster** |
@@ -85,7 +85,7 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **TTL Performance:**  
 - Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
 
-![Milestone 4](./stress-imagens/5.png)
+![Milestone 4](./stress-imagens/6.png)
 
 ---
 
