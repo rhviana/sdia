@@ -12,7 +12,6 @@ The core objective was to solve the "Proxy & Package Sprawl" crisis in large-sca
 * **Performance**: Successfully stress-tested with 33,000+ messages, maintaining sub-100ms latency.
 
 ---
-
 ## Official Repository (Zenodo / CERN)
 The full academic paper is officially archived at **Zenodo (CERN)** to ensure permanent accessibility and authorship record.
 
