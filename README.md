@@ -5,7 +5,8 @@
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
 ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP-008fd3)
-![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-blue)
+![Platform](https://img.shields.io/badge/Platform-SAP%20Cloud%20Platform%20Integration-green)
+![Platform](https://img.shields.io/badge/Platform-SAP%20API%20Management-green)
 
 **A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance.**
 
