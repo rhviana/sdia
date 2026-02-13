@@ -35,7 +35,7 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
   - ✓ Enforces a domain whitelist on the first URL segment and validates critical headers.
   - ✓ Detects scanner/bot User‑Agents and writes rich threat metadata for RaiseFault handling.
 
-  📁 [Java Script Security Engine](./dcrp-security-shild.js)
+  📁 [Java Script Security Engine](./dcpr-security-shild.js)
 
 ---
 
