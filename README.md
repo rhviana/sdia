@@ -35,11 +35,11 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ---
 
-## Core Patterns
+## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
-# DCRP (Domain-Centric Routing Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management-008fd3)
-SAP Specfic 
-API Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
+### DCRP (Domain-Centric Routing Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management-008fd3)
+
+SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
 **Benefits:**
 - Eliminates proxy sprawl - 1:1
@@ -47,9 +47,9 @@ API Gateway layer that routes traffic based on business domain metadata instead 
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-# PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
-SAP Specfic
-Backend integration consolidation pattern that organizes integration artifacts by business domain.
+### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
+
+SAP CPI - Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
 **Benefits:**
 - Eliminates package sprawl - 1:1 
