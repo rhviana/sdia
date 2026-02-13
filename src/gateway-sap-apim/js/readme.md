@@ -6,11 +6,11 @@ This folder contains the Production-Hardened implementation of the Domain-Centri
 
 ---
 
-## DCRP Engine - Maverick Style
+### DCRP Engine - Maverick Style
 
 ---
 
-# Performance & Architecture Specs
+#### Performance & Architecture Specs
 
 The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
 
@@ -19,7 +19,9 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
   - Segmented Latency Tracking: Monitors 7 distinct execution phases, from path parsing to final URL construction, providing 100% observability.
   - Global Static Caching: Utilizes a multi-node safe cache with TTL (Time-To-Live) and FastHash validation to avoid redundant KVM processing.
 
-# Key Features (V15.1)
+---
+
+#### Key Features (V15.1)
 
   - ✓ Multi-node Cache Invalidation: TTL-based validation safe for distributed environments.
   - ✓ Mirror Strategy Alignment: Directly maps APIM routing keys to PDCP package naming conventions in the backend.
@@ -27,4 +29,4 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
 
 ---
 
-Author: Ricardo Luz Holanda Viana Status: Sandbox Validated | Production Ready
+Author: Ricardo Luz Holanda Viana Status: Sandbox Validated.
