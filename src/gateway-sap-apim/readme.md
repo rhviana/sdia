@@ -10,8 +10,8 @@
 
   - /js: The core JavaScript routing logic ('routing-engine.js').
     
-    📁 [Java Script Routing Engine](./dcrp-routing-engine-v15.1.js)
-    📁 [Java Script Security Engine](./dcpr-security-shild.js)
+    📁 [Java Script Routing Engine](./js/dcrp-routing-engine-v15.1.js)
+    📁 [Java Script Security Engine](./js/dcpr-security-shild.js)
     
   - /kvm-sample: templates for - "Key Value Mapping (KVM): Metadata-driven domain mappings specific to the SAP BTP Integration Suite (API Management).
 
