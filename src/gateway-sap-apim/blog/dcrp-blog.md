@@ -1,4 +1,4 @@
-# 🚀 DCRP: Taming Enterprise-Scale SAP Integration API Proxies
+# DCRP: Taming Enterprise-Scale in SAP BTO Integration Suite - API Management - API-Proxies
 
 **Domain-Centric Routing Pattern (DCRP) - Governing APIs via CPI**
 
@@ -10,23 +10,9 @@
 
 ---
 
-## 📋 Table of Contents
+### Executive Summary
 
-- [Executive Summary](#executive-summary)
-- [Battle-Tested Results](#battle-tested-results)
-- [Target Audience](#target-audience)
-- [Introduction](#introduction)
-- [The Sprawl Problem](#the-sprawl-problem)
-- [What is DCRP?](#what-is-dcrp)
-- [Architecture Overview](#architecture-overview)
-- [Implementation](#implementation)
-- [Conclusion](#conclusion)
-
----
-
-## 📊 Executive Summary
-
-### ❌ The Problem
+## ❌ The Problem
 
 Enterprises running SAP APIM suffer from **"Proxy Sprawl"** where each integration requires a dedicated API proxy, creating a 1:1 relationship that leads to:
 
@@ -34,7 +20,7 @@ Enterprises running SAP APIM suffer from **"Proxy Sprawl"** where each integrati
 - Inconsistent security architecture
 - Unacceptable technical debt growth
 
-### ✅ The Solution
+## ✅ The Solution
 
 The **Domain-Centric Routing Pattern (DCRP)** consolidates multiple backend services into a single, domain-based API Proxy using a metadata-driven routing engine (JavaScript + KVM).
 
