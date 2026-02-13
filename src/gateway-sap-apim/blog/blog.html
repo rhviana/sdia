@@ -1,850 +1,1672 @@
-DCRP: Taming Enterprise-Scale SAP Integration API Proxies
-Authorship & Origin - 2026
-
-DCRP (Domain-Centric Routing Pattern) and PDCP (Package Domain-Centric Pattern) are original architectural patterns developed by Ricardo Luz Holanda Viana, derived from real-world enterprise integration scenarios and governance challenges in SAP BTP Integration Suite landscapes - API Management & Cloud Platform Integration.
-
-PEER-REVIEWED ACADEMIC PAPER PUBLISHED
-
-Official DOI: 10.5281/zenodo.18582469 Published: February 10, 2026 | Repository: Zenodo (CERN) Status: Open Access, Peer-Reviewed
-
-This Medium article is the foundational disclosure (Feb 7, 2026). The complete academic paper with validation data, vendor implementations, and 40 references is now available:
-
-Download Full Paper (PDF): https://zenodo.org/records/18582469
-
-Validation Results:
-
-90% reduction in API proxies (40 → 4)
-90% reduction in CPI packages (40 → 4)
-95% faster deployment (273 min → 14.5 min)
-33,000+ messages tested, 68ms latency, 100% success
-Citation: Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance. Zenodo. https://doi.org/10.5281/zenodo.18582469
-
- 
-
-Executive Summary
-The Problem: Enterprise that contains SAP APIM suffers from "Proxy Sprawl"—where each integration requires a dedicated API proxy, creating a 1:1 relationship that leads to:
-
-Deployment bottlenecks (15 min per proxy)
-Inconsistent security architecture
-Unacceptable technical debt growth
-The Solution: The Domain-Centric Routing Pattern (DCRP) consolidates multiple backend services into a single, domain-based API Proxy using a metadata-driven routing engine (JavaScript + KVM).
-
-Impact:
-
-Reduces proxies by up to 96% (100 integrations → 4 proxies)
-Deployment time: 15 min → 30 seconds -
-Centralized security, analytics, and traceability -
-Validated: 4 domains deployed in 8 minutes
-My Contribution - Ricardo Viana
-Dynamic routing is a native feature in SAP APIM, AWS, and Kong. However, technology alone isn't enough. DCRP provides the governance framework necessary to scale this technology in enterprise environments, including standardized naming conventions, KVM structures +JavaScripts (Brain Logic of the solution), organization, orientation and deployment templates.
-
-Time Investment: 
-
-Executive summary: 90 seconds
-Full technical guide: 30~40 minutes
-:direct_hit:Target Audience & Prerequisites
-Intended for: Integration Architects, Enterprise Architects, Solution Architects, Platform Owners, Governance Teams, and SAP BTP Integration Suite experts with hands-on API Management experience and for anyone passionate about integration — junior, senior, or student level.
-
-Technical Prerequisites:
-
-:white_heavy_check_mark:SAP API Management: Proxy design (ProxyEndpoint/TargetEndpoint), Policy execution flow, KeyValueMap configuration
-:white_heavy_check_mark:JavaScript in APIM: Context variable manipulation, error handling
-:white_heavy_check_mark:API Proxy Flow Architecture: PreFlow/PostFlow execution order, when  target.url can be modified
-:white_heavy_check_mark:Enterprise Governance: Naming conventions, change management, security policies
-
-Complexity Level: Advanced.
-
-Not Covered: Basic SAP APIM tutorials, JavaScript fundamentals, beginner proxy creation.
-
-Estimated PoC Time: 2 hours (APIM experts) | 1–2 days (Integration Architects new to APIM)
-
-Introduction
-SAP’s official documentation explains how to enable dynamic routing, but it often leaves a gap regarding when, why, and how to govern it at scale. This article aims to bridge that gap by providing a complete framework—from architectural design to hands-on implementation.
-
-Building on my previous post about Advanced Domain Routing, we will now deep-dive into applying the Domain-Centric Routing Pattern (DCRP) to a real-world scenario: Sales & Distribution (O2C).
-
-The DCRP Value Proposition:
-
-Consolidation: A single API Proxy manages multiple sources (Salesforce, Microsoft D365, Vendor CRM).
-Governance: Full request traceability and standardized security without infrastructure sprawl.
-Scalability: High-performance routing without the overhead of proxy-level versioning.
-What to Expect
-This is Part I of a four-part series on eliminating integration chaos:
-
-Part I (This Post): DCRP Gateway | Solves Proxy Sprawl | Metadata-driven routing (KVM + JavaScript)
-Part II: PDCP Backend | Solves Package Sprawl | Domain consolidation + iFlow DNA naming
-Part III: Implementation & Testing | Hands-on guide | JavaScript v8.0 | Postman | GitHub repo
-Part IV: Monitoring with SAP Cloud ALM | End-to-end observability | MPL filtering | Dashboards & alerts
-Let’s explore the architectural rationale and the step-by-step implementation to apply DCRP in your landscape.
-
-ChatGPT Image Feb 2, 2026, 05_02_11 AM.png
-Figure 1 - DCRP - API Proxy Model detailed exploration
-
-1 - The "Sprawl" Problem
-In many enterprise landscapes, it is common to find a 1:1 relationship between services and API Proxies. This leads to what we identify as "Proxy Sprawl": an environment where proxies are created for every individual technical service, regardless of their business domain.
-
-Without a central governance authority or standardized naming conventions, these environments quickly become un-governed and unsustainable. As the integration volume grows, the complexity of managing, securing, and monitoring hundreds of individual proxies creates a significant operational bottleneck.
-
-This pattern is not theoretical; DCRP was developed as a direct response to these real-world governance gaps. Following extensive architectural validation, this methodology was formalized to provide a repeatable solution for the SAP Integration Community.
-
-rhviana_7-1770087527340.png
-
- Figure 2 - The Sprawl Problem
-
-2 - What is DCRP (Domain Centric Routing Pattern) ?
-The Domain-Centric Routing Pattern (DCRP) is an architectural design pattern that consolidates multiple backend services into a single, business-domain-oriented API Proxy. Residing at the Gateway Layer, DCRP governs how backend services are exposed and routed without necessitating changes to their underlying protocols (REST or SOAP).
-
-Instead of organizing APIs into technical silos, DCRP aligns them with the organization's business domains. This approach significantly reduces API fragmentation and maintenance overhead while remaining fully compatible with SAP’s API Product offerings.
-
-Domain-Centric Organization: - APIs grouped by business domain (Sales, Finance, Logistics) - NOT by technical system (Salesforce, SAP, D365)
-Metadata-Driven Routing: - KeyValueMap (KVM) stores path → backend mappings - Changes in 30 seconds without redeployment
-Protocol-Agnostic Gateway: - Supports REST and SOAP backends - No protocol lock-in
-rhviana_1-1770048930293.png
-Figure 3 - The three pillars of DCRP
-
-2.2 - DCRP Decision Framework
-:white_heavy_check_mark:Use DCRP When:
-
-Domain Density: 10+ APIs in same business domain
-High Volatility: Integration changes monthly
-Centralized Governance: Critical security requirements
-Velocity: Rapid deployment is business-critical
-:cross_mark:DO NOT Use When:
-
-Unrelated services with no business logic connection
-Only 1-2 services per domain
-Fewer than 10 total APIs
-Teams lack governance maturity
-rhviana_1-1770049904809.png
-Figure 4 - CRP Decision Framework: When to Use vs. When NOT to Use
-
-2.3 - DCRP Architecture Overview: The Power of Dynamic Routing
-The diagram below illustrates how the Domain-Centric Routing Pattern (DCRP) transforms the integration flow. Instead of a fragmented landscape of individual proxies, we consolidate connectivity through a unified, intelligent gateway layer.
-
-The Technical Workflow:
-
-Unified Entry Point: Multiple consumer systems—such as Salesforce, Dynamics 365, and Vendor CRMs—connect through a single Sales Domain APIM Proxy.
-The DCRP Engine: Within the SAP API Management Gateway, the request is processed by the "Brain" of the pattern, which performs a KVM Lookup and executes JavaScript logic to resolve the target backend dynamically.
-Secure Orchestration: The request is routed via a secure tunnel to the appropriate Cloud Platform Integration (CPI) iFlow.
-Backend Flexibility: CPI handles the final orchestration with target systems (e.g., S/4HANA, Legacy Systems, or SAP ECC) using protocols like ODATA, SOAP, or HTTPS.
-Governance at Scale: This model eliminates the need for separate proxies per integration, allowing for centralized monitoring, auditing, and security enforcement through the Analytics Collector and a global Governance Layer.
-rhviana_6-1770086396437.png
-Figure 5 - DCRP Architecture Overview end-to-end: Three-CRM Integration Scenario
-
-2.4 - The Technical Foundation: KVM + JavaScript
-KeyValueMap (KVM) | The "Memory"
-The KVM is a simple lookup table that stores your routing rules.
-
-Decoupled Logic: Maps cpi-packagename, iflowname --> super important for the logic ( the combination of httppath<from cpi>:<iflowname> and sapprocess.
-Instant Updates: Change a backend URL in the KVM, and the proxy updates immediately—no deployment needed.
-Data-Driven: Business rules are stored as configuration, keeping the codebase clean.
-JavaScript Policy | The "Brain":
-
-The JS policy executes the logic based on what it finds in the "Memory."
-
-Dynamic Routing: It fetches the destination from the KVM and constructs the final URL.
-Governance: Automatically injects tracking headers like X-SenderId and X-CorrelationId for auditing.
-Fail-Safe: Implements Structured Error Handling, ensuring that if a route is missing, the user gets a clear error message instead of a "silent failure."
-rhviana_2-1770050302565.png
-Figure 6 - Enginne KVM + JavaScript
-
-2.5 - Proxy Sprawl vs DCRP: The Comparison
-The shift from a traditional 1:1 model to a Domain-Centric approach fundamentally changes how an integration landscape scales. The following comparison highlights the efficiency gains of the DCRP methodology:
-
-Real Numbers:
-
-100 integrations across 4 domains - Traditional: 100 proxies × 15 min = 25 hours
-DCRP: 4 proxies × 2 min = 8 minutes (96% reduction)
-rhviana_3-1770050601171.png
-Figure 7 - Proxy Sprawl vs DCRP Model
-
-3 - Implementation: Configuring the DCRP API Proxy
-This section defines the configuration for the ProxyEndpoint, Routing Rules, and Target Endpoint properties required to deploy a domain-centric architecture.
-
-3.1 - The Entry Contract: One API Proxy per Business Domain
-DCRP eliminates proxy sprawl by consolidating multiple technical applications into a single entry contract based on the business domain. This ensures each business area, such as Sales or Finance, has exactly one governed API Proxy.
-
-3.2 - Naming Convention Strategy
-A standardized naming convention provides immediate architectural context. DCRP uses the following structure:
-
-[Provider]-[Pattern]-proxy-domain-[BusinessProcess]-[subprocess]
-
-Example:  cpi-dcrp-proxy-domain-sales-o2c
-
-cpi: Identifies the provider (SAP Cloud Integration)
-dcrp: Defines the routing methodology.
-sales: Identifies the business domain/process (O2C).
-o2c: sap-subprocess
-3.3 Strategic Benefit: Subprocess Segregation
-Breaking the naming down to the subprocess level (e.g., o2c for Order-to-Cash) is a deliberate segregation strategy rather than a simple labeling exercise.
-
-By isolating by subprocess, you limit the scope of each API Proxy. This prevents the "Monolithic Proxy" trap, ensuring that updates to one specific flow—such as Warehouse Management—do not risk the stability of the entire Logistics domain.
-
-DCRP Proxy Naming Convention
-Pattern: cpi-dcrp-proxy-domain-[Domain]-[Subprocess] - check in the spoiler below:
-
-Spoiler
-3.3 - API Proxy Details
-The proxy serves as the unified entry point for the domain:
-
-Name: cpi-dcrp-proxy-domain-sales-o2c
-Type: REST
-Base URL: https://[tenant].apimanagement.eu20.hana.ondemand.com/sales
-3.4 - Endpoint,Routing Configuration, Value Mapping and explanation
-The Routing Rules act as a gatekeeper, ensuring only authorized paths reach the dynamic engine in this sample we are working only with orders process.
-
-Proxy Endpoint (Proxy Endpoint):
-
-Route Rule Name: orders
-Condition: proxy.pathsuffix MatchesPath "/orders/**"
-Imagine your API is a big office building. This "Condition" is the security guard at the front desk checking the labels on incoming mail.
-
-proxy.pathsuffix: This is the "address" written on the envelope after the main building name.
-MatchesPath: This is the guard asking: "Does this address look like the one I’m looking for?"
-"/orders/**": This is the specific "Department" name. The double stars (**) mean "I don't care what else is written after 'orders', just as long as it starts with that."
-Examples
-Incoming Path	Does it match?	Why?
-/orders/123	:white_heavy_check_mark:Yes	Starts with /orders/.
-/orders/list/today	:white_heavy_check_mark:Yes	Starts with /orders/ (the ** covers the rest).
-/customers/456	:cross_mark:No	It’s looking for "orders," not "customers."
-/orders	:white_heavy_check_mark:Yes	It is the exact folder.
-The configuration below:
-
-rhviana_9-1770087697070.png
-Figure 8 - Configuring the Route Rule Condition
-
-Target Endpoint Properties:
-
-These properties provide the base connectivity for the routing engine:
-
-Property Value
-cpi.host https://[tenant].cfapps.eu20.hana.ondemand.com
-cpi.basepath /http/orders
-rhviana_10-1770087752601.png
-Figure 9 - The main properties for the Java Script create the SAP CPI endpoint
-
-Configuration of Key Value Mapping (KVM)
-Following the suggested naming convention, you must create one Key-Value Mapping for each SAP CPI package:
-
-Example Maps: cpipackage-nx.procurement.domain.process, cpipackage-nx.sales.domain.process, etc.
-rhviana_11-1770087811371.png
-Figure 10 - API-Proxy vs Key Value Mapping
-
-KVM Structure: Each map contains three primary entries:
-
-packagename: The technical CPI package name (e.g., nx.sales.domain.process).
-sapprocess: The business domain description (e.g., SAP SD & O2C - Sales Process).
-iflowname: The routing metadata string.
-rhviana_3-1770065969651.png
-Figure 11 - Key Value Mapping Configuration
-
-Understanding the iflowname String
-The iflowname entry is the "routing table" for the DCRP. It contains pairs consisting of the Semantic Path Suffix (used by the consumer) and the Technical iFlow Name (the target in CPI). This string is parsed by the JavaScript "Brain," so maintaining the pattern is critical.
-
-Example Configuration: httppath: inbound:SO.01.Iflow.Sales.Order.Inbound,tracking:SO.02.Iflow.Sales.Order.Tracking.
-
-The java script support almost all types of demiliters , but you can't use two dots (:) because this is the separation of http path url from SAP CPI and the Iflow name, between the records you can use any my suggestion is ( , ) 
-
-// Auto-detect delimiter used in KVM string
-var supportedDelimiters = [',', ';', '|', '/', '\\', '[', ']', '(', ')', '-', '_'];
-It maps the public HTTP URL suffix to the specific CPI technical endpoint:
-
-inbound $\rightarrow$ Routes to /inbound.
-tracking $\rightarrow$ Routes to /tracking.
-inbound
-
-cpi endpoint: /orders/inbound
-rhviana_5-1770066265324.png
-
-tracking
-cpi endpoint: /orders/tracking
-rhviana_7-1770066384526.png
-The SAP CPI Packages:
-Following the DCRP methodology, SAP CPI packages are organized as domain-specific containers that house multiple related integration flows.
-
-rhviana_0-1770083251421.png
-
-The Full Configuration of API Proxy
-
-Condition: The Proxy Endpoint validates the path (e.g., proxy.pathsuffix MatchesPath "/orders/**").
-Lookup: The "Brain" extracts the iflowname string from the KVM.
-Parsing: The JavaScript splits the string using the , delimiter to extract individual pairs.
-Generation: The engine matches the incoming suffix (e.g., /inbound) and generates the final CPI Target URL.
-End url: https://<cpi>/orders/inbound and any others values from the kvm records.
-ARCHITECT'S DEEP DIVE: WHY SUBDOMAIN SEGREGATION?
-Context: The KVM Scaling Challenge
-
-You might be wondering:
-
-"If I store all my iFlows in a single KVM as a concatenated string like cpihttpPath:iflowName,, won't this become a gigantic string?"
-
-Answer: Yes, exactly. And this is the core problem that led to the architectural pivot.
-
-The Discovery: Storage ≠ Performance
-
-Initial Assumption
-
-Original design: 1 API Proxy per business domain (Sales, Finance, Logistics, Procurement)
-KVM strategy: Concatenated string with all iFlow routes in a single KVM entry
-Expected limit: SAP API Management documentation states 10 KB KVM value limit
-KVM Size Analysis (Theoretical, Not Production-Tested)
-Scenario Size Entries Storage Runtime Concern
-Small Domain	~5 KB	40 entries	:white_heavy_check_mark:Within limits	Parsing overhead manageable
-Medium Domain	~10 KB	53 entries	:white_heavy_check_mark:At documented limit	JavaScript performance degrades
-Large Domain	~15-30 KB	100+ entries	:warning:Exceeds guideline	Bottleneck: O(n) parsing, not storage
-Key Finding:
-Storage capacity is not the constraint—JavaScript parsing performance at scale is.
-
-3.5 - The Semantic Facade: One Proxy, Multiple Intentions
-Instead of deploying separate proxies, all consumers use the SAME API Proxy. Differentiation handled via path suffixes.
-
-Consumer View (Public API):
-
-POST https://apim/sales/orders/inbound
-POST https://apim/sales/orders/tracking
-Backend Reality (CPI): 
-
-https://cpi/http/orders/inbound
-https://cpi/http/orders/tracking
-Key Benefits:
-
-Total Abstraction: Consumer contract unchanged if backend migrates
-End-to-End Monitoring: Unified analytics for entire Sales domain
-Centralized Security: One OAuth2 policy for all
-Unified Traffic Control: Spike Arrest and Quotas by domain
-Premium_slide_Tesla_style_White_background_Titl-1769935500992.png
- Figure 12 - Public API paths mapped to technical CPI endpoints
-
-3.6 - The Routing Engine: Execution Flow
-Every request passes through three stages:
-
-Stage 1: Proxy Endpoint Pre-Flow
-
-Security policies (OAuth2, API Key)
-Hacking Thread java script
-Request validation (payload size, content type)
-Traffic control (Spike Arrest, Quotas)
-:cross_mark:Immediate rejection if policies fail
-Stage 2: Routing Rules
-
-Evaluate: proxy.pathsuffix MatchesPath "/orders/**"
-:white_heavy_check_mark:Match → forward to Target Endpoint
-:cross_mark:No match → 404 error
-Stage 3: Target Endpoint Pre-Flow
-
-DCRP Brain executes here (last point to modify target.url)
-rhviana_5-1770086206938.png
-Figure 13 - Three-stage request processing with DCRP logic in Target Pre-Flow
-
-3.7 - The DCRP Brain: Policy Stages
-The routing engine executes through four policy stages Target Endpoint - PRE-Flow:
-
-Key Value Mapping: Retrieves httppath, iflowname, and sapprocess.
-JavaScript Routing: Performs variable verification, validation, and injection of headers.
-RaiseFaultException: Blocks the process in case of exceptions, missing variables, or KVM misconfigurations.
-Statistics Collection: Captures custom dimension variables for the SAP APIM Dashboard.
-The DCRP pattern transforms the gateway into a high-scale, programmable router by decoupling configuration from execution and moving routing logic into metadata.
-
-rhviana_7-1770052228084.png
-Figure 14 - KVM + Java Script
-
-3.8 Scaling Model: Vertical vs. Horizontal
-Vertical Scaling (30 Seconds): Add new iFlows to an existing domain by updating the KVM string. No infrastructure changes are required.
-
-Horizontal Scaling (2 Minutes): Onboard an entirely new business domain (e.g., Finance) by cloning the domain template and updating only the mapIdentifier.
-
-rhviana_8-1770052380096.png
-Figure 15 - Two-Level scaling strategy
-
-Real-World Validation: 4 Business Domains Deployed
-The methodology was validated by deploying four business domains—Sales, Logistics, Finance, and Procurement—managing 8 total iFlows.
-
-Validation Metrics:
-
-API Proxies Deployed: 4.
-
-JavaScript Policies Reused: 1 universal routing engine.
-Total Deployment Time: Approximately 8 minutes (~2 minutes per domain).
-Resilience: While DCRP returns an HTTP 404 if a specific iFlow endpoint is missing, the routing logic itself remains correct and operational.
-Business Domain API Proxy CPI Package iFlows Time
-Business Domain API Proxy CPI Package iFlows Time
-
-Sales & O2C	cpi-dcrp-proxy-domain-sales-o2c	cpipackage-nx.sales.domain.process	2	2 min
-Logistics & Shipping	cpi-dcrp-proxy-domain-logistics-scm	cpipackage-nx.logistics.domain.process	2	2 min
-Finance & Billing	cpi-dcrp-proxy-domain-finance-r2r	cpipackage-nx.finance.domain.process	2	2 min
-Procurement	cpi-dcrp-proxy-domain-procurement-s2p	cpipackage-nx.procurement.domain.process	2	2 min
-Results:
-4 API Proxies managing 8 iFlows
-JavaScript policies reused: 1 (universal routing engine)
-Total deployment time: ~8 minutes
-Total Time = (N domains × 2 min) + (M iFlows × 30 sec)
-
-3.9 - The JavaScript "Brain" (Complete Code)
-rhviana_9-1770053486450.png
-Figure 16 - Java Script coding
-
-The code of java script is into spoiler below - 
-
-TL;DR for Non-Developers: This JavaScript performs 4 tasks:
-
-Extracts path segments (e.g., `/inbound` → httppath cpi `inbound`)
-Looks up routing metadata from KVM
-Constructs final CPI URL dynamically
-Injects governance headers (X-SenderId, X-CorrelationId)
-For Architects: Review sections 1-4 for logic flow
-
-For Developers: Full code below with inline comments
-
-:warning: IMPLEMENTATION NOTICE
-:warning:IMPORTANT: This code is a simplified reference implementation designed for Proof-of-Concept (PoC) scenarios and educational purposes. While fully functional for demonstrating the core DCRP pattern, this routing engine assumes a basic KVM structure with simple, human-readable path identifiers like inbound, outbound, tracking, status, etc., as shown in the blog examples.
-
-KVM Format Used in This Blog:
-Format: <httppath>:<iflowname>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCRP: Domain-Centric Routing Pattern - SAP BTP APIM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        header .author {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 0 40px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+        }
+
+        h4 {
+            color: #333;
+            font-size: 1.2em;
+            margin: 25px 0 10px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .problem-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .solution-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .impact-box {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 40px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        table thead {
+            background: #667eea;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tbody tr:hover {
+            background: #f5f7fa;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .figure-caption {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 10px 0 30px 0;
+            font-size: 0.95em;
+        }
+
+        .architecture-diagram {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .pillar {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .pillar:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .comparison-item {
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .comparison-old {
+            background: #ffebee;
+            border: 2px solid #f44336;
+        }
+
+        .comparison-new {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .benefit-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid #dee2e6;
+        }
+
+        .toc h3 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .spoiler {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .spoiler-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+        }
+
+        .spoiler-header:hover {
+            background: #764ba2;
+        }
+
+        .spoiler-content {
+            padding: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .spoiler-content.active {
+            max-height: 5000px;
+        }
+
+        footer {
+            background: #24292e;
+            color: white;
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 0 20px;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+        }
+
+        .highlight-yellow {
+            background: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .highlight-green {
+            background: #c8e6c9;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>🚀 DCRP: Taming Enterprise-Scale SAP Integration API Proxies</h1>
+            <p class="subtitle">Domain-Centric Routing Pattern (DCRP) - Governing APIs via CPI</p>
+            <div>
+                <span class="badge">SAP BTP</span>
+                <span class="badge">API Management</span>
+                <span class="badge">Cloud Integration</span>
+                <span class="badge">Enterprise Architecture</span>
+            </div>
+            <p class="author"><strong>Autor:</strong> Ricardo Luz Holanda Viana | <strong>Ano:</strong> 2026</p>
+        </header>
+
+        <div class="content">
+            <!-- TABLE OF CONTENTS -->
+            <div class="toc">
+                <h3>📋 Índice</h3>
+                <ul>
+                    <li><a href="#executive-summary">Executive Summary</a></li>
+                    <li><a href="#target-audience">Target Audience & Prerequisites</a></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#sprawl-problem">1. The "Sprawl" Problem</a></li>
+                    <li><a href="#what-is-dcrp">2. What is DCRP?</a></li>
+                    <li><a href="#implementation">3. Implementation</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+
+            <!-- EXECUTIVE SUMMARY -->
+            <section id="executive-summary">
+                <h2>📊 Executive Summary</h2>
+
+                <div class="problem-box">
+                    <h4>❌ O Problema</h4>
+                    <p>Empresas que contêm SAP APIM sofrem de <strong>"Proxy Sprawl"</strong> onde cada integração requer um proxy API dedicado, criando uma relação 1:1 que leva a:</p>
+                    <ul>
+                        <li>Gargalos de deployment (15 min por proxy)</li>
+                        <li>Arquitetura de segurança inconsistente</li>
+                        <li>Crescimento inaceitável de dívida técnica</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h4>✅ A Solução</h4>
+                    <p>O <strong>Domain-Centric Routing Pattern (DCRP)</strong> consolida múltiplos serviços backend em um único API Proxy baseado em domínio, usando um motor de roteamento orientado por metadados (JavaScript + KVM).</p>
+                </div>
+
+                <div class="impact-box">
+                    <h4>📈 Impacto</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">96%</div>
+                            <div class="stat-label">Redução de Proxies</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">30s</div>
+                            <div class="stat-label">Tempo de Deploy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100→4</div>
+                            <div class="stat-label">Integrações→Proxies</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">8min</div>
+                            <div class="stat-label">4 Domínios Deploy</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>✅ Segurança, analytics e rastreabilidade centralizados</li>
+                        <li>✅ Validado: 4 domínios deployados em 8 minutos</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 Contribuição - Ricardo Viana</h4>
+                    <p>Roteamento dinâmico é uma feature nativa no SAP APIM, AWS e Kong. Entretanto, tecnologia sozinha não é suficiente. <strong>DCRP fornece o framework de governança necessário para escalar esta tecnologia em ambientes enterprise</strong>, incluindo convenções de nomenclatura padronizadas, estruturas KVM + JavaScript (Lógica cerebral da solução), organização, orientação e templates de deployment.</p>
+                </div>
+            </section>
+
+            <!-- TARGET AUDIENCE -->
+            <section id="target-audience">
+                <h2>🎯 Target Audience & Prerequisites</h2>
+
+                <h3>Público-Alvo</h3>
+                <p><strong>Destinado para:</strong> Integration Architects, Enterprise Architects, Solution Architects, Platform Owners, Governance Teams, e especialistas SAP BTP Integration Suite com experiência prática em API Management e para qualquer pessoa apaixonada por integração - nível júnior, sênior ou estudante.</p>
+
+                <h3>Pré-requisitos Técnicos</h3>
+                <ul>
+                    <li><strong>SAP API Management:</strong> Design de Proxy (ProxyEndpoint/TargetEndpoint), fluxo de execução de políticas, configuração de KeyValueMap</li>
+                    <li><strong>JavaScript em APIM:</strong> Manipulação de variáveis de contexto, tratamento de erros</li>
+                    <li><strong>Arquitetura de Fluxo API Proxy:</strong> Ordem de execução PreFlow/PostFlow, quando <code>target.url</code> pode ser modificado</li>
+                    <li><strong>Governança Corporativa:</strong> Convenções de nomenclatura, gestão de mudanças, políticas de segurança</li>
+                </ul>
+
+                <div class="warning-box">
+                    <p><strong>⚠️ Nível de Complexidade:</strong> Avançado</p>
+                    <p><strong>⏱️ Tempo Estimado de PoC:</strong> 2 horas (especialistas APIM) | 12 dias (arquitetos novos em APIM)</p>
+                </div>
+            </section>
+
+            <!-- INTRODUCTION -->
+            <section id="introduction">
+                <h2>📖 Introduction</h2>
+
+                <p>A documentação oficial da SAP explica como habilitar roteamento dinâmico, mas frequentemente deixa uma lacuna sobre quando, por que e como governá-lo em escala. Este artigo visa preencher essa lacuna fornecendo um framework completo - desde design arquitetural até implementação prática.</p>
+
+                <p>Construindo sobre meu post anterior sobre Advanced Domain Routing, agora vamos mergulhar profundamente na aplicação do <strong>Domain-Centric Routing Pattern (DCRP)</strong> em um cenário real: <strong>Sales & Distribution (O2C)</strong>.</p>
+
+                <h3>🎁 A Proposta de Valor do DCRP</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <strong>📦 Consolidação</strong><br>
+                        Um único API Proxy gerencia múltiplas fontes (Salesforce, Microsoft D365, Vendor CRM)
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🛡️ Governança</strong><br>
+                        Rastreabilidade completa de requisições e segurança padronizada sem sprawl de infraestrutura
+                    </div>
+                    <div class="benefit-item">
+                        <strong>⚡ Escalabilidade</strong><br>
+                        Roteamento de alta performance sem overhead de versionamento em nível de proxy
+                    </div>
+                </div>
+
+                <h3>📚 O Que Esperar - Série de 4 Partes</h3>
+                <p>Este é a <strong>Parte I</strong> de uma série de quatro partes sobre eliminação do caos de integração:</p>
+                <ul>
+                    <li><strong>Parte I (Este Post):</strong> DCRP Gateway | Resolve Proxy Sprawl | Roteamento orientado por metadados (KVM + JavaScript)</li>
+                    <li><strong>Parte II:</strong> PDCP Backend | Resolve Package Sprawl | Consolidação de domínio + nomenclatura DNA iFlow</li>
+                    <li><strong>Parte III:</strong> Implementação & Testes | Guia prático | JavaScript v8.0 | Postman | Repositório GitHub</li>
+                    <li><strong>Parte IV:</strong> Monitoramento com SAP Cloud ALM | Observabilidade end-to-end | Filtros MPL | Dashboards & alertas</li>
+                </ul>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 1 -->
+            <div class="image-placeholder">
+                📊 Figura 1 - DCRP - Exploração Detalhada do Modelo API Proxy
+            </div>
+            <p class="figure-caption">Figura 1: DCRP - API Proxy Model detailed exploration</p>
+
+            <!-- THE SPRAWL PROBLEM -->
+            <section id="sprawl-problem">
+                <h2>1️⃣ The "Sprawl" Problem</h2>
+
+                <p>Em muitos ambientes corporativos, é comum encontrar uma relação 1:1 entre serviços e API Proxies. Isso leva ao que identificamos como <strong>"Proxy Sprawl"</strong>: um ambiente onde proxies são criados para cada serviço técnico individual, independentemente de seu domínio de negócio.</p>
+
+                <p>Sem uma autoridade central de governança ou convenções de nomenclatura padronizadas, esses ambientes rapidamente se tornam não governados e insustentáveis. À medida que o volume de integração cresce, a complexidade de gerenciar, proteger e monitorar centenas de proxies individuais cria um gargalo operacional significativo.</p>
+
+                <div class="warning-box">
+                    <p><strong>⚠️ Este padrão não é teórico:</strong> DCRP foi desenvolvido como uma resposta direta a essas lacunas de governança do mundo real. Após extensa validação arquitetural, esta metodologia foi formalizada para fornecer uma solução repetível para a Comunidade SAP Integration.</p>
+                </div>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 2 -->
+            <div class="image-placeholder">
+                🔴 Figura 2 - O Problema do Sprawl
+            </div>
+            <p class="figure-caption">Figura 2: The Sprawl Problem - Proliferação descontrolada de proxies</p>
+
+            <!-- WHAT IS DCRP -->
+            <section id="what-is-dcrp">
+                <h2>2️⃣ What is DCRP (Domain Centric Routing Pattern)?</h2>
+
+                <p>O <strong>Domain-Centric Routing Pattern (DCRP)</strong> é um padrão de design arquitetural que consolida múltiplos serviços backend em um único API Proxy orientado ao domínio de negócio. Residindo na Camada de Gateway, DCRP governa como os serviços backend são expostos e roteados sem necessitar mudanças em seus protocolos subjacentes (REST ou SOAP).</p>
+
+                <p>Em vez de organizar APIs em silos técnicos, DCRP os alinha com os domínios de negócio da organização. Esta abordagem reduz significativamente a fragmentação de APIs e o overhead de manutenção, permanecendo totalmente compatível com as ofertas de API Product da SAP.</p>
+
+                <h3>🏛️ Os Três Pilares do DCRP</h3>
+                <div class="pillars">
+                    <div class="pillar">
+                        <h4>🎯 Organização Domain-Centric</h4>
+                        <p>APIs agrupadas por domínio de negócio (Sales, Finance, Logistics)</p>
+                        <p><strong>NÃO</strong> por sistema técnico (Salesforce, SAP, D365)</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>🗺️ Roteamento Metadata-Driven</h4>
+                        <p>KeyValueMap (KVM) armazena mapeamentos path→backend</p>
+                        <p>Mudanças em 30 segundos sem redeployment</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>🔌 Gateway Protocol-Agnostic</h4>
+                        <p>Suporta backends REST e SOAP</p>
+                        <p>Sem lock-in de protocolo</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 3 -->
+            <div class="image-placeholder">
+                🏛️ Figura 3 - Os Três Pilares do DCRP
+            </div>
+            <p class="figure-caption">Figura 3: The three pillars of DCRP</p>
+
+            <!-- DECISION FRAMEWORK -->
+            <section>
+                <h3>🤔 DCRP Decision Framework</h3>
+
+                <div class="comparison">
+                    <div class="comparison-item comparison-new">
+                        <h4>✅ Use DCRP Quando:</h4>
+                        <ul>
+                            <li><strong>Densidade de Domínio:</strong> 10+ APIs no mesmo domínio de negócio</li>
+                            <li><strong>Alta Volatilidade:</strong> Mudanças de integração mensalmente</li>
+                            <li><strong>Governança Centralizada:</strong> Requisitos críticos de segurança</li>
+                            <li><strong>Velocidade:</strong> Deployment rápido é crítico para o negócio</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item comparison-old">
+                        <h4>❌ NÃO Use Quando:</h4>
+                        <ul>
+                            <li>Serviços não relacionados sem conexão de lógica de negócio</li>
+                            <li>Apenas 1-2 serviços por domínio</li>
+                            <li>Menos de 10 APIs no total</li>
+                            <li>Times carecem de maturidade em governança</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 4 -->
+            <div class="image-placeholder">
+                🎯 Figura 4 - Framework de Decisão DCRP: Quando Usar vs Quando NÃO Usar
+            </div>
+            <p class="figure-caption">Figura 4: DCRP Decision Framework: When to Use vs. When NOT to Use</p>
+
+            <!-- ARCHITECTURE OVERVIEW -->
+            <section>
+                <h3>🏗️ DCRP Architecture Overview: The Power of Dynamic Routing</h3>
+
+                <p>O diagrama abaixo ilustra como o <strong>Domain-Centric Routing Pattern (DCRP)</strong> transforma o fluxo de integração. Em vez de um panorama fragmentado de proxies individuais, consolidamos a conectividade através de uma camada de gateway unificada e inteligente.</p>
+
+                <h4>⚙️ O Workflow Técnico:</h4>
+                <ol>
+                    <li><strong>Ponto de Entrada Unificado:</strong> Múltiplos sistemas consumidores—como Salesforce, Dynamics 365 e Vendor CRMs—conectam através de um único Sales Domain APIM Proxy.</li>
+                    <li><strong>O Motor DCRP:</strong> Dentro do SAP API Management Gateway, a requisição é processada pelo "Cérebro" do padrão, que executa um KVM Lookup e executa lógica JavaScript para resolver o backend alvo dinamicamente.</li>
+                    <li><strong>Orquestração Segura:</strong> A requisição é roteada via túnel seguro para o iFlow apropriado do Cloud Platform Integration (CPI).</li>
+                    <li><strong>Flexibilidade de Backend:</strong> CPI lida com a orquestração final com sistemas alvo (e.g., S/4HANA, Legacy Systems, ou SAP ECC) usando protocolos como ODATA, SOAP ou HTTPS.</li>
+                    <li><strong>Governança em Escala:</strong> Este modelo elimina a necessidade de proxies separados por integração, permitindo monitoramento centralizado, auditoria e aplicação de segurança através do Analytics Collector e uma camada de Governança global.</li>
+                </ol>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 5 -->
+            <div class="image-placeholder">
+                🏗️ Figura 5 - Visão Geral da Arquitetura DCRP End-to-End: Cenário de Integração de Três CRMs
+            </div>
+            <p class="figure-caption">Figura 5: DCRP Architecture Overview end-to-end: Three-CRM Integration Scenario</p>
+
+            <!-- TECHNICAL FOUNDATION -->
+            <section>
+                <h3>🧠 The Technical Foundation: KVM + JavaScript</h3>
+
+                <div class="architecture-diagram">
+                    <h4>KeyValueMap (KVM) | A "Memória"</h4>
+                    <p>O KVM é uma tabela de lookup simples que armazena suas regras de roteamento.</p>
+                    <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
+                        <li><strong>Lógica Desacoplada:</strong> Mapeia <code>cpi-packagename</code>, <code>iflowname</code></li>
+                        <li><strong>Atualizações Instantâneas:</strong> Mude uma URL backend no KVM, e o proxy atualiza imediatamente—sem deployment necessário</li>
+                        <li><strong>Data-Driven:</strong> Regras de negócio armazenadas como configuração, mantendo o código limpo</li>
+                    </ul>
+
+                    <h4 style="margin-top: 30px;">JavaScript Policy | O "Cérebro"</h4>
+                    <p>A política JS executa a lógica baseada no que encontra na "Memória".</p>
+                    <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
+                        <li><strong>Roteamento Dinâmico:</strong> Busca o destino do KVM e constrói a URL final</li>
+                        <li><strong>Governança:</strong> Injeta automaticamente headers de rastreamento como <code>X-SenderId</code> e <code>X-CorrelationId</code> para auditoria</li>
+                        <li><strong>Fail-Safe:</strong> Implementa tratamento estruturado de erros, garantindo que se uma rota estiver ausente, o usuário recebe uma mensagem de erro clara em vez de "falha silenciosa"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 6 -->
+            <div class="image-placeholder">
+                🧠 Figura 6 - Motor KVM + JavaScript
+            </div>
+            <p class="figure-caption">Figura 6: Engine KVM + JavaScript</p>
+
+            <!-- COMPARISON -->
+            <section>
+                <h3>📊 Proxy Sprawl vs DCRP: The Comparison</h3>
+
+                <p>A mudança de um modelo tradicional 1:1 para uma abordagem Domain-Centric muda fundamentalmente como um panorama de integração escala. A comparação a seguir destaca os ganhos de eficiência da metodologia DCRP:</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f44336 0%, #e91e63 100%);">
+                        <div class="stat-number">25h</div>
+                        <div class="stat-label">Modelo Tradicional<br>100 proxies × 15 min</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);">
+                        <div class="stat-number">8min</div>
+                        <div class="stat-label">Modelo DCRP<br>4 proxies × 2 min</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">96%</div>
+                        <div class="stat-label">Redução de Tempo<br>de Deployment</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>💡 Números Reais:</strong></p>
+                    <ul>
+                        <li>100 integrações através de 4 domínios</li>
+                        <li><strong>Tradicional:</strong> 100 proxies × 15 min = 25 horas</li>
+                        <li><strong>DCRP:</strong> 4 proxies × 2 min = 8 minutos (redução de 96%)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- IMAGE PLACEHOLDER 7 -->
+            <div class="image-placeholder">
+                📊 Figura 7 - Proxy Sprawl vs Modelo DCRP
+            </div>
+            <p class="figure-caption">Figura 7: Proxy Sprawl vs DCRP Model</p>
+
+            <!-- IMPLEMENTATION -->
+            <section id="implementation">
+                <h2>3️⃣ Implementation: Configuring the DCRP API Proxy</h2>
+
+                <p>Esta seção define a configuração para o ProxyEndpoint, Routing Rules, e propriedades Target Endpoint necessárias para deployar uma arquitetura domain-centric.</p>
+
+                <h3>📝 3.1 - The Entry Contract: One API Proxy per Business Domain</h3>
+                <p>DCRP elimina proxy sprawl ao consolidar múltiplas aplicações técnicas em um único contrato de entrada baseado no domínio de negócio. Isso garante que cada área de negócio, como Sales ou Finance, tenha exatamente um API Proxy governado.</p>
+
+                <h3>🏷️ 3.2 - Naming Convention Strategy</h3>
+                <p>Uma convenção de nomenclatura padronizada fornece contexto arquitetural imediato. DCRP usa a seguinte estrutura:</p>
+
+                <div class="info-box">
+                    <p><strong>Padrão:</strong> <code>[Provider]-[Pattern]-proxy-domain-[BusinessProcess]-[subprocess]</code></p>
+                    <p><strong>Exemplo:</strong> <code>cpi-dcrp-proxy-domain-sales-o2c</code></p>
+                    <ul>
+                        <li><code>cpi</code>: Identifica o provedor (SAP Cloud Integration)</li>
+                        <li><code>dcrp</code>: Define a metodologia de roteamento</li>
+                        <li><code>sales</code>: Identifica o domínio/processo de negócio (O2C)</li>
+                        <li><code>o2c</code>: sap-subprocess</li>
+                    </ul>
+                </div>
+
+                <h3>🎯 3.3 - Strategic Benefit: Subprocess Segregation</h3>
+                <p>Quebrar a nomenclatura ao nível de subprocesso (e.g., <code>o2c</code> para Order-to-Cash) é uma estratégia deliberada de segregação ao invés de um simples exercício de rotulagem.</p>
+
+                <p>Ao isolar por subprocesso, você limita o escopo de cada API Proxy. Isso previne a <strong>"Armadilha do Proxy Monolítico"</strong>, garantindo que atualizações em um fluxo específico—como Warehouse Management—não arrisquem a estabilidade de todo o domínio Logistics.</p>
+
+                <!-- NAMING TABLE -->
+                <div class="spoiler">
+                    <div class="spoiler-header" onclick="toggleSpoiler(this)">
+                        📋 Clique para ver: Tabela Completa de Convenção de Nomenclatura DCRP
+                    </div>
+                    <div class="spoiler-content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Domain</th>
+                                    <th>Subprocess</th>
+                                    <th>Technical Proxy Name</th>
+                                    <th>Scope Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Sales</strong></td>
+                                    <td><code>o2c</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-sales-o2c</code></td>
+                                    <td>Order-to-Cash full lifecycle</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sales</strong></td>
+                                    <td><code>crm</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-sales-crm</code></td>
+                                    <td>Customer relationship and leads</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sales</strong></td>
+                                    <td><code>pri</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-sales-pri</code></td>
+                                    <td>Quotes and price conditions</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sales</strong></td>
+                                    <td><code>reb</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-sales-reb</code></td>
+                                    <td>Bonus and discount agreements</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sales</strong></td>
+                                    <td><code>sd</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-sales-sd</code></td>
+                                    <td>General sales and distribution</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance</strong></td>
+                                    <td><code>r2r</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-finance-r2r</code></td>
+                                    <td>Financial closing and reporting</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance</strong></td>
+                                    <td><code>trs</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-finance-trs</code></td>
+                                    <td>Treasury and cash management</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance</strong></td>
+                                    <td><code>ap</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-finance-ap</code></td>
+                                    <td>Accounts Payable processes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance</strong></td>
+                                    <td><code>ar</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-finance-ar</code></td>
+                                    <td>Accounts Receivable processes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance</strong></td>
+                                    <td><code>tax</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-finance-tax</code></td>
+                                    <td>Tax compliance and reporting</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>le</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-le</code></td>
+                                    <td>Logistics execution and flows</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>tm</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-tm</code></td>
+                                    <td>Transportation and freight</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>wm</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-wm</code></td>
+                                    <td>Warehouse and bin management</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>inv</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-inv</code></td>
+                                    <td>Physical stock and inventory</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>mm</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-mm</code></td>
+                                    <td>Material master and movements</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logistics</strong></td>
+                                    <td><code>shp</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-logistics-shp</code></td>
+                                    <td>Shipping and delivery notes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Procure</strong></td>
+                                    <td><code>p2p</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-procurement-p2p</code></td>
+                                    <td>Procure-to-Pay lifecycle</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Procure</strong></td>
+                                    <td><code>srm</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-procurement-srm</code></td>
+                                    <td>Supplier portal and relations</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Procure</strong></td>
+                                    <td><code>crt</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-procurement-crt</code></td>
+                                    <td>Legal and operational contracts</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Procure</strong></td>
+                                    <td><code>clg</code></td>
+                                    <td><code>cpi-dcrp-proxy-domain-procurement-clg</code></td>
+                                    <td>Catalog and item management</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>⚙️ 3.4 - Endpoint, Routing Configuration, Value Mapping</h3>
+
+                <p>As Routing Rules atuam como um gatekeeper, garantindo que apenas caminhos autorizados alcancem o motor dinâmico. Neste exemplo, estamos trabalhando apenas com o processo de orders.</p>
+
+                <div class="info-box">
+                    <h4>Proxy Endpoint Configuration</h4>
+                    <ul>
+                        <li><strong>Route Rule Name:</strong> orders</li>
+                        <li><strong>Condition:</strong> <code>proxy.pathsuffix MatchesPath "/orders/**"</code></li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>💡 Analogia:</strong> Imagine sua API como um grande prédio de escritórios. Esta "Condição" é o segurança na recepção checando os rótulos na correspondência recebida.</p>
+                    
+                    <ul style="margin-top: 10px;">
+                        <li><code>proxy.pathsuffix</code>: O "endereço" escrito no envelope após o nome principal do prédio</li>
+                        <li><code>MatchesPath</code>: O guarda perguntando: "Este endereço parece com o que estou procurando?"</li>
+                        <li><code>"/orders/**"</code>: O nome específico do "Departamento". Os asteriscos duplos (**) significam "não me importo com o que mais está escrito depois de 'orders', desde que comece com isso"</li>
+                    </ul>
+                </div>
+
+                <h4>📋 Exemplos de Correspondência de Path</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Incoming Path</th>
+                            <th>Match?</th>
+                            <th>Why?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/orders/123</code></td>
+                            <td>✅ <strong>Yes</strong></td>
+                            <td>Starts with <code>/orders/</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>/orders/list/today</code></td>
+                            <td>✅ <strong>Yes</strong></td>
+                            <td>Starts with <code>/orders/</code> (the <code>**</code> covers the rest)</td>
+                        </tr>
+                        <tr>
+                            <td><code>/customers/456</code></td>
+                            <td>❌ <strong>No</strong></td>
+                            <td>It's looking for "orders," not "customers"</td>
+                        </tr>
+                        <tr>
+                            <td><code>/orders</code></td>
+                            <td>✅ <strong>Yes</strong></td>
+                            <td>It is the exact folder</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- MORE IMAGES PLACEHOLDERS -->
+                <div class="image-placeholder">
+                    ⚙️ Figura 8 - Configurando a Condição da Route Rule
+                </div>
+                <p class="figure-caption">Figura 8: Configuring the Route Rule Condition</p>
+
+                <h3>🎯 Target Endpoint Properties</h3>
+                <p>Estas propriedades fornecem a conectividade base para o motor de roteamento:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>cpi.host</code></td>
+                            <td><code>https://[tenant].cfapps.eu20.hana.ondemand.com</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>cpi.basepath</code></td>
+                            <td><code>/http/orders</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="image-placeholder">
+                    🎯 Figura 9 - As principais propriedades para o JavaScript criar o endpoint SAP CPI
+                </div>
+                <p class="figure-caption">Figura 9: The main properties for the JavaScript to create the SAP CPI endpoint</p>
+
+                <h3>🗺️ Configuration of Key Value Mapping (KVM)</h3>
+
+                <p>Seguindo a convenção de nomenclatura sugerida, você deve criar um Key-Value Mapping para cada pacote SAP CPI:</p>
+                
+                <ul>
+                    <li><strong>Exemplo de Maps:</strong> <code>cpipackage-nx.procurement.domain.process</code>, <code>cpipackage-nx.sales.domain.process</code>, etc.</li>
+                </ul>
+
+                <div class="image-placeholder">
+                    🗺️ Figura 10 - API-Proxy vs Key Value Mapping
+                </div>
+                <p class="figure-caption">Figura 10: API-Proxy vs Key Value Mapping</p>
+
+                <h4>📊 Estrutura do KVM</h4>
+                <p>Cada map contém três entradas primárias:</p>
+                <ul>
+                    <li><strong>packagename:</strong> O nome técnico do pacote CPI (e.g., <code>nx.sales.domain.process</code>)</li>
+                    <li><strong>sapprocess:</strong> A descrição do domínio de negócio (e.g., <code>SAP SD & O2C - Sales Process</code>)</li>
+                    <li><strong>iflowname:</strong> A string de metadados de roteamento</li>
+                </ul>
+
+                <div class="image-placeholder">
+                    📊 Figura 11 - Configuração do Key Value Mapping
+                </div>
+                <p class="figure-caption">Figura 11: Key Value Mapping Configuration</p>
+
+                <h4>🔍 Understanding the <code>iflowname</code> String</h4>
+
+                <p>A entrada <code>iflowname</code> é a "tabela de roteamento" para o DCRP. Ela contém pares consistindo do <strong>Semantic Path Suffix</strong> (usado pelo consumidor) e o <strong>Technical iFlow Name</strong> (o alvo no CPI). Esta string é parseada pelo "Cérebro" JavaScript, então manter o padrão é crítico.</p>
+
+                <div class="info-box">
+                    <p><strong>Exemplo de Configuração:</strong></p>
+                    <p><code>iflowname: inbound:SO.01.Iflow.Sales.Order.Inbound,tracking:SO.02.Iflow.Sales.Order.Tracking</code></p>
+                    
+                    <p style="margin-top: 15px;">Mapeia o sufixo da URL HTTP pública para o endpoint técnico específico do CPI:</p>
+                    <ul>
+                        <li><strong>inbound</strong> → Roteia para <code>/inbound</code></li>
+                        <li><strong>tracking</strong> → Roteia para <code>/tracking</code></li>
+                    </ul>
+
+                    <p style="margin-top: 10px;"><strong>⚠️ Nota:</strong> O JavaScript suporta quase todos os tipos de delimitadores, mas você não pode usar <strong>dois pontos (:)</strong> porque isso é a separação do http path URL do SAP CPI e o nome do iFlow. Entre os registros você pode usar qualquer um, minha sugestão é <strong>vírgula (,)</strong></p>
+                </div>
+
+                <h3>📦 The SAP CPI Packages</h3>
+                <p>Seguindo a metodologia DCRP, pacotes SAP CPI são organizados como containers específicos de domínio que abrigam múltiplos integration flows relacionados.</p>
+
+                <div class="image-placeholder">
+                    📦 Figura 12 - Pacotes SAP CPI Organizados por Domínio
+                </div>
+                <p class="figure-caption">Figura 12: SAP CPI Packages organized by domain</p>
+
+                <h3>🔄 The Full Configuration of API Proxy</h3>
+
+                <div class="architecture-diagram">
+                    <h4>Fluxo de Processamento</h4>
+                    <ol style="text-align: left; max-width: 700px; margin: 20px auto;">
+                        <li><strong>Condition:</strong> O Proxy Endpoint valida o path (e.g., <code>proxy.pathsuffix MatchesPath "/orders/**"</code>)</li>
+                        <li><strong>Lookup:</strong> O "Cérebro" extrai a string <code>iflowname</code> do KVM</li>
+                        <li><strong>Parsing:</strong> O JavaScript divide a string usando o delimitador <code>,</code> para extrair pares individuais</li>
+                        <li><strong>Generation:</strong> O motor corresponde o sufixo recebido (e.g., <code>/inbound</code>) e gera a URL CPI Target final</li>
+                        <li><strong>End URL:</strong> <code>https://&lt;cpi&gt;/orders/inbound</code> e quaisquer outros valores dos registros KVM</li>
+                    </ol>
+                </div>
+
+                <h3>🏗️ ARCHITECT'S DEEP DIVE: WHY SUBDOMAIN SEGREGATION?</h3>
+
+                <div class="warning-box">
+                    <h4>⚠️ Contexto: O Desafio de Escalabilidade do KVM</h4>
+                    <p>Você pode estar se perguntando:</p>
+                    <blockquote style="font-style: italic; margin: 15px 0;">"Se eu armazenar todos os meus iFlows em um único KVM como uma string concatenada como <code>cpihttpPath:iflowName,</code>, isso não se tornará uma string gigantesca?"</blockquote>
+                    <p><strong>Resposta: Sim, exatamente.</strong> E este é <strong>o problema central</strong> que levou ao pivot arquitetural.</p>
+                </div>
+
+                <h4>🔍 A Descoberta: Performance de Storage</h4>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Size</th>
+                            <th>Entries</th>
+                            <th>Storage</th>
+                            <th>Runtime Concern</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Small Domain</td>
+                            <td>~5 KB</td>
+                            <td>40 entries</td>
+                            <td>✅ Within limits</td>
+                            <td>Parsing overhead manageable</td>
+                        </tr>
+                        <tr>
+                            <td>Medium Domain</td>
+                            <td>~10 KB</td>
+                            <td>53 entries</td>
+                            <td>✅ At documented limit</td>
+                            <td>JavaScript performance degrades</td>
+                        </tr>
+                        <tr>
+                            <td>Large Domain</td>
+                            <td>~15-30 KB</td>
+                            <td>100+ entries</td>
+                            <td>⚠️ Exceeds guideline</td>
+                            <td><strong>Bottleneck: O(n) parsing, not storage</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <p><strong>💡 Descoberta-Chave:</strong> Capacidade de armazenamento não é a restrição - <strong>performance de parsing JavaScript em escala é</strong>.</p>
+                </div>
+
+                <h3>🎭 3.5 - The Semantic Facade: One Proxy, Multiple Intentions</h3>
+
+                <p>Em vez de deployar proxies separados, todos os consumidores usam o MESMO API Proxy. A diferenciação é tratada via sufixos de path.</p>
+
+                <div class="comparison">
+                    <div class="comparison-item comparison-new">
+                        <h4>👁️ Consumer View (Public API)</h4>
+                        <ul>
+                            <li>POST <code>https://apim/sales/orders/inbound</code></li>
+                            <li>POST <code>https://apim/sales/orders/tracking</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-item comparison-old">
+                        <h4>⚙️ Backend Reality (CPI)</h4>
+                        <ul>
+                            <li><code>https://cpi/http/orders/inbound</code></li>
+                            <li><code>https://cpi/http/orders/tracking</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>🎁 Key Benefits</h4>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <strong>🎭 Total Abstraction</strong><br>
+                        Contrato do consumidor inalterado se o backend migrar
+                    </div>
+                    <div class="benefit-item">
+                        <strong>📊 End-to-End Monitoring</strong><br>
+                        Analytics unificados para todo domínio Sales
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🔒 Centralized Security</strong><br>
+                        Uma política OAuth2 para todos
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🚦 Unified Traffic Control</strong><br>
+                        Spike Arrest e Quotas por domínio
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    🎭 Figura 13 - Paths API públicos mapeados para endpoints técnicos CPI
+                </div>
+                <p class="figure-caption">Figura 13: Public API paths mapped to technical CPI endpoints</p>
+
+                <h3>⚡ 3.6 - The Routing Engine: Execution Flow</h3>
+
+                <p>Toda requisição passa por três estágios:</p>
+
+                <div class="pillars">
+                    <div class="pillar">
+                        <h4>Stage 1: Proxy Endpoint Pre-Flow</h4>
+                        <ul style="text-align: left;">
+                            <li>Políticas de segurança (OAuth2, API Key)</li>
+                            <li>Hacking Thread JavaScript</li>
+                            <li>Validação de requisição (payload size, content type)</li>
+                            <li>Controle de tráfego (Spike Arrest, Quotas)</li>
+                            <li>Rejeição imediata se políticas falharem</li>
+                        </ul>
+                    </div>
+                    <div class="pillar">
+                        <h4>Stage 2: Routing Rules</h4>
+                        <ul style="text-align: left;">
+                            <li>Avalia: <code>proxy.pathsuffix MatchesPath "/orders/**"</code></li>
+                            <li>Match → forward para Target Endpoint</li>
+                            <li>No match → erro 404</li>
+                        </ul>
+                    </div>
+                    <div class="pillar">
+                        <h4>Stage 3: Target Endpoint Pre-Flow</h4>
+                        <ul style="text-align: left;">
+                            <li><strong>DCRP Brain executa aqui</strong> (último ponto para modificar target.url)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    ⚡ Figura 14 - Processamento de Requisição em Três Estágios com Lógica DCRP no Target Pre-Flow
+                </div>
+                <p class="figure-caption">Figura 14: Three-stage request processing with DCRP logic in Target Pre-Flow</p>
+
+                <h3>🧠 3.7 - The DCRP Brain: Policy Stages</h3>
+
+                <p>O motor de roteamento executa através de quatro estágios de política no <strong>Target Endpoint - PRE-Flow</strong>:</p>
+
+                <ol>
+                    <li><strong>Key Value Mapping:</strong> Recupera <code>httppath</code>, <code>iflowname</code>, e <code>sapprocess</code></li>
+                    <li><strong>JavaScript Routing:</strong> Executa verificação de variáveis, validação e injeção de headers</li>
+                    <li><strong>RaiseFaultException:</strong> Bloqueia o processo em caso de exceções, variáveis ausentes ou configurações incorretas do KVM</li>
+                    <li><strong>Statistics Collection:</strong> Captura variáveis de dimensão customizadas para o SAP APIM Dashboard</li>
+                </ol>
+
+                <p>O padrão DCRP transforma o gateway em um roteador programável de alta escala ao desacoplar configuração de execução e mover lógica de roteamento para metadados.</p>
+
+                <div class="image-placeholder">
+                    🧠 Figura 15 - KVM + JavaScript - Os Quatro Estágios de Política
+                </div>
+                <p class="figure-caption">Figura 15: KVM + JavaScript - The Four Policy Stages</p>
+
+                <h3>📈 3.8 - Scaling Model: Vertical vs. Horizontal</h3>
+
+                <div class="comparison">
+                    <div class="comparison-item comparison-new">
+                        <h4>⬆️ Vertical Scaling (30 Segundos)</h4>
+                        <p>Adicione novos iFlows a um domínio existente atualizando a string KVM. Nenhuma mudança de infraestrutura é necessária.</p>
+                    </div>
+
+                    <div class="comparison-item comparison-new">
+                        <h4>➡️ Horizontal Scaling (2 Minutos)</h4>
+                        <p>Integre um domínio de negócio inteiramente novo (e.g., Finance) clonando o template de domínio e atualizando apenas o <code>mapIdentifier</code>.</p>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    📈 Figura 16 - Estratégia de Escalabilidade em Dois Níveis
+                </div>
+                <p class="figure-caption">Figura 16: Two-Level scaling strategy</p>
+
+                <h3>✅ Real-World Validation: 4 Business Domains Deployed</h3>
+
+                <p>A metodologia foi validada ao deployar quatro domínios de negócio—Sales, Logistics, Finance e Procurement—gerenciando 8 iFlows totais.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Business Domain</th>
+                            <th>API Proxy</th>
+                            <th>CPI Package</th>
+                            <th>iFlows</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sales & O2C</td>
+                            <td><code>cpi-dcrp-proxy-domain-sales-o2c</code></td>
+                            <td><code>cpipackage-nx.sales.domain.process</code></td>
+                            <td>2</td>
+                            <td>2 min</td>
+                        </tr>
+                        <tr>
+                            <td>Logistics & Shipping</td>
+                            <td><code>cpi-dcrp-proxy-domain-logistics-scm</code></td>
+                            <td><code>cpipackage-nx.logistics.domain.process</code></td>
+                            <td>2</td>
+                            <td>2 min</td>
+                        </tr>
+                        <tr>
+                            <td>Finance & Billing</td>
+                            <td><code>cpi-dcrp-proxy-domain-finance-r2r</code></td>
+                            <td><code>cpipackage-nx.finance.domain.process</code></td>
+                            <td>2</td>
+                            <td>2 min</td>
+                        </tr>
+                        <tr>
+                            <td>Procurement</td>
+                            <td><code>cpi-dcrp-proxy-domain-procurement-s2p</code></td>
+                            <td><code>cpipackage-nx.procurement.domain.process</code></td>
+                            <td>2</td>
+                            <td>2 min</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">API Proxies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">iFlows Gerenciados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">JavaScript Reutilizado</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">~8min</div>
+                        <div class="stat-label">Tempo Total</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>💡 Fórmula de Tempo Total:</strong></p>
+                    <p><code>Total Time = (N domains × 2 min) + (M iFlows × 30 sec)</code></p>
+                </div>
+
+                <h3>💻 3.9 - The JavaScript "Brain" (Complete Code)</h3>
+
+                <div class="warning-box">
+                    <h4>⚠️ IMPLEMENTATION NOTICE</h4>
+                    <p><strong>IMPORTANTE:</strong> Este código é uma implementação de referência simplificada projetada para cenários de Proof-of-Concept (PoC) e propósitos educacionais. Embora totalmente funcional para demonstrar o padrão <strong>DCRP</strong> central, este motor de roteamento assume uma estrutura KVM básica com identificadores de path simples e legíveis como <code>inbound</code>, <code>outbound</code>, <code>tracking</code>, <code>status</code>, etc.</p>
+                </div>
+
+                <h4>📊 Formato KVM Usado Neste Blog</h4>
+                <pre><code>Format: &lt;httppath&gt;:&lt;iflowname&gt;
 
 Examples:
 inbound:iflow-salesforce-order-create
 outbound:iflow-sap-invoice-send
 tracking:iflow-fedex-shipment-track
-status:iflow-order-status-query
-This approach works well for PoC scenarios with single iFlow per action and straightforward naming conventions.
-
-Before Production Deployment:
-This code must be adapted based on your specific requirements:
-
-KVM Structure Design - The iflowname string format you choose will dictate the parsing logic
-Naming Conventions - Adapt routing logic to match your organization's naming patterns
-Adapter Requirements - HTTP-only vs. mixed HTTP/SOAP landscapes require different endpoint construction
-Multi-Vendor Scenarios - Single-vendor vs. multi-vendor per process may need disambiguation logic
-Production-Ready Code: DCRP Routing Engine (Part II & III)
-A comprehensive, production-grade routing engine covering all enterprise scenarios—multi-vendor disambiguation, PDCP naming compliance, HTTP/SOAP adapter support, conflict resolution (id09/id10), and global-scale architecture—is available in Part II: Package Domain-Centric Pattern (PDCP) and fully implemented in Part III: Implementation & Testing. The latest v8.0 engine is specifically designed for the combined DCRP + PDCP framework, generating CPI endpoints with the /dcrp/ prefix and automatic adapter detection: /http/dcrp/ (HTTP) or /cxf/dcrp/ (SOAP). This evolution handles complex KVM structures, scales to 100+ integrations with zero-code deployment for new vendors, and includes smart vendor-aware routing with fallback logic for seamless multi-instance disambiguation.
-
-Spoiler
-Add in seguency in the Pre-Flow TargetEndpoint - Raise Fault Routing:
-
-condition: routing.failed = "true"
-
-rhviana_0-1770105234756.png
-Figure 17 - Raise Fault in case of failure in the "Brain Java Script Routing"
-
-Spoiler
-4 - Operational Simulation and Architectural Flow
-This section demonstrates the practical execution of the DCRP (Domain-Centric Routing Pattern) framework by simulating how the routing engine processes a request through the landscape.
-
-Architectural Flow Simulation
-Based on the provided technical diagram, the process follows a structured path from the initiating system to the final integration endpoint:
-
-Request Initiation: External systems such as
-Salesforce -  http://<apim>/sales/orders/inbound
-Dynamics 365 - http://<apim>/sales/orders/status
-Vendor CRMs  - http://<apim>/sales/orders/tracking
-The DCRP Engine: Upon reaching the SAP API Management Gateway, the DCRP Enginne is triggered to manage the transaction logic.
-Metadata Retrieval (KVM Lookup): 
-Inbound:iflowname | sapprocess | cpipackage
-Tracking:iflowname | sapprocess | cpipackage
-Status: iflowname | sapprocess | cpipackage
-Logical Resolution (JavaScript): The JavaScript component processes the proxy.pathsuffix against the metadata retrieved from the KVM to determine the correct technical path.
-http;//<cpi>/orders/inbound
-http;//<cpi>/orders/tracking
-http://<cpi>/orders/status
-Header details
-Dynamic Routing: The engine resolves the target and dynamically routes the traffic to the corresponding SAP BTP Integration Suite iFlow.
-Architect's Note: This simulation highlights the decoupling of the consumer from the technical backend. The source systems interact only with a standardized semantic layer, while the routing engine manages all technical complexities internally.
-
-rhviana_4-1770086031322.png
-Figure 18 - Clear orientation how works the solution from the sender to SAP APIM.
-
-5 - Scaling Strategies: Manual vs Dynamic Routing
-Scaling DCRP effectively requires choosing between two distinct deployment approaches, depending on the complexity and regional requirements of the enterprise.
-
-Two Strategic Approaches:
-
-5.1 - Approach 1: Single Global Template:
-How it works: Create 1 Routing Rule per path (`/orders/**`, `/customers/**`)
-Configuration: - 1 proxy per domain - N routing rules (1 per path) -
-Fixed:`cpi.basepath` per rule
-Time per new path: ~2 minutes (add routing rule + KVM entry)
-Best for: Small domains (<5 paths), stable environments
-rhviana_12-1770088065117.png
-Figure 19 - Template part 1
-
-rhviana_13-1770088110322.png
-Figure 20 - Template part 2
-
-Most importantly, you must ensure the Target Endpoint PRE-Flow is ready with the DCRP logic. While this approach provides explicit routing visibility, any additional requirements—such as specific security methods, quotas, or spike control—must be adjusted accordingly.
-
-Required Policies (Target Endpoint PreFlow):
-
-Key Value Mapping
-JavaScript Routing
-Raise Fault
-Statistics Collector
-Once this setup is finalized, it takes approximately 2 to 3 minutes to have a fully functional API Proxy ready for operation, and less than 30 seconds to update metadata in the Key Value Mapping.
-
-rhviana_15-1770088301427.png
-
-Figure 21 - Pre-Flow setup - DCRP brain
-
-5.2 - Approach 2: Dynamic Multi-Path Routing
-How it works:
-
-Single catch-all route (/**)
-JavaScript extracts first segment dynamically
-cpi.basepath is comma-delimited string of all paths
-Configuration:
-
-1 proxy per domain
-1 catch-all routing rule
-Security Shield validates domain whitelist
-Time per new path: ~30 seconds (update cpi.basepath string + KVM + Security whitelist)
-
-Best for: Enterprise scale, frequent changes
-
-Example Configuration
-Target Endpoint Property: cpi.basepath
-
-Initial Value:
-
-/http/orders,/http/customers,/http/invoices,/http/prices
-Adding new path (payments):
-
-/http/orders,/http/customers,/http/invoices,/http/prices,/http/payments
-Request Flow
-Request Path First Segment Dynamic Basepath KVM Match Final CPI URL
-/sales/customers	customers	/http/customers	SO.01.Customer.MasterData	https://cpi/http/customers
-/sales/orders	orders	/http/orders	SO.02.Order.Process	https://cpi/http/orders
-/sales/invoices	invoices	/http/invoices	SO.03.Invoice.Billing	https://cpi/http/invoices
-Mechanism: JavaScript extracts first segment → builds /http/{firstSegment} → KVM lookup → routes to CPI.
-
-rhviana_0-1770096689710.png
-Figure 22 - Scalation mode hard
-
-Architect's Note Dynamic Multi-Path Routing: This simulation highlights the decoupling of the consumer from the technical backend. The source systems interact only with a standardized semantic layer, while the routing engine manages all technical complexities internally.
-
-rhviana_0-1770106440056.png
-Figure 23 - Clear orientation how works the solution with Dynamic Multi-Path Routing from the sender to SAP APIM.
-
-rhviana_1-1770097079230.png
-Figure 24 - Setup of cpi.basepath variable in the target endpoint with full string or new incomming process.
-
-To do this setup this takes me 1 minute.
-5.3 — Security Shield: Critical for Dynamic Routing
-Why It's Required
-
-Catch-all route (/)** = every request reaches routing engine.
-
-Without Shield With Shield
-:cross_mark:Path traversal reaches KVM/JS	:white_heavy_check_mark:Blocked at PreFlow (403)
-:cross_mark:SQL injection processed	:white_heavy_check_mark:Saves ~100ms per blocked request
-:cross_mark:Resource waste	:white_heavy_check_mark:Audit compliance (SOC 2/ISO 27001)
-Attack Scenarios
-
-Attack Type Example Without Shield With Shield
-Path Traversal	/sales/../admin/delete	:cross_mark:Reaches KVM/JS	:white_heavy_check_mark:Blocked (403)
-SQL Injection	/orders?id=1 OR 1=1	:cross_mark:Reaches KVM/JS	:white_heavy_check_mark:Blocked (403)
-Domain Hijacking	/hacker-domain/exploit	:cross_mark:Reaches KVM/JS	:white_heavy_check_mark:Blocked (403)
-Command Injection	/orders?cmd=;cat /etc/passwd	:cross_mark:Reaches KVM/JS	:white_heavy_check_mark:Blocked (403)
-Configuration (30 seconds per path)
-
-Add new path (e.g., /payments) in 3 locations:
-
-1. Target Endpoint (cpi.basepath)
-
-/http/orders,/http/customers,/http/payments
-2. Security Whitelist (JS-Security-Shield.js) - Inside javascript code
-
-var allowedDomains = ["sales", 
-"orders", "customers", "invoices", "payments"]; <-- add here new path
-3. KVM Entry (iflowname)
-
-orders:SO.01...,customers:SO.02...,payments:SO.03...
-Execution Api-proxy flow steps:
-
-ProxyEndpoint PreFlow:
-  1. JS-Security-Shield    → Validates whitelist, blocks attacks
-  2. RF-SecurityThreat     → Returns 403 if threat
-  3. Quota + Spike Arrest  → Rate limiting
-     ↓
-TargetEndpoint PreFlow:
-  4. KVM Lookup + Routing  → Only if security passed
-Performance (Telemetry)
-
-Scenario Time Impact
-Valid request	+10ms	:white_heavy_check_mark:Acceptable (8% total)
-Blocked attack	10ms (no KVM/JS)	:white_heavy_check_mark: Saves 100ms
-Key Insight: Security Shield prevents resource waste on malicious requests.
-
-Why Not Rely on KVM for 404?
-Defense-in-depth principle:
-
-Resource Efficiency: Blocks at PreFlow (saves KVM + JS overhead)
-Attack Intelligence: Logs threats for SIEM
-Blast Radius: KVM misconfiguration doesn't expose all paths
-Compliance: SOC 2/ISO 27001 require gateway validation
-Java Script Thread Hacking protection - ( Complete Code )
-rhviana_2-1770097161609.png
-Figure 25 - Java Script Policy - Hacking thread protection Domain-Specific Templates
-
-In this case you need to add this java script in the Proxy End-point - Pre-Flow to stop imidiatly any hacking or sql injection, because now the routing mechanism is not based on path, is start - proxy.pathsuffix MatchesPath "/**"
-
-rhviana_3-1770097307702.png
-
-Figure 23 - Java Script Thread Protection - ProxyEndpoint - Preflow
-
-Add in seguency - RaiseFault Hacking thead:
-
-condition: security.raise.fault = "true"
-
-rhviana_1-1770105359594.png
-
-Figure 24 - Raise Fault Thread of Hacking, sql injection and others.
-
-Spoiler
-DCRP Security Shield v1.0
-Purpose
-Protects catch-all route (/**) from malicious requests before JS-Routing executes - code in the spoiler below
-
-Spoiler
-When to Use Each Approach
-Use Approach 1 (Manual) when:
-
-Domain has <5 paths and rarely changes
-Team prefers explicit routing rules for visibility
-Legacy environment with existing path-based architecture
-Use Approach 2 (Dynamic) when:
-
-Domain has >5 paths OR frequent changes expected
-Enterprise scale with multiple regional deployments
-Need maximum deployment velocity (30s per new path)
-Comparison Table
-Feature Approach 1 (Manual) Approach 2 (Dynamic)
-Routing Rule	N rules (1 per path)	1 catch-all (/**)
-cpi.basepath	Fixed per rule	Comma-delimited string
-JavaScript	Matches KVM only	Extracts segment + matches KVM
-Security	Rule-based	Whitelist validation required
-Time per new path	~2 min (add rule)	~30 sec (update string)
-Best for	<5 paths, stable	Enterprise, high-change
-ROI Calculation (Approach 2)
-Scaling 4 domains with 8 paths each:
-
-Approach 1 (Manual):
-4 domains × 8 paths × 2 min = 64 minutes
-
-Approach 2 (Dynamic):
-4 domains × 1 setup (2 min) + 32 paths × 30 sec = 8 min + 16 min = 24 minutes
-
-Savings: 40 minutes (62% faster)
-
-rhviana_0-1770100201129.png
-Figure 26 - Scaling Strategies: Manual vs Dynamic Multi-Path Routing
-
-6 - API Contracts, Versioning & Openapi Management
-Why DCRP Proxies Don't Need Versioning
-In traditional API management, versioning is a primary driver of Infrastructure Sprawl. Every new version typically spawns a new proxy (e.g., v1-api, v2-api), forcing architects to manage multiple redundant infrastructures.
-
-DCRP eliminates this proliferation by recognizing that the proxy is a stateless router with an immutable base path, not the owner of the API contract.
-
-Fixed Entry Point:
-
-The proxy base path remains constant (e.g., /sales/orders/**).
-Versioned Routing: API versions live in the path suffix (e.g., /v1/, /v2/).
-Decoupled Logic: These versions are mapped to specific iFlows via KVM metadata, keeping the proxy itself singular and unchanged.
-rhviana_0-1770055217713.png
-
- Figure 27 - Contracts & Governance
-
-Step Traditional 1:1 Proxy Model DCRP Model
-
-Action Create new proxy, configure security, routing, and targets, then redeploy.
-Deploy new iFlow and update a single KVM metadata entry.
-Time Effort ~15 minutes ~30 seconds
-Outcome Managing 4 separate proxy infrastructures. Still managing 1 proxy infrastructure.
-Client Interaction Examples:
-
-Legacy: POST /sales/orders/v1/inbound → Routes to v1 iFlow.
-Current: POST /sales/orders/v2/inbound → Routes to v2 iFlow.
-New: POST /sales/orders/v4/inbound → Routes to v4 iFlow.
-Latest (Default): POST /sales/orders/inbound → Dynamically routes to v4 via KVM.
-The proxy base path /sales/orders/** never changed., providing a stable, governed interface for consumers regardless of backend evolution.
-
-6.1 - OpenAPI Management: The Hybrid Approach
-In the DCRP model, API contracts (OpenAPI specifications) are decoupled from both the proxy and the iFlow, residing in a central API Portal or repository. This hybrid model ensures a clean separation of concerns:
-
-KVM: Stores runtime routing metadata (path → endpoint).
-
-OpenAPI: Stores design-time contract metadata (request/response schemas).
-
-API Portal: Provides discovery, documentation, and governance.
-
-The Execution Flow:
-When a developer needs to integrate, they download the spec (e.g., sales-orders-v2.yaml) from the Portal and generate their client code. When they call the DCRP proxy at /sales/orders/v2, the proxy consults the KVM and routes the request to the corresponding v2 iFlow.
-Premium_slide_TeslaElon_Musk_style_White_backgr-1769935301186.png
-
-Figure 28 - Template prespective
-
-6.2 - KVM vs OpenAPI: Complementary, Not Redundant
-At first glance, KVM and OpenAPI might seem to overlap. Both describe APIs. But they serve distinct purposes:
-
-KVM answers: "Where should I route this request?"
-
-Input: /sales/orders/v2
-Output: 
-OpenAPI answers: "What schema should this request/response have?"
-
-Input: POST /sales/orders/v2
-Output: Request body must include {orderId, customerId, items[]}, returns {status, orderNumber}
-
-Both are necessary for complete governance:
-
-Without KVM: No dynamic routing (back to static proxy-per-integration)
-Without OpenAPI: No contract validation (clients and servers drift out of sync)
-DCRP uses KVM for runtime routing decisions and OpenAPI for design-time contract definition and optional runtime validation.
-
-Premium_comparison_slide_TeslaElon_Musk_style_W-1769935555266.png
-Figure 29 - Complementary - DCRP and OpenAPI
-
-7 - Statistics Collector – Capturing Business Intelligence
-While the JavaScript "Brain" handles routing, the Statistics Collector provides the visibility necessary for production management. This policy captures technical metadata and transforms it into actionable business intelligence within the SAP API Management analytics database.
-Purpose: Records routing metadata such as iFlow name, package name, domain process, and tracking IDs.
-Utility: Enables real-time monitoring, trend analysis, and data-driven capacity planning.
- 
-Policy Configuration Snippet:
-<StatisticsCollector async='false' continueOnError='false' enabled='true'>
-	<Statistics>
-		<Statistic name='custom_idcorrelation' ref='idcorrelation' type='string'>0</Statistic>
-		<Statistic name='custom_idflow' ref='idiflow' type='string'>0</Statistic>
-		<Statistic name='custom_idpackage' ref='idpackage' type='string'>0</Statistic>
-		<Statistic name='custom_idsapprocess' ref='idsapprocess' type='string'>0</Statistic>
-		<Statistic name='custom_idsender' ref='idsender' type='string'>0</Statistic>
-	</Statistics>
-</StatisticsCollector>
-8 - Troubleshooting: Common Issues & Solutions
-8.1 - Runtime Errors
-404 Not Found
-
-Cause: KVM iflowname delimiter mismatch
-Fix: Verify iflowname uses : separator (e.g., inbound:SO.01...)
-500 Internal Server Error
-
-Cause: Missing KVM entry or wrong mapIdentifier
-Fix: Check KVM map exists: cpipackage-nx.[domain].[subprocess]
-403 Forbidden (Valid Request)
-
-Cause: Domain not in Security Shield whitelist
-Fix: Add domain to allowedDomains[] in JS-Security-Shield.js
-Gateway Timeout
-
-Cause: Wrong cpi.host or cpi.basepath
-Fix: Verify Target Endpoint properties, test CPI endpoint directly
-8.2 - Configuration Issues
-KVM Lookup Returns Null
-
-Fix: Deploy KVM to same environment as API Proxy (both dev or both prod)
-JavaScript Execution Error
-
-Fix: Add error handling: var x = context.getVariable("y") || "default";
-Routing Rule Doesn't Match
-
-Fix: Change to MatchesPath "/**" for dynamic routing (Approach 2)
-Statistics Collector Not Logging
-
-Fix: Match variable names exactly in <Statistic ref='idiflow' />
-8.3 - Security Shield Issues
-All Requests Blocked (403)
-
-Fix: Verify allowedDomains = ["sales", "finance"] (lowercase)
-SQL Injection False Positive
-
-Fix: Refine regex to exclude valid patterns (e.g., hyphens in IDs)
-8.4 - Performance Issues
-High Latency (>80ms)
-
-Cause: JavaScript overhead or network latency to CPI
-Fix: Profile with APIM trace logs, check network latency
-Note: Detailed performance benchmarking with 30,000+ messages will be covered in Part III : Monitoring & Governance.
-
-Gateway Timeout (504)
-
-Cause: Slow CPI iFlow
-Fix: Increase timeout in Target Endpoint, optimize iFlow
-8.6 - When to Escalate
-
-Escalate to SAP Support if:
-
-Issue reproducible in isolated test proxy
-KVM API returns 500 errors despite correct configuration
-Collect before opening ticket: Proxy bundle, KVM config, trace logs, network capture.
-
-Conclusion: Discipline Over Chaos
-The Domain-Centric Routing Pattern provides the governance layerSAP API Management needs but doesn't offer out-of-the-box.
-Benefits Recap:
-
-Infrastructure:
-- 96% reduction in proxies (20 → 4)
-- Deployment: 15 min → 30 seconds - KVM
-- Template-driven: 4× faster at scale
-
-Governance:
-- Centralized security policies
-- Unified analytics per domain
-- End-to-end traceability (SAP ALM ready)
-
-Business Impact:
-- Faster time-to-market for new integrations
-- Reduced operational overhead
-- Future-proof: Consumer contracts unchanged during backend migrations
-
-The Roadmap Ahead
-This is only the first step in mastering enterprise-scale integration:
-
-Part I: DCRP – Domain-Centric Routing Pattern (Gateway Layer)
-:white_heavy_check_mark: YOU ARE HERE
-Part II: PDCP – Package-Domain-Centric Pattern (Orchestration Layer)
-Solving CPI Package and User Sprawl | Domain consolidation + iFlow DNA naming + tiered technical users
-:link: [ Part II]
-Part III: DCRP + PDCP Implementation & Testing
-Hands-on guide | JavaScript v8.0 routing engine | Multi-vendor disambiguation | Conflict resolution (id09/id10) | Postman collections | Production deployment | GitHub repository with full source code - :hourglass_not_done: COMING SOON
-Part IV: End-to-End Monitoring with SAP Cloud ALM
-DCRP + PDCP integration with SAP Cloud ALM | MPL filtering via X-IFlow-Id headers | Automated dashboards | Real-time alerting & SLA tracking | Performance analytics - :hourglass_not_done: COMING SOON
-rhviana_0-1770056956763.png
-Figure 30 - Implementing DCRP transforms your gateway into ascalable, semantic, governed ecosystem
-
-Before You Scale: Pre-Flight Checklist
-
-:white_heavy_check_mark:Team Alignment: Ensure developers understand 1:1 → domain-centric shift
-:white_heavy_check_mark:Stakeholder Education: Business sponsors grasp consolidation benefits
-:white_heavy_check_mark:Establish Governance: Define KVM update approval workflows
-:white_heavy_check_mark:Enforce Standards: Naming convention 
-:white_heavy_check_mark:Sandbox PoC: Validate with 2-3 iFlows before production rollout
-
-This is only the first step in mastering enterprise-scale integration.
-
-:books:How to Reference This Work
-When referencing or building upon these architectural patterns, please use the following formal citations:
-
-DCRP (Domain-Centric Routing Pattern), introduced by Ricardo Luz Holanda Viana, 2026.
-
-PDCP (Package Domain-Centric Pattern), introduced by Ricardo Luz Holanda Viana, 2026.
-
-:shield:️ Intellectual Property & Copyright Notice
-© 2026 Ricardo Luz Holanda Viana
-First published: February 6, 2026
-All rights reserved.
-
-Legal Notice:
-The public disclosure of the architectural patterns described herein constitutes prior art (state of the art) within the global intellectual property framework. This publication establishes documented evidence of authorship and original contribution as of the stated publication date.
-
-:scroll:Usage Terms
-:white_heavy_check_mark:Free to use for educational, research, and non-commercial purposes
-:white_heavy_check_mark:Attribution required when referencing or building upon these architectural patterns
-:white_heavy_check_mark:Commercial implementations are permitted, provided proper attribution is given
-:warning:Use of the names “DCRP™” or “PDCP™” in commercial branding, offerings, or marketing materials requires prior written licensing from the author
-This restriction applies solely to the use of the names and trademarks, not to independent implementations of similar architectural concepts.
-
-No Implied License:
-Nothing in this publication shall be construed as granting any license, implied or otherwise, to use the described methodologies as branded commercial products or services without explicit authorization.
-
-Disclaimer: This article reflects the author’s personal architectural perspective and does not represent an official SAP position or recommendation.
-
-Kind Regards,
-
-Viana | SAP BTP Integration Suite Expert
+status:iflow-order-status-query</code></pre>
+
+                <p>Esta abordagem funciona bem para cenários PoC com <strong>single iFlow per action</strong> e convenções de nomenclatura diretas.</p>
+
+                <h4>🏭 Before Production Deployment</h4>
+                <p><strong>Este código deve ser adaptado baseado em seus requisitos específicos:</strong></p>
+                <ol>
+                    <li><strong>KVM Structure Design</strong> - O formato de string <code>iflowname</code> que você escolher ditará a lógica de parsing</li>
+                    <li><strong>Naming Conventions</strong> - Adapte a lógica de roteamento para corresponder aos padrões de nomenclatura da sua organização</li>
+                    <li><strong>Adapter Requirements</strong> - Cenários HTTP-only vs. HTTP/SOAP misto requerem construção de endpoint diferente</li>
+                    <li><strong>Multi-Vendor Scenarios</strong> - Single-vendor vs. multi-vendor por processo pode precisar de lógica de desambiguação</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>🚀 Production-Ready Code: DCRP Routing Engine (Part II & III)</h4>
+                    <p>Um motor de roteamento abrangente e pronto para produção cobrindo todos os cenários enterprise—desambiguação multi-vendor, conformidade de nomenclatura PDCP, suporte a adaptador HTTP/SOAP, resolução de conflitos (id09/id10), e arquitetura em escala global—está disponível na <strong>Parte II: Package Domain-Centric Pattern (PDCP)</strong> e totalmente implementado na <strong>Parte III: Implementation & Testing</strong>.</p>
+                </div>
+
+                <!-- CODE SPOILER -->
+                <div class="spoiler">
+                    <div class="spoiler-header" onclick="toggleSpoiler(this)">
+                        💻 Clique para ver: O Código Completo do JavaScript "Brain"
+                    </div>
+                    <div class="spoiler-content">
+<pre><code>/**
+ * 
+ * 
+ *   THE DCRP ROUTING ENGINE
+ * 
+ *   MISSION: Transform static gateway infrastructure into intelligent,
+ *            metadata-driven routing orchestration at enterprise scale.
+ * 
+ *   CAPABILITIES:
+ *    ✓ Dynamic iFlow resolution via Key-Value Map metadata
+ *    ✓ Path parameter preservation (single or multi-level IDs)
+ *    ✓ Query string integrity across gateway boundaries
+ *    ✓ Governance header injection (X-SenderId, X-CorrelationId)
+ *    ✓ Analytics variable collection for observability
+ *    ✓ Zero code deployment for new integrations (metadata-only scaling)
+ * 
+ *   AUTHOR: Viana - SAP BTP Integration Suite Expert
+ *   PATTERN: Domain-Centric Routing Pattern (DCRP)
+ *   VERSION: 1.0 - Production Ready
+ * 
+ * 
+ */
+function resolveDcrpRouting() {
+    try {
+        var cpiHost = context.getVariable("target.cpi.host");
+        var cpiBasepathRaw = context.getVariable("target.cpi.basepath");
+        var iflowname = context.getVariable("iflowname");
+        var pathSuffix = context.getVariable("proxy.pathsuffix");
+        var senderId = context.getVariable("request.header.X-SenderId");
+        var correlationId = context.getVariable("request.header.X-CorrelationId");
+        var queryParams = context.getVariable("request.querystring") || "";
+
+        if (!cpiHost || !cpiBasepathRaw || !iflowname || !pathSuffix) {
+            context.setVariable("routing.failed", true);
+            context.setVariable("routing.error", "MISSING_REQUIRED_VARIABLES");
+            throw new Error("DCRP: Missing required variables for routing");
+        }
+
+        // ========================================
+        // SECTION 1.5: EXTRACT PATH SEGMENTS
+        // ========================================
+
+        var cleanPathSuffix = pathSuffix.replace(/^\/+/, '');
+        var segments = cleanPathSuffix.split('/');
+        var firstSegment = segments[0];
+        var remainingPath = segments.slice(1).join('/');
+
+        // Build dynamic basepath: /http/{firstSegment}
+        var cpiBasepath = "/http/" + firstSegment;
+
+        // ========================================
+        // SECTION 2: FLEXIBLE DELIMITER DETECTION
+        // ========================================
+
+        var supportedDelimiters = [',', ';', '|', '/', '\\', '[', ']', '(', ')', '-', '_'];
+        var delimiter = null;
+
+        for (var i = 0; i &lt; supportedDelimiters.length; i++) {
+            if (iflowname.indexOf(supportedDelimiters[i]) !== -1) {
+                delimiter = supportedDelimiters[i];
+                break;
+            }
+        }
+
+        if (!delimiter) {
+            context.setVariable("routing.failed", true);
+            context.setVariable("routing.error", "NO_DELIMITER_FOUND");
+            throw new Error("DCRP: No valid delimiter found in KVM value");
+        }
+
+        // ========================================
+        // SECTION 3: KVM PARSING & PATH MATCHING
+        // ========================================
+
+        var entries = iflowname.split(delimiter);
+        var routes = [];
+
+        for (var j = 0; j &lt; entries.length; j++) {
+            var entry = entries[j].trim();
+            if (entry.length === 0) continue;
+
+            var parts = entry.split(':');
+            if (parts.length !== 2) {
+                context.setVariable("routing.failed", true);
+                context.setVariable("routing.error", "INVALID_KVM_FORMAT");
+                throw new Error("DCRP: Invalid KVM format - expected 'path:iflowname', got: " + entry);
+            }
+
+            routes.push({
+                path: parts[0].trim(),
+                iflow: parts[1].trim()
+            });
+        }
+
+        routes.sort(function(a, b) {
+            return b.path.length - a.path.length;
+        });
+
+        var matchedRoute = null;
+
+        for (var k = 0; k &lt; routes.length; k++) {
+            var routePath = routes[k].path.replace(/^\/+/, '');
+
+            if (remainingPath === routePath || remainingPath.indexOf(routePath + '/') === 0) {
+                matchedRoute = routes[k];
+                break;
+            }
+        }
+
+        if (!matchedRoute) {
+            context.setVariable("routing.failed", true);
+            context.setVariable("routing.error", "ROUTE_NOT_FOUND");
+            context.setVariable("routing.pathsuffix", pathSuffix);
+            throw new Error("DCRP: No matching route found for path: " + pathSuffix);
+        }
+
+        // ========================================
+        // SECTION 4: GOVERNANCE HEADER INJECTION
+        // ========================================
+
+        if (senderId) {
+            context.setVariable("request.header.X-SenderId", senderId);
+        }
+
+        if (correlationId) {
+            context.setVariable("request.header.X-CorrelationId", correlationId);
+        }
+
+        // ========================================
+        // SECTION 5: DYNAMIC URL CONSTRUCTION
+        // ========================================
+
+        var targetUrl = cpiHost + cpiBasepath + "/" + matchedRoute.path;
+
+        if (queryParams && queryParams.length &gt; 0) {
+            targetUrl += "?" + queryParams;
+        }
+
+        context.setVariable("target.url", targetUrl);
+        context.setVariable("target.copy.pathsuffix", false);
+        context.setVariable("target.copy.queryparams", false);
+
+        // ========================================
+        // SUCCESS: SET ROUTING METADATA
+        // ========================================
+
+        context.setVariable("routing.success", true);
+        context.setVariable("routing.matched.path", matchedRoute.path);
+        context.setVariable("routing.matched.iflow", matchedRoute.iflow);
+        context.setVariable("routing.target.url", targetUrl);
+        context.setVariable("routing.selected.basepath", cpiBasepath);
+
+        context.setVariable("idiflow", matchedRoute.iflow);
+        context.setVariable("idcorrelation", context.getVariable("request.header.X-CorrelationId"));
+        context.setVariable("idsender", senderId || "UNKNOWN");
+
+    } catch (error) {
+        context.setVariable("routing.failed", true);
+        context.setVariable("routing.exception", error.message || error.toString());
+
+        print("DCRP Routing Error: " + error.message);
+        print("PathSuffix: " + context.getVariable("proxy.pathsuffix"));
+    }
+}
+
+// Execute the routing function
+resolveDcrpRouting();</code></pre>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>💡 TL;DR para Não-Desenvolvedores:</strong> Este JavaScript executa 4 tarefas:</p>
+                    <ul>
+                        <li>Extrai segmentos de path (e.g., <code>/inbound</code> → httppath cpi <code>inbound</code>)</li>
+                        <li>Busca metadados de roteamento do KVM</li>
+                        <li>Constrói URL CPI final dinamicamente</li>
+                        <li>Injeta headers de governança (X-SenderId, X-CorrelationId)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CONCLUSION -->
+            <section id="conclusion">
+                <h2>🎯 Conclusion</h2>
+
+                <p>O <strong>Domain-Centric Routing Pattern (DCRP)</strong> representa uma mudança fundamental na forma como organizações enterprise gerenciam integração em escala. Ao consolidar múltiplos serviços técnicos em proxies únicos orientados ao domínio de negócio, DCRP elimina a proliferação de infraestrutura enquanto habilita governança centralizada.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">96%</div>
+                        <div class="stat-label">Redução de Proxies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30s</div>
+                        <div class="stat-label">Deployment Vertical</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2min</div>
+                        <div class="stat-label">Deployment Horizontal</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Rastreabilidade</div>
+                    </div>
+                </div>
+
+                <h3>🎁 Key Takeaways</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <strong>📦 Consolidação</strong><br>
+                        De 100 proxies para 4 proxies
+                    </div>
+                    <div class="benefit-item">
+                        <strong>⚡ Velocidade</strong><br>
+                        Deployment em minutos, não horas
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🛡️ Governança</strong><br>
+                        Segurança e auditoria centralizadas
+                    </div>
+                    <div class="benefit-item">
+                        <strong>🔄 Flexibilidade</strong><br>
+                        Mudanças sem redeployment
+                    </div>
+                    <div class="benefit-item">
+                        <strong>📊 Observabilidade</strong><br>
+                        Analytics unificados por domínio
+                    </div>
+                    <div class="benefit-item">
+                        <strong>💰 ROI</strong><br>
+                        Redução massiva de custos operacionais
+                    </div>
+                </div>
+
+                <h3>🔮 What's Next?</h3>
+                <p>Esta foi a <strong>Parte I</strong> da série DCRP. Nos próximos artigos, exploraremos:</p>
+                <ul>
+                    <li><strong>Parte II:</strong> PDCP (Package Domain-Centric Pattern) - Consolidação de backend e nomenclatura DNA</li>
+                    <li><strong>Parte III:</strong> Implementação prática completa com JavaScript v8.0, testes Postman e repositório GitHub</li>
+                    <li><strong>Parte IV:</strong> Monitoramento enterprise com SAP Cloud ALM, dashboards e alertas</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><strong>💬 Feedback & Contribuições:</strong></p>
+                    <p>DCRP é um padrão vivo, refinado através de feedback da comunidade e implementações no mundo real. Suas experiências, desafios e sucessos ajudam a evoluir esta metodologia.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <h3>📚 DCRP: Domain-Centric Routing Pattern</h3>
+            <p><strong>Autor:</strong> Ricardo Luz Holanda Viana</p>
+            <p><strong>Ano:</strong> 2026 | <strong>Pattern:</strong> DCRP v1.0</p>
+            <p><strong>SAP BTP Integration Suite</strong> | API Management & Cloud Platform Integration</p>
+            <p style="margin-top: 20px; opacity: 0.8;">Original: <a href="https://community.sap.com/t5/technology-blog-posts-by-members/sap-btp-apim-domain-centric-routing-pattern-dcrp-governing-apis-via-cpi/ba-p/14312788" style="color: #8ab4f8;">SAP Community</a></p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">Este HTML foi gerado para preservar o conteúdo e estrutura do blog original para visualização em GitHub Pages.</p>
+        </footer>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // Spoiler toggle functionality
+        function toggleSpoiler(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
