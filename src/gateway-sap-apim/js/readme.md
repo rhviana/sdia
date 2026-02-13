@@ -27,15 +27,11 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
   - ✓ Mirror Strategy Alignment: Directly maps APIM routing keys to PDCP package naming conventions in the backend.
   - ✓ Conflict Detection: Built-in logic to identify and block overlapping routes (Error 409).
 
-  📁 [Java Script Routing Engine](./dcrp-routing-engine-v15.1.js)
-
 #### Key Features ( Security Shild Edition - V15.1)
 
   - ✓ Blocks path‑traversal, SQLi, XSS and command‑injection patterns on the catch‑all route.
   - ✓ Enforces a domain whitelist on the first URL segment and validates critical headers.
   - ✓ Detects scanner/bot User‑Agents and writes rich threat metadata for RaiseFault handling.
-
-  📁 [Java Script Security Engine](./dcpr-security-shild.js)
 
 ---
 
