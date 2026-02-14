@@ -1,5 +1,12 @@
 
 # Gateway Domain-Centric Routing (GDCR)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18619641.svg)](https://doi.org/10.5281/zenodo.18619641)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
+![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
+![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
+
 **DOI License:** CC BY 4.0 — Academic Paper Pattern (SAP)
 
 A **vendor-agnostic, metadata-driven architecture** for enterprise **API & orchestration layers**, enabling **Domain-Centric Governance**.
@@ -14,17 +21,17 @@ GDCR for any vendor combines **DDD alignment**, **domain-centric routing**, **me
 
 ---
 
-## API Sprawl vs Domain-Centric Routing (DCRP)
+## API Sprawl vs Domain-Centric Routing (DCRP - SAP)
 
 <p align="center">
-  <img src="./imagens/Image1Gateway.png"
-       alt="API Sprawl vs Domain-Centric Routing (DCRP)"
+  <img src="./repository/imagens/Image1Package.png"
+       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="75%" />
 </p>
 
 <p align="center">
-  <strong>Figure 1 —</strong> Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API proxy proliferation
-  into a governed gateway layer aligned with Clean Core principles.
+  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP - Apllied for SAP BTP) consolidates uncontrolled API
+  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
 </p>
 
 ---
@@ -50,7 +57,9 @@ gdrc-github/
 │   └── kvm-samples/          # KVM Samples
 ├── Presentations/            # Architecture Blueprints (PDF)
 └── StressTest/               # Validation Screenshots
+```
 
+---
 
 ## Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
 
@@ -77,73 +86,6 @@ materials contained in this repository, including all folders and subfolders.**
 
 **Any interpretation beyond this context is incorrect.**
 
----
-
-### Gateway Domain-Centric Routing (GDCR)
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18619641.svg)](https://doi.org/10.5281/zenodo.18619641)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
-![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
-![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
-
----
-
-**A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance.**
-
-One-line Executive Summary
-
-Validated across **106,190+ messages**, **44 vendor integrations**, **4 business domains**, with **100% success rate** and **zero routing, KVM, or timeout failures**.
-
-GDCR for any vendor combines DDD alignment, domain-centric routing, metadata-driven control, architectural fraud prevention, immutable integration identities, and formal
-decision records into a cohesive enterprise integration governance framework.
-
----
-
-## API Sprawl vs Domain-Centric Routing (DCRP)
-
----
-
-<p align="center">
-  <img src="./repository/imagens/Image1Package.png"
-       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="75%" />
-</p>
-
-<p align="center">
-  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API
-  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
-</p>
-
-
----
-
-### 📄 Published Academic Paper
-
----
-
-**Official DOI:** 10.5281/zenodo.18619641  
-**Published:** February 12, 2026  
-**Repository:** Zenodo (CERN)  
-**License:** CC BY 4.0 International  
-
-📥 **[Download Full Paper (PDF)](https://zenodo.org/records/18619641)**
-
----
-  
-#### 📂 Repository Structure
-```text
-gdrc-github/
-├── README.md                # Documentation
-├── LICENSE                  # CC BY 4.0
-├── JavaScript/
-│   ├── js/                  
-│   │   └── Maverickv15.2.js # Phantom Edition (Hyper-Optimized)
-│   └── kvm-samples/         # SAP BTP KVM Samples
-├── Presentations/           # Architecture Blueprints (PDF)
-└── StressTest/              # Validation Screenshots
-
-```
 ---
 
 ### GDCR Architectural Scope
@@ -207,7 +149,7 @@ Together, these elements operate as one cohesive system, preventing uncontrolled
 ```
 ---
 
-#### What is GDCR?
+## What is GDCR?
 
 Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
 (e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
@@ -216,18 +158,14 @@ This routing logic is applied consistently across both the Gateway layer and the
 
 ## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
-## Multi-Layer Governance
+### Multi-Layer Governance
 **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
 **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
 
 SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
-* **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
 
-![API Sprawl vs GDCR Gateway Layer](./doc/diagrams/gdcr-dcrp-gateway-clean-core.png)
-
-**Figure 1 —** Domain-Centric Routing (DCRP) consolidates uncontrolled API proliferation
-into a governed gateway layer aligned with Clean Core principles.
 
 **Benefits:**
 - Eliminates proxy sprawl - 1:1
@@ -238,6 +176,17 @@ into a governed gateway layer aligned with Clean Core principles.
 #### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
 
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
+
+<p align="center">
+  <img src="./repository/imagens/Image2Package.png"
+       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
+       width="75%" />
+</p>
+
+<p align="center">
+  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP - Apllied for SAP BTP) consolidates uncontrolled API
+  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
+</p>
 
 ![Package Sprawl vs Clean Core PDCP](./gdcr-pdcp-clean-core-orchestration.png)
 
@@ -273,40 +222,31 @@ These patterns are interdependent and must be applied together.
 
 ---
 
-#### Naming Conventions as Governance
+### Naming Conventions as Governance
 
 Naming is not cosmetic in GDCR — it is architectural control.
 
-- Package Naming
+#### Package Naming
 
-  [org].[domain].[subprocess].integrations
-  
-Example:
-
-- nx.sales.o2c.integrations
-- nx.finance.p2p.integrations
+[org].[domain].[subprocess].integrations
+nx.sales.o2c.integrations
+nx.finance.p2p.integrations
 
 Integration (iFlow DNA) Naming
 
-   id[seq].[subdomain].[sender].[entity].[action].[direction].[sync|async]
+id[seq].[subdomain].[sender].[entity].[action].[direction].[sync|async]
+id01.o2c.salesforce.order.c.in.sync
 
-Example:
+#### Metadata Key Naming (KVM)
 
-- id01.o2c.salesforce.order.c.in.sync
-
-Metadata Key Naming (KVM)
-
-- dcrp{entity}{action}{vendor}id{XX}
-
-Example:
-
-- ndcrpordercsalesforceid01
+dcrp{entity}{action}{vendor}id{XX}
+dcrpordercsalesforceid01
 
 Strict rules (mandatory):
 - Lowercase only
 - Canonical action codes only
 
-Immutable IDs
+#### Immutable IDs
 
 These rules are required for O(log n) binary search routing.
 
