@@ -4,6 +4,8 @@
 
 This detailed analysis provides the empirical evidence behind the GDCR architecture, proving its scalability and resilience under real-world stress conditions on the SAP BTP Integration Suite.
 
+<div align="center">
+  
 | Metric | Before | After | Improvement |
 | :--- | :--- | :--- | :--- |
 | **API Proxies** | 40 | 4 | **90% ↓** |
@@ -11,7 +13,10 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 | **Technical Users** | 39 | 12 | **69% ↓** |
 | **Deployment Time** | 273 min | 14.5 min | **95% Faster** |
 
+</div>
+
 ---
+
 **Technical Metrics Summary:**
 
 * **Messages Tested**: 33,000+
@@ -38,8 +43,10 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **KVM Reliability:**  
 - Key-Value Map lookups maintained a **99.2% cache hit rate**, ensuring that routing decisions did not introduce backend latency.
 
-![Milestone 1 - Part A](./stress-imagens/Milestone%201.png)
-![Milestone 1 - Part B](./stress-imagens/Milestone%201.1.png)
+<p align="center">
+  <img src="./stress-imagens/Milestone%201.png" width="900" alt="Milestone 1 - Part A">
+  <img src="./stress-imagens/Milestone%201.1.png" width="800" alt="Milestone 1 - Part b">
+</p>
 
 ---
 ### Milestone 2: JavaScript v14.2 — Smoke Test (Multi-Vendor)
@@ -54,7 +61,9 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **Baseline Latency:**  
 - Established a stable system-wide average latency of **68ms**, confirming that metadata-driven routing does not penalize performance.
 
-![Milestone 2](./stress-imagens/Milestone%202.png)
+<p align="center">
+  <img src="./stress-imagens/Milestone%202.png" width="800" alt="Milestone 2">
+</p>
 
 ---
 ### Milestone 3: Multi-Domain Stress Test — JavaScript v14.2
@@ -69,8 +78,10 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **Tail Latency Control:**  
 - The **P99 latency was 112ms**, demonstrating that even under stress, 99% of requests remained well within the sub-second threshold required for enterprise-grade integrations.
 
-![Milestone 3](./stress-imagens/Milestone%203.png)
-![Milestone 3](./stress-imagens/Milestone%203.1.png)
+<p align="center">
+  <img src="./stress-imagens/Milestone%203.png" width="1000" alt="Milestone 3">
+  <img src="./stress-imagens/Milestone%203.1.png" width="800" alt="Milestone 3.1">
+</p>
 
 ---
 ### Milestone 4: Extended Off-Hours Validation — JavaScript v14.2
@@ -85,7 +96,9 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 **TTL Performance:**  
 - Validated that the internal cache mechanism remained consistent even with low traffic density, preventing unnecessary KVM read-calls.
 
-![Milestone 4](./stress-imagens/Milestone%204.png)
+<p align="center">
+  <img src="./stress-imagens/Milestone%204.png" width="700" alt="Milestone 4">
+</p>
 
 ---
 
