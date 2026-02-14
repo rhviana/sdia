@@ -6,6 +6,7 @@
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
 ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
+🆔 ORCID: 0009-0009-9549-5862
 
 **DOI License:** CC BY 4.0 — Academic Paper Pattern (SAP)
 
@@ -159,6 +160,7 @@ This routing logic is applied consistently across both the Gateway layer and the
 ## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
 ### Multi-Layer Governance
+
 **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
 **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
 
@@ -166,8 +168,8 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 
 ***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
 
-
 **Benefits:**
+
 - Eliminates proxy sprawl - 1:1
 - Enables semantic routing for AI agents
 - Centralized policy enforcement
@@ -294,7 +296,6 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | Procurement (S2P) | 16,220+ | 16,220+ | 0 | 223 ms |
 | **TOTAL** | **73,020** | **73,020** | **0** | **226 ms (avg)** |
 
-
 ---
 
 #### Validation Status (M5):
@@ -316,7 +317,6 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | Routing Errors | 0 |
 | KVM Failures | 0 |
 | Timeouts | 0 |
-
 
 #### Latency Composition (Weighted Average)
 
@@ -352,17 +352,15 @@ Repository: https://github.com/rhviana/gdcr
 
 #### Final Statement
 
-       GDCR is not a tool.
-       It is not a product.
-       It is not a shortcut.
+GDCR is not a tool.
+It is not a product.
+It is not a shortcut.
+It is an architectural answer to enterprise-scale integration entropy globally.
 
-       It is an architectural answer to enterprise-scale integration entropy.
-
-Order from Chaos
-Not a phrase.
-A method.
+"Order from Chaos Not a phrase.A method." - The Commander - Viana.
 
 ---
+
 ### Academic Citation
 If you use this architecture in your research or implementation, please cite:
 
@@ -392,7 +390,6 @@ Author: Ricardo Luz Holanda Viana
 ## Connect:
 📧 Email: rhviana@gmail.com
 💼 LinkedIn: [Ricardo Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
-🆔 ORCID: 0009-0009-9549-5862
 📝 Medium: @rhviana
 For commercial inquiries only: rhviana@gmail.com
 
