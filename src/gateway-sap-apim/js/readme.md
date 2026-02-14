@@ -17,7 +17,6 @@ The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite en
   - ✓ O(1) Action Normalization: Maps 241 business verb variations (e.g., provisioning, registering) into 15 core action codes in constant time.
   - ✓ <2ms Overhead: Engineered for ultra-low latency, minimizing the gateway footprint even under heavy loads.
   - ✓ Segmented Latency Tracking: Monitors 7 distinct execution phases, from path parsing to final URL construction, providing 100% observability.
-  - ✓ Global Static Caching: Utilizes a multi-node safe cache with TTL (Time-To-Live) and FastHash validation to avoid redundant KVM processing.
 
 ---
 
