@@ -37,7 +37,7 @@ Gateway Domain-Centric Routing (GDCR) is a **vendor-agnostic architectural patte
 
 ## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
-### DCRP (Domain-Centric Routing Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management-008fd3)
+#### DCRP (Domain-Centric Routing Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management-008fd3)
 
 SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -47,7 +47,7 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
+#### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
 
 SAP CPI - Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
@@ -59,6 +59,8 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 
 ### Hard Efficiency Metrics
 
+<div align="center">
+  
 | Metric | Legacy (1:1 Model) | Maverick Engine | Velocity Gain |
 | :--- | :--- | :--- | :--- |
 | **Route Onboarding** | 15 Minutes / Proxy | 30 Seconds (KVM) | **30x** |
@@ -66,9 +68,12 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 | **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
 | **Reliability (Success)** | Variable | 99.92% | **Optimized** |
 
+</div>
+
 ---
 
 ## Architecture Diagram
+<div align="center">
 
 ```text
 ┌──────────────────────────────────────────────────────┐
@@ -107,8 +112,10 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 │    API    │   │  S/4HANA   │   │  Backend   │
 └───────────┘   └────────────┘   └────────────┘
 ```
-
+</div>
 ---
+<div align="center">
+  
 ## 📂 Repository Structure
 
 ```text
@@ -124,6 +131,7 @@ gdrc-github/
 └── StressTest/              # Validation Screenshots
 
 ```
+</div>
 ---
 
 ## Key Results (Sandbox Validation on SAP BTP):
