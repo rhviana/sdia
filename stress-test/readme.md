@@ -22,8 +22,10 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 * **Messages Tested**: 33,000+
 * **Success Rate**: 100% (Zero timeouts)
 * **Average Latency**: 68ms (v14.2 baseline)
+
 ---
-#Test Environment Setup
+
+## Test Environment Setup
 
 * **Platform**: SAP BTP Integration Suite (Trial)
 * **Region**: Europe (Frankfurt) - cf-eu10
@@ -101,77 +103,114 @@ This detailed analysis provides the empirical evidence behind the GDCR architect
 </p>
 
 ---
-###Milestone 5 - Extended Off-Hours Validation 
+### Milestone 5 - Extended Off-Hours Validation 
 ---
+
 JavaScript Maverick Phantom v15.2 (Global Production Ready in any SAP BTP)
 
-Domain Calls (from monitor)
-Finance (R2R)	16,600+
-Sales (O2C)	23,500+
-Logistics (SCM)	16,700+
-Procurement (S2P)	16,220
-M5 TOTAL	73,020 calls
-Iterations: 73.020k messages from 44 vendors HTTP Facades, 4 proxies, 4 packages and 44 Iflows.
+<div align="center">
 
-rhviana_1-1771069696969.png
+| Domain            | Calls      | Success    | Errors | Avg Latency      |
+| ----------------- | ---------- | ---------- | ------ | ---------------- |
+| Finance (R2R)     | 16,600+    | 16,600+    | 0      | 219 ms           |
+| Sales (O2C)       | 23,500+    | 23,500+    | 0      | 238 ms           |
+| Logistics (SCM)   | 16,700+    | 16,700+    | 0      | 241 ms           |
+| Procurement (S2P) | 16,220+    | 16,220+    | 0      | 223 ms           |
+| **TOTAL**         | **73,020** | **73,020** | **0**  | **226 ms (avg)** |
 
-rhviana_2-1771070216330.png
-rhviana_3-1771070246869.png
+</div>
 
-rhviana_9-1771071713690.png
+---
+### Validation Status — Milestone 5
+---
 
-rhviana_7-1771071654960.png
-rhviana_8-1771071663072.png
+<div align="center">
+  
+| Validation Item      | Status                    |
+| -------------------- | ------------------------- |
+| iFlows               | ✅ 44 VALIDATED            |
+| Business Domains     | ✅ 4 OPERATIONAL           |
+| Vendor Integrations  | ✅ 44 SUCCESS              |
+| Protocol Support     | ✅ REST + SOAP             |
+| Production Readiness | ✅ APPROVED FOR DEPLOYMENT |
 
- 
-Results
-Metric Value
-Success Rate	100.00% (73,020/73,020)
-Failed Requests	0
-Average Latency	226 ms
-Min Latency	207 ms
-Max Latency	321 ms
-Total Data Received	18.1 MB (approx)
-Domain Breakdown
-Domain Calls Success Errors Avg Latency
-Finance (R2R)	16,600+	16,600+	0	219 ms
-Sales (O2C)	23,500+	23,500+	0	238 ms
-Logistics (SCM)	16,700+	16,700+	0	241 ms
-Procurement (S2P)	16,220+	16,220+	0	223 ms
-Validation Status
-:white_heavy_check_mark:44 iFlows VALIDATED
-:white_heavy_check_mark:4 Business Domains OPERATIONAL
-:white_heavy_check_mark:44 Vendor Integrations SUCCESS
-:white_heavy_check_mark:Multi-Protocol (REST+SOAP) WORKING
-:white_heavy_check_mark: APPROVED FOR PRODUCTION DEPLOYMENT
-Consolidated Validation Summary (Milestones 1–5)
-Milestone Objective JS Version Domains Vendors/iFlows Proxies Calls Avg Latency Success Environment
-M1: Soak Test	Long-running stability	v8.0	1	2	1	25,000	66 ms	100%	Sandbox
-M2: Smoke Test	Multi-vendor validation	v14.2	2	39	2	50	101 ms	100%	Sandbox
-M3: Stress Test	Domain consolidation	v14.2	4	39	4	3,000	68 ms	100%	Sandbox
-M4: Extended	Off-hours validation	v14.2	4	39	4	5,120	80 ms	100%	Sandbox
-M5: Production	Global production readiness	v15.2	4	44	4	73,020	226 ms	100%	SAP BTP Trial Tenant
-TOTAL	—	—	—	—	—	106,190k	—	100%	—
- 
-Performance Metrics (Consolidated)
-Overall Results
-Total Messages Validated: 106,190+
-Success Rate: 100.00%
-Zero Routing Errors
-Zero KVM Failures
-Zero Timeouts
-Latency Analysis
-Component Time Percentage
-KVM Lookup	~10 ms	14%
-JavaScript Routing	~15-20 ms	21-27%
-DCRP Overhead (Total)	~25-30 ms	34-41%
-Backend Response	~43 ms	59%
-Total Average	73 ms	100%
-(Weighted average across M1-M4; M5 includes additional trial tenant overhead)
+</div>
+---
+<div align="center">
+  
+<p align="center">
+  <img src="./stress-imagens/Quantum.png" width="700" alt="Milestone 4">
+</p>
 
-73,020 calls in M5 | 106,190k+ total validated | 100% success
+---
 
+<p align="center">
+  <img src="./stress-imagens/apim trial%202.png" width="700" alt="Milestone 4">
+</p>
 
+---
 
-Final Technical Conclusion
-The sandbox validation proves that the Maverick Engine™ (v14.2 baseline) provides a 90% reduction in infrastructure complexity while maintaining a 100% success rate across 33,000+ messages. These results are now immortalized under DOI: 10.5281/zenodo.18619641.
+<p align="center">
+  <img src="./stress-imagens/apim%20trial%203.png" width="700" alt="Milestone 4">
+</p>
+
+---
+
+<p align="center">
+  <img src="./stress-imagens/apim%20trial%204.png" width="700" alt="Milestone 4">
+</p>
+
+</div>
+---
+### Consolidated Validation Summary (Milestones 1–5)
+---
+
+<div align="center">
+
+| Milestone | Objective            | JS Version | Domains | Vendors / iFlows | Proxies | Calls        | Avg Latency | Success  | Environment   |
+| --------- | -------------------- | ---------- | ------- | ---------------- | ------- | ------------ | ----------- | -------- | ------------- |
+| M1        | Soak Test            | v8.0       | 1       | 2                | 1       | 25,000       | 66 ms       | 100%     | Sandbox       |
+| M2        | Smoke Test           | v14.2      | 2       | 39               | 2       | ~50          | 101 ms      | 100%     | Sandbox       |
+| M3        | Stress Test          | v14.2      | 4       | 39               | 4       | 3,000        | 68 ms       | 100%     | Sandbox       |
+| M4        | Extended Validation  | v14.2      | 4       | 39               | 4       | 5,120        | 80 ms       | 100%     | Sandbox       |
+| M5        | Production Readiness | v15.2      | 4       | 44               | 4       | 73,020       | 226 ms      | 100%     | SAP BTP Trial |
+| **TOTAL** | —                    | —          | —       | —                | —       | **106,190+** | —           | **100%** | —             |
+
+</div>
+
+---
+### Performance Metrics — Consolidated
+---
+
+<div align="center">
+
+| Metric                   | Result   |
+| ------------------------ | -------- |
+| Total Messages Validated | 106,190+ |
+| Success Rate             | 100.00%  |
+| Routing Errors           | 0        |
+| KVM Failures             | 0        |
+| Timeouts                 | 0        |
+
+</div>
+
+---
+### Latency Composition (Weighted Average)
+---
+
+<div align="center">
+
+| Component              | Avg Time   | Percentage |
+| ---------------------- | ---------- | ---------- |
+| KVM Lookup             | ~10 ms     | 14%        |
+| JavaScript Routing     | ~15–20 ms  | 21–27%     |
+| DCRP Overhead (Total)  | ~25–30 ms  | 34–41%     |
+| Backend Response       | ~43 ms     | 59%        |
+| **End-to-End Average** | **~73 ms** | **100%**   |
+
+</div>
+
+---
+### 73,020 calls in M5 | 106,190+ total validated | 100% success
+---
+
