@@ -1,3 +1,84 @@
+
+# Gateway Domain-Centric Routing (GDCR)
+**DOI License:** CC BY 4.0 — Academic Paper Pattern (SAP)
+
+A **vendor-agnostic, metadata-driven architecture** for enterprise **API & orchestration layers**, enabling **Domain-Centric Governance**.
+
+---
+
+## One-line Executive Summary
+
+Validated across **106,190+ messages**, **44 vendor integrations**, **4 business domains**, with **100% success rate** and **zero routing, KVM, or timeout failures**.
+
+GDCR for any vendor combines **DDD alignment**, **domain-centric routing**, **metadata-driven control**, **architectural fraud prevention**, **immutable integration identities**, and **formal decision records** into a cohesive enterprise integration governance framework.
+
+---
+
+## API Sprawl vs Domain-Centric Routing (DCRP)
+
+<p align="center">
+  <img src="./imagens/Image1Gateway.png"
+       alt="API Sprawl vs Domain-Centric Routing (DCRP)"
+       width="75%" />
+</p>
+
+<p align="center">
+  <strong>Figure 1 —</strong> Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API proxy proliferation
+  into a governed gateway layer aligned with Clean Core principles.
+</p>
+
+---
+
+## 📄 Published Academic Paper
+
+- **Official DOI:** 10.5281/zenodo.18619641  
+- **Published:** February 12, 2026  
+- **Repository:** Zenodo (CERN)  
+- **License:** CC BY 4.0 International  
+
+---
+
+## 📂 Repository Structure
+
+```text
+gdrc-github/
+├── README.md                 # Documentation
+├── LICENSE                   # CC BY 4.0
+├── JavaScript/
+│   ├── js/
+│   │   └── Maverickv15.2.js  # Phantom Edition (Hyper-Optimized)
+│   └── kvm-samples/          # KVM Samples
+├── Presentations/            # Architecture Blueprints (PDF)
+└── StressTest/               # Validation Screenshots
+
+
+## Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
+
+This GitHub repository and the GDCR framework have **no association whatsoever**
+with military organizations, armed forces, militias, or any form of armed activity.
+
+The use of leadership imagery and strategic metaphors is **purely conceptual**
+and serves as a representation of **order, organization, discipline, and
+architectural clarity** in large-scale enterprise integration ecosystems.
+
+On a personal level, this symbolism is a **tribute to the author’s father**, a
+high-ranking General in the **Brazilian Armed Forces**, whose values of
+responsibility, strategic thinking, and service deeply influenced the author’s
+professional ethics.
+
+The visual representations in this repository are intended to convey:
+
+- ecosystem-wide architectural vision  
+- integration strategy and governance  
+- systemic order emerging from complexity  
+
+**This disclaimer applies to all images, diagrams, illustrations, and visual
+materials contained in this repository, including all folders and subfolders.**
+
+**Any interpretation beyond this context is incorrect.**
+
+---
+
 ### Gateway Domain-Centric Routing (GDCR)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18619641.svg)](https://doi.org/10.5281/zenodo.18619641)
@@ -5,6 +86,8 @@
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
 ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
+
+---
 
 **A vendor-agnostic, metadata-driven architecture for enterprise API & Orchestration Layers Domain-Centric Governance.**
 
@@ -15,17 +98,29 @@ Validated across **106,190+ messages**, **44 vendor integrations**, **4 business
 GDCR for any vendor combines DDD alignment, domain-centric routing, metadata-driven control, architectural fraud prevention, immutable integration identities, and formal
 decision records into a cohesive enterprise integration governance framework.
 
+---
+
 ## API Sprawl vs Domain-Centric Routing (DCRP)
 
-![API Sprawl vs GDCR Gateway Layer](./doc/diagrams/gdcr-dcrp-gateway-clean-core.png)
+---
 
-**Figure 1 —** Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API
-proxy proliferation into a governed gateway layer aligned with Clean Core principles.
+<p align="center">
+  <img src="./repository/imagens/Image1Package.png"
+       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
+       width="75%" />
+</p>
+
+<p align="center">
+  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API
+  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
+</p>
 
 
 ---
 
 ### 📄 Published Academic Paper
+
+---
 
 **Official DOI:** 10.5281/zenodo.18619641  
 **Published:** February 12, 2026  
@@ -122,8 +217,8 @@ This routing logic is applied consistently across both the Gateway layer and the
 ## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
 ## Multi-Layer Governance
-* **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
-* **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
+**[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
+**[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
 
 SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
 
@@ -226,16 +321,12 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 
 #### Hard Efficiency Metrics
 
-<div align="center">
-```text
 | Metric | Legacy (1:1 Model) | Maverick Engine | Velocity Gain |
 | :--- | :--- | :--- | :--- |
 | **Route Onboarding** | 15 Minutes / Proxy | 30 Seconds (KVM) | **30x** |
 | **System Footprint** | 100+ Proxies | 4 Strategic Domains | **96% Reduction** |
 | **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
 | **Reliability (Success)** | Variable | 99.92% | **Optimized** |
-```
-</div>
 
 #### Key Results (Sandbox Validation on SAP BTP):
 
