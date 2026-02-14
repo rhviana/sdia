@@ -1,7 +1,8 @@
- * ============================================
+/** catch-all route from malicious requests
+* ============================================
  * DCRP SECURITY SHIELD v1.0
  * ============================================
- * PURPOSE: Protect /** catch-all route from malicious requests
+ * PURPOSE: Protect
  * AUTHOR: Ricardo Viana
  * RUNS: BEFORE JS-Routing in Proxy PreFlow
  * 
