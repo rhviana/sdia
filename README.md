@@ -60,25 +60,22 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 ### Hard Efficiency Metrics
 
 <div align="center">
-  
 | Metric | Legacy (1:1 Model) | Maverick Engine | Velocity Gain |
 | :--- | :--- | :--- | :--- |
 | **Route Onboarding** | 15 Minutes / Proxy | 30 Seconds (KVM) | **30x** |
 | **System Footprint** | 100+ Proxies | 4 Strategic Domains | **96% Reduction** |
 | **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
 | **Reliability (Success)** | Variable | 99.92% | **Optimized** |
-
 </div>
 
 ---
 
 ## Architecture Diagram
-<div align="center">
 
 ```text
 ┌──────────────────────────────────────────────────────┐
-│          External Consumers / AI Agents              │
-│      (Mobile Apps, Web Apps, Third Parties)          │
+│       External Consumers / AI Agents                 │
+│    40 external vendors / 4 endpoins API / many paths │
 └───────────────────────┬──────────────────────────────┘
                         │
          ┌──────────────┴───────────────────┐
@@ -112,9 +109,7 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 │    API    │   │  S/4HANA   │   │  Backend   │
 └───────────┘   └────────────┘   └────────────┘
 ```
-</div>
 ---
-<div align="center">
   
 ## 📂 Repository Structure
 
@@ -131,7 +126,6 @@ gdrc-github/
 └── StressTest/              # Validation Screenshots
 
 ```
-</div>
 ---
 
 ## Key Results (Sandbox Validation on SAP BTP):
