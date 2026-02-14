@@ -22,8 +22,8 @@
 ---
 
 ## Multi-Layer Governance
-* **[Gateway Layer (DCRP)](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
-* **[Backend Layer (PDCP)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
+* **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+* **[Backend Layer (PDCP) - SAP BTP APIM - Specific)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
 * **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
 * **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
 
