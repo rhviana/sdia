@@ -15,9 +15,12 @@ Validated across **106,190+ messages**, **44 vendor integrations**, **4 business
 GDCR for any vendor combines DDD alignment, domain-centric routing, metadata-driven control, architectural fraud prevention, immutable integration identities, and formal
 decision records into a cohesive enterprise integration governance framework.
 
-## Architectural Contrast: API Sprawl vs Domain-Centric Routing
+## API Sprawl vs Domain-Centric Routing (DCRP)
 
-![API Sprawl vs GDCR Clean Core](./doc/diagrams/gdcr-clean-core-vs-api-sprawl.png)
+![API Sprawl vs GDCR Gateway Layer](./doc/diagrams/gdcr-dcrp-gateway-clean-core.png)
+
+**Figure 1 —** Domain-Centric Routing Pattern (DCRP) consolidates uncontrolled API
+proxy proliferation into a governed gateway layer aligned with Clean Core principles.
 
 
 ---
@@ -126,6 +129,11 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 
 * **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
 
+![API Sprawl vs GDCR Gateway Layer](./doc/diagrams/gdcr-dcrp-gateway-clean-core.png)
+
+**Figure 1 —** Domain-Centric Routing (DCRP) consolidates uncontrolled API proliferation
+into a governed gateway layer aligned with Clean Core principles.
+
 **Benefits:**
 - Eliminates proxy sprawl - 1:1
 - Enables semantic routing for AI agents
@@ -133,6 +141,14 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 - Zero vendor lock-in
 
 #### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
+
+## Package Sprawl vs Clean Core Orchestration (PDCP)
+
+![Package Sprawl vs Clean Core PDCP](./gdcr-pdcp-clean-core-orchestration.png)
+
+**Figure 2 —** Package Domain-Centric Pattern (PDCP) eliminates backend
+integration sprawl by consolidating orchestration per business domain.
+
 
 * **[Backend Layer (PDCP) - SAP BTP APIM - Specific)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
 
