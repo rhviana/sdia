@@ -6,7 +6,7 @@
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18619641)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v4.0-blueviolet)
 ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
-🆔 ORCID: 0009-0009-9549-5862
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0009--9549--5862-brightgreen)](https://orcid.org/0009-0009-9549-5862)
 
 **DOI License:** CC BY 4.0 — Academic Paper Pattern (SAP)
 
