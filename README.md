@@ -162,6 +162,7 @@ This routing logic is applied consistently across both the Gateway layer and the
 ### Multi-Layer Governance
 
 **[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
+
 **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
 
 SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
@@ -175,7 +176,7 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 - Centralized policy enforcement
 - Zero vendor lock-in
 
-#### PDCP (Package Domain-Centric Pattern) ![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20Cloud%20Platform%20Integration-008fd3) 
+#### PDCP (Package Domain-Centric Pattern)
 
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
@@ -191,7 +192,7 @@ Suite (Cloud Integration), eliminates package sprawl by consolidating integratio
 artifacts per business domain, fully aligned with Clean Core principles.</strong> 
 </p>
 
-* **[Backend Layer (PDCP) - SAP BTP APIM - Specific)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
+**[Backend Layer (PDCP) - SAP BTP APIM - Specific)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
 
 SAP CPI - Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
