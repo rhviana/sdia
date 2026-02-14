@@ -72,48 +72,51 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 
 ## Architecture Diagram
 
+
 ```text
-┌──────────────────────────────────────────────────────┐
-│       External Consumers / AI Agents                 │
-│    40 external vendors / 4 endpoins API / many paths │
-└───────────────────────┬──────────────────────────────┘
-                        │
-         ┌──────────────┴───────────────────┐
-         │   DCRP Layer (API Gateway)       │
-         │   ┌──────────────────────────┐   │
-         │   │ 4 Domain Proxies:        │   │
-         │   │ • Sales  10 bprocess     │   │
-         │   │ • Finance 10 bprocess    │   │
-         │   │ • Logistics  10 bprocess │   │
-         │   │ • Customer 10 bprocess   │   │
-         │   └──────────────────────────┘   │
-         │   Metadata-Driven Routing        │
-         └──────────────┬───────────────────┘
-                        │
-         ┌──────────────┴─────────────────┐
-         │  PDCP Layer (Integration)      │
-         │   ┌────────────────────────┐   │
-         │   │ 4 Domain Packages:     │   │
-         │   │ • Sales - 10 Iflows    │   │
-         │   │ • Finance 10 Iflows    │   │
-         │   │ • Logistics 10 Iflows  │   │
-         │   │ • Customer  10 Iflows  │   │
-         │   └────────────────────────┘   │
-         │   Domain-Driven Design         │
-         └──────────────┬─────────────────┘
-                        │
-    ┌───────────────────┼───────────────────┐
-    │                   │                   │
-┌───▼───────┐   ┌───────▼────┐   ┌─────────▼──┐
-│ Salesforce│   │    SAP     │   │   Custom   │
-│    API    │   │  S/4HANA   │   │  Backend   │
-└───────────┘   └────────────┘   └────────────┘
+       _________________________________________________________
+      |    External Consumers / AI Agents | Applications        |
+      |                 40 external vendors                     |
+      |     Only - 4 endpoints DCRP-Proxies / many paths        |
+      |___________________________ _____________________________|
+                                  |
+                   _______________v_______________
+                  |   DCRP Layer (API Gateway)    |
+                  |  SAP BTP IS - API Management  |
+                  |  ___________________________  |
+                  | | 4 Domain Proxies:         | |
+                  | | * Sales      10 bprocess  | |
+                  | | * Finance    10 bprocess  | |
+                  | | * Logistics  10 bprocess  | |
+                  | | * Customer   10 bprocess  | |
+                  | |___________________________| |
+                  |    Metadata-Driven Routing    |
+                  |_______________ _______________|
+                                  |
+                   _______________v_______________
+                  |      PDCP Layer (SAP CPI)     |
+                  | Integration / Orchestration   |
+                  |  ___________________________  |
+                  | | 4 Domain Packages:        | |
+                  | | - Sales      10 Iflows    | |
+                  | | - Finance    10 Iflows    | |
+                  | | - Logistics  10 Iflows    | |
+                  | | - Customer   10 Iflows    | |
+                  | |___________________________| |
+                  |      Domain-Driven Design     |
+                  |_______________ _______________|
+                                  |
+           _______________________|_______________________
+          |                       |                       |
+   _______v_______         _______v_______         _______v_______
+  |  Salesforce   |       |      SAP      |       |    Custom     |
+  |      API      |       |    S/4HANA    |       |    Backend    |
+  |_______________|       |_______________|       |_______________|
+
 ```
 ---
   
 ## 📂 Repository Structure
-
-```text
 
 gdrc-github/
 ├── README.md                # Documentation
