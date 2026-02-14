@@ -273,8 +273,6 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
 - ✅ **106,190+ messages** tested with 77ms average latency, 100% success rate
 
-* **[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
-
 #### Validation Milestones Overview (M1–M5)
 
 | Milestone | Objective | JS Version | Domains | Vendors / iFlows | DCRP Proxies | Total Calls | Avg Latency | Success Rate | Environment |
@@ -334,6 +332,8 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 #### Note:
 Metrics are weighted across Milestones M1–M4.
 M5 includes additional SAP BTP Trial Tenant overhead.
+
+**[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
 
 ---
 
