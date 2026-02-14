@@ -15,6 +15,11 @@ Validated across **106,190+ messages**, **44 vendor integrations**, **4 business
 GDCR for any vendor combines DDD alignment, domain-centric routing, metadata-driven control, architectural fraud prevention, immutable integration identities, and formal
 decision records into a cohesive enterprise integration governance framework.
 
+## Architectural Contrast: API Sprawl vs Domain-Centric Routing
+
+![API Sprawl vs GDCR Clean Core](./doc/diagrams/gdcr-clean-core-vs-api-sprawl.png)
+
+
 ---
 
 ### 📄 Published Academic Paper
@@ -222,14 +227,12 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 - ✅ **90% reduction** in integration packages (39 → 4)
 - ✅ **69% reduction** in technical users (39 → 12)
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
-- ✅ **33,000+ messages** tested with 68ms average latency, 100% success rate
+- ✅ **106,190+ messages** tested with 77ms average latency, 100% success rate
 
 * **[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
 
 #### Validation Milestones Overview (M1–M5)
 
-<div align="center">
-```text
 | Milestone | Objective | JS Version | Domains | Vendors / iFlows | DCRP Proxies | Total Calls | Avg Latency | Success Rate | Environment |
 |----------|-----------|------------|---------|------------------|--------------|-------------|-------------|--------------|-------------|
 | M1 | Gateway Resilience (Soak Test) | v8.0 | 1 (Sales O2C) | 1 Vendor / 2 APIs | 1 | 25,000 | 66 ms | 100% | SAP BTP Sandbox |
@@ -238,12 +241,9 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | M4 | Extended Off-Hours Validation | v14.2 | 4 | 39 iFlows | 4 | 5,120 | 80 ms | 100% | SAP BTP Sandbox |
 | M5 | Global Production Readiness | v15.2 (Phantom) | 4 | 44 iFlows | 4 | 73,020 | 226 ms | 100% | SAP BTP Trial Tenant |
 | **TOTAL** | — | — | — | — | — | **106,190+** | — | **100%** | — |
-</div>
-```
+
 #### Milestone 5 — Phantom v15.2 (Domain-Level Breakdown)
 
-<div align="center">
-```text
 | Business Domain | Calls Executed | Successful Calls | Errors | Avg Latency |
 |-----------------|----------------|------------------|--------|-------------|
 | Finance (R2R) | 16,600+ | 16,600+ | 0 | 219 ms |
@@ -251,8 +251,7 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | Logistics (SCM) | 16,700+ | 16,700+ | 0 | 241 ms |
 | Procurement (S2P) | 16,220+ | 16,220+ | 0 | 223 ms |
 | **TOTAL** | **73,020** | **73,020** | **0** | **226 ms (avg)** |
-```
-</div>
+
 
 ---
 
@@ -268,8 +267,6 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 
 #### Consolidated Performance Metrics (Global)
 
-<div align="center">
-```text
 | Metric | Result |
 |------|--------|
 | Total Messages Validated | **106,190+** |
@@ -277,13 +274,10 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | Routing Errors | 0 |
 | KVM Failures | 0 |
 | Timeouts | 0 |
-```
-</div>
+
 
 #### Latency Composition (Weighted Average)
 
-<div align="center">
-```text
 | Component | Avg Time | Percentage |
 |----------|----------|------------|
 | KVM Lookup | ~10 ms | 14% |
@@ -291,8 +285,7 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | DCRP Overhead (Total) | ~25–30 ms | 34–41% |
 | Backend Response | ~43 ms | 59% |
 | **End-to-End Average** | **~73 ms** | **100%** |
-```
-</div>
+
 
 #### Note:
 Metrics are weighted across Milestones M1–M4.
@@ -326,16 +319,16 @@ Not a phrase.
 A method.
 
 ---
-# Academic Citation
+### Academic Citation
 If you use this architecture in your research or implementation, please cite:
 
-# APA:
+#### APA:
 
 Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
 Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
 [https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18619641)
 
-# BibTeX:
+#### BibTeX:
 
 @article{viana2026gdcr,
   title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
