@@ -12,7 +12,7 @@ This folder contains the JavaScript policy Proof of Concept implementation of th
   - Evolution: v5.0 → v7.1 → v8.0 → v14.2 → v15.0 → v15.1 → v15.2
 
 ---
-### v5.0 - POC (Proof of Concept)
+### v5.0 - POC (Proof of Concept) 
 ---
 - Flexible delimiter detection (11 delimiters supported)
 - Path matching with dynamic sorting
