@@ -1,7 +1,7 @@
 
 # GDCR Architecture
 
-![GDCR Architecture](../../imagens/Enterprise_architecture_diagram_showing_GDCR_Domai-1771161628035.png)
+![GDCR Architecture](./repository/imagens/Enterprise_architecture_diagram_showing_GDCR_Domai-1771161628035.png)
 
 ## 🎯 What is GDCR?
 
