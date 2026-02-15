@@ -54,7 +54,7 @@ materials contained in this repository, including all folders and subfolders.**
 <p align="center">
   <img src="./repository/imagens/apisprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="75%" />
+       width="85%" />
 </p>
 
 <p align="center">
@@ -183,9 +183,9 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
 <p align="center">
-  <img src="./repository/imagens/orqsprawl.png"
+  <img src="./repository/imagens/orquestrationsprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="75%" />
+       width="85%" />
 </p>
 
 <p align="center">
