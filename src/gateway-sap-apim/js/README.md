@@ -113,7 +113,7 @@ Result:
 - Performance & Architecture Specs
 
 ---
-## The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
+### The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
 ---
 
   ✓ O(1) Action Normalization: Maps 241 business verb variations (e.g., provisioning, registering) into 15 core action codes in constant time
@@ -135,7 +135,7 @@ Result:
   ✓ Detects scanner/bot User-Agents and writes rich threat metadata for RaiseFault handling
 
 ---
-## Performance Summary
+### Performance Summary
 ---
 
 | Version | Algorithm | Latency | Cache | Key Innovation | Status |
