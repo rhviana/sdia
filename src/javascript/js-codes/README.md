@@ -118,13 +118,14 @@ domain-centric routing model** instead.
 
 ## Architectural Clarification
 
-The **real security model** of GDCR/DCRP is **not defensive filtering**.
+The real security model of **GDCR/DCRP** is **not based on defensive filtering**.
 
 It is based on:
+
 - deterministic semantic routing,
 - explicit metadata contracts,
-- strict domain and process boundaries,
-- and fail-fast governance **by design**.
+- strict domain and business-process boundaries,
+- and **fail-fast governance by design**.
 
 These JavaScript files are published to:
 - document architectural evolution,
@@ -132,3 +133,51 @@ These JavaScript files are published to:
 - and enable controlled POC experimentation.
 
 They do **not** represent the full production implementation.
+
+---
+
+### Security Model Clarification
+
+From a routing and governance perspective, **basic security concerns do not need
+to be addressed at this layer**.
+
+Traditional mechanisms such as **basic authentication, OAuth2, or token-based
+models** operate at a different concern level and can coexist independently.
+
+At the **GDCR/DCRP routing layer**, the security logic is intentionally simple
+and deterministic:
+
+- If the incoming request **does not match the expected semantic string**
+  defined by metadata and JavaScript routing logic,
+- the request **fails immediately** (*fail-fast*),
+- an **HTTP 500** is returned,
+- and the **backend URL is never generated**.
+
+As a result:
+- no unintended backend exposure occurs,
+- no fallback routing is possible,
+- and invalid or malformed requests **cannot propagate further**.
+
+This guarantees that **only semantically valid, metadata-aligned requests**
+are ever routed beyond the gateway.
+
+---
+
+**Author:** Ricardo Luz Holanda Viana  
+**Role:** Enterprise Integration Architect | SAP BTP Integration Suite  
+**Creator of:** GDCR · DCRP · PDCP  
+**Architectural Scope:** Business-semantic, domain-centric routing architectures
+for API Gateways and Integration Orchestration (vendor-agnostic),
+with SAP-specific implementations via DCRP (SAP BTP API Management)
+and PDCP (SAP BTP Cloud Integration).  
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
+**DOI:** https://doi.org/10.5281/zenodo.18619641  
+
+This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework  
+and represents original architectural work authored by Ricardo Luz Holanda Viana.
+
+Reuse, adaptation, and distribution are permitted **only with proper attribution**.  
+Any derivative or equivalent architectural implementation must reference the
+original work and associated DOI.
+
+---
