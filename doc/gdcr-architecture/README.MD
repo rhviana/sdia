@@ -31,16 +31,16 @@
 ```
 ┌────────────────────────────────────────────────────────┐
 │ Domain Proxies (4-20 typical)                          │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  │
-│  │ Sales   │  │ Finance │  │ HR      │  │ Logistics│  │
-│  │ Domain  │  │ Domain  │  │ Domain  │  │ Domain   │  │
-│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬─────┘  │
-├───────┼───────────┼────────────┼─────────────┼────────┤
-│       │    Metadata-Driven Routing Engine    │        │
-│       │           (KVM + Config DB)          │        │
-├───────┼───────────┼────────────┼─────────────┼────────┤
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌──────────┐   │
+│  │ Sales   │  │ Finance │  │ HR      │  │ Logistics│   │
+│  │ Domain  │  │ Domain  │  │ Domain  │  │ Domain   │   │
+│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬─────┘   │
+├───────┼───────────┼────────────┼─────────────┼─────────┤
+│       │    Metadata-Driven Routing Engine    │         │
+│       │           (KVM + Config DB)          │         │
+├───────┼───────────┼────────────┼─────────────┼─────────┤
 │ Backend Systems (40+ typical)                          │
-│  SAP CPI, REST APIs, SOAP Services, Databases         │
+│  SAP CPI, REST APIs, SOAP Services, Databases          │
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -89,15 +89,15 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│ Layer 5: Presentation (Newman Tests, Dashboards)                │
+│ Layer 5: Presentation (Newman Tests, Dashboards)                 │
 ├──────────────────────────────────────────────────────────────────┤
-│ Layer 4: Governance (Audit, Compliance, Credential Vault)       │
+│ Layer 4: Governance (Audit, Compliance, Credential Vault)        │
 ├──────────────────────────────────────────────────────────────────┤
-│ Layer 3: Security (OAuth2 Fast-Fail, Scope Validation)          │
+│ Layer 3: Security (OAuth2 Fast-Fail, Scope Validation)           │ 
 ├──────────────────────────────────────────────────────────────────┤
-│ Layer 2: Routing Engine (Metadata-Driven Decision Logic)        │
+│ Layer 2: Routing Engine (Metadata-Driven Decision Logic)         │
 ├──────────────────────────────────────────────────────────────────┤
-│ Layer 1: Domain Proxies (4-20 domain-based API proxies)         │
+│ Layer 1: Domain Proxies (4-20 domain-based API proxies)          │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -106,64 +106,64 @@
 ## 🔄 Request Flow (End-to-End)
 
 ```
-┌────────────────┐
-│ Sender A       │
-│ Request:       │
-│ POST /sales    │
-│ /orders        │
-└────────┬───────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 1: Domain Proxy Selection                          │
-│ URL: api.company.com/sales/orders                       │
-│ Matched Domain: "sales"                                 │
-└────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+                  ┌────────────────┐
+                  │ Sender A       │
+                  │ Request:       │
+                  │ POST /sales    │
+                  │ /orders        │
+                  └────────┬───────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────────────┐
+│ Step 1: Domain Proxy Selection                                 │
+│ URL: api.company.com/sales/orders                              │
+│ Matched Domain: "sales" match dynamic routing path "/orders/*" │
+└──────────────────────────┬─────────────────────────────────────┘
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │ Step 2: KVM Fast-Fail Validation                        │
 │ - Extract Bearer token                                  │
 │ - Hash token → KVM lookup                               │
 │ - Result: Valid, sender_id = "SENDER_A"                 │
-└────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+└──────────────────────────┬──────────────────────────────┘
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │ Step 3: Sender Authorization                            │
 │ - Required scopes: ["sales:write"]                      │
 │ - Allowed senders: ["SENDER_A", "SENDER_C"]             │
-│ - Result: ✅ AUTHORIZED                                 │
-└────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+│ - Result: ✅ AUTHORIZED                                 │   
+└──────────────────────────┬──────────────────────────────┘
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │ Step 4: Metadata-Driven Routing                         │
 │ - Endpoint: /sales/orders                               │
 │ - Backend URL: https://cpi.company.com/sales/orders     │
 │ - Backend Auth: Fetch from Vault                        │
-└────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+└──────────────────────────┬──────────────────────────────┘
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │ Step 5: Backend Call                                    │
 │ - HTTP POST to CPI                                      │
 │ - Inject sender context: {"sender_id": "SENDER_A"}      │
 │ - Response: 201 Created                                 │
 └────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+                           │
+                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │ Step 6: Audit Logging                                   │
 │ - Log: sender_id, endpoint, status, latency             │
 │ - Store: Elasticsearch + S3 (compliance)                │
-└────────┬────────────────────────────────────────────────┘
-         │
-         ▼
-┌────────────────┐
-│ Response:      │
-│ 201 Created    │
-└────────────────┘
+└──────────────────────────┬──────────────────────────────┘
+                           │
+                           ▼
+                  ┌────────────────┐
+                  │ Response:      │
+                  │ 201 Created    │
+                  └────────────────┘
 ```
 
 ---
@@ -199,7 +199,7 @@ Add new sender: Issue OAuth2 credentials (5 minutes)
 **Result:**
 ```
 ┌────────────────────────────────────────────────────────────┐
-│ GDCR reduces proxy count by 98% (20 vs 1,000)             │
+│ GDCR reduces proxy count by 98% (20 vs 1,000)              │
 │ while IMPROVING governance and security                    │
 └────────────────────────────────────────────────────────────┘
 ```
