@@ -1,6 +1,6 @@
 ---
 
-### DCRP Engine: "The Brain" V15.1 - The Maverick Ghost Edition - Logic from Ricardo Luz Holanda Viana
+### DCRP Engine: "The Brain" Javscript evolution the Logic from Ricardo Luz Holanda Viana
 
 This folder contains the java script policy for Proof of Concept implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
 
