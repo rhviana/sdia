@@ -16,7 +16,7 @@ A **vendor-agnostic, metadata-driven architecture** for enterprise **API & orche
 
 ## One-line Executive Summary
 
-Validated across **106,190+ messages**, **44 vendor integrations**, **4 business domains**,**4 Packages business domains**,**44 Iflows business domains** with **100% success rate** and **zero routing, KVM, or timeout failures**.
+Validated across **106,190+ messages**, **44 vendor integrations**, **4 business domains**,**4 Packages business domains**,**44 Iflows business domains** with **100% success rate** and with 4 differents JavaScript Policy codes **zero routing, KVM, or timeout failures**.
 
 GDCR for any vendor combines **DDD alignment**, **domain-centric routing**, **metadata-driven control**, **architectural fraud prevention**, **immutable integration identities**, and **formal decision records** into a cohesive enterprise integration governance framework.
 
