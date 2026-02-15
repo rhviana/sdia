@@ -1,5 +1,5 @@
 
-⚠️ ## Important Notice 
+⚠️ **Important Notice** 
 
 This repository contains original architectural work.  
 Please read the **[NOTICE](./NOTICE.md)** before exploring, reusing, or referencing any content.
