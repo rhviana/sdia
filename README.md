@@ -52,7 +52,7 @@ materials contained in this repository, including all folders and subfolders.**
 ---
 
 <p align="center">
-  <img src="./repository/imagens/apisprawl.png"
+  <img src="./imagens/apisprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="75%" />
 </p>
