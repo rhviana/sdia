@@ -183,7 +183,7 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
 <p align="center">
-  <img src="./repository/imagens/orquestrationsprawl.png"
+  <img src="./repository/imagens/orqsprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="75%" />
 </p>
