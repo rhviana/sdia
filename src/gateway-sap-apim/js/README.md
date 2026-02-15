@@ -95,9 +95,9 @@ Latency: 15-25ms
 ### v15.1 - The Maverick Ghost Edition - Current (inside official DOI document)
 ---
 <p align="center">
-  <img src="./repository/imagens/javascript15.1.png"
+  <img src="/repository/imagens/javascript15.1.png"
        alt="DCRP Engine - Maverick Style v15.1"
-       width="75%" />
+       width="65%" />
 </p>
 
 <p align="center">
@@ -160,9 +160,9 @@ Result:
 ---
 
 <p align="center">
-  <img src="./repository/imagens/javascript15.2.png"
+  <img src="/repository/imagens/javascript15.2.png"
        alt="DCRP Engine - Maverick Style v152"
-       width="75%" />
+       width="65%" />
 </p>
 
 <p align="center">
@@ -171,20 +171,28 @@ Result:
 
 The Maverick Phantom Edition v15.2 validated with 73,000 messages is available in case of inquiries for Production Implementation.
 
- ### GDCR v15.2 (Maverick Phantom): ~1.5-4ms ⚡
- └─ Reads: Global action map (241 verbs, pre-initialized) + Metadata- driven routing
- └─ Generates: CPI endpoints dynamically all possible variables of vendors
- └─ Result: 98% faster than static patterns
- └─ Result: Zero regex, zero allocations, sub-2ms routing overhead
- └─ ZERO object allocations (flat variable extraction)
- └─ Index-based string splitting (~80% faster than regex)
- └─ Single-pass KVM lookup with early exit
- └─ Inline variable extraction (no function call overhead)
- └─ Direct string concatenation for URL building
- └─ Regional suffix support (e.g., salesforceus, salesforceemea)
- └─ Target latency: 2-5ms routing overhead (P95: 8ms, P99: 12ms)
- └─ Improvement: -75% vs v15.1, -90% vs v14.2
- └─ Memory footprint: <1KB per request
- └─ CPU cycles: ~50k per routing operation
+---
+### GDCR v15.2 (Maverick Phantom): ~1.5-4ms ⚡
+---
+
+### Architecture
+- **Reads:** Global action map (241 verbs, pre-initialized) + Metadata-driven routing
+- **Generates:** CPI endpoints dynamically for all possible vendor variables
+- **Result:** 98% faster than static patterns
+
+### Performance Optimizations
+- ✅ Zero regex, zero allocations, sub-2ms routing overhead
+- ✅ ZERO object allocations (flat variable extraction)
+- ✅ Index-based string splitting (~80% faster than regex)
+- ✅ Single-pass KVM lookup with early exit
+- ✅ Inline variable extraction (no function call overhead)
+- ✅ Direct string concatenation for URL building
+- ✅ Regional suffix support (e.g., `salesforceus`, `salesforceemea`)
+
+### Performance Metrics
+- **Target latency:** 2-5ms routing overhead (P95: 8ms, P99: 12ms)
+- **Improvement:** -75% vs v15.1, -90% vs v14.2
+- **Memory footprint:** <1KB per request
+- **CPU cycles:** ~50k per routing operation
 
 Author: Ricardo Luz Holanda Viana Status: Sandbox Validated.
