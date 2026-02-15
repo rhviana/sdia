@@ -169,7 +169,7 @@ Result:
   <strong>Figure 1 — The Maverick Phantom Edition: The JavaScript Policy Destroyer - By Ricardo Luz Holanda Viana</strong> 
 </p>
 
-The Maverick Phantom Edition v15.2 validated with 73,000 messages is available in case of inquiries for Production Implementation.
+The Maverick Phantom Edition v15.2 validated with 73,000 messages is available in case of inquiries for Production Implementation, contact me in private.
 
 ---
 ### GDCR v15.2 (Maverick Phantom): ~1.5-4ms ⚡
