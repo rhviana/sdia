@@ -94,8 +94,15 @@ Latency: 15-25ms
 ---
 ### v15.1 - The Maverick Ghost Edition - Current (inside official DOI document)
 ---
+<p align="center">
+  <img src="./repository/imagens/javascript15.1.png"
+       alt="DCRP Engine - Maverick Style v15.1"
+       width="75%" />
+</p>
 
-![DCRP Engine - Maverick Style](/repository/imagens/javascript15.1.png)
+<p align="center">
+  <strong>Figure 1 — Super Maverick Ghost Edition - By Ricardo Luz Holanda Viana</strong> 
+</p>
 
 Complete Hardening:
 
@@ -152,7 +159,15 @@ Result:
 ### Maverick Phantom Edition v15.2
 ---
 
-![DCRP Engine - Maverick Style](/repository/imagens/javascript15.2.png)
+<p align="center">
+  <img src="./repository/imagens/javascript15.2.png"
+       alt="DCRP Engine - Maverick Style v152"
+       width="75%" />
+</p>
+
+<p align="center">
+  <strong>Figure 1 — The Maverick Phantom Edition: The JavaScript Policy Destroyer - By Ricardo Luz Holanda Viana</strong> 
+</p>
 
 The Maverick Phantom Edition v15.2 validated with 73,000 messages is available in case of inquiries for Production Implementation.
 
