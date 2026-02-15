@@ -21,48 +21,8 @@ Validated across **106,190+ messages**, **44 vendor integrations**, **4 business
 GDCR for any vendor combines **DDD alignment**, **domain-centric routing**, **metadata-driven control**, **architectural fraud prevention**, **immutable integration identities**, and **formal decision records** into a cohesive enterprise integration governance framework.
 
 ---
-
-## API Sprawl vs Domain-Centric Routing (DCRP - SAP)
-
-<p align="center">
-  <img src="./repository/imagens/Image1Package.png"
-       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="75%" />
-</p>
-
-<p align="center">
-  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP - Apllied for SAP BTP) consolidates uncontrolled API
-  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
-</p>
-
----
-
-## 📄 Published Academic Paper
-
-- **Official DOI:** 10.5281/zenodo.18619641  
-- **Published:** February 12, 2026  
-- **Repository:** Zenodo (CERN)  
-- **License:** CC BY 4.0 International  
-
----
-
-## 📂 Repository Structure
-
-```text
-gdrc-github/
-├── README.md                 # Documentation
-├── LICENSE                   # CC BY 4.0
-├── JavaScript/
-│   ├── js/
-│   │   └── Maverickv15.2.js  # Phantom Edition (Hyper-Optimized)
-│   └── kvm-samples/          # KVM Samples
-├── Presentations/            # Architecture Blueprints (PDF)
-└── StressTest/               # Validation Screenshots
-```
-
----
-
 ## Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
+---
 
 This GitHub repository and the GDCR framework have **no association whatsoever**
 with military organizations, armed forces, militias, or any form of armed activity.
@@ -88,8 +48,48 @@ materials contained in this repository, including all folders and subfolders.**
 **Any interpretation beyond this context is incorrect.**
 
 ---
+## API Sprawl vs Domain-Centric Routing (DCRP - SAP)
+---
 
+<p align="center">
+  <img src="./repository/imagens/Image1Package.png"
+       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
+       width="75%" />
+</p>
+
+<p align="center">
+  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP - Apllied for SAP BTP) consolidates uncontrolled API
+  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
+</p>
+
+---
+## 📄 Published Academic Paper
+---
+
+- **Official DOI:** 10.5281/zenodo.18619641  
+- **Published:** February 12, 2026  
+- **Repository:** Zenodo (CERN)  
+- **License:** CC BY 4.0 International  
+
+---
+## 📂 Repository Structure
+---
+
+```text
+gdrc-github/
+├── README.md                 # Documentation
+├── LICENSE                   # CC BY 4.0
+├── JavaScript/
+│   ├── js/
+│   │   └── Maverickv15.2.js  # Phantom Edition (Hyper-Optimized)
+│   └── kvm-samples/          # KVM Samples
+├── Presentations/            # Architecture Blueprints (PDF)
+└── StressTest/               # Validation Screenshots
+```
+
+---
 ### GDCR Architectural Scope
+---
 
 Gateway Domain-Centric Routing (GDCR) is not a single pattern or implementation.
 It is a composite architectural framework designed to govern enterprise integration landscapes at scale.
@@ -104,8 +104,8 @@ DCRP and PDCP are its core execution patterns, but GDCR also formalizes:
 Together, these elements operate as one cohesive system, preventing uncontrolled architectural entropy.
 
 ---
-
 ## Architecture Diagram
+---
 
 ```text
        _________________________________________________________
@@ -149,8 +149,8 @@ Together, these elements operate as one cohesive system, preventing uncontrolled
 
 ```
 ---
-
-## What is GDCR?
+## What is GDCR ?
+---
 
 Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
 (e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
@@ -176,7 +176,9 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 - Centralized policy enforcement
 - Zero vendor lock-in
 
+---
 #### PDCP (Package Domain-Centric Pattern)
+---
 
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
@@ -204,9 +206,7 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 - Faster deployment cycles
 
 ---
-
 #### The 7 Core GDCR Patterns
-
 ---
 
 GDCR is composed of seven complementary architectural patterns:
@@ -221,12 +221,14 @@ GDCR is composed of seven complementary architectural patterns:
 These patterns are interdependent and must be applied together.
 
 ---
-
 ### Naming Conventions as Governance
+---
 
 Naming is not cosmetic in GDCR — it is architectural control.
 
+---
 #### Package Naming
+---
 
 [org].[domain].[subprocess].integrations
 nx.sales.o2c.integrations
@@ -237,7 +239,9 @@ Integration (iFlow DNA) Naming
 id[seq].[subdomain].[sender].[entity].[action].[direction].[sync|async]
 id01.o2c.salesforce.order.c.in.sync
 
+---
 #### Metadata Key Naming (KVM)
+---
 
 dcrp{entity}{action}{vendor}id{XX}
 dcrpordercsalesforceid01
@@ -246,7 +250,9 @@ Strict rules (mandatory):
 - Lowercase only
 - Canonical action codes only
 
+---
 #### Immutable IDs
+---
 
 These rules are required for O(log n) binary search routing.
 
@@ -259,7 +265,9 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 
 ---
 
+---
 #### Hard Efficiency Metrics
+---
 
 | Metric | Legacy (1:1 Model) | Maverick Engine | Velocity Gain |
 | :--- | :--- | :--- | :--- |
@@ -268,7 +276,9 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
 | **Reliability (Success)** | Variable | 99.92% | **Optimized** |
 
+---
 #### Key Results (Sandbox Validation on SAP BTP):
+---
 
 - ✅ **90% reduction** in API proxies (41 → 4)
 - ✅ **90% reduction** in integration packages (39 → 4)
@@ -276,7 +286,9 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 - ✅ **95% faster** deployment times (273 min → 14.5 min)
 - ✅ **106,190+ messages** tested with 77ms average latency, 100% success rate
 
+---
 #### Validation Milestones Overview (M1–M5)
+---
 
 | Milestone | Objective | JS Version | Domains | Vendors / iFlows | DCRP Proxies | Total Calls | Avg Latency | Success Rate | Environment |
 |----------|-----------|------------|---------|------------------|--------------|-------------|-------------|--------------|-------------|
@@ -287,51 +299,9 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | M5 | Global Production Readiness | v15.2 (Phantom) | 4 | 44 iFlows | 4 | 73,020 | 226 ms | 100% | SAP BTP Trial Tenant |
 | **TOTAL** | — | — | — | — | — | **106,190+** | — | **100%** | — |
 
-#### Milestone 5 — Phantom v15.2 (Domain-Level Breakdown)
-
-| Business Domain | Calls Executed | Successful Calls | Errors | Avg Latency |
-|-----------------|----------------|------------------|--------|-------------|
-| Finance (R2R) | 16,600+ | 16,600+ | 0 | 219 ms |
-| Sales (O2C) | 23,500+ | 23,500+ | 0 | 238 ms |
-| Logistics (SCM) | 16,700+ | 16,700+ | 0 | 241 ms |
-| Procurement (S2P) | 16,220+ | 16,220+ | 0 | 223 ms |
-| **TOTAL** | **73,020** | **73,020** | **0** | **226 ms (avg)** |
-
 ---
-
-#### Validation Status (M5):
-
-- ✅ 44 iFlows validated
-- ✅ 4 Business Domains operational
-- ✅ 44 Vendor Integrations successful
-- ✅ Multi-protocol (REST + SOAP)
-- ✅ Approved for production deployment
-
----
-
-#### Consolidated Performance Metrics (Global)
-
-| Metric | Result |
-|------|--------|
-| Total Messages Validated | **106,190+** |
-| Success Rate | **100.00%** |
-| Routing Errors | 0 |
-| KVM Failures | 0 |
-| Timeouts | 0 |
-
-#### Latency Composition (Weighted Average)
-
-| Component | Avg Time | Percentage |
-|----------|----------|------------|
-| KVM Lookup | ~10 ms | 14% |
-| JavaScript Routing | ~15–20 ms | 21–27% |
-| DCRP Overhead (Total) | ~25–30 ms | 34–41% |
-| Backend Response | ~43 ms | 59% |
-| **End-to-End Average** | **~73 ms** | **100%** |
-
----
-
 ## 📖 Documentation
+---
 
 Complete documentation available in [`/doc`](./doc):
 
@@ -341,14 +311,16 @@ Complete documentation available in [`/doc`](./doc):
 👉 **[Compliance](./doc/compliance/AUDIT-COMPLIANCE.md)** - Audit trail & GDPR
 
 **Key Highlights:**
+
 - ⚡ 2-5ms validation (vs 150-300ms OAuth2)
 - 🔒 Zero external dependencies (KVM fast-fail)
 - 📊 90% proxy reduction (4 proxies vs 400)
 - 🌐 Multi-vendor (SAP APIM, Apigee, AWS, Azure, Any)
 
 ---
-
 #### Note:
+---
+
 Metrics are weighted across Milestones M1–M4.
 M5 includes additional SAP BTP Trial Tenant overhead.
 
@@ -369,18 +341,9 @@ DOI: 10.5281/zenodo.18619641
 Author: Ricardo Luz Holanda Viana
 Repository: https://github.com/rhviana/gdcr
 
-#### Final Statement
-
-GDCR is not a tool.
-It is not a product.
-It is not a shortcut.
-It is an architectural answer to enterprise-scale integration entropy globally.
-
-"Order from Chaos Not a phrase.A method." - The Commander - Viana.
-
 ---
-
 ### Academic Citation
+---
 If you use this architecture in your research or implementation, please cite:
 
 #### APA:
@@ -402,8 +365,8 @@ Metadata-Driven Architecture for Enterprise API Governance. Zenodo.
 }
 
 ---
-
 ## Maverick Phantom Edition v15.2 - Now Available
+---
 
 **GDCR Maverick Phantom Edition v15.2** is available for early access.
 
