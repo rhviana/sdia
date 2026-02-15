@@ -54,6 +54,25 @@ I do not provide free consulting:
 
 - The SAP Community blog posts (Part I & II) contain complete step-by-step implementation guides sufficient for building a full PoC.
 
-For commercial inquiries contact details below.
+For commercial inquiries contact me.
                    
+---
+
+**Author:** Ricardo Luz Holanda Viana  
+**Role:** Enterprise Integration Architect | SAP BTP Integration Suite  
+**Creator of:** GDCR · DCRP · PDCP  
+**Architectural Scope:** Business-semantic, domain-centric routing architectures
+for API Gateways and Integration Orchestration (vendor-agnostic),
+with SAP-specific implementations via DCRP (SAP BTP API Management)
+and PDCP (SAP BTP Cloud Integration).  
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
+**DOI:** https://doi.org/10.5281/zenodo.18619641  
+
+This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework  
+and represents original architectural work authored by Ricardo Luz Holanda Viana.
+
+Reuse, adaptation, and distribution are permitted **only with proper attribution**.  
+Any derivative or equivalent architectural implementation must reference the
+original work and associated DOI.
+
 ---
