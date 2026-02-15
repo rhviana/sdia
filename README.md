@@ -2,7 +2,7 @@
 ⚠️ **Important Notice** 
 
 This repository contains original architectural work.  
-Please read the **[NOTICE](./NOTICE.md)** before exploring, reusing, or referencing any content.
+Please read the **[NOTICE](./NOTICE.md)** before start to read the main README.md and exploring, reusing, or referencing any content.
 
 ---
 # Gateway Domain-Centric Routing (GDCR)
