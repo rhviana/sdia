@@ -1,6 +1,6 @@
 # GDCR Fail-Fast Logic: No OAuth2 Overhead
 
-![Fail-Fast Flow](../../images/security/fail-fast-flow.png)
+![Fail-Fast Flow](/repository/imagens/gdcr-fast-fail.png)
 
 ## 🎯 Design Philosophy
 
