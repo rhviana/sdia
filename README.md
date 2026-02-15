@@ -81,16 +81,54 @@ materials contained in this repository, including all folders and subfolders.**
 ## 📂 Repository Structure
 ---
 
+This repository is organized to clearly separate **architecture concepts,
+academic material, runtime components, visual assets, automation workflows,
+and validation evidence**.
+
+The structure reflects the evolution of the **GDCR framework** from
+conceptual definition to validated runtime execution.
+
 ```text
-gdrc-github/
-├── README.md                 # Documentation
-├── LICENSE                   # CC BY 4.0
-├── JavaScript/
-│   ├── js/
-│   │   └── Maverickv15.2.js  # Phantom Edition (Hyper-Optimized)
-│   └── kvm-samples/          # KVM Samples
-├── Presentations/            # Architecture Blueprints (PDF)
-└── StressTest/               # Validation Screenshots
+├── .github/                          # GitHub-specific configuration
+│
+├── JavaScript/                       # Standalone JavaScript artifacts
+│   ├── js/                           # JavaScript execution logic
+│   └── README.md                     # JavaScript scope and usage
+│
+├── dgrc-gateway-domain-centric/      # Conceptual and historical GDCR material
+│   └── README.md
+│
+├── doc/                              # Primary documentation hub
+│   ├── academic-paper/               # Academic material (DOI / Zenodo)
+│   ├── complience/                   # Compliance and audit documentation
+│   ├── gdcr-architecture/            # High-level architecture descriptions
+│   ├── implementation/               # Implementation guidelines
+│   ├── patterns/                     # GDCR core patterns (DCRP, PDCP, etc.)
+│   ├── presentations/                # Slides and explanatory material
+│   ├── security/                     # Security model and fast-fail logic
+│   └── README.md                     # Documentation index
+│
+├── repository/                       # Visual assets repository
+│   ├── figures/                      # Architecture diagrams and illustrations
+│   └── README.md                     # Visual assets scope
+│
+├── src/                              # Core runtime components
+│   ├── gateway-sap-apim/              # SAP API Management (Gateway layer)
+│   ├── javascript/                   # Runtime JavaScript execution engine
+│   ├── kvm/                          # Key-Value Mapping metadata definitions
+│   └── README.md                     # Runtime architecture overview
+│
+├── stress-test/                      # Validation and stress testing
+│   ├── stress-imagens/                # Test result screenshots
+│   └── README.md                     # Test methodology and results
+│
+├── workflows/                        # Automation and deployment workflows
+│   ├── deploy-metadata.yml            # Metadata deployment pipeline
+│   └── README.md                     # Workflow documentation
+│
+├── LICENSING.md                      # Licensing details (CC BY 4.0)
+├── NOTICE.md                         # Attribution, prior art, and usage notice
+└── README.md                         # Main project documentation
 ```
 
 ---
