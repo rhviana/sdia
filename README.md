@@ -194,7 +194,7 @@ Suite (Cloud Integration), eliminates package sprawl by consolidating integratio
 artifacts per business domain, fully aligned with Clean Core principles.</strong> 
 </p>
 
-**[Backend Layer (PDCP) - SAP BTP APIM - Specific)](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
+**[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
 
 SAP CPI - Backend integration consolidation pattern that organizes integration artifacts by business domain.
 
@@ -218,86 +218,7 @@ GDCR is composed of seven complementary architectural patterns:
 - Immutable Integration Identity Pattern (iFlow DNA) — Permanent, non-reusable flow identities
 - Architectural Decision Record (ADR) Pattern — Explicit architectural traceability
 
-These patterns are interdependent and must be applied together.
-
----
-### Naming Conventions as Governance
----
-
-Naming is not cosmetic in GDCR — it is architectural control.
-
----
-#### Package Naming
----
-
-[org].[domain].[subprocess].integrations
-nx.sales.o2c.integrations
-nx.finance.p2p.integrations
-
-Integration (iFlow DNA) Naming
-
-id[seq].[subdomain].[sender].[entity].[action].[direction].[sync|async]
-id01.o2c.salesforce.order.c.in.sync
-
----
-#### Metadata Key Naming (KVM)
----
-
-dcrp{entity}{action}{vendor}id{XX}
-dcrpordercsalesforceid01
-
-Strict rules (mandatory):
-- Lowercase only
-- Canonical action codes only
-
----
-#### Immutable IDs
----
-
-These rules are required for O(log n) binary search routing.
-
-This creates a shared semantic contract between:
-       - API Gateway
-       - Orchestration layer
-       - Governance model
-
-Ensuring deterministic routing, traceability, and safe refactoring.
-
----
-
----
-#### Hard Efficiency Metrics
----
-
-| Metric | Legacy (1:1 Model) | Maverick Engine | Velocity Gain |
-| :--- | :--- | :--- | :--- |
-| **Route Onboarding** | 15 Minutes / Proxy | 30 Seconds (KVM) | **30x** |
-| **System Footprint** | 100+ Proxies | 4 Strategic Domains | **96% Reduction** |
-| **Deployment Cycle** | 273 Minutes | 14.5 Minutes | **18.8x Faster** |
-| **Reliability (Success)** | Variable | 99.92% | **Optimized** |
-
----
-#### Key Results (Sandbox Validation on SAP BTP):
----
-
-- ✅ **90% reduction** in API proxies (41 → 4)
-- ✅ **90% reduction** in integration packages (39 → 4)
-- ✅ **69% reduction** in technical users (39 → 12)
-- ✅ **95% faster** deployment times (273 min → 14.5 min)
-- ✅ **106,190+ messages** tested with 77ms average latency, 100% success rate
-
----
-#### Validation Milestones Overview (M1–M5)
----
-
-| Milestone | Objective | JS Version | Domains | Vendors / iFlows | DCRP Proxies | Total Calls | Avg Latency | Success Rate | Environment |
-|----------|-----------|------------|---------|------------------|--------------|-------------|-------------|--------------|-------------|
-| M1 | Gateway Resilience (Soak Test) | v8.0 | 1 (Sales O2C) | 1 Vendor / 2 APIs | 1 | 25,000 | 66 ms | 100% | SAP BTP Sandbox |
-| M2 | Multi-Vendor Smoke Test | v14.2 | 2 (Sales, Procurement) | 39 Vendors | 2 | ~50 | 101 ms | 100% | SAP BTP Sandbox |
-| M3 | Multi-Domain Stress Test | v14.2 | 4 | 39 iFlows | 4 | 3,000 | 68 ms | 100% | SAP BTP Sandbox |
-| M4 | Extended Off-Hours Validation | v14.2 | 4 | 39 iFlows | 4 | 5,120 | 80 ms | 100% | SAP BTP Sandbox |
-| M5 | Global Production Readiness | v15.2 (Phantom) | 4 | 44 iFlows | 4 | 73,020 | 226 ms | 100% | SAP BTP Trial Tenant |
-| **TOTAL** | — | — | — | — | — | **106,190+** | — | **100%** | — |
+These patterns are interdependent but also can work isolated of each other - DCRP and PDCP and the ideal scenario be applied together for full domain-centric layer from the gateway, orquestraction connected with CORE BUSINESS ERP.
 
 ---
 ## 📖 Documentation
