@@ -329,6 +329,24 @@ Ensuring deterministic routing, traceability, and safe refactoring.
 | Backend Response | ~43 ms | 59% |
 | **End-to-End Average** | **~73 ms** | **100%** |
 
+---
+
+## 📖 Documentation
+
+Complete documentation available in [`/doc`](./doc):
+
+👉 **[Security: Fail-Fast Logic](./doc/security/FAIL-FAST-LOGIC.md)** - Why no OAuth2 (66x faster)
+👉 **[Architecture Overview](./doc/architecture/README.md)** - GDCR pattern explained
+👉 **[Access Control](./doc/security/ACCESS-CONTROL.md)** - Per-sender isolation
+👉 **[Compliance](./doc/compliance/AUDIT-COMPLIANCE.md)** - Audit trail & GDPR
+
+**Key Highlights:**
+- ⚡ 2-5ms validation (vs 150-300ms OAuth2)
+- 🔒 Zero external dependencies (KVM fast-fail)
+- 📊 90% proxy reduction (4 proxies vs 400)
+- 🌐 Multi-vendor (SAP APIM, Apigee, AWS, Azure, Any)
+
+---
 
 #### Note:
 Metrics are weighted across Milestones M1–M4.
