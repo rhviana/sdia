@@ -13,10 +13,11 @@ This is the **heart of the architecture**.
 
 ## Structure
 
+```text
 src/
 ├── javascript/
-└── key-value-mapping/
-
+└── kvm/
+```
 ---
 
 ## javascript/
@@ -42,17 +43,16 @@ If metadata is missing or inconsistent, execution **fails immediately**.
 
 ---
 
-## key-value-mapping/
+## kvm/ - key-value-mapping
 
 This folder contains the **architecture brain**.
 
 ### Responsibilities
 - Store all routing metadata
 - Define:
-  - Domains
-  - Business Processes
-  - Target endpoints
-  - Security and routing parameters
+  - StringsDomains
+  - sap process detail
+  - name of packages
 - Act as the **single source of truth**
 
 ### Key Characteristics
