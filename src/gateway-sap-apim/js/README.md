@@ -4,8 +4,6 @@
 
 This folder contains the java script policy for Proof of Concept implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
 
-![DCRP Engine - Maverick Style](/repository/imagens/javascript15.1.png)
-
 ---
 
 This folder contains the JavaScript policy Proof of Concept implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
@@ -14,8 +12,8 @@ This folder contains the JavaScript policy Proof of Concept implementation of th
   - Evolution: v5.0 → v7.1 → v8.0 → v14.2 → v15.0 → v15.1 → v15.2
 
 ---
-
 ### v5.0 - POC (Proof of Concept)
+---
 - Flexible delimiter detection (11 delimiters supported)
 - Path matching with dynamic sorting
 - Manual KVM parsing (split + loop)
@@ -24,8 +22,9 @@ This folder contains the JavaScript policy Proof of Concept implementation of th
 - Status: POC validated, not production-ready
 
 ---
-
 ### v7.1 - Baseline
+---
+
 - Fixed delimiter (, only) - governance standardization
 - Domain-centric keys: dcrp<entity><action><vendor>
 - 2 loops (extended + compact match)
@@ -35,7 +34,10 @@ This folder contains the JavaScript policy Proof of Concept implementation of th
 - Latency: 20-30ms
 - Key innovation: Domain-centric pattern established
 
+---
 ### v8.0 - Speed Boost
+---
+
 - Single loop with early exit → ~40% gain
 - indexOf/substring instead of regex → ~30% gain
 - Primitive variables instead of arrays → ~15% gain
@@ -45,9 +47,8 @@ Result:
 - Still no caching or observability
 
 ---
-
 ### v14.2 - POC - Published (DOI)
-
+---
 New Features:
 
 - Global cache (TTL 60s) → KVM parse 0-1ms vs 8-12ms
@@ -66,8 +67,8 @@ Result:
 - DOI: 10.5281/zenodo.18582469 <-- This DOI was deleted decrapted old version
 
 ---
-
 ### v15.0 - Algorithmic Upgrade
+---
 
 Critical Bug Fixes:
 
@@ -91,8 +92,10 @@ Latency: 15-25ms
 - Scalability: O(log n) for large KVM lists
 
 ---
-
 ### v15.1 - The Maverick Ghost Edition - Current (inside official DOI document)
+---
+
+![DCRP Engine - Maverick Style](/repository/imagens/javascript15.1.png)
 
 Complete Hardening:
 
@@ -110,34 +113,30 @@ Result:
 - Performance & Architecture Specs
 
 ---
-
-#### The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
+## The DCRP Engine is mathematically optimized for the SAP BTP Integration Suite environment (Sandbox), achieving near-native performance through advanced caching and lookup strategies:
+---
 
   ✓ O(1) Action Normalization: Maps 241 business verb variations (e.g., provisioning, registering) into 15 core action codes in constant time
   ✓ <2ms Overhead: Engineered for ultra-low latency, minimizing the gateway footprint even under heavy loads
   ✓ Segmented Latency Tracking: Monitors 7 distinct execution phases, from path parsing to final URL construction, providing 100% observability
 
   ---
-  
   Key Features (JavaScript Maverick Ghost Edition - V15.1)
-
   ---
   ✓ Multi-node Cache Invalidation: TTL-based validation safe for distributed environments
   ✓ Mirror Strategy Alignment: Directly maps APIM routing keys to PDCP package naming conventions in the backend
   ✓ Conflict Detection: Built-in logic to identify and block overlapping routes (Error 409)
 
   ---
-  
   Key Features (Security Shield Edition - V15.1)
-  
   ---
   ✓ Blocks path-traversal, SQLi, XSS and command-injection patterns on the catch-all route
   ✓ Enforces a domain whitelist on the first URL segment and validates critical headers
   ✓ Detects scanner/bot User-Agents and writes rich threat metadata for RaiseFault handling
 
 ---
-
 ## Performance Summary
+---
 
 | Version | Algorithm | Latency | Cache | Key Innovation | Status |
 |---------|-----------|---------|-------|----------------|--------|
@@ -149,8 +148,9 @@ Result:
 | v15.1 | Binary + hardening | 15-26ms | ✅ Sorted | 100% robust (Academic Gold) | Superseded |
 | v15.2 | Quantum Routing (Zero Regex) | 2-5ms | ✅ Single-Pass | Global Production Ready | Not Available |
 
-
+---
 ### Maverick Phantom Edition v15.2
+---
 
 ![DCRP Engine - Maverick Style](/repository/imagens/javascript15.2.png)
 
