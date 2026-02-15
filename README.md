@@ -1,4 +1,8 @@
 
+> ⚠️ **Important Notice**  
+> This repository contains original architectural work.  
+> Please read the **[NOTICE](./NOTICE.md)** before exploring, reusing, or referencing any content.
+
 # Gateway Domain-Centric Routing (GDCR)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18619641.svg)](https://doi.org/10.5281/zenodo.18619641)
