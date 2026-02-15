@@ -2,7 +2,9 @@
 
 ### DCRP Engine: "The Brain" V15.1 - The Maverick Ghost Edition - Logic from Ricardo Luz Holanda Viana
 
-This folder contains the Production-Hardened implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
+This folder contains the java script policy for Proof of Concept implementation of the Domain-Centric Routing Pattern (DCRP) for SAP Integration Suite (APIM).
+
+![DCRP Engine - Maverick Style](./js/Maverick-v-14.2.png)
 
 ---
 
