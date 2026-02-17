@@ -1,7 +1,3 @@
-***
-
-### 9) `04-security/faq-09-credentials-sprawl.md`
-
 ```markdown
 # FAQ-09 – Credential Sprawl and GDCR
 
