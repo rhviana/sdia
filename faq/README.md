@@ -1,8 +1,8 @@
-# FAQ – Core Assumptions Behind GDCR
+## FAQ – Core Assumptions Behind GDCR
 
 This FAQ compares a **traditional OpenAPI/Swagger, contract‑centric model** with the **GDCR/DCRP domain‑centric, metadata‑driven model** on SAP API Management + SAP Cloud Integration. The goal is to show, visually, how routing, versioning, and governance differ.
 
-## 1. High-Level Comparison Diagram
+#### 1. High-Level Comparison Diagram
 
 ```
 ┌──────────────────────────────────────────────┐        ┌──────────────────────────────────────────────┐
@@ -81,7 +81,7 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 
 ```
 
-## 2.  How to read this diagram
+#### 2.  How to read this diagram
 
 ### Left: OpenAPI / Swagger, contract‑centric model
 
@@ -135,18 +135,14 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 
 ---
 
-3. Where to find more details
-Core assumptions – 01-core-assumptions/faq-01-core-assumptions.md
+#### 3. Where to find more details
 
-Routing models – 02-routing-models/faq-02-routing-models.md
-
-OpenAPI / Swagger vs GDCR – 03-openapi-swagger/faq-05-openapi-traditional.md and 03-openapi-swagger/faq-06-openapi-with-gdcr.md
-
-Security and access control – files in 04-security/
-
-Governance and sprawl – files in 05-governance/
-
-Observability and tracing – 06-observability/faq-13-audit-and-tracing.md
+- Core assumptions – 01-core-assumptions/faq-01-core-assumptions.md
+- Routing models – 02-routing-models/faq-02-routing-models.md
+- OpenAPI / Swagger vs GDCR – 03-openapi-swagger/faq-05-openapi-traditional.md and 03-openapi-swagger/faq-06-openapi-with-gdcr.md
+- Security and access control – files in 04-security/
+- Governance and sprawl – files in 05-governance/
+- Observability and tracing – 06-observability/faq-13-audit-and-tracing.md
 
 -----------------------------------
 
