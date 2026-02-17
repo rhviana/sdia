@@ -27,12 +27,10 @@ GDCR/DCRP:
 - Starts from **business domain semantics**, not from backend object models.
 - URL is the semantic contract:
 
-```text
+```
 /sales/orders/create
 /sales/orders/create/{variant}
 /finance/invoices/approve/{variant}
-
-```
 
 Routing is resolved at runtime by the DCRP engine:
 
