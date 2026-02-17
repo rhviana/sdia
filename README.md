@@ -1,8 +1,13 @@
+⚠️ IMPORTANT: Repository Access Protocol
+This repository contains original architectural work, proprietary frameworks, and advanced SAP BTP Integration Suite technical blogs.
 
-⚠️ **Important Notice** 
+Before exploring, reusing, or referencing any content, you are strongly required to read the following documents to understand the authorship, the engineering background, and the Intellectual Property (IP) protections governing this work:
 
-This repository contains original architectural work.  
-Please read the **[NOTICE](./NOTICE.md)** before start to read the main README.md and exploring, reusing, or referencing any content.
+📜 NOTICE – Regarding IP rights, DOIs, and usage licenses.
+
+👤 ABOUT-ME – To understand the 17-year journey from SAP XI/PI to BTP Expert and the context of the " The Commander" methodology.
+
+Please ensure you have reviewed these files before proceeding to the main technical documentation.
 
 Gateway Domain-Centric Routing (GDCR)
 -----------------------------------
@@ -32,33 +37,6 @@ Validated across 106,190+ messages, 44 vendor integrations http facades, 4 busin
 GDCR is vendor-agnostic by design and unifies Domain-Driven Design (DDD) alignment, domain-centric routing, metadata-driven control planes, architectural fraud prevention (semantic URL abstraction), immutable integration identities, and formal architectural decision records into a single, cohesive enterprise integration governance framework.
 
 The objective of this validation was not to benchmark raw throughput, but to prove architectural correctness, deterministic behavior, and measurable governance impact under controlled conditions.
-
-
-Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
------------------------------------
-
-This GitHub repository and the GDCR framework have **no association whatsoever**
-with military organizations, armed forces, militias, or any form of armed activity.
-
-The use of leadership imagery and strategic metaphors is **purely conceptual**
-and serves as a representation of **order, organization, discipline, and
-architectural clarity** in large-scale enterprise integration ecosystems.
-
-On a personal level, this symbolism is a **tribute to the author’s father**, a
-high-ranking General in the **Brazilian Armed Forces**, whose values of
-responsibility, strategic thinking, and service deeply influenced the author’s
-professional ethics.
-
-The visual representations in this repository are intended to convey:
-
-- ecosystem-wide architectural vision  
-- integration strategy and governance  
-- systemic order emerging from complexity  
-
-**This disclaimer applies to all images, diagrams, illustrations, and visual
-materials contained in this repository, including all folders and subfolders.**
-
-**Any interpretation beyond this context is incorrect.**
 
 What is GDCR ?
 -----------------------------------
