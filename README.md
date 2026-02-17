@@ -60,11 +60,45 @@ materials contained in this repository, including all folders and subfolders.**
 
 **Any interpretation beyond this context is incorrect.**
 
+What is GDCR ?
+-----------------------------------
+
+Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
+(e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
+
+This routing logic is applied consistently across both the Gateway layer and the Orchestration layer.
+
+<p align="center">
+  <img src="./repository/figures/gdcr.png"
+       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
+       width="85%" />
+</p>
+
+## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
+
+### Multi-Layer Governance
+
+**[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
+
+**[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
+
+SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
+
+***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+
+**Benefits:**
+-----------------------------------
+
+- Eliminates proxy sprawl - 1:1
+- Enables semantic routing for AI agents
+- Centralized policy enforcement
+- Zero vendor lock-in
+
 API Sprawl vs Domain-Centric Routing (DCRP - SAP)
 -----------------------------------
 
 <p align="center">
-  <img src="./repository/figures/apisprawl.png"
+  <img src="./repository/figures/gdcr.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="85%" />
 </p>
@@ -266,33 +300,6 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 
 ```
 
-What is GDCR ?
------------------------------------
-
-Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
-(e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
-
-This routing logic is applied consistently across both the Gateway layer and the Orchestration layer.
-
-## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
-
-### Multi-Layer Governance
-
-**[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
-
-**[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
-
-SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
-
-***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
-
-**Benefits:**
------------------------------------
-
-- Eliminates proxy sprawl - 1:1
-- Enables semantic routing for AI agents
-- Centralized policy enforcement
-- Zero vendor lock-in
 
 
 PDCP (Package Domain-Centric Pattern)
