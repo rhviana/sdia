@@ -1,4 +1,8 @@
-# About Me: Ricardo Viana - Brazilian
+# About Me: Ricardo Viana - "The Commander - Viana"
+
+<img width="300" height="700" alt="image" src="https://github.com/user-attachments/assets/00948caa-8f22-4758-bfd4-59382600b603"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="450" height="800" alt="image" src="https://github.com/user-attachments/assets/d362bdea-8f80-4674-b6de-4e473bacf3df" />
 
 
 
