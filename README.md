@@ -76,21 +76,20 @@ This routing logic is applied consistently across both the Gateway layer and the
 
 ## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
 
-### Multi-Layer Governance
+**[Scientific Validation](./doc/academic-paper-zenodo/)**
 
-**[Scientific Validation](./doc/academic-paper-zenodo/)**: Peer-reviewed documentation archived at **Zenodo (CERN)** and Peer-reviewed documentation archived at **Figshare(CERN)**
+- Peer-reviewed documentation archived at **Zenodo (CERN)**
+- Peer-reviewed documentation archived at **Figshare(CERN)**
 
-**[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+### SAP-specific benefits (DCRP + PDCP)
 
-**[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **Domain-Centric name convention package, user and iFlow DNA** naming standard.
+- **DCRP (SAP API Management):** consolidates many system-centric proxies into a few domain façades, with metadata-driven routing (KVM + JS) and fast-fail security (sender × domain/entity/action) directly at the gateway.
 
-**Benefits:**
------------------------------------
+- **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**
 
-- Eliminates proxy sprawl - 1:1
-- Enables semantic routing for AI agents
-- Centralized policy enforcement
-- Zero vendor lock-in
+- **PDCP (SAP Cloud Integration):** replaces “package per vendor/app” with “one package per domain”, using iFlow DNA naming so each KVM key in DCRP points to a clearly indexed CPI flow, cutting package/iFlow sprawl while keeping domain ownership clear.
+
+- **[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**
 
 📂 Repository Structure
 -----------------------------------
@@ -247,7 +246,6 @@ Metrics are weighted across Milestones M1–M4.
 M5 includes additional SAP BTP Trial Tenant overhead.
 
 **[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
-
 
 Final Technical Conclusion
 
