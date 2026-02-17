@@ -42,6 +42,67 @@ Efficiency: Rejects "garbage" traffic at the edge, protecting downstream CPI and
    (Depends on IdP Uptime)                 (Independent / High Performance)
 
 ```
+Segue a versão “limpa” para GitHub, tratando o código só como pseudocódigo ilustrativo:
+
+## KVM Key Structure for Fast-Fail
+
+For Fast-Fail to work effectively, each KVM entry combines **Sender ID** and **Semantic Operation** into a unique key.  
+This keeps permissions granular and checked at the gateway edge, before any routing happens. 
+
+```text
+
+| KVM Key                     | Value                                      | Description                                   |
+|----------------------------|--------------------------------------------|-----------------------------------------------|
+| `SND_001:sales:orders:c`   | `http://cpi/orders/create|auth_alias`     | Sender 001 is allowed to **create** orders.   |
+| `SND_001:sales:orders:r`   | `http://cpi/orders/query|auth_alias`      | Sender 001 is allowed to **read/query** orders. |
+| `SND_002:fin:inv:a`        | `http://cpi/finance/approve|fin_alias`    | Sender 002 is allowed to **approve** invoices. |
+
+```
+
+The exact adapter URL and alias format are implementation details; the key idea is that `sender:domain:entity:action` is the primary security surface. 
+
+## JavaScript Pseudocode (Fast-Fail Idea Only)
+
+The snippet below is **illustrative pseudocode**, not production code.  
+It shows the Fast-Fail idea: validate the sender/semantic operation combination before any routing or backend call. [file:80][file:81]
+
+```js
+// 1. Capture semantic URL variables and Sender ID
+var senderId = context.getVariable("client_id");      // e.g. from token or header
+var domain   = context.getVariable("dcrp.domain");
+var entity   = context.getVariable("dcrp.entity");
+var action   = context.getVariable("dcrp.action");
+
+// 2. Build the Fast-Fail lookup key: SND_xxx:domain:entity:action
+var lookupKey = senderId + ":" + domain + ":" + entity + ":" + action;
+
+// 3. Read the pre-resolved KVM value for this sender/operation
+// (In a real policy, a KVM lookup step would populate this variable.)
+
+var routingMetadata = context.getVariable("dcrp.ff.metadata." + lookupKey);
+
+if (!routingMetadata) {
+  // FAST-FAIL: no mapping for this Sender/Semantic action → reject at the edge
+  context.setVariable("flow.error.code", "403");
+  context.setVariable(
+    "flow.error.message",
+    "Unauthorized: sender not allowed to perform this semantic action."
+  );
+} else {
+  // Proceed: split metadata into endpoint and credential alias
+  var parts = routingMetadata.split("|");
+  context.setVariable("target.url", parts);
+  context.setVariable("dcrp.auth.alias", parts);
+}
+```
+
+#### Why is this secure and efficient?
+
+Strict isolation: A credential leak for SND_001 does not grant access to Finance routes; the sender:domain:entity:action key is a hard gate at API Management level, blocking lateral movement.
+
+Edge performance: Validation is in‑memory via KVM cache, so unauthorized requests are rejected without calling backends or external IdPs. 
+
+Operational transparency: Logged keys make it easy to see which business domains and actions are being accessed, without digging into backend‑specific logs. 
 
 ####  Q4 – Can OAuth2 Scopes be mapped to Domain/Entity/Action?
 
