@@ -42,8 +42,9 @@ presentations, documentation, training materials, or derivative architectures â€
 The required citation is:
 
 > **Viana, R. L. H. (2026).**  
-> *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance.*  
+> *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - Version 5.0*  
 > Zenodo. https://doi.org/10.5281/zenodo.18582469
+> Figshare. https://doi.org/10.6084/m9.figshare.31331683
 
 ---
 
