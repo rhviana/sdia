@@ -1,7 +1,5 @@
 # FAQ – Core Assumptions Behind GDCR
 
-This section clarifies what GDCR **assumes** about real landscapes and what it does **not** assume about products.
-
 This FAQ compares a **traditional OpenAPI/Swagger, contract‑centric model** with the **GDCR/DCRP domain‑centric, metadata‑driven model** on SAP API Management + SAP Cloud Integration. The goal is to show, visually, how routing, versioning, and governance differ.
 
 ## 1. High-Level Comparison Diagram
@@ -81,9 +79,86 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 |   API    |    |             |    | Backend  |          |   API    |    | SAP ECC          | Backend  |
 |__________|    |_____________|    |__________|          |__________|    |_____________|    |__________|
 
+
+
+┌──────────────────────────────────────────────┐        ┌──────────────────────────────────────────────┐
+│        OPENAPI / SWAGGER MODEL               │  VS    │             GDCR / DCRP MODEL                │
+│        (Contract-Centric)                    │        │      (Dynamic Routing + Stable Facade)       │
+└──────────────────────────────────────────────┘        └──────────────────────────────────────────────┘
+                    |                                                         |
+         ___________v_____________                             _______________v________________
+        | API Gateway / APIM      |                           | DCRP Layer (API Gateway)       |
+        | OpenAPI / Swagger Spec  |<-- Contract-driven        | SAP BTP IS - API Mgmt          |
+        |  _____________________  |                           |  ____________________________  |
+        | | Explicit Endpoints  | |                           | | Stable Domain Facades      | |
+        | | (per resource)      | |                           | | (4 Proxies total)          | |
+        | |                     | |                           | |                            | |
+        | | Sales:              | |                           | | * SALES (domain facade)    | |
+        | |  /sales/orders      | |                           | |   /sales/**                | |
+        | |  /sales/customers   | |                           | |    - O2C orders:           | |
+        | |  /sales/payments    | |                           | |      path "/orders/**"     | |
+        | |  ...                | |                           | |    - O2C customers:        | |
+        | |                     | |                           | |      path "/customers/**"  | |
+        | | Finance:            | |                           | |    - O2C payments:         | |
+        | |  /finance/assets    | |                           | |      path "/payments/**"   | |
+        | |  /finance/invoices  | |                           | |* FINANCE (domain facade)   | |
+        | |  /finance/accounts  | |                           | |   /finance/**              | |
+        | |  ...                | |                           | |    - R2R invoices:         | |
+        | |                     | |                           | |      path "/invoices/**"   | |
+        | | Logistics:          | |                           | |    - R2R payments:         | |
+        | |  /logistics/ships   | |                           | |      path "/payments/**"   | |
+        | |  /logistics/routes  | |                           | |    - R2R accounts:         | |
+        | |  ...                | |                           | |      path "/accounts/**"   | |
+        | | Procurement:        | |                           | |    - ...                   | |
+        | |  /procurement/ords  | |                           | |                            | |
+        | |  /procurement/paym  | |                           | |<-- Metadata-driven routing | |
+        | |  ...                | |                           | |    (KVM + JS engine)       | |
+        | |_____________________| |                           | |    - build semantic key    | |
+        | Contract-Driven Routing |<-- URL = contract         | |      dcrp{entity}{action}… | |
+        |                         |                           | |    - lookup target in KVM  | |
+        | Change Impact:          |                           | |    - set target URL (CPI)  | |
+        | - New process           |                           | |____________________________| |
+        |   -> New endpoint       |                           |                                |
+        | - Backend change        |                           | Fast-Fail + Semantic AuthZ     |
+        |   -> Spec + proxy update|                           |  - sender x d/e/a matrix       |
+        | - Payload evolution     |                           |  - 401/403 before routing      |
+        |   -> New API version    |                           |                                |
+        |                         |                           |                                |
+        | Frequent Versioning     |<-- v1/v2/v3 per API       | One Package per Domain         |
+        | v1 / v2 / v3 / vN       |                           | Business Process = iFlow DNA   |
+        | Deploy Required         |<-- spec + proxy redeploy  | Change via KVM, not façade     |
+        | (Spec + Policies)       |                           |________________________________|
+        |_________________________|                                           |
+                    |                                                       (semantic key)
+                    |                                                         |
+         ___________v_____________                             _______________v______________
+        |    Integration Layer    |                           |    PDCP INTEGRATION LAYER    |
+        | (SAP CPI / Services)    |                           |     (SAP CPI/Services)       |
+        |                         |                           |                              |
+        | Package per Vendor/App  |<-- system-centric         | One Package per Domain       |
+        |                         |                           |  - nx.sales.o2c.integrations |
+        | One Flow per Endpoint   |                           |  - nx.finance.r2r.integr.    |
+        |                         |                           |                              |
+        | iFlows: ad hoc naming   |<-- hard to search         | iFlows with DNA + indexing   |
+        |  - Z_SFDC_ORDERS_01     |                           |  - id01.o2c.salesforce.order |
+        |  - Z_SAP_FI_INV_99      |                           |  - id02.o2c.salesforce.order |
+        | URLs: no clear pattern  |                           |  - id05.r2r.sap4hana.invoice |
+        |                         |                           |                              |
+        | Doc-based governance    |                           | Domain-centric governance    |
+        |  - per API spec         |                           |  - KPIs by d/e/a             |
+        |_________________________|                           |______________________________|
+                    |                                                         |
+     _____________  |  _________________                    ________________  |  ________________
+     |              |                  |                    |                 |                 |
+_____v_____     ____v_________     ____v_______           __v_______      ____v________     ____v______
+|Salesforce|    | SAP S/4HANA |    | Custom   |          |Salesforce|    | SAP S/4HANA |    | Custom   |
+|   API    |    |             |    | Backend  |          |   API    |    | SAP ECC     |    | Backend  |
+|__________|    |_____________|    |__________|          |__________|    |_____________|    |__________|
+
+
 ```
 
-## How to read this diagram
+## 2.  How to read this diagram
 
 ### Left: OpenAPI / Swagger, contract‑centric model
 
