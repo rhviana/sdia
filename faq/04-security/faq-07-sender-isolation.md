@@ -1,82 +1,73 @@
-```markdown
-# FAQ-07 – Sender Isolation and Domain Proxies
+FAQ-07 – Sender Isolation and Domain Proxies
 
-## Q1 – If 10 senders call `/sales/*`, how do we prevent cross-sender access?
+Q1 – If 10 senders call /sales/*, how do we prevent cross-sender access?
+GDCR decouples the Public Interface from the Authorization Matrix. While the path is shared, the permission to execute an action is unique to each sender.
 
-GDCR separates:
+Semantic Routing: Defines the "What" (sales/orders/create).
 
-- **semantic routing** – `domain/entity/action/variant`,
-- **authorization** – sender × allowed operations matrix.
+Authorization Matrix: Defines "Who" can do "What".
 
-For each sender:
+Isolation Comparison (ASCII):
 
-- KVM or policy store entry:
+```text
+  [ TRADITIONAL MODEL ]                  [ GDCR / DCRP MODEL ]
+   (Isolation by Proxy)                (Isolation by Metadata)
 
-```yaml
-senderA:
-  tokenHash: "<sha256>"
-  allowed:
-    - sales/orders/c
-    - sales/orders/r
+ Sender A -> [Proxy_Sales_Orders]      Sender A --+    /sales/orders/c
+                                                  |--> [ SALES FACADE ]
+ Sender B -> [Proxy_Sales_Customers]   Sender B --+    /sales/cust/r
+                                                       
+ PROS: Simple isolation.               PROS: 1 Proxy. Centralized Log.
+ CONS: 100 Senders = 100 Proxies.      CONS: None (Isolation is logic-based).
+       High Maintenance.                     Scale is handled by KVM.
+```
 
-senderB:
-  tokenHash: "<sha256>"
-  allowed:
-    - sales/customers/r
-At runtime:
+Q2 – How is the "Fast-Fail" validation performed?
+When a request hits the façade, the Fast-Fail policy acts as a gatekeeper. It resolves the sender's identity (via token hash, mTLS, or Header) and checks the requested operation against a whitelist.
 
-Fast‑fail policy resolves the sender (by token hash, mTLS DN, or header).
+Runtime Process:
 
-Computes the requested semantic operation, e.g. sales/orders/c.
+Resolve Sender: Identify SND_001.
 
-Checks if it is in the sender’s allowed list.
+Compute Operation: Extract sales/orders/c.
 
-Rejects (401/403) if not allowed, before routing. [file:1][file:3]
+Cross-Check: Does the whitelist for SND_001 contain sales/orders/c?
 
-Q2 – Does sharing one domain proxy break isolation?
-No.
+Execute: If yes, route. If no, Fail Fast with a 403 Forbidden.
 
-All senders hit the same façade (/sales/**), but:
+Q3 – Does sharing one domain proxy break isolation?
+No. Sharing the façade is simply sharing the entry point.
 
-each sender has its own credentials / tokens,
+Think of it like a bank vault with many safe-deposit boxes. Everyone enters through the same front door (the façade), but each person only has a key to their specific box (the authorization matrix).
 
-authorization rules are per sender.
+The façade is shared.
 
-The façade is shared; the allowed operations per sender are not.
+The allowed operations are NOT.
 
-Q3 – What about auditability?
-Every call includes:
+Q4 – What about auditability?
+Because the DCRP engine "understands" the domain semantics, every log entry is enriched with high-value business metadata. You aren't just auditing URLs; you are auditing business actions.
 
-x-gdcr-sender-id
+Every call generates headers for the audit log:
 
-x-gdcr-domain
+x-gdcr-sender-id: Who called?
 
-x-gdcr-entity
+x-gdcr-domain/entity/action: What business operation was attempted?
 
-x-gdcr-action
+x-gdcr-correlation-id: End-to-end trace ID.
 
-x-gdcr-interface-id
+Author Information
+Author: Ricardo Luz Holanda Viana
 
-x-gdcr-correlation-id [file:3]
+Role: Enterprise Integration Architect · SAP BTP Integration Suite
 
-You can audit:
+Creator of: GDCR · DCRP · PDCP
 
-which senders call which operations,
+Architectural scope: Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).
 
-any attempt to access forbidden operations (blocked at fast‑fail step).
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
 
------------------------------------
+DOI: zenodo.18661136
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+DOI: figshare.31331683
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
-
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
-
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
-
------------------------------------
+This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
