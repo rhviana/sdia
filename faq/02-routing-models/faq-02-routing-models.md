@@ -20,7 +20,7 @@ Client
   +--> [Proxy: SAP_FI_Invoices]   -> CPI iFlow B -> SAP S/4HANA
   |
   +--> [Proxy: Workday_Employees] -> CPI iFlow C -> Workday
-
+```
 Result:
 
 Many proxies and packages.
@@ -34,7 +34,7 @@ One façade per domain/subprocess (e.g. /sales/**, /finance/**). [file:3]
 
 Semantic pattern: /domain/entity/action[/variant]. [file:1]
 
-text
+```text
 Client
   |
   |  POST /sales/orders/create/salesforce
@@ -55,7 +55,10 @@ Client
 +-----------------------------+
   |
   v
-[ Salesforce backend ]
+[ Service backend ]
+
+```
+
 Key points:
 
 The façade is stable and domain‑oriented.
