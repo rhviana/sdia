@@ -1,66 +1,67 @@
+### FAQ-08 – OAuth2 vs. KVM Fast-Fail
 
-```markdown
-# FAQ-08 – OAuth2 vs KVM Fast-Fail
+####  Q1 – Where does OAuth2 fit in GDCR ?
 
-## Q1 – Where does OAuth2 fit in GDCR?
+- OAuth2/OIDC remains the industry standard for identity delegation. Within a GDCR landscape, it is treated as an External Security Wrapper.
 
-OAuth2/OIDC is recommended for:
+Best For: Public-facing APIs, user-centric apps, and scenarios requiring delegated consent.
 
-- public or user‑centric APIs,
-- scenarios with delegated consent and short‑lived tokens.
+- The GDCR Role: OAuth validates who the user is, while the DCRP core handles where the request goes based on the semantic path (domain/entity/action).
 
-In GDCR:
+####  Q2 – What is KVM Fast-Fail and why use it?
 
-- OAuth is a **layer around** DCRP, not part of the core routing formula.
-- The core routing only needs `domain/entity/action/variant`.
+KVM Fast-Fail is a high-performance validation pattern where the Gateway checks sender permissions against local metadata (KVM) before any heavy processing or routing occurs.
 
----
+How it works: The Gateway extracts the sender ID and validates the requested operation (domain/entity/action) directly against a pre-loaded KVM table.
 
-## Q2 – What is KVM fast-fail and why use it?
+The "Fast-Fail": If the sender isn't authorized for that specific action, the request is rejected (401/403) in milliseconds, without ever touching a backend or an Identity Provider (IdP).
 
-KVM fast‑fail:
+Benefits for M2M (Machine-to-Machine):
+Zero Latency Round-trips: No need to call an external IdP for every single request.
 
-- stores sender metadata and allowed operations in KVM,
-- validates sender/token locally at the gateway,
-- rejects unauthorized calls (401/403) before routing. [file:1][file:3]
+High Resilience: The Gateway can still validate and route traffic even if the central IdP is experiencing downtime.
 
-Benefits for M2M:
+Efficiency: Rejects "garbage" traffic at the edge, protecting downstream CPI and Backend resources.
 
-- no external IdP round‑trip on every call,
-- lower latency,
-- fewer runtime dependencies.
-
----
-
-## Q3 – Can OAuth2 scopes be mapped to domain/entity/action?
-
-Yes.
-
-- Scopes can be defined in terms of semantic operations:
+####  Q3 – Comparison: Side-by-Side Architectural Flow
 
 ```text
-scope: sales.orders.c
-scope: finance.invoices.a
-Gateway checks:
+      [ OAUTH2 FLOW ]                           [ KVM FAST-FAIL ]
+   (Standard Delegation)                      (GDCR Edge Validation)
 
-token validity,
+1. Client -> Request + Token            1. Client -> Request + ID/Token
+         |                                         |
+2. APIM -> Call External IdP            2. APIM -> Local KVM Check (Edge)
+         |      (Latency!)                         |      (Ultra-Fast!)
+         v                                         v
+3. IdP -> Validates & Scopes            3. KVM -> Matches Key: [Sender_Action]
+         |                                         |
+4. APIM -> Routes to Backend            4. APIM -> Routes to Backend
+         |                                         |
+   (Depends on IdP Uptime)                 (Independent / High Performance)
 
-scope → allowed domain/entity/action.
+```
 
-Fast‑fail with KVM and OAuth2 scopes can coexist, depending on security requirements.
+####  Q4 – Can OAuth2 Scopes be mapped to Domain/Entity/Action?
 
------------------------------------
+- Absolutely. This is the "Best of Both Worlds" approach. You can map OAuth2 scopes directly to the GDCR semantic operations:
+- Scope: sales.orders.create
+- Gateway Logic: Checks if the Token is valid AND if the KVM permits that specific Sender to perform that specific Domain Action.
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+Author Information
+Author: Ricardo Luz Holanda Viana
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
+Role: Enterprise Integration Architect · SAP BTP Integration Suite
 
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+Creator of: GDCR · DCRP · PDCP
 
------------------------------------
+Architectural scope: Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).
+
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+DOI: zenodo.18661136
+
+DOI: figshare.31331683
+
+This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
