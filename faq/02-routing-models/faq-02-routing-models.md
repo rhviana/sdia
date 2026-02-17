@@ -80,11 +80,11 @@ This table highlights the shift from technical silos to business domains.
 | Onboarding    | New proxy deployment         | New KVM entry + shared JS engine  |
 | Scalability   | Low (proxy sprawl)           | High (metadata-driven)            |
 | URL Stability | Changes with backend systems | Stable, business-centric interface|
-``
+```
 
 ## Q4 – How does GDCR handle multiple vendors and regions?
 
-GDCR uses the `{variant}` segment to support multiple vendors, regions, or deployment variants without changing API proxy code. [file:80][file:81]
+GDCR uses the `{variant}` segment to support multiple vendors, regions, or deployment variants without changing API proxy code.
 
 ### 1. Semantic URL Mapping
 
