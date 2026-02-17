@@ -1,7 +1,3 @@
-***
-
-### 7) `04-security/faq-07-sender-isolation.md`
-
 ```markdown
 # FAQ-07 – Sender Isolation and Domain Proxies
 
