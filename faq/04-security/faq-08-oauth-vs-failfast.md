@@ -1,6 +1,3 @@
-***
-
-### 8) `04-security/faq-08-oauth-vs-fastfail.md`
 
 ```markdown
 # FAQ-08 – OAuth2 vs KVM Fast-Fail
