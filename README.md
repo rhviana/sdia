@@ -4,10 +4,9 @@
 This repository contains original architectural work.  
 Please read the **[NOTICE](./NOTICE.md)** before start to read the main README.md and exploring, reusing, or referencing any content.
 
----
-# Gateway Domain-Centric Routing (GDCR)
+Gateway Domain-Centric Routing (GDCR)
+-----------------------------------
 
----
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582492.svg)](https://zenodo.org/records/18661136)
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.31331683-brightgreen)](https://doi.org/10.6084/m9.figshare.31331683)
@@ -24,17 +23,19 @@ Please read the **[NOTICE](./NOTICE.md)** before start to read the main README.m
 
 A **vendor-agnostic, metadata-driven architecture** for enterprise **API & orchestration layers**, enabling **Domain-Centric Governance**.
 
----
 
-## One-line Executive Summary
+Online Executive Summary
+-----------------------------------
 
-Validated across **106,190+ messages**, **44 vendor integrations**, **4 business domains**,**4 Packages business domains**,**44 Iflows business domains** with **100% success rate** and with 4 differents JavaScript Policy codes **zero routing, KVM, or timeout failures**.
+Validated across 106,190+ messages, 44 vendor integrations http facades, 4 business domains proxies, 4 domain-aligned integration packages, and 44 domain-governed iFlows endpoints, GDCR achieved a 100% success rate with zero routing errors, zero KVM failures, and zero timeouts, executed through four distinct JavaScript policy implementations.
 
-GDCR for any vendor combines **DDD alignment**, **domain-centric routing**, **metadata-driven control**, **architectural fraud prevention**, **immutable integration identities**, and **formal decision records** into a cohesive enterprise integration governance framework.
+GDCR is vendor-agnostic by design and unifies Domain-Driven Design (DDD) alignment, domain-centric routing, metadata-driven control planes, architectural fraud prevention (semantic URL abstraction), immutable integration identities, and formal architectural decision records into a single, cohesive enterprise integration governance framework.
 
----
-## Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
----
+The objective of this validation was not to benchmark raw throughput, but to prove architectural correctness, deterministic behavior, and measurable governance impact under controlled conditions.
+
+
+Disclaimer — Non-Military Context (Global)  "The Commander - Viana"
+-----------------------------------
 
 This GitHub repository and the GDCR framework have **no association whatsoever**
 with military organizations, armed forces, militias, or any form of armed activity.
@@ -59,9 +60,8 @@ materials contained in this repository, including all folders and subfolders.**
 
 **Any interpretation beyond this context is incorrect.**
 
----
-## API Sprawl vs Domain-Centric Routing (DCRP - SAP)
----
+API Sprawl vs Domain-Centric Routing (DCRP - SAP)
+-----------------------------------
 
 <p align="center">
   <img src="./repository/imagens/apisprawl.png"
@@ -74,18 +74,8 @@ materials contained in this repository, including all folders and subfolders.**
   proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
 </p>
 
----
-## 📄 Published Academic Paper
----
-
-- **Official DOI:** 10.5281/zenodo.18619641  
-- **Published:** February 12, 2026  
-- **Repository:** Zenodo (CERN)  
-- **License:** CC BY 4.0 International  
-
----
-## 📂 Repository Structure
----
+📂 Repository Structure
+-----------------------------------
 
 This repository is organized to clearly separate **architecture concepts,
 academic material, runtime components, visual assets, automation workflows,
@@ -137,9 +127,9 @@ conceptual definition to validated runtime execution.
 └── README.md                         # Main project documentation
 ```
 
----
-### GDCR Architectural Scope
----
+
+GDCR Architectural Scope
+-----------------------------------
 
 Gateway Domain-Centric Routing (GDCR) is not a single pattern or implementation.
 It is a composite architectural framework designed to govern enterprise integration landscapes at scale.
@@ -153,54 +143,131 @@ DCRP and PDCP are its core execution patterns, but GDCR also formalizes:
 
 Together, these elements operate as one cohesive system, preventing uncontrolled architectural entropy.
 
----
-## Architecture Diagram
----
+
+Architecture Diagram
+-----------------------------------
 
 ```text
-       _________________________________________________________
-      |    External Consumers / AI Agents | Applications        |
-      |                 40 external vendors                     |
-      |     Only - 4 endpoints DCRP-Proxies / many paths        |
-      |___________________________ _____________________________|
-                                  |
-                   _______________v_______________
-                  |   DCRP Layer (API Gateway)    |
-                  |  SAP BTP IS - API Management  |
-                  |  ___________________________  |
-                  | | 4 Domain Proxies:         | |
-                  | | * Sales      10 bprocess  | |
-                  | | * Finance    10 bprocess  | |
-                  | | * Logistics  10 bprocess  | |
-                  | | * Customer   10 bprocess  | |
-                  | |___________________________| |
-                  |    Metadata-Driven Routing    |
-                  |_______________ _______________|
-                                  |
-                   _______________v_______________
-                  |      PDCP Layer (SAP CPI)     |
-                  | Integration / Orchestration   |
-                  |  ___________________________  |
-                  | | 4 Domain Packages:        | |
-                  | | - Sales      10 Iflows    | |
-                  | | - Finance    10 Iflows    | |
-                  | | - Logistics  10 Iflows    | |
-                  | | - Customer   10 Iflows    | |
-                  | |___________________________| |
-                  |      Domain-Driven Design     |
-                  |_______________ _______________|
-                                  |
-           _______________________|_______________________
-          |                       |                       |
-   _______v_______         _______v_______         _______v_______
-  |  Salesforce   |       |      SAP      |       |    Custom     |
-  |      API      |       |    S/4HANA    |       |    Backend    |
-  |_______________|       |_______________|       |_______________|
+                         _________________________________________________________
+                        |    External Consumers / AI Agents | Applications        |
+                        |                 40 external vendors                     |
+                        |     Only - 4 endpoints DCRP-Proxies / many paths        |
+                        |___________________________ _____________________________|
+                                                    |
+                                      ______________v_______________
+                                     |   DCRP Layer (API Gateway)    |
+                                     |  SAP BTP IS - API Management  |
+                                     |  ___________________________  |
+                                     | | 4 Domain Proxies:         | |
+                                     | | * Sales      10+ bprocess | |
+                                     | | * Finance    10+ bprocess | |
+                                     | | * Logistics  10 bprocess  | |
+                                     | | * Customer   10 bprocess  | |
+                                     | |___________________________| |
+                                     |    Metadata-Driven Routing    |
+                                     |_______________ _______________|
+                                                     |
+                                      _______________v_______________
+                                     |      PDCP Layer (SAP CPI)     |
+                                     | Integration / Orchestration   |
+                                     |  ___________________________  |
+                                     | | 4 Domain Packages:        | |
+                                     | | - Sales      10 Iflows    | |
+                                     | | - Finance    10 Iflows    | |
+                                     | | - Logistics  10 Iflows    | |
+                                     | | - Customer   10 Iflows    | |
+                                     | |___________________________| |
+                                     |      Domain-Driven Design     |
+                                     |_______________ _______________|
+                                                     |
+                              _______________________|_______________________
+                             |                       |                       |
+                      _______v_______         _______v_______         _______v_______
+                     |  Salesforce   |       |      SAP      |       |    Custom     |
+                     |      API      |       |    S/4HANA    |       |    Backend    |
+                     |_______________|       |_______________|       |_______________|
+
+---------------------------------------------------------------------------------------------------------------
+
+┌──────────────────────────────────────────────┐       ┌──────────────────────────────────────────────┐
+│        OPENAPI / SWAGGER MODEL               │  VS   │             GDCR / DCRP MODEL                │
+│        (Contract-Centric)                    │       │      (Dynamic Routing + Stable Facade)       │
+└──────────────────────────────────────────────┘       └──────────────────────────────────────────────┘
+                    |                                                         |
+         ___________v_____________                             _______________v________________
+        | API Gateway / APIM      |                           | DCRP Layer (API Gateway)       |
+        | OpenAPI / Swagger Spec  |                           | SAP BTP IS - API Mgmt          |
+        |  _____________________  |                           |  ____________________________  |
+        | | Explicit Endpoints  | |                           | | Stable Domain Facades      | |
+        | | (examples only)     | |                           | | (4 Proxies)                | |
+        | |                     | |                           | |                            | |
+        | | Sales:              | |                           | | * SALES                    | |
+        | |  /sales/orders      | |                           | |   /sales/** (10+ paths)    | |
+        | |  /sales/customers   | |                           | |     Routing                | |
+        | |  /sales/payments    | |                           | |     O2C - sales-o2c-ords   | |
+        | |  ...                | |                           | |      path: "/orders/**"    | |
+        | |                     | |                           | |     O2C - sales-o2c-cust   | |
+        | | Finance:            | |                           | |      path: "/customers/**" | |
+        | |  /finance/assets    | |                           | |     O2C - sales-o2c-paym   | |
+        | |  /finance/invoices  | |                           | |      path: "/payments/**"  | |
+        | |  /finance/accounts  | |                           | |     ...                    | |
+        | |  ...                | |                           | |                            | |
+        | | Logistics:          | |                           | | * FINANCE                  | |
+        | |  /logistics/ships   | |                           | |   /finance/** (10+ paths)  | |
+        | |  /logistics/routes  | |                           | |     Routing                | |
+        | |  ...                | |                           | |     R2R - fin-invoices     | |
+        | | Procurement:        | |                           | |      path: "/invoices/**"  | |
+        | |  /procurement/ords  | |                           | |     R2R - fin-payments     | |
+        | |  /procurement/paym  | |                           | |      path: "/payments/**"  | |
+        | |  ...                | |                           | |     R2R - fin-accounts     | |
+        | |_____________________| |                           | |      path: "/accounts/**"  | |
+        | Contract-Driven Routing |                           | |     ...                    | |
+        |                         |                           | |____________________________| |
+        | Change Impact:          |                           | Metadata-Driven Routing        |
+        | - New process           |                           | (KVM / Dictionary)             |
+        |   -> New endpoint       |                           | URL Construction (JS)          |
+        | - Backend change        |                           | Fast-Fail Runtime Logic        |
+        |   -> Spec update        |                           |                                |
+        | - Payload evolution     |                           | Integration Layer              |
+        |   -> New API version    |                           | (CPI / Services)               |
+        |                         |                           |                                |
+        | Frequent Versioning     |                           | One Package per Domain         |
+        | v1 / v2 / v3 / vN       |                           | Business Process =             |
+        |                         |                           | One iFlow (DNA Indexed)        |
+        | Deploy Required         |                           |                                |
+        | (Spec + Policies)       |                           | Execution Governance           |
+        |_________________________|                           |________________________________|
+                    |                                                         |
+                    |                                                         |
+         ___________v_____________                             _______________v______________
+        |    Integration Layer    |                           |    PDCP INTEGRATION LAYER    |
+        | (SAP CPI / Services)    |                           |     (SAP CPI/Services)       |
+        |                         |                           |                              |
+        | Package per Vendor/App  |                           | One Package per Domain       |
+        |                         |                           |                              |
+        | One Flow per Endpoint   |                           | Business Process =           |
+        |                         |                           | iFlows with DNA + Indexing   |
+        | iFlows: No Indexing or  |                           |                              |
+        | Proper Naming Convention|                           | Standardized iFlow DNA       |
+        |                         |                           | Naming & Indexing            |
+        | URLs: No clear          |                           |                              |
+        | Definition Convention   |                           | Execution Governance         |
+        |                         |                           | (Domain-Centric)             |
+        | Documentation Governance|                           |                              |
+        |_________________________|                           |______________________________|
+                    |                                                         |
+     _____________  |  _________________                    ________________  |  ________________
+     |              |                  |                    |                 |                 |
+_____v_____     ____v_________     ____v_______           __v_______      ____v________     ____v______
+|Salesforce|    | SAP S/4HANA |    | Custom   |          |Salesforce|    | SAP S/4HANA |    | Custom   |
+|   API    |    |             |    | Backend  |          |   API    |    | SAP ECC          | Backend  |
+|__________|    |_____________|    |__________|          |__________|    |_____________|    |__________|
+
 
 ```
----
-## What is GDCR ?
----
+
+What is GDCR ?
+-----------------------------------
 
 Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
 (e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
@@ -220,15 +287,16 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 ***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
 
 **Benefits:**
+-----------------------------------
 
 - Eliminates proxy sprawl - 1:1
 - Enables semantic routing for AI agents
 - Centralized policy enforcement
 - Zero vendor lock-in
 
----
-#### PDCP (Package Domain-Centric Pattern)
----
+
+PDCP (Package Domain-Centric Pattern)
+-----------------------------------
 
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
@@ -255,9 +323,9 @@ SAP CPI - Backend integration consolidation pattern that organizes integration a
 - Consistent naming conventions
 - Faster deployment cycles
 
----
-#### The 7 Core GDCR Patterns
----
+
+The 7 Core GDCR Patterns
+-----------------------------------
 
 GDCR is composed of seven complementary architectural patterns:
 - Domain-Centric Routing Pattern (DCRP) — Semantic routing at the gateway layer
@@ -270,9 +338,8 @@ GDCR is composed of seven complementary architectural patterns:
 
 These patterns are interdependent but also can work isolated of each other - DCRP and PDCP and the ideal scenario be applied together for full domain-centric layer from the gateway, orquestraction connected with CORE BUSINESS ERP.
 
----
-## 📖 Documentation
----
+📖 Documentation
+-----------------------------------
 
 Complete documentation available in [`/doc`](./doc):
 
@@ -281,25 +348,26 @@ Complete documentation available in [`/doc`](./doc):
 👉 **[Access Control](./doc/security/ACCESS-CONTROL.md)** - Per-sender isolation
 👉 **[Compliance](./doc/compliance/AUDIT-COMPLIANCE.md)** - Audit trail & GDPR
 
-**Key Highlights:**
+Key Highlights:
+-----------------------------------
 
 - ⚡ 2-5ms validation (vs 150-300ms OAuth2)
 - 🔒 Zero external dependencies (KVM fast-fail)
 - 📊 90% proxy reduction (4 proxies vs 400)
 - 🌐 Multi-vendor (SAP APIM, Apigee, AWS, Azure, Any)
 
----
-#### Note:
----
+
+Note:
+-----------------------------------
 
 Metrics are weighted across Milestones M1–M4.
 M5 includes additional SAP BTP Trial Tenant overhead.
 
 **[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
 
----
 
-### Final Technical Conclusion
+Final Technical Conclusion
+-----------------------------------
 
 - The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
 - These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
@@ -317,13 +385,15 @@ Repository: https://github.com/rhviana/gdcr
 ---
 If you use this architecture in your research or implementation, please cite:
 
-#### APA:
+APA:
+-----------------------------------
 
 Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
 Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
 [https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18619641)
 
-#### BibTeX:
+BibTeX:
+-----------------------------------
 
 @article{viana2026gdcr,
   title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
@@ -335,9 +405,9 @@ Metadata-Driven Architecture for Enterprise API Governance. Zenodo.
   url={https://zenodo.org/records/18619641}
 }
 
----
-## Maverick Phantom Edition v15.2 - Now Available
----
+
+Maverick Phantom Edition v15.2 - Now Available
+-----------------------------------
 
 **GDCR Maverick Phantom Edition v15.2** is available for early access.
 
@@ -355,7 +425,7 @@ Metadata-Driven Architecture for Enterprise API Governance. Zenodo.
 
 Contact me privately, details below.
 
----
+-----------------------------------
 
 ### 📞 Contact
 Author: Ricardo Luz Holanda Viana
@@ -369,10 +439,7 @@ For commercial inquiries only: rhviana@gmail.com
 ---
 
 Project Status: ✅ Academic Paper Published | ✅ Sandbox Validated | 🚧 Documentation In
-
----
-
----
+-----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
 **Role:** Enterprise Integration Architect | SAP BTP Integration Suite  
