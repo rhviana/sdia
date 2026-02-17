@@ -1,19 +1,5 @@
-# GDCR – Frequently Asked Questions (Architectural Comparison)
+# FAQ – Traditional API Design vs GDCR/DCRP
 
-This repository answers the most common and **legitimate technical objections**
-raised when comparing **traditional API gateway models** with **GDCR / DCRP**.
+This FAQ compares a **traditional OpenAPI/Swagger, contract‑centric model** with the **GDCR/DCRP domain‑centric, metadata‑driven model** on SAP API Management + SAP Cloud Integration. The goal is to show, visually, how routing, versioning, and governance differ.
 
-This is not marketing.
-This is not vendor-specific.
-This is architecture.
-
-Each FAQ compares:
-- Traditional 1:1 models
-- Conditional / dynamic routing
-- OpenAPI-driven gateways
-- Security and governance assumptions
-
-Against:
-- GDCR (Gateway Domain-Centric Routing)
-- DCRP (Domain-Centric Routing Pattern)
-- Metadata-driven control planes
+## 1. High-Level Comparison Diagram
