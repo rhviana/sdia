@@ -46,7 +46,7 @@ Metadata reference: Each KVM routing entry references the target CPI endpoint an
 
 Runtime injection: The JS engine reads the metadata, resolves the credential alias, and injects the required authentication before the request reaches the target backend. 
 
---------------------------
+---
 
 ## Author: Ricardo Luz Holanda Viana
 ## Role: Enterprise Integration Architect · SAP BTP Integration Suite
@@ -61,4 +61,4 @@ DOI (Figshare): figshare.31331683
 
 This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution; any derivative or equivalent architectural implementation must reference the original work and associated DOIs. 
 
---------------------------
+---
