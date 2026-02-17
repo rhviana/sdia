@@ -255,38 +255,48 @@ Final Technical Conclusion
 - These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
 
 ---
-
-License & Availability
-License: CC BY 4.0
-DOI: 10.5281/zenodo.18619641
-Author: Ricardo Luz Holanda Viana
-Repository: https://github.com/rhviana/gdcr
-
----
 ### Academic Citation
 ---
 If you use this architecture in your research or implementation, please cite:
 
-APA:
+APA
 -----------------------------------
 
-Viana, R. L. H. (2026). Gateway Domain-Centric Routing: A Vendor-Agnostic 
-Metadata-Driven Architecture for Enterprise API Governance. Zenodo. 
-[https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18619641)
+Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A vendor-agnostic metadata-driven architecture for enterprise API governance*. Zenodo. https://doi.org/10.5281/zenodo.18619641
 
-BibTeX:
+Viana, R. L. H. (2026). *Gateway Domain-Centric Routing (GDCR) – Reference implementation assets* [Data set]. Figshare. https://doi.org/10.6084/m9.figshare.31331683
+
+BibTeX
 -----------------------------------
 
 @article{viana2026gdcr,
-  title={Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven 
-         Architecture for Enterprise API Governance},
-  author={Viana, Ricardo Luz Holanda},
-  journal={Zenodo},
-  year={2026},
-  doi={10.5281/zenodo.18619641},
-  url={https://zenodo.org/records/18619641}
+  title   = {Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - Version 5.0},
+  author  = {Viana, Ricardo Luz Holanda},
+  journal = {Zenodo},
+  year    = {2026},
+  doi     = {10.5281/zenodo.18582492},
+  url     = {[https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18661136)}
 }
 
+@misc{viana2026gdcr_assets,
+  title        = {Gateway Domain-Centric Routing (GDCR): A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance},
+  author       = {Viana, Ricardo Luz Holanda},
+  year         = {2026},
+  howpublished = {Figshare},
+  doi          = {10.6084/m9.figshare.31331683},
+  url          = {https://doi.org/10.6084/m9.figshare.31331683}
+}
+
+### 📞 Contact
+Author: Ricardo Luz Holanda Viana
+
+## Connect:
+📧 Email: rhviana@gmail.com
+💼 LinkedIn: [Ricardo Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
+📝 Medium: @rhviana
+For commercial inquiries only: rhviana@gmail.com
+
+---
 
 Maverick Phantom Edition v15.2 - Now Available
 -----------------------------------
@@ -305,39 +315,20 @@ Maverick Phantom Edition v15.2 - Now Available
 - Optimization phase targeting 1-2ms performance
 - Early access available for enterprise pilots and collaboration
 
-Contact me privately, details below.
+Contact me privately.
 
------------------------------------
-
-### 📞 Contact
-Author: Ricardo Luz Holanda Viana
-
-## Connect:
-📧 Email: rhviana@gmail.com
-💼 LinkedIn: [Ricardo Viana](https://www.linkedin.com/in/ricardo-viana-br1984/)
-📝 Medium: @rhviana
-For commercial inquiries only: rhviana@gmail.com
-
----
-
-Project Status: ✅ Academic Paper Published | ✅ Sandbox Validated | 🚧 Documentation In
 -----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect | SAP BTP Integration Suite  
+**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
 **Creator of:** GDCR · DCRP · PDCP  
-**Architectural Scope:** Business-semantic, domain-centric routing architectures
-for API Gateways and Integration Orchestration (vendor-agnostic),
-with SAP-specific implementations via DCRP (SAP BTP API Management)
-and PDCP (SAP BTP Cloud Integration).  
+
+**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+
 **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** https://doi.org/10.5281/zenodo.18619641  
+**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
+**DOI**  [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)]
 
-This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework  
-and represents original architectural work authored by Ricardo Luz Holanda Viana.
-
-Reuse, adaptation, and distribution are permitted **only with proper attribution**.  
-Any derivative or equivalent architectural implementation must reference the
-original work and associated DOI.
+This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
 
 ---
