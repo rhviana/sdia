@@ -27,7 +27,6 @@ GDCR/DCRP:
 - Starts from **business domain semantics**, not from backend object models.
 - URL is the semantic contract:
 
-```
 /sales/orders/create
 /sales/orders/create/{variant}
 /finance/invoices/approve/{variant}
@@ -63,3 +62,5 @@ keep using the same URL,
 may not notice backend changes if payload contract remains backward‑compatible.
 
 OpenAPI specs can still be versioned for schema evolution, but routing is decoupled from version numbers.
+
+```
