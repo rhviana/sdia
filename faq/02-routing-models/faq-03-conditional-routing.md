@@ -1,21 +1,54 @@
-# FAQ 03 — Conditional Routing (1:N)
+# FAQ-03 – Traditional Conditional Routing
 
-## What It Solves
-- Reduces proxy count
-- Groups paths
+## Q1 – What is conditional routing in SAP APIM?
 
-## What It Does NOT Solve
+Conditional routing allows a single APIM proxy to:
 
-Proxy
-├── condition A -> target A
-├── condition B -> target B
-├── condition C -> target C
+- inspect the request path, method, headers, query parameters,
+- route to different backend endpoints based on conditions. [web:18]
 
+Example:
 
-Issues:
-- Routing logic embedded
-- Change = redeploy
-- No global semantic governance
-- No late binding
+- Proxy base path: `/v1/Order`
+- Conditions:
+  - `/v1/Order/CreateOrder` → CPI iFlow A
+  - `/v1/Order/ReadOrder`   → CPI iFlow B
 
-This is **better engineering**, not **architectural transformation**.
+Inside the proxy, conditional flows apply different:
+
+- target endpoints,
+- policies (quotas, transformations, etc.).
+
+---
+
+## Q2 – How does this help compared to strict 1:1?
+
+Benefits over pure 1:1:
+
+- multiple operations can share one proxy,
+- some reuse of policies and configuration,
+- fewer proxies than “one per method”.
+
+However:
+
+- routing logic is still **static and system‑centric**,
+- paths often encode technical terms (`CreateOrder`, `ReadOrder`) instead of domain semantics,
+- changing backends still requires editing proxy configuration and redeploying. [web:16][file:3]
+
+---
+
+## Q3 – How is this different from GDCR/DCRP?
+
+Key differences:
+
+- Traditional conditional routing:
+  - hardcodes routing decisions in proxy policies,
+  - often uses system or operation names with no global semantic model.
+
+- GDCR/DCRP:
+  - enforces a **uniform URL pattern**: `/{domain}/{entity}/{action}/{variant?}`,  
+  - normalizes `action` to canonical codes (c/r/u/d/…),  
+  - delegates routing decisions to a **semantic dictionary** (KVM),  
+  - keeps proxy logic generic and metadata‑driven. [file:1][file:3]
+
+Conditional routing is a **building block**; GDCR is an **architectural pattern** that uses it with a domain semantics framework.
