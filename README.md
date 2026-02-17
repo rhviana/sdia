@@ -78,9 +78,10 @@ This routing logic is applied consistently across both the Gateway layer and the
 
 ### Multi-Layer Governance
 
-**[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
+**[Scientific Validation](./doc/academic-paper-zenodo/)**: Peer-reviewed documentation archived at **Zenodo (CERN)** and Peer-reviewed documentation archived at **Figshare(CERN)**
 
 **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+
 **[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **Domain-Centric name convention package, user and iFlow DNA** naming standard.
 
 **Benefits:**
@@ -249,14 +250,33 @@ M5 includes additional SAP BTP Trial Tenant overhead.
 
 
 Final Technical Conclusion
+
 -----------------------------------
 
 - The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
 - These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
 
+-----------------------------------
+
+## No-Support Policy
+
+This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+
+I do not provide free consulting:
+
+❌Implementation support
+
+❌Consulting services
+
+❌Troubleshooting assistance
+
+❌ Custom development
+
+For commercial inquiries contact me.
+
 ---
 ### Academic Citation
----
+
 If you use this architecture in your research or implementation, please cite:
 
 APA
