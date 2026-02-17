@@ -19,8 +19,6 @@ Client
   +--> [Proxy: SAP_FI_Invoices]    --> CPI iFlow B --> SAP S/4HANA
   |
   +--> [Proxy: Workday_Employees]  --> CPI iFlow C --> Workday
-
-```text
 Client
   |
   +--> [Proxy: Salesforce_Orders]  -> CPI iFlow A -> Salesforce
