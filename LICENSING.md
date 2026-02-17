@@ -5,19 +5,6 @@ Copyright (c) 2026
 
 This work is licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
 
-```diff
-+ 
-+ [ FRAMEWORK: GDCR v15.2 ]
-+ [ STATUS: AUTHORIZED    ]
-+ [ AUTHOR: RICARDO VIANA ]
-```
-
-<img width="1536" height="1024" alt="ChatGPT Image Feb 15, 2026, 03_38_29 PM" src="https://github.com/user-attachments/assets/7782a7ad-bd1a-4128-bce7-d7de7910c943" />
-
-
-RICARDO VIANA | GDCR FRAMEWORK
-"Order from Chaos - since 2009"
-
 ---
 
 ## You are free to:
