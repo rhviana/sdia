@@ -1,43 +1,121 @@
----
+# DCRP – Domain-Centric Routing Pattern (Gateway Layer)
 
-### 🧠 Gateway Layer: DCRP Intelligence
+The **Domain-Centric Routing Pattern (DCRP)** consolidates many system-centered API proxies into a small set of **domain façades**. Instead of exposing one proxy per backend system (Salesforce, SAP, Workday…), DCRP exposes one semantic façade per domain/subprocess and performs metadata-driven routing behind the scenes. [file:3]
 
-  - This sector manages the **Domain-Centric Routing Pattern**, serving as the "Brain" of the integration landscape.
+Example façade:
 
----
+```text
+http://<apim>/sales/*
+This single façade can cover:
 
-#### 📁Folder Structure
+Entities: orders, invoices, contracts, deliverables, customers, …
 
-  - /js: The core JavaScript routing logic ('routing-engine.js').
-    
-    📁 [Java Script Routing Engine](./js/dcrp-routing-engine-v15.1.js)
-    📁 [Java Script Security Engine](./js/dcpr-security-shild.js)
-    
-  - /kvm-sample: templates for - "Key Value Mapping (KVM): Metadata-driven domain mappings specific to the SAP BTP Integration Suite (API Management).
+Actions: create, read, update, delete, sync, …
 
----
+Vendors/variants: salesforce, sap4hana, shopify, …
+[file:3]
 
-#### ⚙️The Routing Engine (v15.1)
+Semantic URL Structure
+DCRP enforces a stable URL pattern:
 
-We utilize a zero-allocation JavaScript engine at the SAP APIM edge to resolve backend targets dynamically via **Key-Value Maps (KVM)**.
+text
+/sales/orders/create/salesforce
+/sales/invoices/read/sap4hana
+/sales/orders/create/salesforceus
+/sales/orders/create/salesforceemea
+From this path, the engine extracts:
 
-  - Metadata-Driven: No redeployment required to add new vendors.
-  - Latency-Optimized: Routing resolution happens in < 10ms.
+domain → sales
 
----
+entity → orders
 
-#### 🔐 Security Shield
+action → create (normalized to c)
 
-To protect catch-all routes ('/**'), we implement a perimeter defense layer:
-  - Whitelist Validation: Only authorized domain paths reach the engine.
-  - Anti-Hacking: Immediate rejection of SQLi and Path Traversal attempts.
+variant → salesforce, salesforceus, salesforceemea
+[file:1][file:3]
 
----
+Metadata-Driven Routing (KVM)
+Routing is fully metadata-driven. For each semantic combination, a compact key is stored in a Key-Value Map:
 
-#### 🗄️Components
+text
+dcrporderscsalesforceid01:http
+dcrporderscsalesforceusid02:http
+dcrporderscsalesforceemeaid02:http
+dcrpinvoicescsap4hanaid05:cxf
+At runtime, the JavaScript engine:
 
-* `EngineV15.1.js`: Core routing logic.
-* `SecurityShield.js`: Edge protection logic.
-* `KVM-Template.json`: Metadata structure for domain mapping.
+Parses the path (/sales/orders/create/salesforce).
 
----
+Normalizes the action (create → c).
+
+Builds the routing key (dcrporderscsalesforceid01:http).
+
+Looks up the corresponding target in KVM.
+
+Sets the target URL, e.g.:
+
+text
+http://<cpi>/http/dcrp/orders/c/id01
+No proxy redeployment is required to:
+
+onboard a new vendor or region,
+
+change the target iFlow,
+
+or switch adapters (e.g. http ↔ cxf).
+[file:3]
+
+Fast-Fail Security and Observability
+The DCRP engine also:
+
+Implements fast-fail logic (e.g. token hash lookup in KVM, rejecting requests before any backend call when a sender is not authorized). [file:1]
+
+Injects standard headers for traceability:
+
+x-gdcr-sender-id
+
+x-gdcr-correlation-id
+
+x-gdcr-interface-id
+
+x-gdcr-domain, x-gdcr-entity, x-gdcr-action
+
+This enables end-to-end, domain-aware observability across gateway and CPI. [file:3]
+
+Example End-to-End Flow
+Request
+text
+POST /sales/orders/create/salesforce HTTP/1.1
+Host: api.example.com
+Authorization: Bearer <token>
+DCRP Steps (simplified)
+Parse: domain = sales, entity = orders, action = create, variant = salesforce.
+
+Normalize action = c.
+
+Build key: dcrporderscsalesforceid01:http.
+
+Lookup KVM → http://<cpi>/http/dcrp/orders/c/id01.
+
+Enrich headers (sender, correlation, interface).
+
+Forward to CPI.
+
+CPI Endpoint
+text
+/http/dcrp/orders/c/id01
+This endpoint is implemented by a PDCP iFlow (see ../pdcp/README.md).
+[file:3]
+
+Benefits
+Collapse dozens of system-specific proxies into one façade per domain/subprocess.
+
+No need to version / redeploy proxies when backends change: update KVM entries instead.
+
+Domain/entity/action becomes the single lens for routing, security, and analytics.
+
+Vendor technologies remain interchangeable implementation details.
+
+For detailed performance results and engine internals (binary search, zero-allocation strings, etc.), see the GDCR paper and the engine source code in this folder. [file:3]
+
+text
