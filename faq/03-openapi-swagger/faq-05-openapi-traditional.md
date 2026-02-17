@@ -1,66 +1,53 @@
+***
+
+### 5) `03-openapi-swagger/faq-05-openapi-traditional.md`
+
 ```markdown
-# FAQ – OpenAPI / Swagger vs GDCR/DCRP
+# FAQ-05 – Traditional OpenAPI / Swagger Model
 
----
+## Q1 – How is OpenAPI typically used in API Management?
 
-## Q1 – How does an OpenAPI-first approach typically work?
+Common pattern:
 
-Common steps:
+1. Teams design APIs in OpenAPI/Swagger (often derived from backend schemas).
+2. APIM imports the spec and generates a proxy.
+3. Routing and policies are configured per generated proxy. [web:22][web:32]
 
-1. Model APIs in OpenAPI / Swagger (often mirroring backend schemas).
-2. Import specs into APIM to generate proxies.
-3. Configure routing and policies per generated proxy. [web:22][web:32]
-
-URLs tend to be:
+URLs tend to be system‑driven:
 
 - `/sap/fi/invoices/v1/...`
 - `/salesforce/opportunities/v1/...`
 
-Contracts and routing end up **system‑driven**.
+---
+
+## Q2 – What are the implications of this model?
+
+Characteristics:
+
+- **Contract‑centric**:
+  - Routing is tied to the endpoints defined in the OpenAPI spec.
+- **System‑centric**:
+  - Each system or service often has its own set of APIs and proxies.
+- **Version‑heavy**:
+  - Backend/schema changes frequently produce API versions (`v1`, `v2`, `v3`),
+  - Each version may have its own proxy and deployment.
+
+Impacts:
+
+- More proxies and endpoints over time.
+- Consumer migration required between versions.
+- Governance centered on API documents, not on domain semantics.
 
 ---
 
-## Q2 – How is GDCR/DCRP different?
+## Q3 – Does GDCR reject OpenAPI?
 
-GDCR/DCRP:
+No.
 
-- Starts from **business domain semantics**, not from backend object models.
-- URL is the semantic contract:
+- GDCR is about **routing topology and semantics**.
+- OpenAPI remains valuable for:
+  - documenting the façade,
+  - contract testing,
+  - client generation and catalogs.
 
-/sales/orders/create
-/sales/orders/create/{variant}
-/finance/invoices/approve/{variant}
-
-Routing is resolved at runtime by the DCRP engine:
-
-parse domain/entity/action/variant,
-
-build KVM key (dcrporderscsalesforceid01:http),
-
-look up CPI endpoint (/http/dcrp/orders/c/id01).
-
-OpenAPI becomes optional documentation of the façade, not the source of routing.
-
-Q3 – How does versioning differ?
-
-OpenAPI‑driven, system‑centric:
-
-Backend change → OpenAPI change → new API version (/v2, /v3) → new proxy + consumer migration.
-
-GDCR/DCRP:
-Façade (/sales/orders/create) is stable.
-
-Backend changes:
-new iFlow → new idXX in name,
-
-KVM entry updated from id01 to id02.
-
-Consumers:
-
-keep using the same URL,
-
-may not notice backend changes if payload contract remains backward‑compatible.
-
-OpenAPI specs can still be versioned for schema evolution, but routing is decoupled from version numbers.
-
-```
+The difference is: with GDCR, OpenAPI describes the **business façade**, not each backend‑specific API.
