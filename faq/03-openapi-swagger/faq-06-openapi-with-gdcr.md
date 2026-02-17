@@ -1,65 +1,84 @@
-# FAQ-06 – Using OpenAPI / Swagger with GDCR
+FAQ-06 – Using OpenAPI / Swagger with GDCR
+Q1 – How can I document GDCR façades with OpenAPI?
+In the GDCR model, the OpenAPI spec describes the Domain Logic, not the backend implementation. You define paths that represent business actions.
 
-## Q1 – How can I document GDCR façades with OpenAPI?
+Example YAML Structure:
 
-Example:
-
-```yaml
+YAML
 paths:
-  /sales/orders/create:
-    post:
-      summary: Create a sales order (vendor-agnostic)
-      parameters:
-        - name: variant
-          in: query
-          schema:
-            type: string
-            description: Optional vendor/region
-      responses:
-        '201':
-          description: Order created
   /sales/orders/create/{variant}:
     post:
-      summary: Create a sales order via specific vendor
+      summary: Create a sales order via specific vendor/region
       parameters:
         - name: variant
           in: path
+          required: false
           schema:
-            enum: [salesforce, sap4hana, salesforceus, salesforceemea]
-The spec describes the semantic surface; DCRP decides which backend/iFlow to call via KVM. [file:1][file:3]
+            type: string
+            enum: [salesforce, s4hana, sf-us, sf-emea]
+            description: "Target variant resolved by DCRP metadata"
+      responses:
+        '201':
+          description: "Order accepted by domain façade"
+          
+The spec defines the Contract; DCRP fulfills the Routing via KVM lookup.
 
 Q2 – How does OpenAPI versioning interact with GDCR?
-Façade (/sales/orders/create) remains stable.
+Traditionally, a backend change forces a URL change (e.g., /v1/ to /v2/). In GDCR, we decouple Schema Versioning from Endpoint Routing.
 
-If the payload schema changes:
+Versioning Comparison (ASCII):
 
-you can bump an OpenAPI version (e.g. v2 in the spec),
+```text
 
-but routing logic stays metadata‑driven.
+[ TRADITIONAL VERSIONING ]             [ GDCR SEMANTIC STABILITY ]
+     (Rigid & Explosive)                   (Fluid & Metadata-Driven)
 
-You avoid:
+      Client v1  Client v2                  Client v1  Client v2
+          |          |                          |          |
+          v          v                          +----+-----+
+      [Proxy v1] [Proxy v2]                          v
+          |          |                    [ SINGLE DOMAIN FACADE ]
+          v          v                          | (JS Logic)
+      [S/4 v1]   [S/4 v2]                       +----------+
+                                                |          |
+ RESULT: URL must change.               RESULT: URL is STABLE.
+ Consumers MUST migrate.                Routing updated via KVM.
 
-changing URLs for backend‑only refactorings,
+```
 
-proliferating proxies just to point to new endpoints.
+Q3 – Comparison: Documentation vs. Implementation
 
-Q3 – What is the main benefit of combining OpenAPI with GDCR?
-You get:
+```text
 
-Clear semantic façade:
+| Aspect        | OpenAPI / Swagger Role              | GDCR / DCRP Role                             |
+|---------------|-------------------------------------|-------------------------------------------   |
+| Visibility    | Public – the **menu** consumers see | Private – the **kitchen** where routing runs |
+| Logic         | Defines valid inputs and outputs    | Executes routing and fast-fail validation    |
+| Stability     | High, business-aligned              | Dynamic, system- and metadata-aligned        |
+| Change Impact | Changes affect API consumers        | Changes affect only KVM / CPI internals      |
 
-strongly structured URLs,
-
-documented in OpenAPI.
-
-Flexible implementation:
-
-routing dictated by metadata in KVM,
-
-backend changes implemented by KVM + CPI changes, not by façade changes.
+```
 
 This combination allows catalogs and governance tools to reason in terms of domain/entity/action rather than systems only. [web:32][web:38]
 
+The "Contract vs. Route" Diagram (ASCII):
+
+```text
+
+[ OPENAPI SPEC ]                 [ GDCR ENGINE ]
+    "What the user sees"            "How the data flows"
+             |                               |
+    GET /hr/emp/read/{id}  ----(Match)--->  Key: hr_emp_r
+             |                               |
+             |                      +--------v----------+
+             |                      |   KVM LOOKUP      |
+             |                      | rwd -> Workday    |
+             |                      | rs4 -> S/4HANA    |
+             |                      +--------+----------+
+             |                               |
+             +-----------(Execute)-----------+------> [ TARGET ]
+
+```
 -----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
