@@ -1,16 +1,24 @@
 # FAQ – Routing Models: Traditional vs GDCR/DCRP
 
----
-
 ## Q1 – What is the common routing model in many landscapes?
 
-Typical patterns:
+The traditional pattern is **system-oriented**. It creates a rigid relationship between the API Proxy and the technical backend.
 
-- One proxy per backend/application/interface.
-- URLs often encode system names (`/sap/fi/invoices`, `/salesforce/opportunities`, …).
-- Routing rules are mostly static:
-  - proxy → fixed backend,
-  - occasional conditional flows inside the proxy, still system‑centric. [web:16][web:24]
+### Typical Characteristics:
+* **One Proxy per Backend:** Every unique interface requires a new proxy.
+* **System-Encoded URLs:** Paths explicitly mention the system (e.g., `/sap/fi/invoices`).
+* **Static Routing:** The mapping is hardcoded in the Target Endpoint.
+
+#### Traditional Architecture (ASCII):
+
+```text
+Client
+  |
+  +--> [Proxy: Salesforce_Orders]  --> CPI iFlow A --> Salesforce
+  |
+  +--> [Proxy: SAP_FI_Invoices]    --> CPI iFlow B --> SAP S/4HANA
+  |
+  +--> [Proxy: Workday_Employees]  --> CPI iFlow C --> Workday
 
 ```text
 Client
@@ -28,35 +36,31 @@ Many proxies and packages.
 Little reuse at the level of business semantics.
 
 Q2 – How does DCRP routing differ?
-DCRP introduces domain façades and semantic routing:
+DCRP introduces Domain Façades and Semantic Routing. It abstracts the backend complexity using a stable pattern: /{domain}/{entity}/{action}/{variant}.
 
-One façade per domain/subprocess (e.g. /sales/**, /finance/**). [file:3]
-
-Semantic pattern: /domain/entity/action[/variant]. [file:1]
-
+DCRP Architecture (ASCII):
 ```text
-Client
-  |
-  |  POST /sales/orders/create/salesforce
+Client 
+  |  
+  |   POST /sales/orders/create/salesforce
   v
-+-----------------------------+
-| APIM: Sales facade          |
-| /sales/**                   |
-+-----------------------------+
++------------------------------------+
+|       SAP APIM: Sales Facade       |
+|       Path: /sales/** |
++------------------------------------+
   |
-  | parse:  domain  = sales
-  |         entity  = orders
-  |         action  = create
-  |         variant = salesforce
-  | → key: dcrporderscsalesforceid01:http
+  |  Logic:
+  |  1. Parse: d/e/a/variant
+  |  2. Build Key: dcrp:orders:c:sf
+  |  3. KVM Lookup: Get Target URL
+  |  4. JS Engine: Build Final URL
   v
-+-----------------------------+
-| CPI: /http/dcrp/orders/c/id01|
-+-----------------------------+
++------------------------------------+
+|    SAP CPI: /http/dcrp/orders/c    |
++------------------------------------+
   |
   v
-[ Service backend ]
-
+[ Service Backend ]
 ```
 
 Key points:
@@ -67,43 +71,41 @@ Routing uses metadata (KVM), not static proxy → endpoint mapping.
 
 New vendors/variants are onboarded via KVM entries, not new proxies.
 
-Q3 – Is DCRP just “conditional flows on steroids”?
-Not exactly.
+Q3 – Comparison: Traditional vs. DCRP
+This table highlights the shift from technical silos to business domains.
+```text
 
-Traditional conditional flows:
+| Feature        | Traditional Model           | DCRP / GDCR Model                 |
+|---------------|----------------------------- |-----------------------------------|
+| Focus         | System-oriented              | Domain-oriented                   |
+| Routing       | Static (hardcoded)           | Dynamic (metadata / KVM-based)    |
+| Onboarding    | New proxy deployment         | New KVM entry + shared JS engine  |
+| Scalability   | Low (proxy sprawl)           | High (metadata-driven)            |
+| URL Stability | Changes with backend systems | Stable, business-centric interface|
+``
 
-match raw paths (/v1/Order/CreateOrder, /v1/Order/ReadOrder),
+## Q4 – How does GDCR handle multiple vendors and regions?
 
-embed routing decisions directly in flow conditions and policies.
+GDCR uses the `{variant}` segment to support multiple vendors, regions, or deployment variants without changing API proxy code. [file:80][file:81]
 
-DCRP:
+### 1. Semantic URL Mapping
 
-normalizes domain/entity/action/variant,
+Consumers call logical, business‑centric URLs that include the variant:
 
-constructs a semantic key (dcrporderscsalesforceid01:http),
+```text
+/sales/orders/create/salesforce      <-- Global instance
+/sales/orders/create/salesforceus    <-- USA region
+/sales/orders/create/salesforceemea  <-- Europe region
+```
+2. KVM Key Resolution (“Truth Table”)
 
-uses KVM as a routing dictionary,
+The routing engine normalizes the request into a KVM key that maps business intent to a concrete backend endpoint.
 
-keeps proxy policies generic and reusable across domains. [file:3]
-
-DCRP = pattern + semantics + metadata + engine, not só “mais if/else”.
-
-Q4 – How does GDCR handle multiple vendors and regions?
-Via the {variant} segment and KVM keys:
-
-URLs:
-
-text
-/sales/orders/create/salesforce
-/sales/orders/create/salesforceus
-/sales/orders/create/salesforceemea
-KVM:
-
-text
-dcrporderscsalesforceid01:http
-dcrporderscsalesforceusid02:http
-dcrporderscsalesforceemeaid02:http
-No new proxies. No façade changes. Only metadata and iFlow additions.
+| Business Intent (URL)                      | Generated KVM Key        | Target Value (CPI / Backend)    |
+|-------------------------------------------|--------------------------|--------------------------------- |
+| `/sales/orders/create/salesforce`         | `sales:orders:c:sf`      | `http://cpi/orders/global`       |
+| `/sales/orders/create/salesforceus`       | `sales:orders:c:sfus`    | `http://cpi/orders/usa`          |
+| `/sales/orders/create/salesforceemea`     | `sales:orders:c:sfemea`  | `http://cpi/orders/emea`         |
 
 -----------------------------------
 
