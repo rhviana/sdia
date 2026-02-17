@@ -56,3 +56,20 @@ The gateway acts as a translator: it takes the clean URL, looks up the technical
 Agility: You can swap backends (for example, from SAP ECC to S/4HANA) by updating only the KVM entry; the consumer URL remains unchanged.
 
 Professionalism: Gives APIs a product-like surface, while the legacy and integration “spaghetti” stays behind the façade.
+
+---
+
+## Author: Ricardo Luz Holanda Viana
+## Role: Enterprise Integration Architect · SAP BTP Integration Suite
+
+Creator of: GDCR · DCRP · PDCP
+
+Architectural scope: business‑semantic, domain‑centric routing architectures for API gateways and integration orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration). 
+
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+DOI (Zenodo): zenodo.18661136
+DOI (Figshare): figshare.31331683
+
+This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution; any derivative or equivalent architectural implementation must reference the original work and associated DOIs. 
+
+---
