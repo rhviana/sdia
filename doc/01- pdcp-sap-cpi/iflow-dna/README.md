@@ -1,8 +1,8 @@
 iFlow Naming Convention (iFlow DNA)
 PDCP uses a structured “DNA” for iFlow names:
 
-text
 id[seq].[subdomain].[sender].[entity].[action].[direction].[sync/async]
+
 Where:
 
 id[seq] – local sequence within the subprocess (e.g. id01, id02, …)
