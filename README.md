@@ -79,8 +79,9 @@ This routing logic is applied consistently across both the Gateway layer and the
 ### Multi-Layer Governance
 
 **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
-***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
-***[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **Domain-Centric name convention package, user and iFlow DNA** naming standard.
+
+**[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+**[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **Domain-Centric name convention package, user and iFlow DNA** naming standard.
 
 **Benefits:**
 -----------------------------------
