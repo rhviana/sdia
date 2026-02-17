@@ -1,3 +1,4 @@
+
 ### FAQ-08 – OAuth2 vs. KVM Fast-Fail
 
 ####  Q1 – Where does OAuth2 fit in GDCR ?
