@@ -78,13 +78,9 @@ This routing logic is applied consistently across both the Gateway layer and the
 
 ### Multi-Layer Governance
 
-**[Architectural Decisions (ADR)](./doc/)**: Documented rationale for engineering trade-offs (See ADR-001).
-
 **[Scientific Validation](./doc/academic-paper/)**: Peer-reviewed documentation archived at **Zenodo (CERN)**.
-
-SAP APIM Gateway layer that routes traffic based on business domain metadata instead of hardcoded backend endpoints.
-
 ***[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**: Edge intelligence handling dynamic vectoring and perimeter security.
+***[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **Domain-Centric name convention package, user and iFlow DNA** naming standard.
 
 **Benefits:**
 -----------------------------------
@@ -93,20 +89,6 @@ SAP APIM Gateway layer that routes traffic based on business domain metadata ins
 - Enables semantic routing for AI agents
 - Centralized policy enforcement
 - Zero vendor lock-in
-
-API Sprawl vs Domain-Centric Routing (DCRP - SAP)
------------------------------------
-
-<p align="center">
-  <img src="./repository/figures/gdcr.png"
-       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="85%" />
-</p>
-
-<p align="center">
-  <strong>Figure 1 — Domain-Centric Routing Pattern (DCRP - Apllied for SAP BTP) consolidates uncontrolled API
-  proxy proliferation into a governed gateway layer aligned with Clean Core principles.</strong> 
-</p>
 
 📂 Repository Structure
 -----------------------------------
@@ -299,37 +281,6 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 
 
 ```
-
-
-
-PDCP (Package Domain-Centric Pattern)
------------------------------------
-
-## Package Sprawl vs Clean Core Orchestration (PDCP)
-
-<p align="center">
-  <img src="./repository/figures/orquestrationsprawl.png"
-       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
-       width="85%" />
-</p>
-
-<p align="center">
-  <strong>Figure 2 — Package Domain-Centric Pattern (PDCP), applied on SAP BTP Integration
-Suite (Cloud Integration), eliminates package sprawl by consolidating integration
-artifacts per business domain, fully aligned with Clean Core principles.</strong> 
-</p>
-
-**[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**: Domain-centric consolidation using the **iFlow DNA** naming standard.
-
-SAP CPI - Backend integration consolidation pattern that organizes integration artifacts by business domain.
-
-**Benefits:**
-
-- Eliminates package sprawl - 1:1 
-- Reduces credential sprawl - 1:1 per package
-- Consistent naming conventions
-- Faster deployment cycles
-
 
 The 7 Core GDCR Patterns
 -----------------------------------
