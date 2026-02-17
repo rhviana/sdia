@@ -1,26 +1,26 @@
-***
 
-### 5) `03-openapi-swagger/faq-05-openapi-traditional.md`
-
-```markdown
 # FAQ-05 – Traditional OpenAPI / Swagger Model
 
 ## Q1 – How is OpenAPI typically used in API Management?
 
-Common pattern:
+In the standard model, the API lifecycle is System-Driven. The process usually follows these steps:
 
-1. Teams design APIs in OpenAPI/Swagger (often derived from backend schemas).
-2. APIM imports the spec and generates a proxy.
-3. Routing and policies are configured per generated proxy. [web:22][web:32]
+Schema Derivation: Teams export schemas directly from backends (e.g., OData from S/4HANA or REST from Salesforce).
 
-URLs tend to be system‑driven:
+Proxy Generation: APIM imports the Swagger/OpenAPI spec and generates a unique proxy.
 
-- `/sap/fi/invoices/v1/...`
-- `/salesforce/opportunities/v1/...`
+Hardcoded Routing: Policies and targets are locked to the specific backend version defined in the spec.
+
+URLs are technical and system-coded:
+
+/sap/fi/invoices/v2/...
+
+/salesforce/api/v42/opportunities/...
 
 ---
 
-## Q2 – What are the implications of this model?
+Q2 – Architectural Comparison: Traditional vs. GDCR
+The traditional model creates a "Direct-Link" dependency, whereas GDCR creates an "Abstraction Layer."
 
 Characteristics:
 
@@ -38,6 +38,27 @@ Impacts:
 - Consumer migration required between versions.
 - Governance centered on API documents, not on domain semantics.
 
+Comparison Diagram (ASCII):
+
+```text
+[ TRADITIONAL OPENAPI MODEL ]            [ GDCR / DCRP MODEL ]
+     (System-Centric Specs)                (Domain-Centric Spec)
+
+   SPEC A      SPEC B      SPEC C                SINGLE SPEC
+ [SAP S/4]   [SFDC v1]   [SFDC v2]             [Sales Domain]
+     |           |           |                       |
+     v           v           v                       v
+ +-------+   +-------+   +-------+          +------------------+
+ |Proxy A|   |Proxy B|   |Proxy C|          |  DOMAIN FACADE   |
+ +-------+   +-------+   +-------+          +------------------+
+     |           |           |              /       |          \
+     |           |           |             /        |           \
+ [SAP S4]    [SFDC v1]   [SFDC v2]      [S/4HANA] [SFDC v1] [SFDC v2]
+
+ RESULT: 1 Spec = 1 Proxy.             RESULT: 1 Spec = N Systems.
+ Governance: Document-centered.         Governance: Domain-centered.
+
+```
 ---
 
 ## Q3 – Does GDCR reject OpenAPI?
@@ -49,8 +70,19 @@ No.
   - documenting the façade,
   - contract testing,
   - client generation and catalogs.
+ 
+Version Fragmentation: Every backend schema update forces a new API version (v1,v2), requiring expensive consumer migrations.Proxy Sprawl: The landscape grows horizontally. Managing security and monitoring across 500 system-specific proxies becomes a governance nightmare.Contract Rigidity: The contract is a mirror of the backend technical debt. If the backend is messy, the API is messy.
 
 The difference is: with GDCR, OpenAPI describes the **business façade**, not each backend‑specific API.
+
+## Q4 – Does GDCR reject OpenAPI?
+
+Absolutely not. GDCR redefines the purpose of the OpenAPI specification.
+
+- In the Traditional Model: OpenAPI describes the Implementation (How the backend works).
+- In the GDCR Model: OpenAPI describes the Business Intent (What the business process does).
+
+OpenAPI remains the primary tool for documentation, contract testing, and client SDK generation. The difference is that in GDCR, the OpenAPI spec points to a Domain Façade, and the routing logic (JS/KVM) manages the complexity of which backend version or system actually fulfills the request.
 
 -----------------------------------
 
