@@ -64,7 +64,7 @@ API Sprawl vs Domain-Centric Routing (DCRP - SAP)
 -----------------------------------
 
 <p align="center">
-  <img src="./repository/imagens/apisprawl.png"
+  <img src="./repository/figures/apisprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="85%" />
 </p>
@@ -301,7 +301,7 @@ PDCP (Package Domain-Centric Pattern)
 ## Package Sprawl vs Clean Core Orchestration (PDCP)
 
 <p align="center">
-  <img src="./repository/imagens/orquestrationsprawl.png"
+  <img src="./repository/figures/orquestrationsprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="85%" />
 </p>
