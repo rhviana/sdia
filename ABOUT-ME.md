@@ -3,8 +3,29 @@
 <h3 align="center">Disclaimer — Non-Military Context (Global) "The Commander - Viana"</h3>
 
 <p align="center">
-  <i>This GitHub repository and the GDCR framework have no association whatsoever with military organizations, armed forces, militias, or any form of armed activity. 
-     This disclaimer applies to all images, diagrams, illustrations, and visual materials contained in this repository. Any interpretation beyond this context is incorrect.</i>
+
+This GitHub repository and the GDCR framework have **no association whatsoever**
+with military organizations, armed forces, militias, or any form of armed activity.
+
+The use of leadership imagery and strategic metaphors is **purely conceptual**
+and serves as a representation of **order, organization, discipline, and
+architectural clarity** in large-scale enterprise integration ecosystems.
+
+On a personal level, this symbolism is a **tribute to the author’s father**, a
+high-ranking General in the **Brazilian Armed Forces**, whose values of
+responsibility, strategic thinking, and service deeply influenced the author’s
+professional ethics.
+
+The visual representations in this repository are intended to convey:
+
+- ecosystem-wide architectural vision  
+- integration strategy and governance  
+- systemic order emerging from complexity  
+
+**This disclaimer applies to all images, diagrams, illustrations, and visual
+materials contained in this repository, including all folders and subfolders.**
+
+**Any interpretation beyond this context is incorrect.**
 </p>
 <hr>
 <p align="center">
