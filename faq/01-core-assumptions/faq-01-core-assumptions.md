@@ -79,4 +79,20 @@ GDCR is a **multi‑layer pattern** covering:
 - Security model (fast‑fail, sender × domain/entity/action matrix). [file:1]  
 - Governance and observability (metrics, KPIs, logs).
 
+-----------------------------------
+
+**Author:** Ricardo Luz Holanda Viana  
+**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
+**Creator of:** GDCR · DCRP · PDCP  
+
+**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
+**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
+**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
+
+This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+
+-----------------------------------
+
 Routing is only the visible tip; the value is the **consistent semantic model across all layers**.
