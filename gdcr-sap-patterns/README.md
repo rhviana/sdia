@@ -2,7 +2,7 @@ API Sprawl vs Domain-Centric Routing (DCRP - SAP)
 -----------------------------------
 
 <p align="center">
-  <img src="./figures/apisprawl.png"
+  <img src="./repository/figures/apisprawl.png"
        alt="API Sprawl vs Domain-Centric Routing (GDCR)"
        width="85%" />
 </p>
