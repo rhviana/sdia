@@ -1,86 +1,96 @@
-```markdown
-# FAQ – Core Assumptions Behind GDCR
+## FAQ01 – Core Assumptions Behind GDCR
+<div height="1px" style="background-color: #e1e4e8; border: none; height: 1px;"></div>
 
-This FAQ clarifies what GDCR assumes about real‑world landscapes and what it does **not** assume about products.
+This FAQ clarifies the fundamental philosophy of GDCR, addressing common misconceptions about product limitations and the structural problems the pattern solves.
 
+#### Q1 – Is SAP APIM (or any gateway) limited to 1:1 routing?
 ---
 
-## Q1 – Is SAP APIM (or any gateway) limited to 1:1 routing?
+**No.** Modern gateways are extremely capable of 1:N routing. The issue is not the **tool**, but the **prevailing implementation pattern**.
 
-**No.** Modern gateways support 1:N routing (conditional flows, routing rules, header/path‑based routing). [web:18][web:24]
+#### The "System-Centric" Trap vs. GDCR Reality (ASCII):
 
-GDCR’s observation:
+```text
+[ TRADITIONAL PATTERN ]                  [ GDCR PATTERN ]
+(Product misuse/Sprawl)                (Optimized Architecture)
 
-- In many enterprise landscapes, the **prevailing configuration pattern** is:
-  - one proxy per backend system or integration,
-  - one integration package per application or project,
-  - URLs and names that expose vendor/system details. [file:3][web:16][web:23]
+  Proxy A -> Backend X                   Domain Facade --+
+  Proxy B -> Backend Y                                   |
+  Proxy C -> Backend Z                    [ KVM / JS ] --+--> Backend X
+                                                         |--> Backend Y
+                                                         |--> Backend Z
 
-This is a **usage pattern**, not a product limitation.
+PATTERN: 1:1 (Manual)                  PATTERN: 1:N (Dynamic)
+GOVERNANCE: By Artifact                GOVERNANCE: By Business Domain
+```
+#### Q2 – What problems is GDCR explicitly trying to solve?
 
----
+GDCR targets the "Three Sprawls" that paralyze large-scale enterprise integration landscapes:
 
-## Q2 – What problems is GDCR explicitly trying to solve?
+Proxy Sprawl: Hundreds of technical proxies that are impossible to catalog.
 
-GDCR targets three structural problems:
+Package/iFlow Sprawl: Integration logic scattered across project-based silos.
 
-1. **Proxy sprawl** – too many small, system‑centric proxies at the gateway.  
-2. **Package/iFlow sprawl** – too many integration packages and iFlows grouped per system or project.  
-3. **Credential sprawl** – many technical users and secrets scattered across proxies and packages. [file:1][file:3]
+Credential Sprawl: A security nightmare of technical users and secrets duplicated everywhere.
 
-Consequences:
+The "Sprawl" Impact Matrix (ASCII):
+```text
+PROBLEM              | CAUSE                          | GDCR SOLUTION
+---------------------|--------------------------------|-------------------------
+Governance Blindness | Everything is a "Proxy ID"     | Semantic Domains
+Maintenance Tax      | Change = Proxy Redeploy        | Metadata Update (KVM)
+Security Risk        | Credential Duplication         | Consolidated Auth
+High Latency         | Multiple IdP Round-trips       | Fast-Fail Validation
+```
+#### Q3 – What does GDCR not claim?
 
-- Governance based on technical artifacts instead of business flows.
-- Difficult to answer simple questions like “how many Sales Order Create operations do we have across vendors?”.
-- High cost and risk when changing vendors or refactoring backends.
+GDCR is a framework for Usage Patterns, not a critique of software features.
 
----
+We do NOT say gateways lack routing features. We say they are often implemented poorly.
 
-## Q3 – What does GDCR *not* claim?
+We do NOT say OpenAPI is wrong. We say it should document the Business Intent (Façade), not the technical debt (Backend).
 
-GDCR does **not** claim that:
+We do NOT say we invented domain-centricity. We say we codified it into a repeatable engine (DCRP + PDCP) for the SAP ecosystem.
 
-- SAP APIM cannot do conditional routing or 1:N patterns.
-- Domain‑centric API designs do not exist anywhere.
-- Using OpenAPI/Swagger is “wrong”.
+#### Q4 – Is GDCR SAP‑specific?
 
-GDCR claims that:
+No. While the reference implementation uses SAP BTP, the logic is Vendor-Agnostic.
 
-- The **dominant pattern** in many landscapes is system‑driven and leads to sprawl. [web:16][web:23]  
-- A domain‑centric, metadata‑driven approach can significantly reduce sprawl and improve governance, as shown in the SAP BTP sandbox/trial reference implementation. [file:3]
+Cross-Platform Implementation Map (ASCII):
+```text
+LAYER          | SAP BTP (DCRP) | APIGEE         | KONG / APISIX  | AZURE APIM
+---------------|----------------|----------------|----------------|-------------
+Logic Engine   | JavaScript     | JavaScript     | Lua Plugins    | C# Policies
+Metadata Store | KVM            | KVM            | Redis / DB     | Storage/Table
+Fast-Fail      | Policy / JS    | Flow Callouts  | Auth Plugins   | Custom Policy
+```
 
----
+#### Q5 – Is GDCR only about routing?
 
-## Q4 – Is GDCR SAP‑specific?
+No. GDCR is a full-stack architectural alignment. Routing is just the entry point.
 
-No.
+```text
+The GDCR Multi-Layer Alignment (ASCII):
 
-- The reference implementation is on SAP BTP Integration Suite (SAP API Management + Cloud Integration). [file:3]  
-- The same ideas (domain façades, semantic control plane, naming alignment) can be implemented on:
-  - Apigee (JavaScript + KVM),
-  - Kong/APISIX (Lua plugins + Redis/Postgres),
-  - AWS API Gateway (Lambda + DynamoDB),
-  - Azure APIM (C# policies + storage),
-  - MuleSoft (DataWeave + Object Store). [file:2]
+[ LAYER 1: GATEWAY ] --> DCRP (Domain-Centric Routing Pattern)
+                         Focus: Semantic URLs & Metadata Routing
+           |
+           v
+[ LAYER 2: ORCHESTRATOR ] --> PDCP (Package Domain-Centric Pattern)
+                               Focus: Logic isolation by Domain in CPI
+           |
+           v
+[ LAYER 3: SECURITY ] --> FAST-FAIL
+                          Focus: Sender/Domain access matrix (mTLS/OAuth)
+           |
+           v
+[ LAYER 4: OPS/LOGS ] --> SEMANTIC OBSERVABILITY
+                          Focus: Monitoring "Sales Orders", not "iFlow_v2_final"
+```
 
-GDCR is **vendor‑agnostic**; SAP BTP is one concrete proof.
+Routing is only the visible tip; the value is the **consistent semantic model across all layers**.
 
----
-
-## Q5 – Is GDCR only about routing?
-
-No.
-
-GDCR is a **multi‑layer pattern** covering:
-
-- Routing (DCRP – Domain‑Centric Routing Pattern at the gateway). [file:3]  
-- Package and iFlow layout (PDCP – Package Domain‑Centric Pattern in CPI). [file:3]  
-- Naming and indexing conventions.  
-- Security model (fast‑fail, sender × domain/entity/action matrix). [file:1]  
-- Governance and observability (metrics, KPIs, logs).
-
------------------------------------
-
+--------------------------
 **Author:** Ricardo Luz Holanda Viana  
 **Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
 **Creator of:** GDCR · DCRP · PDCP  
@@ -94,5 +104,3 @@ GDCR is a **multi‑layer pattern** covering:
 This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
 
 -----------------------------------
-
-Routing is only the visible tip; the value is the **consistent semantic model across all layers**.
