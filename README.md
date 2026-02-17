@@ -262,9 +262,9 @@ If you use this architecture in your research or implementation, please cite:
 APA
 -----------------------------------
 
-Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A vendor-agnostic metadata-driven architecture for enterprise API governance*. Zenodo. https://doi.org/10.5281/zenodo.18619641
+Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - Version 5.0*. Zenodo. https://doi.org/10.5281/zenodo.18582492
 
-Viana, R. L. H. (2026). *Gateway Domain-Centric Routing (GDCR) – Reference implementation assets* [Data set]. Figshare. https://doi.org/10.6084/m9.figshare.31331683
+Viana, R. L. H. (2026). *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - Version 5.0*. Figshare. https://doi.org/10.6084/m9.figshare.31331683
 
 BibTeX
 -----------------------------------
@@ -274,8 +274,8 @@ BibTeX
   author  = {Viana, Ricardo Luz Holanda},
   journal = {Zenodo},
   year    = {2026},
-  doi     = {10.5281/zenodo.18582492},
-  url     = {[https://doi.org/10.5281/zenodo.18619641](https://zenodo.org/records/18661136)}
+  doi     = {10.5281/zenodo.18619641},
+  url     = {https://doi.org/10.5281/zenodo.18619641}
 }
 
 @misc{viana2026gdcr_assets,
@@ -287,6 +287,7 @@ BibTeX
   url          = {https://doi.org/10.6084/m9.figshare.31331683}
 }
 
+-----------------------------------
 ### 📞 Contact
 Author: Ricardo Luz Holanda Viana
 
@@ -296,9 +297,10 @@ Author: Ricardo Luz Holanda Viana
 📝 Medium: @rhviana
 For commercial inquiries only: rhviana@gmail.com
 
----
+-----------------------------------
 
 Maverick Phantom Edition v15.2 - Now Available
+
 -----------------------------------
 
 **GDCR Maverick Phantom Edition v15.2** is available for early access.
@@ -327,7 +329,7 @@ Contact me privately.
 
 **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
 **DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI**  [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)]
+**DOI:**  [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
 
 This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
 
