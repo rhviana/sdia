@@ -69,8 +69,8 @@ Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern
 This routing logic is applied consistently across both the Gateway layer and the Orchestration layer.
 
 <p align="center">
-  <img src="./repository/figures/gdcr.png"
-       alt="API Sprawl vs Domain-Centric Routing (GDCR)"
+  <img src="./repository/figures/gdrc.png"
+       alt="Domain-Centric Routing (GDCR) - API and Orquestration"
        width="85%" />
 </p>
 
