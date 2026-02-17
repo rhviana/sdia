@@ -1,9 +1,11 @@
-FAQ-06 – Using OpenAPI / Swagger with GDCR
-Q1 – How can I document GDCR façades with OpenAPI?
+## FAQ-06 – Using OpenAPI / Swagger with GDCR
+
+#### Q1 – How can I document GDCR façades with OpenAPI?
+---
 In the GDCR model, the OpenAPI spec describes the Domain Logic, not the backend implementation. You define paths that represent business actions.
 
 Example YAML Structure:
-
+```js
 YAML
 paths:
   /sales/orders/create/{variant}:
@@ -20,10 +22,11 @@ paths:
       responses:
         '201':
           description: "Order accepted by domain façade"
-          
+```          
 The spec defines the Contract; DCRP fulfills the Routing via KVM lookup.
 
-Q2 – How does OpenAPI versioning interact with GDCR?
+#### Q2 – How does OpenAPI versioning interact with GDCR?
+---
 Traditionally, a backend change forces a URL change (e.g., /v1/ to /v2/). In GDCR, we decouple Schema Versioning from Endpoint Routing.
 
 Versioning Comparison (ASCII):
@@ -45,9 +48,9 @@ Versioning Comparison (ASCII):
  Consumers MUST migrate.                Routing updated via KVM.
 
 ```
-
-Q3 – Comparison: Documentation vs. Implementation
-
+#### Q3 – Comparison: Documentation vs. Implementation
+---
+The main benefit of combining OpenAPI with GDCR is the separation of concerns.
 ```text
 
 | Aspect        | OpenAPI / Swagger Role              | GDCR / DCRP Role                             |
@@ -58,10 +61,8 @@ Q3 – Comparison: Documentation vs. Implementation
 | Change Impact | Changes affect API consumers        | Changes affect only KVM / CPI internals      |
 
 ```
-
-This combination allows catalogs and governance tools to reason in terms of domain/entity/action rather than systems only. [web:32][web:38]
-
-The "Contract vs. Route" Diagram (ASCII):
+#### The "Contract vs. Route" Diagram (ASCII):
+---
 
 ```text
 
@@ -79,6 +80,14 @@ The "Contract vs. Route" Diagram (ASCII):
              +-----------(Execute)-----------+------> [ TARGET ]
 
 ```
+#### Q4 – Summary of Benefits
+---
+Clear Semantic Façade: Catalogs and governance tools see business domains (Sales, Finance), not a list of systems.
+
+Developer Experience (DX): Consumers use predictable, human-readable URLs.
+
+Governance at Scale: You can apply global policies (Security, Logging) once at the Façade level, rather than repeating them across 100 system-specific proxies.
+
 -----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
