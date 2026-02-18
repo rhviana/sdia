@@ -86,7 +86,8 @@ The architectural concepts, terminology, naming strategy, and semantic scope
 defined in this section constitute **documented prior art** as of
 **February 7, 2026**, with formal academic archiving under:
 
-- **DOI:** 10.5281/zenodo.18619641  
+- **DOI:** 10.5281/zenodo.18582492
+- **DOI:** 10.6084/m9.figshare.31331683
 - **Repository:** Zenodo (CERN)  
 
 Subsequent publications, implementations, frameworks, or architectural models
