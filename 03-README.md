@@ -3,9 +3,10 @@ This repository contains original architectural work, proprietary frameworks, an
 
 Before exploring, reusing, or referencing any content, you are strongly required to read the following documents to understand the authorship, the engineering background, and the Intellectual Property (IP) protections governing this work:
 
-📜 NOTICE – Regarding IP rights, DOIs, and usage licenses.
+👤 [ABOUT-ME](./01-ABOUT-ME.md) – To understand the 17-year journey from SAP XI/PI - GRC NF-e ( Brazilian eletronic invoices solution ) to BTP Expert and the context of the " The Commander - Viana" methodology.
 
-👤 ABOUT-ME – To understand the 17-year journey from SAP XI/PI to BTP Expert and the context of the " The Commander" methodology.
+📜 [NOTICE](./02-NOTICE.md) – Regarding IP rights, DOIs, and usage licenses.
+
 
 Please ensure you have reviewed these files before proceeding to the main technical documentation.
 
