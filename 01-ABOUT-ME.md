@@ -29,9 +29,9 @@ materials contained in this repository, including all folders and subfolders.**
 </p>
 <hr>
 <p align="center">
-  <img width="360" alt="Ricardo Viana Professional" src="https://github.com/user-attachments/assets/e565f01c-0424-48cc-afe9-27961ad360d8" />
+  <img width="340" alt="Ricardo Viana Professional" src="https://github.com/user-attachments/assets/e565f01c-0424-48cc-afe9-27961ad360d8" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="550" alt="The Commander Matrix" src="https://github.com/user-attachments/assets/d362bdea-8f80-4674-b6de-4e473bacf3df" />
+  <img width="520" alt="The Commander Matrix" src="https://github.com/user-attachments/assets/d362bdea-8f80-4674-b6de-4e473bacf3df" />
 </p>
 
 <p align="center">
