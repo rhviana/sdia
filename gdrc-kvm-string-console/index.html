@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GDCR – KVM Control Plane (kvm.idinterface)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, select { padding: 4px; }
+    .section { border: 1px solid #ccc; padding: 12px; margin-top: 16px; }
+    .section h3 { margin-top: 0; }
+    pre { background: #f5f5f5; padding: 8px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+  <h2>GDCR – KVM Control Plane for kvm.idinterface</h2>
+
+  <p>
+    <strong>Author:</strong> Ricardo Luz Holanda Viana<br>
+    <strong>Role:</strong> Enterprise Integration Architect · SAP BTP Integration Suite<br>
+    <strong>Creator of:</strong> GDCR · DCRP · PDCP<br>
+    <strong>Architectural scope:</strong> Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).<br>
+    <strong>License:</strong> Creative Commons Attribution 4.0 International (CC BY 4.0)<br>
+    <strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.18582492" target="_blank">zenodo.18582492</a><br>
+    <strong>DOI:</strong> <a href="https://doi.org/10.6084/m9.figshare.31331683" target="_blank">figshare.31331683</a><br>
+  </p>
+
+  <p>
+    This page is part of the <strong>Gateway Domain‑Centric Routing (GDCR)</strong> framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+  </p>
+
+  <hr>
+
+  <!-- MODE 1: HTTP FACADE INPUT -->
+  <div class="section">
+    <h3>Mode 1 – From HTTP Facade</h3>
+    <p>Example: <code>/orders/create/salesforce</code> → <code>dcrporderscsalesforceid01:http</code></p>
+
+    <label>
+      HTTP Facade (format: /entity/action/vendor):
+      <input id="facade" type="text" style="width: 400px" placeholder="/orders/create/salesforce">
+    </label>
+
+    <label>
+      Adapter:
+      <select id="facadeAdapter">
+        <option value="http">http</option>
+        <option value="cxf">cxf</option>
+      </select>
+    </label>
+
+    <label>
+      ID Suffix (example: 01, 02us, 03emea):
+      <input id="facadeIdSuffix" type="text" value="01" style="width: 80px">
+    </label>
+
+    <button id="facadeToggleBtn">Toggle entry (add/remove)</button>
+  </div>
+
+  <!-- MODE 2: MANUAL INPUT -->
+  <div class="section">
+    <h3>Mode 2 – Manual Semantic Input</h3>
+    <p>Define the semantic components manually.</p>
+
+    <label>
+      Business process / domain (entity):
+      <input id="manualEntity" type="text" placeholder="orders">
+    </label>
+
+    <label>
+      Action:
+      <input id="manualAction" type="text" placeholder="create, read, update, delete, sync, approve, notify, ...">
+    </label>
+
+    <label>
+      Vendor:
+      <input id="manualVendor" type="text" placeholder="salesforce">
+    </label>
+
+    <label>
+      Adapter:
+      <select id="manualAdapter">
+        <option value="http">http</option>
+        <option value="cxf">cxf</option>
+      </select>
+    </label>
+
+    <label>
+      ID Suffix:
+      <input id="manualIdSuffix" type="text" value="01" style="width: 80px">
+    </label>
+
+    <button id="manualToggleBtn">Toggle entry (add/remove)</button>
+  </div>
+
+  <h3>Result</h3>
+  <pre id="result"></pre>
+
+  <script>
+    // Same canonical action map used by the GDCR engine
+    var GLOBAL_ACTION_MAP = {
+      // Create family
+      "create": "c", "creates": "c", "creating": "c", "post": "c", "insert": "c",
+      "add": "c", "submit": "c", "new": "c",
+
+      // Read family
+      "read": "r", "reads": "r", "reading": "r", "get": "r", "retrieve": "r",
+      "fetch": "r", "view": "r", "show": "r",
+
+      // Query family (separate from read)
+      "query": "q", "queries": "q", "querying": "q", "search": "q", "find": "q",
+      "list": "q", "filter": "q",
+
+      // Update family
+      "update": "u", "updates": "u", "updating": "u", "put": "u", "modify": "u",
+      "edit": "u", "patch": "u", "change": "u", "revise": "u",
+
+      // Delete family
+      "delete": "d", "deletes": "d", "deleting": "d", "remove": "d", "cancel": "d",
+      "terminate": "d", "destroy": "d",
+
+      // Sync family
+      "sync": "s", "syncs": "s", "syncing": "s", "synchronize": "s", "replicate": "s",
+      "mirror": "s", "refresh": "s",
+
+      // Transfer family
+      "transfer": "t", "transfers": "t", "transferring": "t", "send": "t", "forward": "t",
+      "dispatch": "t", "ship": "t", "deliver": "t", "move": "t",
+
+      // Approve family
+      "approve": "a", "approves": "a", "approving": "a", "authorize": "a", "confirm": "a",
+      "validate": "a", "accept": "a", "endorse": "a",
+
+      // Notify family
+      "notify": "n", "notifies": "n", "notifying": "n", "notification": "n", "alert": "n",
+      "inform": "n", "announce": "n"
+    };
+
+    function normalizeAction(actionRaw) {
+      if (!actionRaw) return '';
+      var a = actionRaw.toLowerCase();
+      var norm = GLOBAL_ACTION_MAP[a];
+      if (norm) return norm;
+      return a.charAt(0); // fallback: first letter
+    }
+
+    async function callToggleApi(valueString, resultEl) {
+      if (!valueString) {
+        resultEl.textContent = 'Nothing to send (empty value).';
+        return;
+      }
+
+      resultEl.textContent = 'Sending: ' + valueString + ' ...';
+
+      try {
+        const response = await fetch('https://<YOUR-APIM-HOST>/insert/kvm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+            // Add Authorization header here if required
+          },
+          body: JSON.stringify({
+            name: 'kvm.idinterface',
+            value: valueString
+          })
+        });
+
+        const text = await response.text();
+        resultEl.textContent = 'Sent: ' + valueString + '\nStatus: ' + response.status + '\nResponse: ' + text;
+      } catch (e) {
+        resultEl.textContent = 'Error calling API: ' + e.message;
+      }
+    }
+
+    // MODE 1 – HTTP FACADE
+    document.getElementById('facadeToggleBtn').addEventListener('click', function () {
+      var facade = document.getElementById('facade').value.trim();
+      var adapter = document.getElementById('facadeAdapter').value;
+      var idSuffix = document.getElementById('facadeIdSuffix').value.trim();
+      var resultEl = document.getElementById('result');
+
+      if (!facade || !adapter || !idSuffix) {
+        resultEl.textContent = 'Please fill facade, adapter and ID suffix.';
+        return;
+      }
+
+      var parts = facade.split('/').filter(Boolean);
+      if (parts.length < 3) {
+        resultEl.textContent = 'Facade must be /entity/action/vendor (e.g. /orders/create/salesforce).';
+        return;
+      }
+
+      var entity = parts[0].toLowerCase();
+      var actionRaw = parts[1];
+      var vendor = parts[2].toLowerCase();
+      var actionNorm = normalizeAction(actionRaw);
+
+      var key = 'dcrp' + entity + actionNorm + vendor + 'id' + idSuffix;
+      var value = key + ':' + adapter;
+
+      callToggleApi(value, resultEl);
+    });
+
+    // MODE 2 – MANUAL
+    document.getElementById('manualToggleBtn').addEventListener('click', function () {
+      var entity = document.getElementById('manualEntity').value.trim().toLowerCase();
+      var actionRaw = document.getElementById('manualAction').value.trim();
+      var vendor = document.getElementById('manualVendor').value.trim().toLowerCase();
+      var adapter = document.getElementById('manualAdapter').value;
+      var idSuffix = document.getElementById('manualIdSuffix').value.trim();
+      var resultEl = document.getElementById('result');
+
+      if (!entity || !actionRaw || !vendor || !adapter || !idSuffix) {
+        resultEl.textContent = 'Please fill all manual fields.';
+        return;
+      }
+
+      var actionNorm = normalizeAction(actionRaw);
+
+      var key = 'dcrp' + entity + actionNorm + vendor + 'id' + idSuffix;
+      var value = key + ':' + adapter;
+
+      callToggleApi(value, resultEl);
+    });
+  </script>
+</body>
+</html>
