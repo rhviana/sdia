@@ -59,19 +59,20 @@ However, I have shifted my focus to centralizing my advanced frameworks and rese
 This ensures technical depth, full control over intellectual property, and integrity that third-party platforms cannot guarantee.
 
 #### The Birth of GDCR: "Order from Chaos"
-I developed the **GDCR**, **DCRP**, and **PDCP** frameworks after witnessing a recurring failure in large-scale implementations: excessive technical debt resulting in *Proxy Sprawl* and unsustainable maintenance costs. My methodology focuses on:
+I developed the **GDCR**, **DCRP**, and **PDCP** frameworks after witnessing a recurring failure in large-scale implementations: excessive technical debt resulting in *Proxy Sprawl, Package Sprawl, User Sprawl, Iflow fragmentation* and unsustainable maintenance costs. My methodology focuses on:
 
+#### For DCRP - SAP BTP Integration Suite - API Management:
 * **Vendor Independence:** Stable facades and URLs that remain unchanged even if the backend evolves.
 * **Extreme Performance:** The **Maverick Phantom JS** routing engine, optimized for a 98% reduction in overhead.
 * **Scientific Architecture:** Methodologies backed by **DOI (Digital Object Identifier)** registration, ensuring validated and proprietary solutions.
 
 #### Technical Arsenal
-* **Languages:** Advanced Groovy Scripting, High-Performance JavaScript (APIM Engines), Node.js (CAP).
-* **Patterns:** Domain-Centric Routing, Event-Driven Architecture (EDA), Package Domain-Centric Pattern (PDCP).
-* **Governance:** API Lifecycle Management, Semantic Observability, Technical User Consolidation.
+* **Languages:** Advanced Groovy Scripting, High-Performance JavaScript (APIM Engines).
+* **Patterns:** Domain-Centric Routing, Domain-Centric Routing Pattern (DCRP), Package Domain-Centric Pattern (PDCP).
+* **Governance:** API Lifecycle Management, Semantic Observability, Technical User and Package Consolidation.
 
 #### Official Publications & Records
-* **SAP e-Bite Co-Author:** *Enterprise Messaging with SAP Business Technology Platform*.
+* **SAP e-Bite Co-Author:** *SAP e-Bite - Enterprise Messaging with SAP Business Technology Platform*.
 * **ORCID ID:** [0009-0009-9549-5862](https://orcid.org/0009-0009-9549-5862)
 * **Framework GDCR (DOI):** [10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492)
 * **Framework PDCP (DOI):** [10.6084/m9.figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
