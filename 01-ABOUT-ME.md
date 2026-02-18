@@ -48,7 +48,7 @@ My journey is not just about tools, but about building scalable ecosystems where
 #### 17 Years of SAP Integration Evolution
 Since **2009**, I have navigated every major milestone in SAP’s integration history, providing me with a unique perspective on the transition from on-premise legacy systems to cloud-native architectures:
 
-* **2009 - 2018:** Mastery of the **SAP XI/PI/PO** era. From **Dual Stack** to **AEX** and **Single Stack**, this foundation allowed me to dominate messaging logic and orchestration from the ground up.
+* **2009 - 2018:** Mastery of the **SAP XI/PI/PO - GRC NF-e (Brazil Solution)** era. From **Dual Stack** to **AEX** and **Single Stack**, this foundation allowed me to dominate messaging logic and orchestration from the ground up.
 * **2019:** Early adoption and transition to **SAP CPI** (Cloud Integration).
 * **2021:** Deep dive into **SAP Event Mesh (EM)**. During this phase, I was an active contributor to the SAP community and **co-authored the SAP e-Bite: "Enterprise Messaging with SAP BTP"**, focusing on CAP Node.js integrations.
 * **2025 - 2026:** Consolidation as an **SAP BTP Integration Suite Expert (All Capabilities)**: CPI, APIM, Integration Advisor (IA), Event Mesh, and Advanced Event Mesh (AEM).
