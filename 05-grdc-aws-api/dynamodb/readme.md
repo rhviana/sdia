@@ -1,5 +1,79 @@
 <img width="845" height="502" alt="image" src="https://github.com/user-attachments/assets/2cc869b3-0a35-40a6-a848-f993b6bef120" />
 
+FINANCE - 4 ROUTES
+Item 1:
+
+Copy{
+  "route": {"S": "payments/notify/stripe"},
+  "interface_id": {"S": "dcrppaymentsnstripeid03"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "finances"}
+}
+Item 2:
+
+Copy{
+  "route": {"S": "payments/notify/s4hana"},
+  "interface_id": {"S": "dcrppaymentsns4hanaid04"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "finances"}
+}
+Item 3:
+
+Copy{
+  "route": {"S": "expenses/create/coupa"},
+  "interface_id": {"S": "dcrpexpensesccoupaid07"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "finances"}
+}
+Item 4:
+
+Copy{
+  "route": {"S": "taxes/create/avalara"},
+  "interface_id": {"S": "dcrptaxescavalaraid10"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "finances"}
+}
+SALES - 5 ROUTES
+Item 5:
+
+Copy{
+  "route": {"S": "orders/create/salesforce"},
+  "interface_id": {"S": "dcrporderscsalesforceid01"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "sales"}
+}
+Item 6:
+
+Copy{
+  "route": {"S": "orders/update/salesforceus"},
+  "interface_id": {"S": "dcrpordersusalesforceemeaid02"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "sales"}
+}
+Item 7:
+
+Copy{
+  "route": {"S": "payments/notify/stripe"},
+  "interface_id": {"S": "dcrppaymentsnstripeid04"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "sales"}
+}
+Item 8:
+
+Copy{
+  "route": {"S": "deliveries/transfer/fedex"},
+  "interface_id": {"S": "dcrpdeliveriestfedexid06"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "sales"}
+}
+Item 9:
+
+Copy{
+  "route": {"S": "returns/create/shopify"},
+  "interface_id": {"S": "dcrpreturnscshopifyid12"},
+  "protocol": {"S": "http"},
+  "domain": {"S": "sales"}
+}
 
 
 kvm-bulk-load.json
