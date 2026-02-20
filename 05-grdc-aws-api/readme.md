@@ -4,6 +4,40 @@
 <img width="577" height="328" alt="image" src="https://github.com/user-attachments/assets/5ed36407-ea5f-4e68-808a-fad19eee7522" />
 <img width="1141" height="482" alt="image" src="https://github.com/user-attachments/assets/d080530a-9a8d-4412-94a6-67ef00f9f489" />
 
+
+{
+  "info": {
+    "name": "AWS GDCR - HTTP Only (12 routes)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "base_url_finance", "value": "https://rtp379zm9a.execute-api.ap-northeast-1.amazonaws.com"},
+    {"key": "base_url_sales", "value": "https://78cp1pnfd0.execute-api.ap-northeast-1.amazonaws.com"}
+  ],
+  "item": [
+    {
+      "name": "Finance (4 routes)",
+      "item": [
+        {"name": "01. POST /finances/payments/notify/stripe", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"payment_id\":\"PAY-001\",\"amount\":2500.00}"}, "url": "{{base_url_finance}}/finances/payments/notify/stripe"}},
+        {"name": "02. POST /finances/payments/notify/s4hana", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"payment_id\":\"PAY-002\",\"amount\":10000.00}"}, "url": "{{base_url_finance}}/finances/payments/notify/s4hana"}},
+        {"name": "03. POST /finances/expenses/create/coupa", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"expense_id\":\"EXP-003\",\"amount\":1200.00}"}, "url": "{{base_url_finance}}/finances/expenses/create/coupa"}},
+        {"name": "04. POST /finances/taxes/create/avalara", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"transaction_id\":\"TAX-004\",\"amount\":10000.00}"}, "url": "{{base_url_finance}}/finances/taxes/create/avalara"}}
+      ]
+    },
+    {
+      "name": "Sales (8 routes)",
+      "item": [
+        {"name": "01. POST /sales/orders/create/salesforce", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"order_id\":\"ORD-001\",\"amount\":15000.00}"}, "url": "{{base_url_sales}}/sales/orders/create/salesforce"}},
+        {"name": "02. PUT /sales/orders/update/salesforceus", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"order_id\":\"ORD-002\",\"status\":\"Shipped\"}"}, "url": "{{base_url_sales}}/sales/orders/update/salesforceus"}},
+        {"name": "03. POST /sales/payments/notify/stripe", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"payment_id\":\"PAY-003\",\"amount\":5000.00}"}, "url": "{{base_url_sales}}/sales/payments/notify/stripe"}},
+        {"name": "04. POST /sales/deliveries/transfer/fedex", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"delivery_id\":\"DEL-004\",\"tracking\":\"FDX789\"}"}, "url": "{{base_url_sales}}/sales/deliveries/transfer/fedex"}},
+        {"name": "05. POST /sales/returns/create/shopify", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"return_id\":\"RET-005\",\"reason\":\"Defective\"}"}, "url": "{{base_url_sales}}/sales/returns/create/shopify"}}
+      ]
+    }
+  ]
+}
+
+
 import json
 import requests
 import base64
