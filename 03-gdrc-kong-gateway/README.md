@@ -78,7 +78,7 @@ High-performance API gateway implementing GDCR (Generic Dynamic Connector Routin
 
 | Platform | Requests | Avg Latency | Cost/Month |
 |----------|----------|-------------|------------|
-| SAP APIM (Phantom v14.2) | 73,000 | 68ms | Included in BTP CPI as Backend |
+| SAP APIM (Phantom v14.2) | 106.000+ | 77ms | Included the call to CPI as Backend |
 | Kong (Lua Local) | 30,000 | 15ms | $0 (local) |
 | Kong (Redis) | 1,000,000 | 12ms | $0 (local) |
 | Apigee Intermediate | TBD | ~5-10ms | $1,460 |
