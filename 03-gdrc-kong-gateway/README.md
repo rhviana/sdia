@@ -67,7 +67,7 @@ High-performance API gateway implementing GDCR (Generic Dynamic Connector Routin
 
 | Metric | Lua Local (30k) | Redis (1M) |
 |--------|-----------------|------------|
-| Total Requests | 30,000 | 1,000,000 |
+| Total Requests | 33,000+ | 1,000,000 |
 | Success Rate | 100% | 100% |
 | Avg Latency | ~15ms | ~12ms |
 | P95 Latency | 28ms | 25ms |
@@ -78,7 +78,7 @@ High-performance API gateway implementing GDCR (Generic Dynamic Connector Routin
 
 | Platform | Requests | Avg Latency | Cost/Month |
 |----------|----------|-------------|------------|
-| SAP APIM (Phantom v14.2) | 73,000 | 68ms | Included in BTP |
+| SAP APIM (Phantom v14.2) | 73,000 | 68ms | Included in BTP CPI as Backend |
 | Kong (Lua Local) | 30,000 | 15ms | $0 (local) |
 | Kong (Redis) | 1,000,000 | 12ms | $0 (local) |
 | Apigee Intermediate | TBD | ~5-10ms | $1,460 |
@@ -99,3 +99,4 @@ docker restart kong-gateway
 
 # Run test
 newman run tests/postman/collection-30k.json -n 1200 -r cli
+```
