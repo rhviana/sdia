@@ -1,3 +1,9 @@
+<img width="1157" height="850" alt="image" src="https://github.com/user-attachments/assets/c7f1ce58-0b32-45df-bb4e-bcb6daf798cc" />
+<img width="1047" height="443" alt="image" src="https://github.com/user-attachments/assets/a514db48-2f5e-4115-8d12-0836beb6f76a" />
+
+<img width="577" height="328" alt="image" src="https://github.com/user-attachments/assets/5ed36407-ea5f-4e68-808a-fad19eee7522" />
+<img width="1141" height="482" alt="image" src="https://github.com/user-attachments/assets/d080530a-9a8d-4412-94a6-67ef00f9f489" />
+
 import json
 import requests
 import base64
