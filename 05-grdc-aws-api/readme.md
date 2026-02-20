@@ -1,3 +1,7 @@
+Integracao Lambada AWS com SAP CPI resultado:
+<img width="1453" height="653" alt="image" src="https://github.com/user-attachments/assets/a09114b9-956e-4d55-8eb2-8a1f17e645b3" />
+
+
 ```text
 {
   "info": {
