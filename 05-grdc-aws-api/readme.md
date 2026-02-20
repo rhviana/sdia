@@ -1,3 +1,184 @@
+{
+  "info": {
+    "name": "AWS GDCR - 5K Test (9 routes)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url_finance",
+      "value": "https://rtp379zm9a.execute-api.ap-northeast-1.amazonaws.com"
+    },
+    {
+      "key": "base_url_sales",
+      "value": "https://78cp1pnfd0.execute-api.ap-northeast-1.amazonaws.com"
+    }
+  ],
+  "item": [
+    {
+      "name": "Finance R2R (4 routes)",
+      "item": [
+        {
+          "name": "01. POST /finances/payments/notify/stripe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"payment_id\":\"PAY-STRIPE-{{$randomInt}}\",\"amount\":{{$randomInt}}.00,\"status\":\"completed\",\"currency\":\"USD\"}"
+            },
+            "url": "{{base_url_finance}}/finances/payments/notify/stripe"
+          }
+        },
+        {
+          "name": "02. POST /finances/payments/notify/s4hana",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"payment_id\":\"PAY-S4-{{$randomInt}}\",\"amount\":{{$randomInt}}.00,\"currency\":\"EUR\"}"
+            },
+            "url": "{{base_url_finance}}/finances/payments/notify/s4hana"
+          }
+        },
+        {
+          "name": "03. POST /finances/expenses/create/coupa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"expense_id\":\"EXP-COUPA-{{$randomInt}}\",\"amount\":{{$randomInt}}.00,\"category\":\"Travel\"}"
+            },
+            "url": "{{base_url_finance}}/finances/expenses/create/coupa"
+          }
+        },
+        {
+          "name": "04. POST /finances/taxes/create/avalara",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"transaction_id\":\"TAX-AVA-{{$randomInt}}\",\"amount\":{{$randomInt}}.00,\"tax_rate\":0.0875}"
+            },
+            "url": "{{base_url_finance}}/finances/taxes/create/avalara"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sales O2C (5 routes)",
+      "item": [
+        {
+          "name": "01. POST /sales/orders/create/salesforce",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"order_id\":\"ORD-SF-{{$randomInt}}\",\"customer\":\"ACME Corp\",\"amount\":{{$randomInt}}.00}"
+            },
+            "url": "{{base_url_sales}}/sales/orders/create/salesforce"
+          }
+        },
+        {
+          "name": "02. PUT /sales/orders/update/salesforceus",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"order_id\":\"ORD-SFUS-{{$randomInt}}\",\"status\":\"Shipped\",\"tracking\":\"UPS{{$randomInt}}\"}"
+            },
+            "url": "{{base_url_sales}}/sales/orders/update/salesforceus"
+          }
+        },
+        {
+          "name": "03. POST /sales/payments/notify/stripe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"payment_id\":\"PAY-STRIPE-{{$randomInt}}\",\"amount\":{{$randomInt}}.00,\"status\":\"success\"}"
+            },
+            "url": "{{base_url_sales}}/sales/payments/notify/stripe"
+          }
+        },
+        {
+          "name": "04. POST /sales/deliveries/transfer/fedex",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"delivery_id\":\"DEL-FDX-{{$randomInt}}\",\"tracking\":\"FDX{{$randomInt}}\",\"status\":\"in_transit\"}"
+            },
+            "url": "{{base_url_sales}}/sales/deliveries/transfer/fedex"
+          }
+        },
+        {
+          "name": "05. POST /sales/returns/create/shopify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"return_id\":\"RET-SHOP-{{$randomInt}}\",\"order_id\":\"ORD-{{$randomInt}}\",\"reason\":\"Defective\"}"
+            },
+            "url": "{{base_url_sales}}/sales/returns/create/shopify"
+          }
+        }
+      ]
+    }
+  ]
+}
 <img width="1157" height="850" alt="image" src="https://github.com/user-attachments/assets/c7f1ce58-0b32-45df-bb4e-bcb6daf798cc" />
 <img width="1047" height="443" alt="image" src="https://github.com/user-attachments/assets/a514db48-2f5e-4115-8d12-0836beb6f76a" />
 
