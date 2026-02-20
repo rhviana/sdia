@@ -1,3 +1,4 @@
+```text
 {
   "info": {
     "name": "AWS GDCR - 5K Test (9 routes)",
@@ -179,6 +180,9 @@
     }
   ]
 }
+```
+<img width="738" height="245" alt="image" src="https://github.com/user-attachments/assets/de52e982-fa8d-4a58-93cd-f6d88f3c6c9f" />
+
 <img width="1157" height="850" alt="image" src="https://github.com/user-attachments/assets/c7f1ce58-0b32-45df-bb4e-bcb6daf798cc" />
 <img width="1047" height="443" alt="image" src="https://github.com/user-attachments/assets/a514db48-2f5e-4115-8d12-0836beb6f76a" />
 
