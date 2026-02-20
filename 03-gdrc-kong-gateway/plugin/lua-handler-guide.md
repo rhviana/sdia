@@ -1,14 +1,10 @@
-Vamos separar em DOIS arquivos README diferentes, um para cada handler, bem simples:
-
-1. lua-handler/README.md (para o handler que usa tabela Lua)
-text
 # Lua Handler
 
 Kong GDCR plugin using an in-memory Lua routing table.
 
 ## Purpose
 
-- 30k message validation test  
+- 33k message validation test  
 - Static routing table embedded in Lua code  
 - Target size: up to ~100 routes
 
@@ -114,6 +110,10 @@ docker cp lua-handler/handler-lua-local.lua \
 
 docker restart kong-gateway
 ```
+<img width="1303" height="454" alt="image" src="https://github.com/user-attachments/assets/04ee7318-d2f2-4204-976e-b36c2eadc5e9" />
+<img width="960" height="1125" alt="image" src="https://github.com/user-attachments/assets/3f374507-50a8-411a-ab4e-d6a545b20216" />
+<img width="1466" height="927" alt="image" src="https://github.com/user-attachments/assets/81af733b-518a-4e79-acb2-ea3a7872aa0f" />
+<img width="906" height="508" alt="image" src="https://github.com/user-attachments/assets/5880854c-10e4-4f37-b786-057b8e0fe391" />
 
 
 
