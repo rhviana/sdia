@@ -1,6 +1,35 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *
+ * ⚠️ PROOF OF CONCEPT - NOT PRODUCTION-OPTIMIZED
+ *
+ * VERSION: 5.0 — Basic Implementation
+ * 
+ * This code demonstrates the DCRP routing pattern with minimal dependencies.
+ * 
+ * ✅ WORKS FOR: POC, testing, small-scale deployments (<100 req/min)
+ * 
+ * ⚠️ LIMITATIONS:
+ * - Linear KVM lookup (O(n)) — slow for 100+ routes
+ * - No cache layer — every request = full KVM parse
+ * - No action normalization — must match exact paths
+ * - Basic error handling — no circuit breaker, retry logic
+ * - Average latency: ~200ms (vs 68ms Maverick™)
+ * 
+ * 🚀 FOR PRODUCTION:
+ * - Use Maverick™ v15.1 (binary search, cache, 68ms avg)
+ * - Contact: rhviana@gmail.com
+ * - Enterprise licensing: €50K-€500K
+ * 
+ * 📚 LEARN MORE:
+ * - DOI: 10.5281/zenodo.18661136
+ * - GitHub: https://github.com/rhviana/gdcr
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
  * THE DCRP ROUTING ENGINE
  *
  * MISSION: Transform static gateway infrastructure into intelligent,
