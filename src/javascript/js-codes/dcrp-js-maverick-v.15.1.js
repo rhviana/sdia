@@ -1,3 +1,28 @@
+/**
+ * ============================================================================
+ * ⚠️ REFERENCE IMPLEMENTATION - NOT PRODUCTION-READY
+ * ============================================================================
+ * 
+ * This code demonstrates the GDCR/DCRP architectural pattern.
+ * 
+ * ⚠️ LIMITATIONS:
+ * - No error handling for production
+ * - No monitoring/observability
+ * - No deployment automation
+ * - No enterprise features (multi-tenant, RBAC, audit)
+ * - Performance not optimized for high-scale
+ * 
+ * 📧 For production-grade implementation:
+ * Contact: rhviana@gmail.com
+ * 
+ * 💰 Commercial licensing available for:
+ * - Full implementation support
+ * - Enterprise features
+ * - Training & workshops
+ * - 24/7 support & maintenance
+ * 
+ * ============================================================================
+ */
 
 /**
  * ============================================================================
