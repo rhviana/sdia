@@ -100,17 +100,16 @@ misrepresentation**, or **intellectual misattribution**, depending on context.
 -----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+**Role:** Enterprise Integration Architect · SAP BTP Integration Suite Expert  
+**Creator of:** GDCR · DCRP · PDCP · DDCR · Maverick Phantom™ Engine  
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+**Validation:** 1,174,782+ requests · 100% success · 19ms avg (Redis/Kong/SAP)
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:**  [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
+**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
+**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18661136) · [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
 
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+*This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework. 
+Reuse permitted only with proper attribution to original work and associated DOI.*
 
 -----------------------------------
 
----
