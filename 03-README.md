@@ -29,23 +29,11 @@ Gateway Domain-Centric Routing (GDCR)
 
 A **vendor-agnostic, metadata-driven architecture** for enterprise **API & orchestration layers**, enabling **Domain-Centric Governance**.
 
-**Contents**
-
-- [Online Executive Summary](#online-executive-summary)
-- [What is GDCR ?](#what-is-gdcr-)
-- [Domain-Driven Centric Router (DDCR)](#domain-driven-centric-router-ddcr)
-- [SAP-Specific Architecture (DCRP + PDCP)](#sap-specific-architecture-diagram-dcrp--pdcp)
-- [The 7 Core GDCR Patterns](#the-7-core-gdcr-patterns)
-- [Repository Structure](#-repository-structure)
-- [Documentation](#-documentation)
-- [Stress Tests & Results](#key-highlights)
-- [Academic Citation](#academic-citation)
-- [Contact](#-contact)
 
 Online Executive Summary
 -----------------------------------
 
-Validated across 106,190+ messages, 44 vendor integrations http facades, 4 business domains proxies, 4 domain-aligned integration packages, and 44 domain-governed iFlows endpoints, GDCR achieved a 100% success rate with zero routing errors, zero KVM failures, and zero timeouts, executed through four distinct JavaScript policy implementations.
+**Validated:** 1,174,782+ requests | 100% success rate | 0 routing errors
 
 GDCR is vendor-agnostic by design and unifies Domain-Driven Design (DDD) alignment, domain-centric routing, metadata-driven control planes, architectural fraud prevention (semantic URL abstraction), immutable integration identities, and formal architectural decision records into a single, cohesive enterprise integration governance framework.
 
