@@ -96,7 +96,7 @@ docker-compose up -d
 # Deploy plugin
 docker cp plugin/handler-lua-local.lua kong-gateway:/usr/local/share/lua/5.1/kong/plugins/gdcr/handler.lua
 docker restart kong-gateway
-
+```
 <img width="1320" height="881" alt="image" src="https://github.com/user-attachments/assets/f3062332-5e60-41a5-8f4f-a638ff914c64" />
 <img width="1320" height="881" alt="image" src="https://github.com/user-attachments/assets/f3062332-5e60-41a5-8f4f-a638ff914c64" />
 
@@ -105,4 +105,4 @@ docker restart kong-gateway
 
 # Run test
 newman run tests/postman/collection-30k.json -n 1200 -r cli
-```
+
