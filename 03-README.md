@@ -66,24 +66,6 @@ Complete documentation available in [`/doc`](./doc):
 
 Key Highlights:
 -----------------------------------
-
-## No-Support Policy
-
-This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
-
-I do not provide free consulting:
-
-❌Implementation support
-
-❌Consulting services
-
-❌Troubleshooting assistance
-
-❌ Custom development
-
-For commercial inquiries contact me.
-
----
 ### Academic Citation
 
 If you use this architecture in your research or implementation, please cite:
@@ -128,6 +110,24 @@ For commercial inquiries only: rhviana@gmail.com
 
 ----------------------------------
 
+## No-Support Policy
+
+This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+
+I do not provide free consulting:
+
+❌ Implementation support
+
+❌ Consulting services
+
+❌ Troubleshooting assistance
+
+❌ Custom development
+
+For commercial inquiries contact me.
+
+----------------------------------
+
 **Author:** Ricardo Luz Holanda Viana  
 **Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
 **Creator of:** GDCR · DCRP · PDCP  
@@ -140,4 +140,4 @@ For commercial inquiries only: rhviana@gmail.com
 
 This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
 
----
+----------------------------------
