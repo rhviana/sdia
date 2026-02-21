@@ -1,4 +1,13 @@
-<img width="845" height="502" alt="image" src="https://github.com/user-attachments/assets/2cc869b3-0a35-40a6-a848-f993b6bef120" />
+Dynambo function withou connection with destination
+
+<img width="1091" height="422" alt="image" src="https://github.com/user-attachments/assets/93d36def-b321-4cba-9c4b-1234f792d7f5" />
+
+<img width="802" height="377" alt="image" src="https://github.com/user-attachments/assets/6b7150a6-a862-4997-a570-71f3a5675ffd" />
+
+<img width="732" height="461" alt="image" src="https://github.com/user-attachments/assets/b11d37c1-98c3-4b6f-b7d5-4298c1945e00" />
+<img width="865" height="435" alt="image" src="https://github.com/user-attachments/assets/a2cce6ed-a89e-4eef-b755-76c1c36e1a77" />
+
+
 🔥 CONFIRMAÇÃO - LAMBDA + DYNAMODB + CPI = 100% OPERACIONAL
 Copy{
   "statusCode": 200,
@@ -107,6 +116,8 @@ Copy{
   "protocol": {"S": "http"},
   "domain": {"S": "sales"}
 }
+
+<img width="881" height="433" alt="image" src="https://github.com/user-attachments/assets/66a6ac1c-41a5-4aae-9968-aefffea6b4a0" />
 
 
 kvm-bulk-load.json
