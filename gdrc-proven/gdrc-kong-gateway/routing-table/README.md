@@ -1,4 +1,4 @@
-# Kong GDCR Routing Table
+/# Kong GDCR Routing Table
 
 This project defines a single routing table used by Kong Gateway to resolve
 business API calls into downstream systems using the GDCR v15.3 pattern.
