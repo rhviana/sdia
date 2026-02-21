@@ -1,5 +1,8 @@
 Dynambo function withou connection with destination
 
+<img width="1526" height="906" alt="image" src="https://github.com/user-attachments/assets/39d40ce5-d93b-4885-9457-6b6487fe5cf0" />
+
+
 <img width="1091" height="422" alt="image" src="https://github.com/user-attachments/assets/93d36def-b321-4cba-9c4b-1234f792d7f5" />
 
 <img width="802" height="377" alt="image" src="https://github.com/user-attachments/assets/6b7150a6-a862-4997-a570-71f3a5675ffd" />
