@@ -1,5 +1,15 @@
 Dynambo function withou connection with destination
-
+```text
+GDCR (Entrada) ──► DDCR (Processamento) ──► ODCP (Execução)
+     │                    │                       │
+     │                    │                       │
+   Fachada            Roteamento             Orquestração
+   /sales/...         KVM/Redis/Dynamo        iFlows, packages
+   Domínios           Metadata lookup         Naming conventions
+   URLs semânticas    0.2ms translation       User identities
+                                               Flow DNA
+                                               All middleware objects
+```
 <img width="1526" height="906" alt="image" src="https://github.com/user-attachments/assets/39d40ce5-d93b-4885-9457-6b6487fe5cf0" />
 
 
