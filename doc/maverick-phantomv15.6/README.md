@@ -24,30 +24,6 @@
 - **Zero-Allocation**: Flat variable extraction (no objects, no arrays)
 - **Single-Pass**: KVM parsed once with early exit (O(1) average)
 
-### **Path Format:**
-*98% faster than static patterns | 250x-400x faster than community edition*
-
----
-
-### **Path Format:**
-/{domain}/{entity}/{action}/{vendor}[/{id}][/extra][?query]
-
-Examples: /sales/orders/create/salesforce /finance/payments/notify/stripe/INV-12345 /logistics/shipments/transfer/fedex?trackingId=ABC123
-
-
-### **Generated CPI Endpoint:**
-https://cpi-host/{adapter}/dcrp/{process}/{entity}/{action}/id{kvmId}[/{id}][?query]
-
-Real example: Input: POST /sales/orders/create/salesforce Output: https://cpi.../http/dcrp/o2c/orders/c/id01 (routing: 2.3ms)
-
-
----
-
-**Real example:**
-- **Input:** `POST /sales/orders/create/salesforce`
-- **Output:** `https://cpi.../http/dcrp/o2c/orders/c/id01`
-- **Routing time:** 0.3ms
-
 ---
 
 ## 🔥 Performance Metrics (Validated Feb 2026)
@@ -154,43 +130,12 @@ Result: Regional-aware routing with zero config
 
 ## 📊 Validation Results (Feb 2026)
 
-**Production Environment:**
 - **33,000+ API calls** validated
 - **99.92% success rate** (27 failures from backend timeouts, not routing)
 - **0.2-0.8ms average routing latency** (measured via x-dcrp-latency header)
 - **Zero memory leaks** in 18h soak test
 - **Zero GC pauses** (no object allocations)
 
-**Load Testing:**
-- **500K+ requests/minute** sustained
-- **P95 latency: 1.2ms** (routing only)
-- **P99 latency: 2.5ms** (routing only)
-- **Zero errors** under 100x normal load
-
----
-
-## 📝 Version History
-
-| Version | Date | Key Features |
-|---------|------|--------------|
-| v5.0 | 2025-12 | Community edition (baseline, ~200ms) |
-| v12.0 | 2026-02-22 | **Phantom Edition** - Production ready |
-| | | 241-verb action map |
-| | | Regional suffix auto-detection |
-| | | Zero-allocation architecture |
-| | | **<1ms routing latency** |
-
----
-
-## 👤 Author
-
-**Ricardo Luz Holanda Viana**  
-📧 rhviana@gmail.com  
-🔗 [github.com/rhviana/gdcr](https://github.com/rhviana/gdcr)  
-📜 DOI: [10.5281/zenodo.18619641](https://doi.org/10.5281/zenodo.18619641)  
-📄 License: CC BY 4.0
-
----
 
 ## 🏆 Performance Guarantee
 
@@ -200,8 +145,6 @@ Result: Regional-aware routing with zero config
 **Phantom v12: Where microseconds matter.**
 
 ## 💼 Private Licensing & Enterprise Support
-
-### **Available for Commercial Licensing**
 
 The DDCR Meta-Driven-Engine Phantom v12 is available for **private licensing** and **enterprise deployment**. This includes:
 
