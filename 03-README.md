@@ -54,24 +54,6 @@ This routing logic is applied consistently across both the Gateway layer and the
 </p>
 
 
-## Core Patterns applied in SAP BTP Integration Suite ( APIM and CPI )
-
-**[Scientific Validation](./doc/academic-paper-zenodo/)**
-
-- Peer-reviewed documentation archived at **Zenodo (CERN)**
-- Peer-reviewed documentation archived at **Figshare(CERN)**
-
-### SAP-specific benefits (DCRP + PDCP)
-
-- **DCRP (SAP API Management):** consolidates many system-centric proxies into a few domain façades, with metadata-driven routing (KVM + JS) and fast-fail security (sender × domain/entity/action) directly at the gateway.
-
-- **[Gateway Layer (DCRP) - SAP BTP APIM - Specific](./src/gateway-sap-apim/)**
-
-- **PDCP (SAP Cloud Integration):** replaces “package per vendor/app” with “one package per domain”, using iFlow DNA naming so each KVM key in DCRP points to a clearly indexed CPI flow, cutting package/iFlow sprawl while keeping domain ownership clear.
-
-- **[Backend Layer (PDCP) - SAP BTP APIM - Specific](./src/backend-sap-cpi/)**
-
-
 📖 Documentation
 -----------------------------------
 
@@ -83,29 +65,6 @@ Complete documentation available in [`/doc`](./doc):
 👉 **[Compliance](./doc/compliance/AUDIT-COMPLIANCE.md)** - Audit trail & GDPR
 
 Key Highlights:
------------------------------------
-
-- ⚡ 2-5ms validation (vs 150-300ms OAuth2)
-- 🔒 Zero external dependencies (KVM fast-fail)
-- 📊 90% proxy reduction (4 proxies vs 400)
-- 🌐 Multi-vendor (SAP APIM, Apigee, AWS, Azure, Any)
-
-
-Note:
------------------------------------
-
-Metrics are weighted across Milestones M1–M4.
-M5 includes additional SAP BTP Trial Tenant overhead.
-
-**[The Stress Test Result)](./stress-test/)**: - 5 different tested to valided the soluttion and the results above.
-
-Final Technical Conclusion
-
------------------------------------
-
-- The sandbox validation proves that the **Maverick Engine™ (v14.2 baseline)** provides a **90% reduction in infrastructure complexity** while maintaining a **100% success rate** across **33,000+ messages**.
-- These results are now **immortalized** under **[DOI: 10.5281/zenodo.18619641](https://zenodo.org/records/18619641)**.
-
 -----------------------------------
 
 ## No-Support Policy
@@ -167,29 +126,7 @@ Author: Ricardo Luz Holanda Viana
 📝 Medium: @rhviana
 For commercial inquiries only: rhviana@gmail.com
 
------------------------------------
-
-Maverick Phantom Edition v15.2 - Now Available
-
------------------------------------
-
-**GDCR Maverick Phantom Edition v15.2** is available for early access.
-
-### ✅ Proven at Scale
-- **73,000 messages** validated successfully
-- **2-5ms average latency** (P95 ≤8ms)
-- **Zero operational errors** or routing failures
-- **100% success rate** across all scenarios
-
-### 🔬 Status
-- Production-ready with 90% code completion
-- Under last adjustaments and performance check
-- Optimization phase targeting 1-2ms performance
-- Early access available for enterprise pilots and collaboration
-
-Contact me privately.
-
------------------------------------
+----------------------------------
 
 **Author:** Ricardo Luz Holanda Viana  
 **Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
