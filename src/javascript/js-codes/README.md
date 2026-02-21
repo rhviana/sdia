@@ -42,35 +42,6 @@ This version proves **conceptual correctness**, not runtime excellence.
 
 ---
 
-### 2️⃣ DCRP v15.1 — Maverick Reference Engine (Robust POC)
-
-**File:**  
-src/javascript/js-codes/dcrp-js-maverick-v15.1.js
-
-
-**Purpose:**  
-A significantly more **robust reference implementation**, demonstrating
-how the DCRP model behaves under **realistic load and complexity**.
-
-**Characteristics:**
-- Pre-initialized global action map (semantic normalization)
-- Metadata-driven deterministic routing
-- Optimized string handling (no regex in hot path)
-- Cache with TTL and hash-based invalidation
-- Built-in observability (latency, cache hit, versioning headers)
-- Strict fail-fast semantics
-
-**Scope & Usage:**
-- Still a **POC / reference implementation**
-- Handles **500+ concurrent calls** across multiple HTTP facades
-- Stable as long as consumers respect the **metadata-driven contract**
-- Suitable for architectural benchmarking and validation
-
-This version demonstrates **engineering maturity**, but still does not expose
-the full production-grade logic.
-
----
-
 ### 3️⃣ DCRP Security Shield — Experimental (Do NOT Use)
 
 **File:**  
