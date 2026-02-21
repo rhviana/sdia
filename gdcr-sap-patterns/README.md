@@ -1,3 +1,88 @@
+
+GDCR Architectural Scope
+-----------------------------------
+
+Gateway Domain-Centric Routing (GDCR) is not a single pattern or implementation.
+It is a composite architectural framework designed to govern enterprise integration landscapes at scale.
+
+DCRP and PDCP are its core execution patterns, but GDCR also formalizes:
+
+- metadata as a control plane
+- naming conventions as governance mechanisms
+- immutable integration identities (iFlow DNA)
+- documented architectural decisions (ADR)
+
+Together, these elements operate as one cohesive system, preventing uncontrolled architectural entropy.
+
+
+SAP-Specific Architecture Diagram (DCRP + PDCP)
+The diagrams above describe the vendor-agnostic GDCR + DDCR framework.
+The following architecture diagram shows one concrete realization on
+SAP BTP Integration Suite, where:
+
+- DCRP implements the GDCR gateway layer (SAP API Management).
+- DDCR is implemented via JavaScript routing logic + KVM (Maverick Engine).
+- PDCP implements the orchestration layer on SAP Cloud Integration (CPI).
+-----------------------------------
+
+```text
+                         _________________________________________________________
+                        |    External Consumers / AI Agents | Applications        |
+                        |                 40 external vendors                     |
+                        |     Only - 4 endpoints DCRP-Proxies / many paths        |
+                        |___________________________ _____________________________|
+                                                    |
+                                      ______________v_______________
+                                     |   DCRP Layer (API Gateway)    |
+                                     |  SAP BTP IS - API Management  |
+                                     |  ___________________________  |
+                                     | | 4 Domain Proxies:         | |
+                                     | | * Sales      10+ bprocess | |
+                                     | | * Finance    10+ bprocess | |
+                                     | | * Logistics  10 bprocess  | |
+                                     | | * Customer   10 bprocess  | |
+                                     | |___________________________| |
+                                     |    Metadata-Driven Routing    |
+                                     |_______________ _______________|
+                                                     |
+                                      _______________v_______________
+                                     |      PDCP Layer (SAP CPI)     |
+                                     | Integration / Orchestration   |
+                                     |  ___________________________  |
+                                     | | 4 Domain Packages:        | |
+                                     | | - Sales      10 Iflows    | |
+                                     | | - Finance    10 Iflows    | |
+                                     | | - Logistics  10 Iflows    | |
+                                     | | - Customer   10 Iflows    | |
+                                     | |___________________________| |
+                                     |      Domain-Driven Design     |
+                                     |_______________ _______________|
+                                                     |
+                              _______________________|_______________________
+                             |                       |                       |
+                      _______v_______         _______v_______         _______v_______
+                     |  Salesforce   |       |      SAP      |       |    Custom     |
+                     |      API      |       |    S/4HANA    |       |    Backend    |
+                     |_______________|       |_______________|       |_______________|
+
+```
+
+The 7 Core GDCR Patterns
+-----------------------------------
+
+GDCR is composed of seven complementary architectural patterns:
+- Domain-Centric Routing Pattern (DCRP) — Semantic routing at the gateway layer
+- Package Domain-Centric Pattern (PDCP) — Domain-based backend consolidation
+- Metadata-Driven Routing Pattern — Externalized routing decisions (KVM / KV Store)
+- Action Normalization Pattern — Canonical business actions (C, R, U, D, A…)
+- Proxy Consolidation Pattern — One proxy per strategic domain
+- Immutable Integration Identity Pattern (iFlow DNA) — Permanent, non-reusable flow identities
+- Architectural Decision Record (ADR) Pattern — Explicit architectural traceability
+
+These patterns are interdependent but also can work isolated of each other - DCRP and PDCP and the ideal scenario be applied together for full domain-centric layer from the gateway, orquestraction connected with CORE BUSINESS ERP.
+
+
+
 API Sprawl vs Domain-Centric Routing (DCRP - SAP)
 -----------------------------------
 
