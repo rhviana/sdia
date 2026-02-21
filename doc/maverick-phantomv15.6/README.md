@@ -5,6 +5,16 @@
 ### **Routing Latency: 0.2-0.8ms** (P95: 1.2ms, P99: 2.5ms)
 ---
 
+| Version | Period | Latency | Status | Key Innovation |
+|---------|--------|---------|--------|----------------|
+| **v5.0** | Q1 2025 | 30-50ms | ✅ Open Source (POC) | 11 delimiters, dynamic path matching |
+| **v7.1** | Q2 2025 | 20-30ms | ❌ Deprecated | Standardized domain-centric keys |
+| **v8.0** | Q3 2025 | 8-15ms | ❌ Deprecated | Single loop + indexOf (zero regex) |
+| **v14.2** | Q4 2025 | 8-15ms | ✅ Stable (DOI) | Global cache (95% hit), 33k+ validations |
+| **v15.0** | Jan 2026 | 15-25ms | ❌ Superseded | Binary search O(log n), ES6 Map |
+| **v15.1** | Feb 2026 | 15-26ms | ✅ Academic Gold | Case-insensitive, 7-phase tracking, Security Shield |
+| **v15.2** 🔒 | Feb 2026 | **0.2-0.8ms** | 🔒 **Enterprise Only** | **DDCR Phantom V12 Edition: ZERO allocations, <1ms routing** |
+
 ## 💀 Architecture Overview
 
 ### **Phantom v12 Edition™**
