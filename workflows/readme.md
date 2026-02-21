@@ -1,4 +1,4 @@
-### Metadata CI/CD: The GitOps Engine
+### Metadata CI/CD: The GitOps Engine - Under Construction.
 This directory contains the automation logic for Project DCRP. By utilizing GitHub Actions, we have successfully deleted the "human middleman" in the integration onboarding process.
 
 ---
