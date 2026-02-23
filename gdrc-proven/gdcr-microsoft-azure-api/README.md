@@ -125,3 +125,60 @@ Policy testada:
         </set-header>
     </on-error>
 </policies>
+
+
+Add URL CPI:
+
+<img width="920" height="361" alt="image" src="https://github.com/user-attachments/assets/1df95f0a-802f-4941-a230-1b36db71dc21" />
+
+<img width="1420" height="472" alt="image" src="https://github.com/user-attachments/assets/53dd6610-358d-4efc-83d3-8e44f3af1013" />
+
+<img width="1278" height="427" alt="image" src="https://github.com/user-attachments/assets/01bc9688-15d7-4a67-afb9-b9807336dd5e" />
+<img width="1523" height="512" alt="image" src="https://github.com/user-attachments/assets/6ba0346f-1427-4a76-b0a4-8c92bda89e04" />
+<img width="752" height="696" alt="image" src="https://github.com/user-attachments/assets/c2a20131-36f5-4492-8e16-7aa71871b251" />
+
+<img width="1036" height="950" alt="image" src="https://github.com/user-attachments/assets/b9d4ae30-40d1-4345-aeaa-51e4971eb223" />
+
+
+<img width="558" height="606" alt="image" src="https://github.com/user-attachments/assets/ea476cfb-fed3-4f41-b907-82bf8b18c59b" />
+
+
+Powershell Redis Cloud
+
+python3 -c "import redis; r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='<yourpass>', ssl=True); print(r.ping())"
+
+python3 -c "
+import redis
+r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='Eg5vlkENh3azdqK7HYKU2XQ74r13OEWdnAzCaMuNoJ0=', ssl=True)
+r.set('dcrporderscsalesforceid01:http', '/http/dcrp/orders/c/salesforce/id01')
+r.set('dcrpordersusalesforceemeaid02:http', '/http/dcrp/orders/u/salesforce/emea/id02')
+r.set('dcrpcustomerssshopifyid03:http', '/http/dcrp/customers/s/shopify/id03')
+r.set('dcrppaymentsnstripeid04:http', '/http/dcrp/payments/n/stripe/id04')
+r.set('dcrporderscmicrosoftid05:cxf', '/cxf/dcrp/orders/c/microsoft/id05')
+r.set('dcrpdeliveriestfedexid06:http', '/http/dcrp/deliveries/t/fedex/id06')
+r.set('dcrpcustomersss4hanaid07:cxf', '/cxf/dcrp/customers/s/s4hana/id07')
+r.set('dcrppaymentsns4hanaid08:cxf', '/cxf/dcrp/payments/n/s4hana/id08')
+r.set('dcrpinvoicescquickbooksid09:cxf', '/cxf/dcrp/invoices/c/quickbooks/id09')
+r.set('dcrpinvoicescs4hanaid10:cxf', '/cxf/dcrp/invoices/c/s4hana/id10')
+r.set('dcrpdeliveriests4hanaid11:cxf', '/cxf/dcrp/deliveries/t/s4hana/id11')
+r.set('dcrpreturnscshopifyid12:http', '/http/dcrp/returns/c/shopify/id12')
+r.set('dcrpreturnscs4hanaid13:http', '/http/dcrp/returns/c/s4hana/id13')
+r.set('dcrpinvoicescquickbooksid01:cxf', '/cxf/dcrp/invoices/c/quickbooks/id01')
+r.set('dcrpinvoicescs4hanaid02:cxf', '/cxf/dcrp/invoices/c/s4hana/id02')
+r.set('dcrppaymentsnstripeid03:http', '/http/dcrp/payments/n/stripe/id03')
+r.set('dcrppaymentsns4hanaid04:http', '/http/dcrp/payments/n/s4hana/id04')
+r.set('dcrpaccountssxeroid05:http', '/http/dcrp/accounts/s/xero/id05')
+r.set('dcrpjournalscsapid06:cxf', '/cxf/dcrp/journals/c/sap/id06')
+r.set('dcrpexpensesccoupaid07:http', '/http/dcrp/expenses/c/coupa/id07')
+r.set('dcrpreceiptsuuconcurid08:cxf', '/cxf/dcrp/receipts/u/concur/id08')
+r.set('dcrpbudgetssworkdayid09:cxf', '/cxf/dcrp/budgets/s/workday/id09')
+r.set('dcrptaxescavalaraid10:http', '/http/dcrp/taxes/c/avalara/id10')
+print('Feito!')
+"
+<img width="1517" height="717" alt="image" src="https://github.com/user-attachments/assets/6b72b5b9-b6ed-4029-8b2f-a29efa8465f1" />
+
+
+<img width="895" height="902" alt="image" src="https://github.com/user-attachments/assets/2c0b7111-2a52-4f9f-8534-c1f1d809c68d" />
+
+
+
