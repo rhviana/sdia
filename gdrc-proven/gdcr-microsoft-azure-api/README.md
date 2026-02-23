@@ -1,3 +1,101 @@
+```text
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                        DDCR - Dynamic Data Context Router                            ║
+║                          Azure API Management + Redis Cache                          ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+  CLIENT REQUEST
+  ──────────────
+  https://rg-gdcr-test.azure-api.net/sales/orders/create/salesforce
+                                           │       │        │
+                                        entity  action   vendor
+                                        orders  create  salesforce
+
+                                           │
+                                           ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                          AZURE API MANAGEMENT (APIM)                                 ║
+║                                                                                      ║
+║   ┌─────────────────────────────────────────────────────────────────────────────┐    ║
+║   │                        INBOUND POLICY (C# inline)                           │    ║
+║   │                                                                             │    ║
+║   │   1. EXTRACT from URL                                                       │    ║
+║   │      /sales / orders / create / salesforce                                  │    ║
+║   │               [2]      [3]       [4]                                        │    ║
+║   │                                                                             │    ║
+║   │   2. NORMALIZE action                                                       │    ║
+║   │      create  ──►  c                                                         │    ║
+║   │      read    ──►  r                                                         │    ║
+║   │      update  ──►  u                                                         │    ║
+║   │      delete  ──►  d                                                         │    ║
+║   │      sync    ──►  s                                                         │    ║
+║   │      notify  ──►  n                                                         │    ║
+║   │                                                                             │    ║
+║   │   3. BUILD Redis Key                                                        │    ║
+║   │      dcrp + orders + c + salesforce + id01 + :http                          │    ║
+║   │      ──────────────────────────────────────────────                         │    ║
+║   │      dcrporderscSalesforceid01:http                                         │    ║
+║   │                                                                             │    ║
+║   └─────────────────────────────────────────────────────────────────────────────┘    ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+                                           │
+                                           │  cache-lookup-value (external)
+                                           ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                        AZURE CACHE FOR REDIS (External)                              ║
+║                    ddcr-kvm-azure.redis.cache.windows.net:6380                       ║
+║                                                                                      ║
+║   KEY                                    VALUE                                       ║
+║   ─────────────────────────────────────  ──────────────────────────────────────      ║
+║   dcrporderscsalesforceid01:http    ──►  /http/dcrp/orders/c/salesforce/id01         ║
+║   dcrpordersusalesforceemeaid02:http──►  /http/dcrp/orders/u/salesforce/emea/id02    ║
+║   dcrpcustomerssshopifyid03:http    ──►  /http/dcrp/customers/s/shopify/id03         ║
+║   dcrppaymentsnstripeid04:http      ──►  /http/dcrp/payments/n/stripe/id04           ║
+║   dcrporderscmicrosoftid05:cxf      ──►  /cxf/dcrp/orders/c/microsoft/id05           ║
+║   dcrpinvoicescquickbooksid01:cxf   ──►  /cxf/dcrp/invoices/c/quickbooks/id01        ║
+║   ...                               ──►  ...                                         ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+                                           │
+                                           │  /http/dcrp/orders/c/salesforce/id01
+                                           ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                              SAP CPI BACKEND                                         ║
+║                                                                                      ║
+║   Protocol  ──►  http  or  cxf                                                       ║
+║   iFlow     ──►  /dcrp/orders/c/salesforce/id01                                      ║
+║                                                                                      ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+                                           │
+                                           ▼
+                                    RESPONSE + DEBUG HEADERS
+                                    ─────────────────────────
+                                    X-DDCR-Version:      v1.0-azure-redis
+                                    X-DDCR-Routing-Key:  dcrporderscSalesforceid01:http
+                                    X-DDCR-Entity:       orders
+                                    X-DDCR-Action-Code:  c
+                                    X-DDCR-Vendor:       salesforce
+                                    X-DDCR-CPI-Path:     /http/dcrp/orders/c/salesforce/id01
+                                    X-DDCR-Success:      true
+
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                              HOW TO TEST                                             ║
+║                                                                                      ║
+║   Portal Azure → APIM → APIs → sua API → Test                                        ║
+║                                                                                      ║
+║   GET https://rg-gdcr-test.azure-api.net/sales/orders/create/salesforce              ║
+║   GET https://rg-gdcr-test.azure-api.net/sales/payments/notify/stripe                ║
+║   GET https://rg-gdcr-test.azure-api.net/sales/invoices/create/quickbooks            ║
+║                                                                                      ║
+║   Verificar nos headers de resposta:                                                 ║
+║   ✔  X-DDCR-CPI-Path   → valor retornado do Redis                                    ║                               
+║   ✔  X-DDCR-Routing-Key → chave montada                                              ║          
+║   ✘  X-DDCR-Error      → se houver erro                                              ║     
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+  Powered by: Azure APIM + Azure Cache for Redis + SAP CPI
+
+```
 Policy testada:
 
 <policies>
@@ -129,23 +227,13 @@ Policy testada:
 
 Add URL CPI:
 
-<img width="1278" height="427" alt="image" src="https://github.com/user-attachments/assets/01bc9688-15d7-4a67-afb9-b9807336dd5e" />
-<img width="1523" height="512" alt="image" src="https://github.com/user-attachments/assets/6ba0346f-1427-4a76-b0a4-8c92bda89e04" />
-<img width="752" height="696" alt="image" src="https://github.com/user-attachments/assets/c2a20131-36f5-4492-8e16-7aa71871b251" />
-
-<img width="1036" height="950" alt="image" src="https://github.com/user-attachments/assets/b9d4ae30-40d1-4345-aeaa-51e4971eb223" />
-
-
-<img width="558" height="606" alt="image" src="https://github.com/user-attachments/assets/ea476cfb-fed3-4f41-b907-82bf8b18c59b" />
-
-
 Powershell Redis Cloud
 
 python3 -c "import redis; r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='<yourpass>', ssl=True); print(r.ping())"
 
 python3 -c "
 import redis
-r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='Eg5vlkENh3azdqK7HYKU2XQ74r13OEWdnAzCaMuNoJ0=', ssl=True)
+r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='<yourpass>', ssl=True)
 r.set('dcrporderscsalesforceid01:http', '/http/dcrp/orders/c/salesforce/id01')
 r.set('dcrpordersusalesforceemeaid02:http', '/http/dcrp/orders/u/salesforce/emea/id02')
 r.set('dcrpcustomerssshopifyid03:http', '/http/dcrp/customers/s/shopify/id03')
@@ -171,10 +259,19 @@ r.set('dcrpbudgetssworkdayid09:cxf', '/cxf/dcrp/budgets/s/workday/id09')
 r.set('dcrptaxescavalaraid10:http', '/http/dcrp/taxes/c/avalara/id10')
 print('Feito!')
 "
-<img width="1517" height="717" alt="image" src="https://github.com/user-attachments/assets/6b72b5b9-b6ed-4029-8b2f-a29efa8465f1" />
-
 
 <img width="895" height="902" alt="image" src="https://github.com/user-attachments/assets/2c0b7111-2a52-4f9f-8534-c1f1d809c68d" />
+
+python3 -c "
+import redis
+r = redis.StrictRedis(host='ddcr-kvm-azure.redis.cache.windows.net', port=6380, password='<yourpass>', ssl=True)
+keys = r.keys('*')
+for k in keys:
+    print(k.decode(), '->', r.get(k).decode())
+"
+
+<img width="1421" height="773" alt="image" src="https://github.com/user-attachments/assets/206a142e-4ac9-48d6-95e1-e1dbb9ef913a" />
+
 
 
 
