@@ -1,6 +1,43 @@
 <img width="911" height="981" alt="image" src="https://github.com/user-attachments/assets/28449ae9-b4f9-4a51-b065-373ebc0deb5d" />
+<img width="1702" height="927" alt="image" src="https://github.com/user-attachments/assets/8092ee63-4957-41c9-b666-455169291296" />
 
+$key = "be28630af05c413d8aa852e937eaf54d"
+$headers = @{"Ocp-Apim-Subscription-Key"=$key; "Content-Type"="application/json"}
 
+$rotas = @(
+    @{url="https://rg-gdcr-test.azure-api.net/sales/orders/create/salesforce"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/orders/update/salesforceemea"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/orders/create/microsoft"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/customers/sync/shopify"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/customers/sync/s4hana"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/deliveries/track/fedex"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/deliveries/track/s4hana"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/returns/create/shopify"},
+    @{url="https://rg-gdcr-test.azure-api.net/sales/returns/create/s4hana"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/invoices/create/quickbooks"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/invoices/create/s4hana"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/payments/notify/stripe"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/payments/notify/s4hana"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/taxes/create/avalara"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/budgets/sync/workday"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/expenses/create/coupa"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/receipts/update/concur"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/journals/create/sap"},
+    @{url="https://rg-gdcr-test.azure-api.net/finances/accounts/sync/xero"}
+)
+
+foreach ($rota in $rotas) {
+    $resp = Invoke-WebRequest -Uri $rota.url -Method POST -Headers $headers -Body "{}" -SkipHttpErrorCheck
+    $rk = $resp.Headers['X-DDCR-Routing-Key']
+    $cp = $resp.Headers['X-DDCR-CPI-Path']
+    if ($resp.StatusCode -ne 404) {
+        Write-Host "✅ $($resp.StatusCode) - $($rota.url.Split('/')[-3..-1] -join '/')" -ForegroundColor Green
+        Write-Host "   $rk => $cp"
+    } else {
+        Write-Host "❌ 404 - $($rota.url.Split('/')[-3..-1] -join '/')" -ForegroundColor Red
+        Write-Host "   $($resp.Headers['X-Debug-RoutingKey'])"
+    }
+}
 
 <img width="1867" height="990" alt="image" src="https://github.com/user-attachments/assets/341f23ec-4deb-4607-8306-6c0f7d309d88" />
 
