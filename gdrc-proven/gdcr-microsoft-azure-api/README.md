@@ -129,10 +129,6 @@ Policy testada:
 
 Add URL CPI:
 
-<img width="920" height="361" alt="image" src="https://github.com/user-attachments/assets/1df95f0a-802f-4941-a230-1b36db71dc21" />
-
-<img width="1420" height="472" alt="image" src="https://github.com/user-attachments/assets/53dd6610-358d-4efc-83d3-8e44f3af1013" />
-
 <img width="1278" height="427" alt="image" src="https://github.com/user-attachments/assets/01bc9688-15d7-4a67-afb9-b9807336dd5e" />
 <img width="1523" height="512" alt="image" src="https://github.com/user-attachments/assets/6ba0346f-1427-4a76-b0a4-8c92bda89e04" />
 <img width="752" height="696" alt="image" src="https://github.com/user-attachments/assets/c2a20131-36f5-4492-8e16-7aa71871b251" />
