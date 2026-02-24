@@ -1,3 +1,10 @@
+Sales
+
+<img width="763" height="1025" alt="image" src="https://github.com/user-attachments/assets/52380b29-ad00-42d8-bf3e-dc00a1f5422d" />
+
+<img width="848" height="633" alt="image" src="https://github.com/user-attachments/assets/ea701522-ec52-4841-85a5-5db5f5deee40" />
+
+
 <img width="762" height="1000" alt="image" src="https://github.com/user-attachments/assets/361c8ac5-de69-41e3-8930-80b1205e9a04" />
 
 <img width="1088" height="712" alt="image" src="https://github.com/user-attachments/assets/6ba9c8eb-c371-4c79-b52f-88b51f763a1f" />
