@@ -1,3 +1,5 @@
+Finances - 
+
 <img width="1241" height="908" alt="image" src="https://github.com/user-attachments/assets/5d25fa46-7f24-400d-bff2-72479783a08b" />
 
 → taxes/create/avalara [JSON]
@@ -68,6 +70,7 @@ Iteration 8696/8696
   √  Routing key presente
   √  CPI path presente
 
+```text
 ┌─────────────────────────┬────────────────────┬────────────────────┐
 │                         │           executed │             failed │
 ├─────────────────────────┼────────────────────┼────────────────────┤
@@ -94,3 +97,4 @@ Iteration 8696/8696
      iteration: 177         expected 500 to be one of [ 200, 201, 202 ]
                             at assertion:0 in test-script
                             inside "expenses/create/coupa [JSON]"
+```
