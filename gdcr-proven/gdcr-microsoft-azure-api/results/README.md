@@ -1,3 +1,7 @@
+
+<img width="1088" height="712" alt="image" src="https://github.com/user-attachments/assets/6ba9c8eb-c371-4c79-b52f-88b51f763a1f" />
+
+
 Finances - 
 
 <img width="1241" height="908" alt="image" src="https://github.com/user-attachments/assets/5d25fa46-7f24-400d-bff2-72479783a08b" />
