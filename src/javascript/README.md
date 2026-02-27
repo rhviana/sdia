@@ -17,13 +17,32 @@ Latência (ms)
  5 |              █           █                         █
  2 |    v15.2 🔒 ██          █                         █
  0 +----+----+----+----+----+----+----+----+----+----+----+----+
-     Q1   Q2   Q3   Q4   Jan  Fev  2025 2026
+    v5.0     v7.1      v8.0/v14.2         v15.0/v15.1          Phantom v12
 ```
+
+Latency (ms) — DDCR Phantom v12 (SAP BTP sandbox)
+
+350 |                            p99 ███████████████████████
+300 |                                █
+250 |                                █
+200 |                p85 ████████████
+150 |        p50 ████████
+100 |
+ 50 |
+   0 +--------+--------+--------+
+          p50       p85       p99
+
+p50: 145 ms | p85: 184 ms | p99: 338 ms | 120,396 requests | 10 ms delay
+
+Phantom v12 is a high‑performance DDCR engine PoC that follows the same
+semantic model as the Maverick line (v5.0–v15.1) while exploring an
+additional reduction in routing overhead in SAP APIM sandbox runs. It is
+treated as a research branch, not as a DOI‑backed reference version.
 
 ## Evolution Timeline
 
 **Evolution path:**  
-`v5.0 → v7.1 → v8.0 → v14.2 → v15.0 → v15.1 → v15.2`[web:33][web:42]
+`v5.0 → v7.1 → v8.0 → v14.2 → v15.0 → v15.1 → v15.2`
 
 ### v5.0 – POC (Proof of Concept)
 
@@ -39,7 +58,7 @@ Latência (ms)
   - Memória: ~10 KB por request
   - Alocações: ~50 objetos/request
 - **Uso recomendado:** POC acadêmico, cenários pequenos (< 100 rotas)  
-- **Status:** POC validado, **não** recomendado para produção.[web:42]
+- **Status:** POC validado, **não** recomendado para produção.
 
 ---
 
@@ -56,7 +75,7 @@ Latência (ms)
   - Sem caching (parse do KVM a cada request)
 - **Performance:**
   - Latência: 20–30 ms (~40% melhor que v5.0)
-- **Marco:** consolida o padrão **domain‑centric** como modelo principal.[web:33][web:42]
+- **Marco:** consolida o padrão **domain‑centric** como modelo principal.
 
 ---
 
@@ -89,7 +108,7 @@ Latência (ms)
   - Latência: 8–15 ms (similar ao v8.0, porém com observabilidade completa)
   - Taxa de acerto de cache: ~95%
   - 33.000+ chamadas validadas com ~99,9% de sucesso
-- **Status:** Enterprise ready, multi‑nó e altamente observável.[web:33][web:42]
+- **Status:** Enterprise ready, multi‑nó e altamente observável.
 
 ---
 
