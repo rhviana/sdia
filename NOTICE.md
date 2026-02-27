@@ -15,23 +15,23 @@ originally authored and published by **Ricardo Luz Holanda Viana**, with
 prior-art evidence publicly established on **February 7, 2026**, and formally
 archived via DOI on **Zenodo (CERN)**.
 
-```
-| DDCR Component | Technology | Platform Validated |
-|----------------|------------|-------------------|
-| Metadata Store | KVM | SAP BTP |
-| Metadata Store | **Redis** | **Kong** ✅ |
-| Metadata Store | DynamoDB | AWS (em teste) |
-| Runtime Engine | JavaScript | SAP APIM |
-| Runtime Engine | Lua | Kong ✅ |
-| Runtime Engine | Python | Custom |
-| Runtime Engine | C# | Azure (planned) |
-
-> **Note:** DDCR is documented in technical blogs and production implementations, 
-> but not yet included in the formal academic white paper (v5.0). 
-> Full specification coming in v6.0.
-
-```
 ---
+
+```text
+GDCR (Framework)
+├── Gateway Layer
+│   ├── DCRP (SAP)
+│   ├── MDAGR (Generic)
+│   └── SRBD (Conceptual)
+├── Execution Layer
+│   └── DDCR ← 1M+ validated
+│       ├── Redis (Kong) ✅
+│       ├── KVM (SAP) ✅
+│       └── DynamoDB (AWS) 🔄
+└── Orchestration Layer
+    └── ODPC (Orquestration Framework)
+         └── PDCP (SAP CPI)
+ ```   
 
 ## Equivalent Architectural Names and Acronyms
 
@@ -44,43 +44,81 @@ approaches **must reference this repository and the associated DOI publication**
 
 ---
 
-### 1. Gateway Layer Naming
+### 1. Gateway Layer Patterns
 
-- **GDCR** — Gateway Domain-Centric Routing  
-- **DCRP** — Domain-Centric Routing Pattern  
-- **MDAGR** — Metadata-Driven API Gateway Routing  
-- **SRBD** — Semantic Routing via Business Domains  
-
----
-
-### 2. Semantic & Business-Oriented Naming
-
-- **DOAGA** — Domain-Oriented API Gateway Architecture  
-- **BSGR** — Business-Semantic Gateway Routing  
-- **SAGA** — Semantic API Gateway Architecture  
+| Acronym | Full Name | Scope | Status |
+|---------|-----------|-------|--------|
+| **GDCR** | **Gateway Domain-Centric Router** | Framework umbrella | ✅ Core |
+| **DCRP** | **Domain-Centric Routing Pattern** | SAP APIM implementation | ✅ Published |
+| **MDAGR** | **Metadata-Driven API Gateway Routing** | Generic pattern | - |
+| **SRBD** | **Semantic Routing via Business Domains** | Conceptual layer | -y |
 
 ---
 
-### 3. Governance-Oriented Naming
+---
+### 2. Semantic & Business-Oriented Patterns
 
-- **DGAR** — Domain-Governed API Routing  
-- **CDRA** — Centralized Domain Routing Architecture  
+| Acronym | Full Name | Focus |
+|---------|-----------|-------|
+| **DOAGA** | **Domain-Oriented API Gateway Architecture** | Business alignment |
+| **BSGR** | **Business-Semantic Gateway Routing** | Semantic abstraction |
+| **SAGA** | **Semantic API Gateway Architecture** | Enterprise vocabulary |
 
 ---
 
-### 4. Anti-Sprawl & Scalability Naming
+### 3. Governance-Oriented Patterns
 
-- **APSRA** — Anti-Proxy-Sprawl Routing Architecture  
-- **DDGCP** — Domain-Driven Gateway Consolidation Pattern  
+| Acronym | Full Name | Purpose |
+|---------|-----------|---------|
+| **DGAR** | **Domain-Governed API Routing** | Compliance & control |
+| **CDRA** | **Centralized Domain Routing Architecture** | Unified governance |
+
+---
+
+### 4. Anti-Sprawl & Scalability Patterns
+
+| Acronym | Full Name | Problem Solved |
+|---------|-----------|----------------|
+| **APSRA** | **Anti-Proxy-Sprawl Routing Architecture** | Proxy consolidation |
+| **DDGCP** | **Domain-Driven Gateway Consolidation Pattern** | Infrastructure reduction |
 
 ---
 
-### 5. Control Plane & Abstraction Naming
+### 5. Control Plane & Abstraction Patterns
 
-- **MOGRA** — Metadata-Oriented Gateway Routing Architecture  
-- **SCPR** — Semantic Control Plane for API Routing  
+| Acronym | Full Name | Technical Layer |
+|---------|-----------|-----------------|
+| **MOGRA** | **Metadata-Oriented Gateway Routing Architecture** | Metadata engine |
+| **SCPR** | **Semantic Control Plane for API Routing** | Control/data plane separation |
 
 ---
+
+### 6. Execution Layer (NEW — v6.0)
+
+| Acronym | Full Name | Function | Validation |
+|---------|-----------|----------|------------|
+| **DDCR** | **Domain-Driven Centric Router** | Runtime routing engine | ✅ **1M+ requests (Redis)** |
+| | | Translates semantic URL → vendor invocation | 19ms avg, 100% success |
+
+**DDCR Architecture:**
+```text
+GDCR (Gateway façade)
+↓
+DDCR (Router / Metadata lookup / Translation)
+↓
+PDCP (Orchestration execution)
+```
+
+---
+| DDCR Component | Technology | Platform Validated |
+|----------------|------------|-------------------|
+| Metadata Store | KVM | SAP BTP |
+| Metadata Store | **Redis** | **Kong** ✅ |
+| Metadata Store | DynamoDB | AWS (em teste) |
+| Runtime Engine | JavaScript | SAP APIM |
+| Runtime Engine | Lua | Kong ✅ |
+| Runtime Engine | Python | Custom |
+| Runtime Engine | C# | Azure (planned) |
 
 ## Core Architectural Principle (Applies to All Names)
 
