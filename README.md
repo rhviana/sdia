@@ -12,7 +12,6 @@ Please review these files before proceeding to the main technical documentation.
 Gateway Domain-Centric Routing (GDCR)
 -----------------------------------
 
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582492.svg)](https://zenodo.org/records/18661136)
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.31331683-brightgreen)](https://doi.org/10.6084/m9.figshare.31331683)
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18661136)
@@ -20,9 +19,7 @@ Gateway Domain-Centric Routing (GDCR)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0009--9549--5862-brightgreen)](https://orcid.org/0009-0009-9549-5862)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 ![Pattern](https://img.shields.io/badge/Pattern-GDCR--v6.0%20The%20Foundation-blueviolet)
-![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite-008fd3)
-![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Cloud%20Platform%20Integration-008fd3)
-![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20API%20Management-008fd3)
+![SAP](https://img.shields.io/badge/Platform-SAP%20BTP%20Integration%20Suite%20API%20Management%20|%20Cloud%20Platform%20Integration-008fd3)
 ![Kong](https://img.shields.io/badge/Platform-Kong%20Gateway-003459)
 ![Azure](https://img.shields.io/badge/Platform-Microsoft%20Azure%20APIM-0078D4)
 ![AWS](https://img.shields.io/badge/Platform-AWS%20API%20Gateway-FF9900)
