@@ -113,6 +113,7 @@ Full evidence: Newman test reports, per-platform logs, error classification → 
 
 Repository Structure
 -----------------------------------
+
 ```text
 gdcr/
 ├── 01-ABOUT-ME.md              # Author background — read first
@@ -201,6 +202,19 @@ BibTeX
 }
 ```
 -----------------------------------
+
+## No-Support Policy
+
+This repository is published for academic transparency and 
+reproducibility under CC BY 4.0.
+
+No implementation support, consulting, or troubleshooting 
+is provided through this repository.
+
+For commercial inquiries contact me.
+
+----------------------------------
+
 ### 📞 Contact
 Author: Ricardo Luz Holanda Viana
 
@@ -212,26 +226,13 @@ For commercial inquiries only: rhviana@gmail.com
 
 ----------------------------------
 
-## No-Support Policy
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-This project is published for academic transparency and reproducibility. No implementation support, consulting, or troubleshooting assistance is provided.
+**DOI (Zenodo):** [10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492)
 
-I do not provide free consulting:
+**DOI (Figshare):** [10.6084/m9.figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
 
-    ❌ Implementation support
-    ❌ Consulting services
-    ❌ Troubleshooting assistance
-    ❌ Custom development
-
-For commercial inquiries contact me.
-
-----------------------------------
-
-License: Creative Commons Attribution 4.0 International (CC BY 4.0)
-DOI (Zenodo): 10.5281/zenodo.18582492
-DOI (Figshare): 10.6084/m9.figshare.31331683
-This document is part of the Gateway Domain-Centric Routing (GDCR) framework — original architectural work by Ricardo Luz Holanda Viana. Reuse and distribution permitted with attribution. Derivative implementations must reference the original work and DOI.
-
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework — original architectural work by **Ricardo Luz Holanda Viana**. 
+Reuse, adaptation, and distribution permitted with attribution. Derivative implementations must reference the original work and DOI.
 
 ----------------------------------
