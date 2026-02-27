@@ -1,4 +1,12 @@
-## Terminology and Naming  
+### GDCR Taxonomy & Nomenclature
+
+The Gateway Domain-Centric Routing framework comprises multiple architectural patterns and naming conventions. Below is the complete taxonomy, including concepts from academic papers, technical blogs, and production implementations.
+
+### Core Principle (Universal)
+Routing decisions at the API Gateway layer are driven by business-domain metadata, not by fixed vendor endpoint mappings.
+
+External consumers interact with a small, stable set of domain-oriented gateway entry points. These represent business domains (Sales, Finance, Logistics), not individual vendor services. The gateway acts as a semantic router, evaluating request metadata to dynamically resolve the execution path.
+
 ### Intentional Scope Definition & Prior Art Protection
 
 To avoid semantic ambiguity, dilution, or subsequent rebranding without proper
@@ -6,6 +14,7 @@ attribution, the same architectural principle is intentionally referenced under
 multiple equivalent names and acronyms.
 
 This is a **deliberate and documented strategy** designed to:
+
 - preserve semantic integrity,
 - prevent post-hoc reinterpretation or redefinition,
 - and protect the original architectural intent as **documented prior art**.
