@@ -15,6 +15,23 @@ originally authored and published by **Ricardo Luz Holanda Viana**, with
 prior-art evidence publicly established on **February 7, 2026**, and formally
 archived via DOI on **Zenodo (CERN)**.
 
+```
+
+
+| DDCR Component | Technology | Platform Validated |
+|----------------|------------|-------------------|
+| Metadata Store | KVM | SAP BTP |
+| Metadata Store | **Redis** | **Kong** ✅ |
+| Metadata Store | DynamoDB | AWS (em teste) |
+| Runtime Engine | JavaScript | SAP APIM |
+| Runtime Engine | Lua | Kong ✅ |
+| Runtime Engine | Python | Custom |
+| Runtime Engine | C# | Azure (planned) |
+
+> **Note:** DDCR is documented in technical blogs and production implementations, 
+> but not yet included in the formal academic white paper (v5.0). 
+> Full specification coming in v6.0.
+
 ---
 
 ## Equivalent Architectural Names and Acronyms
