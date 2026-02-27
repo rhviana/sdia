@@ -36,7 +36,7 @@ GDCR (Framework)
 │   └── DDCR ← 1M+ validated
 │       ├── Redis (Kong) ✅
 │       ├── KVM (SAP) ✅
-│       └── DynamoDB (AWS) 🔄
+│       └── DynamoDB (AWS) ✅
 └── Orchestration Layer
     └── ODPC (Orquestration Framework)
          └── PDCP (SAP CPI)
