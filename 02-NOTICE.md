@@ -86,9 +86,11 @@ The architectural concepts, terminology, naming strategy, and semantic scope
 defined in this section constitute **documented prior art** as of
 **February 7, 2026**, with formal academic archiving under:
 
-- **DOI:** 10.5281/zenodo.18582492
-- **DOI:** 10.6084/m9.figshare.31331683
-- **Repository:** Zenodo (CERN)  
+* First Publication: February 7, 2026 — Medium: https://medium.com/@rhviana/gateway-domain-centric-routing-a-vendor-agnostic-api-architecture-52ad30d1d1d9
+* Formal Archive: February 10, 2026 — Zenodo (CERN)
+  - **DOI:** 10.5281/zenodo.18582492
+  - **DOI:** 10.6084/m9.figshare.31331683
+  - **Repository:** Zenodo (CERN)  
 
 Subsequent publications, implementations, frameworks, or architectural models
 introducing equivalent concepts under alternative naming **must explicitly
@@ -99,13 +101,12 @@ misrepresentation**, or **intellectual misattribution**, depending on context.
 
 -----------------------------------
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite Expert  
-**Creator of:** GDCR · DCRP · PDCP · DDCR · Maverick Phantom™ Engine  
+Author: Ricardo Luz Holanda Viana Role: Enterprise Integration Architect · SAP BTP Integration Suite Expert Creator of: GDCR · DCRP · PDCP · DDCR · DDCR Phantom v12 Engine
+Validation: 1,499,869 requests · 100% routing success · 99.9916% end-to-end · Kong · SAP BTP · AWS · Azure
 
 **Validation:** 1,174,782+ requests · 100% success · 19ms avg (Redis/Kong/SAP)
 
-**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)  
+License: CC BY 4.0 | DOI: 10.5281/zenodo.18582492 · 10.6084/m9.figshare.31331683
 **DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18661136) · [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
 
 *This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework. 
