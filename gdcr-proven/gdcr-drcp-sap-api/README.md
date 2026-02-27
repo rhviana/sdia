@@ -1,3 +1,4 @@
+<img width="978" height="255" alt="image" src="https://github.com/user-attachments/assets/6d3f7865-e925-42c9-93a2-50f6d1808b5f" />
 
 ---
 ### Executive Validation Summary — GDCR (Milestones 1–5)
