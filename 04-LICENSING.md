@@ -42,7 +42,7 @@ presentations, documentation, training materials, or derivative architectures �
 The required citation is:
 
 > **Viana, R. L. H. (2026).**  
-> *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - Version 5.0*  
+> *Gateway Domain-Centric Routing: A Vendor-Agnostic Metadata-Driven Architecture for Enterprise API Governance - v6.0 Edition*  
 > Zenodo. https://doi.org/10.5281/zenodo.18582469
 > Figshare. https://doi.org/10.6084/m9.figshare.31331683
 
@@ -61,20 +61,13 @@ This license applies to all materials in this repository, including
 documentation, diagrams, images, architectural patterns, terminology, and
 naming conventions.
 
------------------------------------
+---
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+**Author:** Ricardo Luz Holanda Viana · Enterprise Integration Architect · SAP BTP Integration Suite Expert  
+**Creator of:** GDCR · DCRP · PDCP · DDCR · DDCR Phantom v12 Engine  
+**License:** CC BY 4.0 · [DOI 10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492) · [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)  
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
-
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:**  [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
-
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
-
------------------------------------
+>*Reuse permitted with attribution. Derivative implementations must reference the original work and DOI.*
 
 ---
+
