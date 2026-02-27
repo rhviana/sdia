@@ -31,6 +31,9 @@ GDCR (Framework)
 └── Orchestration Layer
     └── ODPC (Orquestration Framework)
          └── PDCP (SAP CPI)
+         └── Mulesoft
+         └── Bommi
+         └── .....
  ```   
 
 ## Equivalent Architectural Names and Acronyms
