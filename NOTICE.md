@@ -16,8 +16,6 @@ prior-art evidence publicly established on **February 7, 2026**, and formally
 archived via DOI on **Zenodo (CERN)**.
 
 ```
-
-
 | DDCR Component | Technology | Platform Validated |
 |----------------|------------|-------------------|
 | Metadata Store | KVM | SAP BTP |
@@ -32,6 +30,7 @@ archived via DOI on **Zenodo (CERN)**.
 > but not yet included in the formal academic white paper (v5.0). 
 > Full specification coming in v6.0.
 
+```
 ---
 
 ## Equivalent Architectural Names and Acronyms
