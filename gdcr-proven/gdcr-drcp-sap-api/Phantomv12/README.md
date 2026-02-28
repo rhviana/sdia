@@ -1,0 +1,106 @@
+
+```text
+
+╔══════════════════════════════════════════════════════════════════╗
+║   GDCR PHANTOM v12 — PERFORMANCE REPORT                          ║
+╠══════════════════════════════════════════════════════════════════╣
+
+  ▶ Domain: Sales-O2C
+  ──────────────────────────────────────────────────────────────
+  Endpoint                                      p50    p85    p99     n
+  ──────────────────────────────────────────────────────────────
+  orders/create/salesforce [JSON]             145ms  185ms  407ms  2799
+  orders/update/salesforceemea [JSON]         145ms  181ms  326ms  2800
+  customers/sync/shopify [JSON]               145ms  181ms  322ms  2800
+  payments/notify/stripe [JSON]               145ms  184ms  320ms  2800
+  orders/create/microsoft [SOAP]              146ms  185ms  343ms  2800
+  deliveries/transfer/fedex [JSON]            145ms  192ms  449ms  2800
+  customers/sync/s4hana [SOAP]                146ms  191ms  326ms  2800
+  payments/notify/s4hana [SOAP]               146ms  185ms  323ms  2800
+  invoices/create/quickbooks [SOAP]           146ms  187ms  322ms  2800
+  invoices/create/s4hana [SOAP]               146ms  186ms  324ms  2800
+  deliveries/transfer/s4hana [SOAP]           145ms  180ms  318ms  2800
+  returns/create/shopify [JSON]               145ms  185ms  336ms  2800
+  returns/create/s4hana [SOAP]                145ms  179ms  330ms  2800
+  ──────────────────────────────────────────────────────────────
+  DOMAIN TOTAL                                145ms  184ms  329ms 36399
+
+  ⚠ Errors (1):
+    - orders/create/salesforce [JSON]: read ECONNRESET
+
+  ▶ Domain: Finance-R2R
+  ──────────────────────────────────────────────────────────────
+  Endpoint                                      p50    p85    p99     n
+  ──────────────────────────────────────────────────────────────
+  invoices/create/quickbooks [SOAP]           140ms  180ms  323ms  2800
+  invoices/create/s4hana [SOAP]               140ms  177ms  326ms  2800
+  payments/notify/stripe [JSON]               140ms  178ms  324ms  2800
+  payments/notify/s4hana [JSON]               140ms  181ms  333ms  2800
+  accounts/sync/xero [JSON]                   140ms  181ms  336ms  2800
+  journals/create/sap [SOAP]                  140ms  183ms  421ms  2800
+  receipts/update/concur [SOAP]               141ms  180ms  333ms  2800
+  budgets/sync/workday [SOAP]                 140ms  179ms  323ms  2800
+  taxes/create/avalara [JSON]                 140ms  183ms  410ms  2800
+  expenses/create/coupa [JSON]                140ms  182ms  526ms  2799
+  ──────────────────────────────────────────────────────────────
+  DOMAIN TOTAL                                140ms  180ms  337ms 27999
+
+  ⚠ Errors (1):
+    - expenses/create/coupa [JSON]: read ECONNRESET
+
+  ▶ Domain: Logistics-LE
+  ──────────────────────────────────────────────────────────────
+  Endpoint                                      p50    p85    p99     n
+  ──────────────────────────────────────────────────────────────
+  shipments/create/fedex [JSON]               151ms  192ms  343ms  2800
+  trackings/update/ups [JSON]                 151ms  189ms  348ms  2800
+  shipments/query/fedex [JSON]                151ms  193ms  456ms  2800
+  containers/sync/maersk [JSON]               151ms  191ms  496ms  2800
+  warehouses/update/sf [SOAP]                 151ms  190ms  360ms  2800
+  freights/create/coyote [JSON]               151ms  192ms  435ms  2800
+  routes/sync/project44 [JSON]                151ms  190ms  353ms  2800
+  manifests/create/customs [SOAP]             150ms  188ms  390ms  2800
+  inventory/sync/wms [SOAP]                   150ms  190ms  353ms  2800
+  deliveries/create/dhl [SOAP]                150ms  188ms  359ms  2799
+  ──────────────────────────────────────────────────────────────
+  DOMAIN TOTAL                                151ms  190ms  381ms 27999
+
+  ⚠ Errors (1):
+    - deliveries/create/dhl [SOAP]: read ECONNRESET
+
+  ▶ Domain: Procurement-S2P
+  ──────────────────────────────────────────────────────────────
+  Endpoint                                      p50    p85    p99     n
+  ──────────────────────────────────────────────────────────────
+  requisitions/create/ariba [SOAP]            140ms  177ms  323ms  2800
+  pos/create/coupa [JSON]                     140ms  180ms  331ms  2799
+  rfqs/create/ariba [SOAP]                    140ms  181ms  321ms  2800
+  contracts/sync/jaggaer [JSON]               140ms  181ms  640ms  2800
+  invoices/approve/basware [SOAP]             140ms  177ms  322ms  2800
+  suppliers/sync/ivalua [JSON]                140ms  174ms  325ms  2800
+  catalogs/update/tradeshift [JSON]           140ms  178ms  353ms  2800
+  grns/create/wms [SOAP]                      140ms  178ms  332ms  2800
+  buyers/sync/oracle [JSON]                   140ms  181ms  337ms  2800
+  sourcings/query/ariba [SOAP]                140ms  182ms  318ms  2800
+  ──────────────────────────────────────────────────────────────
+  DOMAIN TOTAL                                140ms  179ms  331ms 27999
+
+  ⚠ Errors (1):
+    - pos/create/coupa [JSON]: read ECONNRESET
+
+╠══════════════════════════════════════════════════════════════════╣
+║   OVERALL SUMMARY                                                ║
+╠══════════════════════════════════════════════════════════════════╣
+║   Total requests : 120396                                        ║
+║   Total errors   : 4                                             ║
+║   Elapsed time   : 9683.9s                                       ║
+║   Min latency    : 120ms                                         ║
+║   Avg latency    : 168ms                                         ║
+║   Max latency    : 39886ms                                       ║
+╠══════════════════════════════════════════════════════════════════╣
+║   p50 (median)   : 145ms                                         ║
+║   p85            : 184ms                                         ║
+║   p99            : 338ms                                         ║
+╚══════════════════════════════════════════════════════════════════╝
+
+```
