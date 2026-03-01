@@ -1,31 +1,16 @@
 <h1 align="center">About Me: Ricardo Viana - "The Commander - Viana"</h1>
 
-<h3 align="center">Disclaimer — Non-Military Context (Global) "The Commander - Viana"</h3>
+<h3 align="center">Symbolism & Identity</h3>
 
-<p align="center">
+The strategic imagery used in this repository is conceptual.
+It represents discipline, architectural order, and governance in complex integration ecosystems.
 
-This GitHub repository and the GDCR framework have **no association whatsoever**
-with military organizations, armed forces, militias, or any form of armed activity.
+It is also a personal tribute to the author’s father, a General in the Brazilian Armed Forces, whose values of responsibility, structure, and long-term strategic thinking deeply shaped the author's professional ethics.
 
-The use of leadership imagery and strategic metaphors is **purely conceptual**
-and serves as a representation of **order, organization, discipline, and
-architectural clarity** in large-scale enterprise integration ecosystems.
-
-On a personal level, this symbolism is a **tribute to the author’s father**, a
-high-ranking General in the **Brazilian Armed Forces**, whose values of
-responsibility, strategic thinking, and service deeply influenced the author’s
-professional ethics.
-
-The visual representations in this repository are intended to convey:
-
-- ecosystem-wide architectural vision  
-- integration strategy and governance  
-- systemic order emerging from complexity  
-
+No military, political, or institutional affiliation is implied.
 **This disclaimer applies to all images, diagrams, illustrations, and visual
 materials contained in this repository, including all folders and subfolders.**
 
-**Any interpretation beyond this context is incorrect.**
 </p>
 <hr>
 <p align="center">
@@ -53,22 +38,12 @@ Since **2009**, I have navigated every major milestone in SAP’s integration hi
 * **2021:** Deep dive into **SAP Event Mesh (EM)**. During this phase, I was an active contributor to the SAP community and **co-authored the SAP e-Bite: "Enterprise Messaging with SAP BTP"**, focusing on CAP Node.js integrations.
 * **2025 - 2026:** Consolidation as an **SAP BTP Integration Suite Expert (All Capabilities)**: CPI, APIM, Integration Advisor (IA), Event Mesh, and Advanced Event Mesh (AEM).
 
-#### From SAP SCN Blogger to Sovereign Repository
-For years, I was a top contributor to the **SAP SCN (SAP Community Network)**. 
-However, I have shifted my focus to centralizing my advanced frameworks and research into my own repositories. 
-This ensures technical depth, full control over intellectual property, and integrity that third-party platforms cannot guarantee.
-
 #### The Birth of GDCR: "Order from Chaos"
-I developed the **GDCR**, **DCRP**, and **PDCP** frameworks after witnessing a recurring failure in large-scale implementations: excessive technical debt resulting in *Proxy Sprawl, Package Sprawl, User Sprawl, Iflow fragmentation* and unsustainable maintenance costs. My methodology focuses on:
-
-#### For DCRP - SAP BTP Integration Suite - API Management:
-* **Vendor Independence:** Stable facades and URLs that remain unchanged even if the backend evolves.
-* **Extreme Performance:** The **Maverick Phantom JS** routing engine, optimized for a 98% reduction in overhead.
-* **Scientific Architecture:** Methodologies backed by **DOI (Digital Object Identifier)** registration, ensuring validated and proprietary solutions.
+I developed the **GDCR**, **DDCR**, **ODCP**, **DCRP - SAP** and **PDCP - SAP** frameworks after witnessing a recurring failure in large-scale implementations: excessive technical debt resulting in *Proxy Sprawl, Package Sprawl, User Sprawl, Iflow fragmentation* and unsustainable maintenance costs. My methodology focuses on:
 
 #### Technical Arsenal
 * **Languages:** Advanced Groovy Scripting, High-Performance JavaScript (APIM Engines).
-* **Patterns:** Domain-Centric Routing, Domain-Centric Routing Pattern (DCRP), Package Domain-Centric Pattern (PDCP).
+* **Patterns:** Gateway Domain-Centric Routing, Domain-Centric Routing Pattern (DCRP), Package Domain-Centric Pattern (PDCP).
 * **Governance:** API Lifecycle Management, Semantic Observability, Technical User and Package Consolidation.
 
 #### Official Publications & Records
