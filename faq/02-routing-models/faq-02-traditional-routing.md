@@ -9,6 +9,7 @@ This document analyzes the standard industry approach to API Management—**Syst
 In this model, the architecture establishes a direct, rigid link between a specific gateway artifact and a specific backend system.
 
 ```text
+
   [ CLIENT ]
       |
       v
@@ -16,6 +17,7 @@ In this model, the architecture establishes a direct, rigid link between a speci
       |
       v
   [ BACKEND ]    <-- (Hardcoded Target)
+
 ```
 
 ## Core Characteristics
@@ -40,6 +42,7 @@ APIM (Gateway Layer)
 ├── stripe-payments-proxy
 ├── shopify-orders-proxy
 └── [ ... hundreds more ... ]
+```
 
 ## Structural Scaling Effect (Linear Growth)
 In traditional integration models, the administrative overhead and technical debt grow proportionally with the number of systems. This creates a linear trajectory where scaling equals increased complexity.
