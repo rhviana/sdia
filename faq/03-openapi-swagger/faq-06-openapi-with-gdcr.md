@@ -125,8 +125,12 @@ The OpenAPI contract exposes a semantic path, while the **DDCR engine** executes
        v
 [ EXECUTION TARGET ]
 ```
-[!IMPORTANT]
-Security Invariant: No backend URL is derived from client input; all routing is resolved via exact-match metadata lookup.
+### Security & Routing Invariants
+
+The **GDCR Framework** enforces a strict security boundary by decoupling client-side requests from backend-side execution.
+
+> [!IMPORTANT]
+> **Security Invariant:** No backend URL is ever derived from client input. All routing is resolved exclusively via **exact-match metadata lookup** within the Control Plane.
 
 ### Q5 – What are the benefits of using OpenAPI with GDCR?
 
