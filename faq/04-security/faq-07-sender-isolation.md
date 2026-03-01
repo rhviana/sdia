@@ -97,5 +97,3 @@ The GDCR security layer is **Layer 7 semantic-aware**, **whitelist-based** (deny
 This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
 
 -----------------------------------
-
------------------------------------Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
