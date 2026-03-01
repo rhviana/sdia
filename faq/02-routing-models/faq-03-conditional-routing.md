@@ -55,6 +55,9 @@ Conditional routing is a building block. **GDCR** formalizes that block into:
 2.  A **domain-centric semantic façade**.
 3.  A **control-plane-driven** execution model.
 
+> [!TIP]
+> The difference is not technical capability—it is **formalization, scalability, and governance scope**.
+
 -----------------------------------
 
 ### ⚖️ Attribution & Framework Identity
@@ -65,5 +68,3 @@ This framework is an original architectural work. For academic, technical, or pr
 
 -----------------------------------
 
-> [!TIP]
-> The difference is not technical capability—it is **formalization, scalability, and governance scope**.
