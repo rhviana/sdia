@@ -1,12 +1,46 @@
-## FAQ01 – Core Assumptions Behind GDCR
-<div height="1px" style="background-color: #e1e4e8; border: none; height: 1px;"></div>
+# AQ01 – Core Assumptions Behind GDCR
 
-This FAQ clarifies the fundamental philosophy of GDCR, addressing common misconceptions about product limitations and the structural problems the pattern solves.
+This document clarifies the foundational architectural assumptions behind **Gateway Domain-Centric Routing (GDCR)** and addresses common misconceptions about API gateway capabilities and integration design patterns.
 
-#### Q1 – Is SAP APIM (or any gateway) limited to 1:1 routing?
 ---
 
-**No.** Modern gateways are extremely capable of 1:N routing. The issue is not the **tool**, but the **prevailing implementation pattern**.
+## Q1 – Is SAP APIM (or any API Gateway) limited to 1:1 routing?
+
+**No.** Modern API gateways are technically capable of sophisticated $1:N$ routing. 
+
+The structural problem GDCR addresses is not tool limitation—it is **implementation convention**. Many enterprise landscapes adopt a **system-centric mapping pattern**, where each backend system results in a new proxy artifact. This is a governance choice, not a platform constraint.
+
+### System-Centric Pattern vs. Domain-Centric Pattern
+
+```text
+[ TRADITIONAL PATTERN ]                  [ GDCR PATTERN ]
+(System-Centric Mapping)                 (Domain-Centric Routing)
+
+  Proxy A -> Backend X                   Domain Facade --+
+  Proxy B -> Backend Y                                   |
+  Proxy C -> Backend Z                    [ Metadata ] --+--> Backend X
+                                                         |--> Backend Y
+                                                         |--> Backend Z
+
+PATTERN: 1:1 Artifact Mapping         PATTERN: 1:N Semantic Routing
+GOVERNANCE: By Proxy ID               GOVERNANCE: By Business Domain
+```
+
+GDCR formalizes a domain-centric routing model where the façade remains stable and execution targets are resolved dynamically via metadata.
+
+## Q2 – What problems is GDCR explicitly trying to solve?
+
+GDCR addresses recurring structural scaling problems in enterprise integration landscapes, commonly referred to as the “Three Sprawls”:
+
+1 - Proxy Sprawl
+
+2 - Package Sprawl
+
+3 - Technical Credential Sprawl
+
+These are governance and structural scalability problems, not performance issues.
+
+Sprawl Impact Matrix
 
 #### The "System-Centric" Trap vs. GDCR Reality (ASCII):
 
@@ -91,16 +125,19 @@ The GDCR Multi-Layer Alignment (ASCII):
 Routing is only the visible tip; the value is the **consistent semantic model across all layers**.
 
 --------------------------
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+# ⚖️ Attribution & Framework Identity
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+**Gateway Domain-Centric Routing (GDCR)**
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
+> [!IMPORTANT]
+> **Original architectural framework authored by Ricardo Luz Holanda Viana · 2026**
 
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+* **First Public Disclosure:** February 7, 2026
+* **DOI:** [10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx)
+* **ORCID:** [0009-0009-9549-5862](https://orcid.org/0009-0009-9549-5862)
+* **License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
+---
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
 
 -----------------------------------
