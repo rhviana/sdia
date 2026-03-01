@@ -1,13 +1,28 @@
-FAQ-07 – Sender Isolation and Domain Proxies
+# FAQ-07 — Sender Isolation & Fast-Fail Security Model
 
-Q1 – If 10 senders call /sales/*, how do we prevent cross-sender access?
-GDCR decouples the Public Interface from the Authorization Matrix. While the path is shared, the permission to execute an action is unique to each sender.
+This document explains how the **GDCR Framework** maintains strict security boundaries within a shared Domain Façade, preventing unauthorized cross-sender access.
 
-Semantic Routing: Defines the "What" (sales/orders/create).
+---
 
-Authorization Matrix: Defines "Who" can do "What".
+### Q1 – If multiple senders call /sales/*, how is cross-sender access prevented?
 
-Isolation Comparison (ASCII):
+GDCR achieves isolation by strictly separating the routing intent from the authorization logic. While the entry point (the façade) is shared, the permissions are granularly enforced per sender.
+
+* **Semantic Routing:** Defines *what* the business operation is (e.g., creating an order).
+* **Authorization Matrix:** Defines *who* is allowed to execute that specific operation.
+
+#### Conceptual Separation
+1. **Routing Layer:** Processes the path `/sales/orders/create`.
+2. **Security Layer:** Validates the sender identity against the requested action:
+   * **Sender A:** Identified and mapped to the action → **Allowed**.
+   * **Sender B:** Not mapped to the specific domain/action pair → **Denied**.
+
+> [!IMPORTANT]
+> **Isolation Invariant:** Security is not achieved by multiplying proxies. It is enforced through **deterministic sender-domain-action validation** at the gateway boundary.
+
+---
+
+### Isolation Comparison
 
 ```text
   [ TRADITIONAL MODEL ]                  [ GDCR / DCRP MODEL ]
@@ -18,56 +33,67 @@ Isolation Comparison (ASCII):
  Sender B -> [Proxy_Sales_Customers]   Sender B --+    /sales/cust/r
                                                        
  PROS: Simple isolation.               PROS: 1 Proxy. Centralized Log.
- CONS: 100 Senders = 100 Proxies.      CONS: None (Isolation is logic-based).
+ CONS: 100 Senders = 100 Proxies.      CONS: Requires strict metadata governance and disciplined sender-action matrix maintenance.
        High Maintenance.                     Scale is handled by KVM.
 ```
 
-Q2 – How is the "Fast-Fail" validation performed?
-When a request hits the façade, the Fast-Fail policy acts as a gatekeeper. It resolves the sender's identity (via token hash, mTLS, or Header) and checks the requested operation against a whitelist.
+### Q2 – How is Fast-Fail validation performed?
 
-Runtime Process:
+Fast-Fail execution occurs **before** metadata lookup and backend resolution as part of the deterministic routing lifecycle.
 
-Resolve Sender: Identify SND_001.
+#### Runtime Flow:
+1.  **Resolve Sender Identity:** Validates the OAuth token, mTLS certificate, or signed header.
+2.  **Extract Semantic Operation:** Identifies the Domain, Entity, and Canonical Action.
+3.  **Check Authorization Matrix:** Performs an exact-match lookup for the combination: `sender:domain:entity:action`.
+4.  **Decision:**
+    * **Match:** Continue the lifecycle.
+    * **No Match:** Immediate **HTTP 403**.
 
-Compute Operation: Extract sales/orders/c.
+> [!IMPORTANT]
+> When a match fails, **no CPI call is made** and **no backend resolution occurs**. The request is terminated at Layer 7.
 
-Cross-Check: Does the whitelist for SND_001 contain sales/orders/c?
+---
 
-Execute: If yes, route. If no, Fail Fast with a 403 Forbidden.
+### Q3 – Does sharing one façade break isolation?
 
-Q3 – Does sharing one domain proxy break isolation?
-No. Sharing the façade is simply sharing the entry point.
+**No.** The façade is a shared entry point, not a shared permission set.
 
-Think of it like a bank vault with many safe-deposit boxes. Everyone enters through the same front door (the façade), but each person only has a key to their specific box (the authorization matrix).
+**The Building Analogy:**
+Think of a secured building with one entrance. Everyone enters through the same door (the Façade), but access to individual rooms is governed strictly by keycards (the Authorization Matrix).
 
-The façade is shared.
+**In GDCR:**
+* The façade is shared.
+* Execution permissions are **sender-specific**.
+* Access is enforced via an **exact-match whitelist**.
+* Isolation is **logical and deterministic**, not structural via artifact duplication.
 
-The allowed operations are NOT.
+---
 
-Q4 – What about auditability?
-Because the DCRP engine "understands" the domain semantics, every log entry is enriched with high-value business metadata. You aren't just auditing URLs; you are auditing business actions.
+### Q4 – How is auditability improved?
 
-Every call generates headers for the audit log:
+Because GDCR resolves semantic context early, logs are enriched with business metadata rather than technical identifiers. Each request produces structured audit headers:
+* `x-gdcr-sender-id`
+* `x-gdcr-domain`
+* `x-gdcr-entity`
+* `x-gdcr-action`
 
-x-gdcr-sender-id: Who called?
+**Traditional Audit:** You see `iFlow_v2_final`.
+**GDCR Audit:** You see `sales/orders/create` by `mobile-app`.
 
-x-gdcr-domain/entity/action: What business operation was attempted?
+**Logs are indexed by semantic business keys rather than technical artifact names.**
 
-x-gdcr-correlation-id: End-to-end trace ID.
+---
 
-Author Information
-Author: Ricardo Luz Holanda Viana
+### 🛡️ Security Model Positioning
 
-Role: Enterprise Integration Architect · SAP BTP Integration Suite
+The GDCR security layer is **Layer 7 semantic-aware**, **whitelist-based** (deny by default), and **control-plane governed**. Isolation is strictly enforced before metadata routing and backend invocation, metadata routing, or orchestration invocation to minimize the blast radius and reduce backend exposure.
 
-Creator of: GDCR · DCRP · PDCP
+-----------------------------------
 
-Architectural scope: Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).
+### ⚖️ Attribution & Framework Identity
 
-License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-DOI: zenodo.18661136
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
 
-DOI: figshare.31331683
-
-This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+-----------------------------------Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
