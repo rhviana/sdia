@@ -55,3 +55,9 @@ I developed the **GDCR**, **DDCR**, **ODCP**, **DCRP - SAP** and **PDCP - SAP** 
 > *"Architecture is not about what the system can do; it is about what the business needs it to be."*
 
 ---
+
+# Attribution & Framework Identity
+
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. For commercial inquiries, contact the author directly via ORCID/LinkedIn.
