@@ -81,3 +81,22 @@ This repository is intended for:
 4. Reproducibility reference
 
 **Support:** This is not a support forum or implementation helpdesk. Commercial implementation inquiries may be directed to the author directly.
+
+---
+## ⚖️ Attribution & Intellectual Property
+
+Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+
+**First Public Disclosure:** February 7, 2026  
+**Canonical Version:** v6.0  
+**DOI:** 10.5281/zenodo.xxxxx  
+**ORCID:** 0009-0009-9549-5862  
+**License:** CC BY 4.0  
+
+---
+
+### Citation
+
+If you use this framework in academic, technical, or professional contexts, please cite:
+
+Viana, R. L. H. (2026). *Gateway Domain-Centric Routing (GDCR)*. v6.0. DOI: 10.5281/zenodo.xxxxx
