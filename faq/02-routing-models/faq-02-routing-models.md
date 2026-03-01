@@ -70,6 +70,41 @@ graph TD
 ```
 *This aligns directly with the **DDCR 7-stage deterministic lifecycle** defined in v6.0.*
 
+### DDCR Stage 4: Canonical Action Normalization
+
+This stage is the core of the **GDCR Deterministic Lifecycle**. It eliminates ambiguity by mapping 241 disparate HTTP/Business verbs into **15 Canonical Action Codes**.
+
+---
+
+### Normalization Logic (Examples)
+
+The normalization engine processes the incoming HTTP Verb and Path Suffix to resolve the intent into a standardized code.
+
+| Canonical Code | Logic / Intent | Example Input Verbs (from 241) |
+| :--- | :--- | :--- |
+| **`CRT`** | Create / Post | `post`, `create`, `add`, `new`, `insert` |
+| **`RD1`** | Read Single Entity | `get` (with ID), `fetch`, `show`, `find` |
+| **`RDA`** | Read All / List | `get` (no ID), `list`, `search`, `query` |
+| **`UPD`** | Update / Replace | `put`, `update`, `replace`, `set` |
+| **`UPP`** | Partial Update | `patch`, `modify`, `change` |
+| **`DEL`** | Delete / Remove | `delete`, `remove`, `drop`, `cancel` |
+| **`SYN`** | Synchronize | `sync`, `replicate`, `mirror` |
+| **`PRC`** | Process / Execute | `execute`, `run`, `trigger`, `calculate` |
+| **`CHK`** | Check / Validate | `check`, `validate`, `verify`, `test` |
+| **`EXP`** | Export | `export`, `download`, `extract` |
+| **`IMP`** | Import | `import`, `upload`, `bulk-load` |
+| **`APP`** | Approve | `approve`, `authorize`, `sign` |
+| **`REJ`** | Reject | `reject`, `deny`, `decline` |
+| **`MSG`** | Messaging | `notify`, `publish`, `emit`, `broadcast` |
+| **`INF`** | Information | `metadata`, `schema`, `version`, `status` |
+
+---
+
+### Why Normalization Matters
+* **Deterministic Routing:** It ensures that `POST /invoice` and `PUT /invoice/new` (if incorrectly used) are mapped to a single, predictable business intent.
+* **Security Guardrails:** You only need to define security policies for **15 codes**, rather than managing hundreds of individual endpoint/verb combinations.
+* **Semantic Observability:** Logs reflect the **Action Code**, making it easy to monitor business operations (e.g., "How many `CRT` actions failed today?") across all domains.
+
 ```text
 
 Client 
@@ -113,40 +148,6 @@ New vendors/variants are onboarded via KVM entries, not new proxies.
 | Scalability   | Low (proxy sprawl)           | High (metadata-driven)            |
 | URL Stability | Changes with backend systems | Stable, business-centric interface|
 ```
-# DDCR Stage 4: Canonical Action Normalization
-
-This stage is the core of the **GDCR Deterministic Lifecycle**. It eliminates ambiguity by mapping 241 disparate HTTP/Business verbs into **15 Canonical Action Codes**.
-
----
-
-### Normalization Logic (Examples)
-
-The normalization engine processes the incoming HTTP Verb and Path Suffix to resolve the intent into a standardized code.
-
-| Canonical Code | Logic / Intent | Example Input Verbs (from 241) |
-| :--- | :--- | :--- |
-| **`CRT`** | Create / Post | `post`, `create`, `add`, `new`, `insert` |
-| **`RD1`** | Read Single Entity | `get` (with ID), `fetch`, `show`, `find` |
-| **`RDA`** | Read All / List | `get` (no ID), `list`, `search`, `query` |
-| **`UPD`** | Update / Replace | `put`, `update`, `replace`, `set` |
-| **`UPP`** | Partial Update | `patch`, `modify`, `change` |
-| **`DEL`** | Delete / Remove | `delete`, `remove`, `drop`, `cancel` |
-| **`SYN`** | Synchronize | `sync`, `replicate`, `mirror` |
-| **`PRC`** | Process / Execute | `execute`, `run`, `trigger`, `calculate` |
-| **`CHK`** | Check / Validate | `check`, `validate`, `verify`, `test` |
-| **`EXP`** | Export | `export`, `download`, `extract` |
-| **`IMP`** | Import | `import`, `upload`, `bulk-load` |
-| **`APP`** | Approve | `approve`, `authorize`, `sign` |
-| **`REJ`** | Reject | `reject`, `deny`, `decline` |
-| **`MSG`** | Messaging | `notify`, `publish`, `emit`, `broadcast` |
-| **`INF`** | Information | `metadata`, `schema`, `version`, `status` |
-
----
-
-### Why Normalization Matters
-* **Deterministic Routing:** It ensures that `POST /invoice` and `PUT /invoice/new` (if incorrectly used) are mapped to a single, predictable business intent.
-* **Security Guardrails:** You only need to define security policies for **15 codes**, rather than managing hundreds of individual endpoint/verb combinations.
-* **Semantic Observability:** Logs reflect the **Action Code**, making it easy to monitor business operations (e.g., "How many `CRT` actions failed today?") across all domains.
 
 ---
 ### Q3 – How does GDCR handle multiple vendors and regions?
