@@ -1,182 +1,83 @@
-### GDCR Taxonomy & Nomenclature
+# NOTICE: Intellectual Property, Attribution & Prior Art
 
-The Gateway Domain-Centric Routing framework comprises multiple architectural patterns and naming conventions. Below is the complete taxonomy, including concepts from academic papers, technical blogs, and production implementations.
+## Framework Identity
+The **Gateway Domain-Centric Routing (GDCR)** framework and its associated execution engine **DDCR (Domain-Driven Centric Router)** constitute original architectural work authored by:
 
-### Core Principle (Universal)
-Routing decisions at the API Gateway layer are driven by business-domain metadata, not by fixed vendor endpoint mappings.
+**Ricardo Luz Holanda Viana** *Enterprise Integration Architect · SAP BTP Integration Suite Expert*
 
-External consumers interact with a small, stable set of domain-oriented gateway entry points. These represent business domains (Sales, Finance, Logistics), not individual vendor services. The gateway acts as a semantic router, evaluating request metadata to dynamically resolve the execution path.
-
-### Intentional Scope Definition & Prior Art Protection
-
-To avoid semantic ambiguity, dilution, or subsequent rebranding without proper
-attribution, the same architectural principle is intentionally referenced under
-multiple equivalent names and acronyms.
-
-This is a **deliberate and documented strategy** designed to:
-
-- preserve semantic integrity,
-- prevent post-hoc reinterpretation or redefinition,
-- and protect the original architectural intent as **documented prior art**.
-
-All terminology defined below refers to the **same architectural core concept**
-originally authored and published by **Ricardo Luz Holanda Viana**, with
-prior-art evidence publicly established on **February 7, 2026**, and formally
-archived via DOI on **Zenodo (CERN)**.
+This repository consolidates the formal specification, taxonomy, runtime grammar, validation evidence, and implementation artifacts associated with the GDCR framework.
 
 ---
 
-```text
-GDCR (Framework)
-├── Gateway Layer
-│   ├── DCRP (SAP)
-│   ├── MDAGR (Generic)
-│   └── SRBD (Conceptual)
-├── Execution Layer
-│   └── DDCR ← 1M+ validated
-│       ├── Redis (Kong) ✅
-│       ├── KVM (SAP) ✅
-│       └── DynamoDB (AWS) ✅
-└── Orchestration Layer
-    └── ODPC (Orquestration Framework)
-         └── PDCP (SAP CPI)
-         └── Mulesoft
-         └── Bommi
-         └── .....
- ```   
+## First Public Disclosure & Archival Record
+The architectural principles, deterministic routing grammar, naming taxonomy, and execution lifecycle were first publicly disclosed and archived as follows:
 
-## Equivalent Architectural Names and Acronyms
+* **February 7, 2026:** Medium Publication
+* **DOI Archival:** [Zenodo (CERN)](https://zenodo.org/)
+* **Companion Assets:** [Figshare](https://figshare.com/)
 
-The following terms are explicitly defined as **synonymous** and
-**architecturally equivalent** to the **Gateway Domain-Centric Routing (GDCR)**
-framework.
-
-Any reuse of these terms to describe substantially similar architectural
-approaches **must reference this repository and the associated DOI publication**.
+> [!IMPORTANT]  
+> These records establish documented prior art and authorship timestamps. The current **v6.0 DOI reference** will supersede earlier iterative versions once finalized and updated.
 
 ---
 
-### 1. Gateway Layer Patterns
+## Scope of Original Contribution
+The original contribution of this work includes:
+* **Deterministic Seven-Stage Routing Lifecycle**
+* **Canonical Action Normalization:** (241 verbs → 15 codes)
+* **Strict Metadata Control-Plane Grammar**
+* **Immutable Façade Invariant**
+* **Control-Plane-Only Evolution Model**
+* **Domain-Centric Consolidation:** Across gateway and orchestration layers
+* **Formalized Taxonomy and Naming Structure:** (GDCR, DCRP, PDCP, DDCR)
 
-| Acronym | Full Name | Scope | Status |
-|---------|-----------|-------|--------|
-| **GDCR** | **Gateway Domain-Centric Router** | Framework umbrella | ✅ Core |
-| **DCRP** | **Domain-Centric Routing Pattern** | SAP APIM implementation | ✅ Published |
-| **MDAGR** | **Metadata-Driven API Gateway Routing** | Generic pattern | - |
-| **SRBD** | **Semantic Routing via Business Domains** | Conceptual layer | -y |
-
----
-
----
-### 2. Semantic & Business-Oriented Patterns
-
-| Acronym | Full Name | Focus |
-|---------|-----------|-------|
-| **DOAGA** | **Domain-Oriented API Gateway Architecture** | Business alignment |
-| **BSGR** | **Business-Semantic Gateway Routing** | Semantic abstraction |
-| **SAGA** | **Semantic API Gateway Architecture** | Enterprise vocabulary |
+*Note: While metadata-driven routing concepts exist in various platforms, the formal composition, execution grammar, lifecycle structure, and cross-platform validation model defined here represent the original formalization of this framework.*
 
 ---
 
-### 3. Governance-Oriented Patterns
-
-| Acronym | Full Name | Purpose |
-|---------|-----------|---------|
-| **DGAR** | **Domain-Governed API Routing** | Compliance & control |
-| **CDRA** | **Centralized Domain Routing Architecture** | Unified governance |
+## Terminology & Naming Structure
+Various acronyms (GDCR, DCRP, PDCP, DDCR) are used within this repository to describe different architectural viewpoints of the same core framework. These are internal classifications and do not represent separate independent frameworks unless explicitly stated.
 
 ---
 
-### 4. Anti-Sprawl & Scalability Patterns
+## License
+This repository is published under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-| Acronym | Full Name | Problem Solved |
-|---------|-----------|----------------|
-| **APSRA** | **Anti-Proxy-Sprawl Routing Architecture** | Proxy consolidation |
-| **DDGCP** | **Domain-Driven Gateway Consolidation Pattern** | Infrastructure reduction |
+**You are free to:**
+* **Share:** Copy and redistribute the material in any medium or format.
+* **Adapt:** Remix, transform, and build upon the material for any purpose, even commercially.
 
----
+**Under the following terms:**
+* **Attribution:** You must give appropriate credit to the original author and maintain the DOI reference.
 
-### 5. Control Plane & Abstraction Patterns
-
-| Acronym | Full Name | Technical Layer |
-|---------|-----------|-----------------|
-| **MOGRA** | **Metadata-Oriented Gateway Routing Architecture** | Metadata engine |
-| **SCPR** | **Semantic Control Plane for API Routing** | Control/data plane separation |
+*Full license text is available in `LICENSING.md`.*
 
 ---
 
-### 6. Execution Layer (NEW — v6.0)
+## Independent Research Statement
+This work represents **independent architectural research** conducted in a personal capacity. It does not reflect official vendor documentation, architectural blueprints, or proprietary guidance from:
+* SAP
+* Amazon Web Services (AWS)
+* Microsoft Azure
+* Kong
 
-| Acronym | Full Name | Function | Validation |
-|---------|-----------|----------|------------|
-| **DDCR** | **Domain-Driven Centric Router** | Runtime routing engine | ✅ **1M+ requests (Redis)** |
-| | | Translates semantic URL → vendor invocation | 19ms avg, 100% success |
-
-**DDCR Architecture:**
-```text
-GDCR (Gateway façade)
-↓
-DDCR (Router / Metadata lookup / Translation)
-↓
-PDCP (Orchestration execution)
-```
-
----
-| DDCR Component | Technology | Platform Validated |
-|----------------|------------|-------------------|
-| Metadata Store | KVM | SAP BTP |
-| Metadata Store | **Redis** | **Kong** ✅ |
-| Metadata Store | DynamoDB | AWS (em teste) |
-| Runtime Engine | JavaScript | SAP APIM |
-| Runtime Engine | Lua | Kong ✅ |
-| Runtime Engine | Python | Custom |
-| Runtime Engine | C# | Azure (planned) |
-
-## Core Architectural Principle (Applies to All Names)
-
-Across all terminology variants listed above, the **core architectural principle
-remains invariant**:
-
-> Routing decisions at the API Gateway layer are driven by **business-domain
-metadata**, not by fixed or static backend endpoint mappings.
-
-Any architecture that materially implements this principle, regardless of
-terminology or branding, is considered a **derivative or equivalent expression**
-of the GDCR framework.
+**Validation Environment:** All validations were performed using free trial environments, sandboxes, and local containerized setups. No proprietary, confidential, or customer production data was accessed.
 
 ---
 
-## Prior Art Statement
+## Attribution Guidance
+When referencing this framework in academic, technical, or professional contexts, please cite:
 
-The architectural concepts, terminology, naming strategy, and semantic scope
-defined in this section constitute **documented prior art** as of
-**February 7, 2026**, with formal academic archiving under:
+> **Ricardo Luz Holanda Viana (2026)** > *Gateway Domain-Centric Routing (GDCR)* > **DOI:** [To be updated to v6.0 canonical DOI]  
+> **ORCID:** 0009-0009-9549-5862
 
-* First Publication: February 7, 2026 — Medium: https://medium.com/@rhviana/gateway-domain-centric-routing-a-vendor-agnostic-api-architecture-52ad30d1d1d9
-* Formal Archive: February 10, 2026 — Zenodo (CERN)
-  - **DOI:** 10.5281/zenodo.18582492
-  - **DOI:** 10.6084/m9.figshare.31331683
-  - **Repository:** Zenodo (CERN)  
+---
 
-Subsequent publications, implementations, frameworks, or architectural models
-introducing equivalent concepts under alternative naming **must explicitly
-acknowledge this prior art**.
+## Repository Purpose
+This repository is intended for:
+1. Academic transparency
+2. Architectural documentation
+3. Pattern dissemination
+4. Reproducibility reference
 
-Failure to do so may constitute **academic misconduct**, **professional
-misrepresentation**, or **intellectual misattribution**, depending on context.
-
------------------------------------
-
-Author: Ricardo Luz Holanda Viana Role: Enterprise Integration Architect · SAP BTP Integration Suite Expert Creator of: GDCR · DCRP · PDCP · DDCR · DDCR Phantom v12 Engine
-Validation: 1,499,869 requests · 100% routing success · 99.9916% end-to-end · Kong · SAP BTP · AWS · Azure
-
-**Validation:** 1,174,782+ requests · 100% success · 19ms avg (Redis/Kong/SAP)
-
-License: CC BY 4.0 | DOI: 10.5281/zenodo.18582492 · 10.6084/m9.figshare.31331683
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18661136) · [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
-
-*This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework. 
-Reuse permitted only with proper attribution to original work and associated DOI.*
-
------------------------------------
-
+**Support:** This is not a support forum or implementation helpdesk. Commercial implementation inquiries may be directed to the author directly.
