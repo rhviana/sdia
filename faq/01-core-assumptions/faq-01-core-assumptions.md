@@ -67,15 +67,17 @@ Package/iFlow Sprawl: Integration logic scattered across project-based silos.
 
 Credential Sprawl: A security nightmare of technical users and secrets duplicated everywhere.
 
-The "Sprawl" Impact Matrix (ASCII):
-```text
-PROBLEM              | CAUSE                          | GDCR SOLUTION
----------------------|--------------------------------|-------------------------
-Governance Blindness | Everything is a "Proxy ID"     | Semantic Domains
-Maintenance Tax      | Change = Proxy Redeploy        | Metadata Update (KVM)
-Security Risk        | Credential Duplication         | Consolidated Auth
-High Latency         | Multiple IdP Round-trips       | Fast-Fail Validation
-```
+### Sprawl Impact Matrix
+
+| PROBLEM | ROOT CAUSE | GDCR APPROACH |
+| :--- | :--- | :--- |
+| **Governance Blindness** | System-based artifact naming | Domain-based façades |
+| **Maintenance Tax** | Change requires redeployment | Metadata-only updates |
+| **Security Risk** | Credential duplication | Consolidated auth model |
+| **Operational Noise** | Technical identifiers in logs | Semantic observability |
+
+---
+
 #### Q3 – What does GDCR not claim?
 
 GDCR is a framework for Usage Patterns, not a critique of software features.
