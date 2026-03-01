@@ -116,18 +116,13 @@ By decoupling the OpenAPI specification from backend endpoint identity, GDCR ena
 
 > [!TIP]
 > OpenAPI remains first-class. It is simply no longer the structural anchor of routing—it is the **functional definition of the domain**.
+
 -----------------------------------
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+### ⚖️ Attribution & Framework Identity
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
-
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
 
 -----------------------------------
