@@ -226,13 +226,12 @@ For commercial inquiries only: rhviana@gmail.com
 
 ----------------------------------
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
+# Attribution & Framework Identity
 
-**DOI (Zenodo):** [10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492)
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-**DOI (Figshare):** [10.6084/m9.figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. For commercial inquiries, contact the author directly via ORCID/LinkedIn.
 
-This document is part of the **Gateway Domain-Centric Routing (GDCR)** framework — original architectural work by **Ricardo Luz Holanda Viana**. 
 Reuse, adaptation, and distribution permitted with attribution. Derivative implementations must reference the original work and DOI.
 
 ----------------------------------
