@@ -202,13 +202,16 @@ BibTeX
 
 ## No-Support Policy
 
-This repository is published for academic transparency and 
-reproducibility under CC BY 4.0.
+This repository is published for academic transparency and reproducibility under the Creative Commons Attribution 4.0 (CC BY 4.0) License.
 
-No implementation support, consulting, or troubleshooting 
-is provided through this repository.
+It is not a tutorial repository and does not include implementation support, troubleshooting, or configuration assistance.
 
-For commercial inquiries contact me.
+The framework is intentionally documented at an architectural level.
+Successful implementation requires careful reading of the DOI documentation and prior experience in API Management and integration architecture.
+
+No direct support is provided through GitHub issues.
+
+For commercial inquiries or consulting engagement, please contact the author directly.
 
 ----------------------------------
 
