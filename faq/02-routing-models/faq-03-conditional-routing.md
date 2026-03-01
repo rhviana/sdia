@@ -44,7 +44,7 @@ Conditional routing is a **configuration technique**; GDCR/DCRP is an **architec
 | Feature | Traditional Conditional Routing | GDCR / DCRP Model |
 | :--- | :--- | :--- |
 | **Logic Placement** | Hardcoded inside proxy policies | Immutable & generic proxy logic |
-| **Path Structure** | Operation-based (e.g., `/CreateOrder`) | Semantic (e.g., `/{domain}/{entity}/{action}`) |
+| **Path Structure** | Operation-based (e.g., `/CreateOrder`) | Semantic (e.g., `/{domain}/{entity}/{action}/{variant}`) |
 | **Lifecycle** | Tied to backend changes | Tied to Domain/Business evolution |
 | **Resolution** | Static/Hardcoded Target | Dynamic Metadata (KVM/Control-Plane) |
 | **Normalization** | None (Raw paths/verbs) | Canonical Action Normalization (241 → 15) |
