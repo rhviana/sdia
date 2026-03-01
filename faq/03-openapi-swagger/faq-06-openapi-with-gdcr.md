@@ -103,7 +103,7 @@ OpenAPI defines what the business capability does; GDCR determines how the reque
 
 ```
 ### Q4 – How does routing actually occur behind the OpenAPI façade?
-
+---
 The OpenAPI contract exposes a semantic path, while the **DDCR engine** executes the deterministic routing lifecycle:
 
 1. **Context Extraction**
@@ -133,7 +133,7 @@ The **GDCR Framework** enforces a strict security boundary by decoupling client-
 > **Security Invariant:** No backend URL is ever derived from client input. All routing is resolved exclusively via **exact-match metadata lookup** within the Control Plane.
 
 ### Q5 – What are the benefits of using OpenAPI with GDCR?
-
+---
 Combining OpenAPI with the **GDCR framework** provides several strategic advantages for enterprise architecture, primarily by decoupling the consumer contract from the technical implementation:
 
 * **Stable Domain-Centric Contracts:** Interfaces remain consistent and reliable for consumers, regardless of internal backend changes or migrations.
