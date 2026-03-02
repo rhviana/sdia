@@ -82,84 +82,66 @@ _____v_____     ____v_________     ____v_______           __v_______      ____v_
 
 ```
 
-#### 2.  How to read this diagram
+#### 2. How to Read This Diagram
 
-### Left: OpenAPI / Swagger, contract‑centric model
+### Left: OpenAPI / Swagger — Contract-Centric Model
 
-**Gateway surface** is driven by OpenAPI/Swagger contracts:  
-- One endpoint per resource/process (`/sales/orders`, `/finance/invoices`, etc.).
+**Gateway Surface**  
+Driven by OpenAPI/Swagger contracts:
+- One endpoint per resource or process (`/sales/orders`, `/finance/invoices`, etc.).
 
-**Routing** is contract‑driven:  
-- Each endpoint is tied to a specific backend integration.
+**Routing**  
+Contract-driven:
+- Each endpoint is explicitly tied to a specific backend integration artifact.
 
-**Change impact:**  
-- New process → new endpoint + new OpenAPI spec section.  
-- Backend change → spec update + proxy change.  
+**Change Impact**
+- New process → new endpoint + new OpenAPI specification section.  
+- Backend change → specification update + proxy modification.  
 - Payload evolution → new API version (`v1`, `v2`, `v3`).
 
-**Integration layer:**  
-- Packages per vendor/app (Salesforce, SAP, etc.).  
-- One iFlow per endpoint.  
-- Naming and indexing often ad hoc.
+**Integration Layer**
+- Packages organized per vendor or application (Salesforce, SAP, etc.).  
+- Typically one iFlow per endpoint.  
+- Naming and indexing often ad hoc or system-centric.
 
-**Result:**  
-- More endpoints and proxies over time.  
+**Result**
+- Growing number of endpoints and proxies over time.  
 - Frequent versioning and redeployments.  
-- Governance focused on **contracts and docs**, not on routing semantics.
+- Governance focused on **contracts and documentation**, not routing semantics.
 
 ---
 
-### Right: GDCR / DCRP / PDCP domain‑centric model
+### Right: GDCR / DCRP / PDCP — Domain-Centric Model
 
-**Gateway surface:**  
-- 4 stable domain façades (Sales, Finance, Logistics, Procurement).  
-- Paths like `/sales/**`, `/finance/**` grouped by business process (O2C, R2R, etc.).
+**Gateway Surface**
+- Four stable domain façades (Sales, Finance, Logistics, Procurement).  
+- Paths such as `/sales/**`, `/finance/**` grouped by business process (O2C, R2R, etc.).
 
-**Routing:**  
-- `domain/entity/action` are parsed from the URL (e.g. `/sales/orders/create/salesforce`).  
-- The engine builds a semantic key (e.g. `dcrporderscsalesforceid01:http`).  
-- The KVM dictionary resolves to a CPI endpoint (`/http/dcrp/orders/c/id01`).
+**Routing**
+- `domain/entity/action` parsed from the URL (e.g., `/sales/orders/create/salesforce`).  
+- The engine builds a semantic routing key (e.g., `dcrporderscsalesforceid01:http`).  
+- The KVM dictionary resolves to a CPI endpoint (e.g., `/http/dcrp/orders/c/id01`).
 
-**Fast‑fail:**  
-- Sender/token validated in KVM before routing.  
-- Unauthorized calls are rejected without reaching CPI. [file:1][file:3]
+**Fast-Fail Security**
+- Sender/token validated via KVM before routing.  
+- Unauthorized combinations are rejected at the gateway layer without reaching CPI.
 
-**Integration layer (PDCP):**  
-- One package per domain/subprocess (e.g. `nx.sales.o2c.integrations`).  
-- iFlows use standardized “DNA” naming (id + subprocess + sender + entity + action…).  
-- Domain‑centric execution governance and observability. [file:3]
+**Integration Layer (PDCP)**
+- One package per domain or subprocess (e.g., `nx.sales.o2c.integrations`).  
+- iFlows follow standardized “DNA” naming (id + subprocess + sender + entity + action).  
+- Domain-centric execution governance and observability model.
 
-**Result:**  
+**Result**
 - Small, stable set of façades.  
-- No façade versioning for backend changes; routing moves via KVM updates.  
-- Governance focused on **domain/entity/action**, not on technical endpoints.
-
----
-
-#### 3. Where to find more details
-
-- Core assumptions – 01-core-assumptions/faq-01-core-assumptions.md
-- Routing models – 02-routing-models/faq-02-routing-models.md
-- OpenAPI / Swagger vs GDCR – 03-openapi-swagger/faq-05-openapi-traditional.md and 03-openapi-swagger/faq-06-openapi-with-gdcr.md
-- Security and access control – files in 04-security/
-- Governance and sprawl – files in 05-governance/
-- Observability and tracing – 06-observability/faq-13-audit-and-tracing.md
+- No façade versioning for backend changes; routing evolves via KVM updates.  
+- Governance centered on **domain/entity/action semantics**, not technical endpoints.
 
 -----------------------------------
 
-**Author:** Ricardo Luz Holanda Viana  
-**Role:** Enterprise Integration Architect · SAP BTP Integration Suite  
-**Creator of:** GDCR · DCRP · PDCP  
+### ⚖️ Attribution & Framework Identity
 
-**Architectural scope:** Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration).  
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
-**DOI:** [zenodo.18661136](https://doi.org/10.5281/zenodo.18582492)  
-**DOI:** [figshare.31331683](https://doi.org/10.6084/m9.figshare.31331683)
-
-This document is part of the **Gateway Domain‑Centric Routing (GDCR)** framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution. Any derivative or equivalent architectural implementation must reference the original work and associated DOI.
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
 
 -----------------------------------
-
-
-
