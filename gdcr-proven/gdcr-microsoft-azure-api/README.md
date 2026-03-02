@@ -703,6 +703,18 @@ for entity, action, vendor in calls:
 ```
 <img width="712" height="690" alt="image" src="https://github.com/user-attachments/assets/172a59ab-3fe9-43cb-b5db-5d70a9e4d9a0" />
 
+---
+## ⚖️ Attribution & Intellectual Property
+
+Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+
+**First Public Disclosure:** February 7, 2026  
+**Canonical Version:** v6.0  
+**DOI:** 10.5281/zenodo.xxxxx  
+**ORCID:** 0009-0009-9549-5862  
+**License:** CC BY 4.0  
+
+---
 
 
 
