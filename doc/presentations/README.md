@@ -4,7 +4,7 @@ This directory contains the technical documentation and core principles of the *
 
 ---
 
-## 🏗️ Core Architecture Components
+## Core Architecture Components
 
 The framework is built upon three primary pillars that ensure technology serves the business domain, rather than the other way around.
 
@@ -30,7 +30,7 @@ The pattern applied at the **Orchestration** layer (e.g., SAP Cloud Integration)
 
 ---
 
-## 🗺️ Architectural Mapping
+## Architectural Mapping
 
 ```text
        [ API GATEWAY ]            [ METADATA ]            [ ORCHESTRATION ]
