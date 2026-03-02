@@ -1,0 +1,2601 @@
+{
+  "info": {
+    "_postman_id": "4fdb1716-4561-4308-aefe-3f933828df16",
+    "name": "DRCP",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5065407",
+    "_collection_link": "https://go.postman.co/collection/5065407-4fdb1716-4561-4308-aefe-3f933828df16?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "cpi-dcrp-proxy-domain-sales-o2c",
+      "item": [
+        {
+          "name": "id01.salesforceus.orders.s4hana.c.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-649a01bd-c152-4310-9a5b-3ab5134a5901!b601470|it!b26655",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "b900f566-9055-47eb-8d12-da191fac4772$1bQgslpDb9RBBAyHt8m8Fcvzm4jW3guFDK_j5Fc4EZE=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"orderId\": \"SF-ORD-2026-001\",\r\n    \"customerId\": \"CUST-12345\",\r\n    \"region\": \"US\",\r\n    \"orderDate\": \"2026-02-05\",\r\n    \"totalAmount\": 1250.50,\r\n    \"currency\": \"USD\",\r\n    \"items\": [\r\n        {\r\n            \"sku\": \"PROD-A001\",\r\n            \"description\": \"Product A\",\r\n            \"quantity\": 2,\r\n            \"unitPrice\": 500.00,\r\n            \"subtotal\": 1000.00\r\n        },\r\n        {\r\n            \"sku\": \"PROD-B002\",\r\n            \"description\": \"Product B\",\r\n            \"quantity\": 1,\r\n            \"unitPrice\": 250.50,\r\n            \"subtotal\": 250.50\r\n        }\r\n    ],\r\n    \"shippingAddress\": {\r\n        \"street\": \"123 Main Street\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"postalCode\": \"10001\",\r\n        \"country\": \"US\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/orders/create/salesforce",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "orders",
+                "create",
+                "salesforce"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ia test",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "63dae917-2041-4e7c-8216-1714183b083a$Q3MvLNaJ5E2GwF6wDqVndtrIRsb-zBrtNXmrLxe-1WY=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-6b9088a3-68ba-44db-91a2-6d2c9eb680db!b20836|it-rt-steeleurope!b259",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"kvm.idinterface\",\r\n    \"value\":\"dcrpordersusalesforceemeaid05:cxf\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://apisb.test01.apimanagement.eu20.hana.ondemand.com/insert/kvm?kvmname=cpipackage-nx.sales.o2c.integrations",
+              "protocol": "https",
+              "host": [
+                "apisb",
+                "test01",
+                "apimanagement",
+                "eu20",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "insert",
+                "kvm"
+              ],
+              "query": [
+                {
+                  "key": "kvmname",
+                  "value": "cpipackage-nx.sales.o2c.integrations"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id02.salesforceus.orders.s4hana.u.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerId\": \"SHOP-98765\",\r\n    \"firstName\": \"Ricardo\",\r\n    \"lastName\": \"Viana\",\r\n    \"email\": \"ricardo.viana@example.com\",\r\n    \"phone\": \"+49-123-456-7890\",\r\n    \"dateOfBirth\": \"1985-06-15\",\r\n    \"customerType\": \"premium\",\r\n    \"address\": {\r\n        \"street\": \"Hauptstrasse 123\",\r\n        \"city\": \"Berlin\",\r\n        \"postalCode\": \"10115\",\r\n        \"country\": \"DE\"\r\n    },\r\n    \"preferences\": {\r\n        \"newsletter\": true,\r\n        \"smsNotifications\": false,\r\n        \"language\": \"de\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/orders/update/salesforceemea",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "orders",
+                "update",
+                "salesforceemea"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id02.salesforceema.orders.s4hana.u.in.sync -Nao testar",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerId\": \"SHOP-98765\",\r\n    \"firstName\": \"Ricardo\",\r\n    \"lastName\": \"Viana\",\r\n    \"email\": \"ricardo.viana@example.com\",\r\n    \"phone\": \"+49-123-456-7890\",\r\n    \"dateOfBirth\": \"1985-06-15\",\r\n    \"customerType\": \"premium\",\r\n    \"address\": {\r\n        \"street\": \"Hauptstrasse 123\",\r\n        \"city\": \"Berlin\",\r\n        \"postalCode\": \"10115\",\r\n        \"country\": \"DE\"\r\n    },\r\n    \"preferences\": {\r\n        \"newsletter\": true,\r\n        \"smsNotifications\": false,\r\n        \"language\": \"de\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/customers/sync/salesforceemea",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "customers",
+                "sync",
+                "salesforceemea"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id05.microsoftemea.orders.s4hana.c.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/orders/create/microsoft",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "orders",
+                "create",
+                "microsoft"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id04.stripe.payments.s4hana.n.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"paymentId\": \"PAY-2026-5432\",\r\n    \"orderId\": \"SF-ORD-2026-001\",\r\n    \"customerId\": \"CUST-12345\",\r\n    \"amount\": 1250.50,\r\n    \"currency\": \"EUR\",\r\n    \"status\": \"completed\",\r\n    \"paymentMethod\": \"credit_card\",\r\n    \"cardLast4\": \"4242\",\r\n    \"cardBrand\": \"visa\",\r\n    \"transactionId\": \"ch_3ABC123XYZ\",\r\n    \"timestamp\": \"2026-02-05T14:30:00Z\",\r\n    \"metadata\": {\r\n        \"processor\": \"stripe\",\r\n        \"processingFee\": 36.26,\r\n        \"netAmount\": 1214.24\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/payments/notify/stripe",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "payments",
+                "notify",
+                "stripe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id08.s4hana.payments.externalpay.n.out.async - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/payments/notify/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "payments",
+                "notify",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id07.s4hana.customers.externalcrm.s.out.async - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:cust=\"http://schemas.sap.com/customer\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <cust:SyncCustomerRequest>\r\n            <cust:CustomerId>SAP-12345</cust:CustomerId>\r\n            <cust:Name>Acme Corporation</cust:Name>\r\n            <cust:Email>contact@acme.com</cust:Email>\r\n            <cust:Phone>+49-30-1234567</cust:Phone>\r\n            <cust:Address>\r\n                <cust:Street>Alexanderplatz 1</cust:Street>\r\n                <cust:City>Berlin</cust:City>\r\n                <cust:PostalCode>10178</cust:PostalCode>\r\n                <cust:Country>DE</cust:Country>\r\n            </cust:Address>\r\n        </cust:SyncCustomerRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/customers/sync/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "customers",
+                "sync",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id03.shopify.customer.s4hana.s.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerId\": \"SHOP-98765\",\r\n    \"firstName\": \"Ricardo\",\r\n    \"lastName\": \"Viana\",\r\n    \"email\": \"ricardo.viana@example.com\",\r\n    \"phone\": \"+49-123-456-7890\",\r\n    \"dateOfBirth\": \"1985-06-15\",\r\n    \"customerType\": \"premium\",\r\n    \"address\": {\r\n        \"street\": \"Hauptstrasse 123\",\r\n        \"city\": \"Berlin\",\r\n        \"postalCode\": \"10115\",\r\n        \"country\": \"DE\"\r\n    },\r\n    \"preferences\": {\r\n        \"newsletter\": true,\r\n        \"smsNotifications\": false,\r\n        \"language\": \"de\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/customers/sync/shopify",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "customers",
+                "sync",
+                "shopify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id09.quickbooks.invoices.s4hana.c.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:inv=\"http://schemas.quickbooks.com/invoice\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <inv:CreateInvoiceRequest>\r\n         <inv:InvoiceNumber>QB-INV-2026-789</inv:InvoiceNumber>\r\n         <inv:CustomerId>CUST-12345</inv:CustomerId>\r\n         <inv:CustomerName>Acme Corporation</inv:CustomerName>\r\n         <inv:InvoiceDate>2026-02-05</inv:InvoiceDate>\r\n         <inv:DueDate>2026-03-05</inv:DueDate>\r\n         <inv:PaymentTerms>Net 30</inv:PaymentTerms>\r\n         <inv:LineItems>\r\n            <inv:LineItem>\r\n               <inv:ItemId>SVC-001</inv:ItemId>\r\n               <inv:Description>Professional Services - January 2026</inv:Description>\r\n               <inv:Quantity>40</inv:Quantity>\r\n               <inv:Rate>125.00</inv:Rate>\r\n               <inv:Amount>5000.00</inv:Amount>\r\n            </inv:LineItem>\r\n            <inv:LineItem>\r\n               <inv:ItemId>SVC-002</inv:ItemId>\r\n               <inv:Description>Consulting Services - January 2026</inv:Description>\r\n               <inv:Quantity>20</inv:Quantity>\r\n               <inv:Rate>150.00</inv:Rate>\r\n               <inv:Amount>3000.00</inv:Amount>\r\n            </inv:LineItem>\r\n         </inv:LineItems>\r\n         <inv:Subtotal currency=\"EUR\">8000.00</inv:Subtotal>\r\n         <inv:TaxRate>19.0</inv:TaxRate>\r\n         <inv:TaxAmount currency=\"EUR\">1520.00</inv:TaxAmount>\r\n         <inv:TotalAmount currency=\"EUR\">9520.00</inv:TotalAmount>\r\n         <inv:Notes>Payment due within 30 days</inv:Notes>\r\n      </inv:CreateInvoiceRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/invoices/create/quickbooks",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "invoices",
+                "create",
+                "quickbooks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id10.s4hana.invoices.externalbill.c.out.async - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:sap=\"http://schemas.sap.com/invoice\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <sap:CreateInvoiceRequest>\r\n            <sap:InvoiceHeader>\r\n                <sap:InvoiceNumber>SAP-INV-2026-100</sap:InvoiceNumber>\r\n                <sap:InvoiceType>ZF01</sap:InvoiceType>\r\n                <sap:SalesOrganization>1000</sap:SalesOrganization>\r\n                <sap:DistributionChannel>10</sap:DistributionChannel>\r\n                <sap:Division>00</sap:Division>\r\n                <sap:CompanyCode>1000</sap:CompanyCode>\r\n            </sap:InvoiceHeader>\r\n            <sap:CustomerData>\r\n                <sap:CustomerId>SAP-12345</sap:CustomerId>\r\n                <sap:CustomerName>Acme Corporation GmbH</sap:CustomerName>\r\n                <sap:CustomerEmail>billing@acme.com</sap:CustomerEmail>\r\n                <sap:BillingAddress>\r\n                    <sap:Street>Alexanderplatz 1</sap:Street>\r\n                    <sap:City>Berlin</sap:City>\r\n                    <sap:PostalCode>10178</sap:PostalCode>\r\n                    <sap:Country>DE</sap:Country>\r\n                </sap:BillingAddress>\r\n            </sap:CustomerData>\r\n            <sap:InvoiceDetails>\r\n                <sap:InvoiceDate>2026-02-05</sap:InvoiceDate>\r\n                <sap:DueDate>2026-03-05</sap:DueDate>\r\n                <sap:PaymentTerms>0001</sap:PaymentTerms>\r\n                <sap:PaymentTermsDescription>Net 30 days</sap:PaymentTermsDescription>\r\n                <sap:Currency>EUR</sap:Currency>\r\n            </sap:InvoiceDetails>\r\n            <sap:LineItems>\r\n                <sap:LineItem>\r\n                    <sap:ItemNumber>10</sap:ItemNumber>\r\n                    <sap:MaterialNumber>MAT-001</sap:MaterialNumber>\r\n                    <sap:MaterialDescription>S/4HANA Enterprise License</sap:MaterialDescription>\r\n                    <sap:Quantity>1</sap:Quantity>\r\n                    <sap:UnitOfMeasure>EA</sap:UnitOfMeasure>\r\n                    <sap:UnitPrice>5000.00</sap:UnitPrice>\r\n                    <sap:NetAmount>5000.00</sap:NetAmount>\r\n                    <sap:TaxCode>V1</sap:TaxCode>\r\n                    <sap:TaxRate>19.0</sap:TaxRate>\r\n                    <sap:TaxAmount>950.00</sap:TaxAmount>\r\n                    <sap:GrossAmount>5950.00</sap:GrossAmount>\r\n                </sap:LineItem>\r\n                <sap:LineItem>\r\n                    <sap:ItemNumber>20</sap:ItemNumber>\r\n                    <sap:MaterialNumber>MAT-002</sap:MaterialNumber>\r\n                    <sap:MaterialDescription>Implementation Services</sap:MaterialDescription>\r\n                    <sap:Quantity>80</sap:Quantity>\r\n                    <sap:UnitOfMeasure>HR</sap:UnitOfMeasure>\r\n                    <sap:UnitPrice>150.00</sap:UnitPrice>\r\n                    <sap:NetAmount>12000.00</sap:NetAmount>\r\n                    <sap:TaxCode>V1</sap:TaxCode>\r\n                    <sap:TaxRate>19.0</sap:TaxRate>\r\n                    <sap:TaxAmount>2280.00</sap:TaxAmount>\r\n                    <sap:GrossAmount>14280.00</sap:GrossAmount>\r\n                </sap:LineItem>\r\n            </sap:LineItems>\r\n            <sap:InvoiceTotals>\r\n                <sap:NetTotal>17000.00</sap:NetTotal>\r\n                <sap:TaxTotal>3230.00</sap:TaxTotal>\r\n                <sap:GrossTotal>20230.00</sap:GrossTotal>\r\n                <sap:Currency>EUR</sap:Currency>\r\n            </sap:InvoiceTotals>\r\n            <sap:AdditionalData>\r\n                <sap:Reference>\r\n                    <sap:ReferenceType>PO</sap:ReferenceType>\r\n                    <sap:ReferenceNumber>PO-2026-5678</sap:ReferenceNumber>\r\n                </sap:Reference>\r\n                <sap:BillingDocument>9000012345</sap:BillingDocument>\r\n                <sap:SalesOrder>SO-2026-001</sap:SalesOrder>\r\n                <sap:Notes>Standard billing terms apply</sap:Notes>\r\n            </sap:AdditionalData>\r\n        </sap:CreateInvoiceRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/invoices/create/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "invoices",
+                "create",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id06.fedex.deliveries.s4hana.t.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"trackingNumber\": \"FDX-2026-ABC123\",\r\n    \"orderId\": \"SF-ORD-2026-001\",\r\n    \"carrier\": \"FedEx\",\r\n    \"status\": \"in_transit\",\r\n    \"currentLocation\": \"Frankfurt Distribution Center\",\r\n    \"estimatedDelivery\": \"2026-02-07T18:00:00Z\",\r\n    \"shipDate\": \"2026-02-05T08:00:00Z\",\r\n    \"events\": [\r\n        {\r\n            \"timestamp\": \"2026-02-05T08:00:00Z\",\r\n            \"location\": \"Berlin Pickup Point\",\r\n            \"status\": \"picked_up\",\r\n            \"description\": \"Package picked up\"\r\n        },\r\n        {\r\n            \"timestamp\": \"2026-02-05T12:00:00Z\",\r\n            \"location\": \"Frankfurt Hub\",\r\n            \"status\": \"in_transit\",\r\n            \"description\": \"Package in transit\"\r\n        },\r\n        {\r\n            \"timestamp\": \"2026-02-05T14:30:00Z\",\r\n            \"location\": \"Frankfurt Distribution Center\",\r\n            \"status\": \"at_facility\",\r\n            \"description\": \"Arrived at distribution center\"\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/deliveries/transfer/fedex",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "deliveries",
+                "transfer",
+                "fedex"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id11.s4hana.deliveries.externallog.t.out.async - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:del=\"http://schemas.sap.com/delivery\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <del:TrackDeliveryRequest>\r\n            <del:DeliveryId>SAP-DEL-5678</del:DeliveryId>\r\n            <del:OrderId>ORD-2026-002</del:OrderId>\r\n            <del:Status>shipped</del:Status>\r\n            <del:Carrier>DHL Express</del:Carrier>\r\n            <del:TrackingNumber>DHL-2026-XYZ789</del:TrackingNumber>\r\n            <del:EstimatedDelivery>2026-02-08</del:EstimatedDelivery>\r\n        </del:TrackDeliveryRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/deliveries/transfer/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "deliveries",
+                "transfer",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id12.shopify.returns.s4hana.c.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"returnId\": \"RET-2026-456\",\r\n    \"orderId\": \"SF-ORD-2026-001\",\r\n    \"customerId\": \"SHOP-98765\",\r\n    \"returnDate\": \"2026-02-05\",\r\n    \"reason\": \"defective_item\",\r\n    \"reasonDetails\": \"Product arrived damaged\",\r\n    \"items\": [\r\n        {\r\n            \"sku\": \"PROD-A001\",\r\n            \"description\": \"Product A\",\r\n            \"quantity\": 1,\r\n            \"condition\": \"damaged\",\r\n            \"returnAction\": \"refund\",\r\n            \"originalPrice\": 500.00\r\n        }\r\n    ],\r\n    \"refundAmount\": 500.00,\r\n    \"refundMethod\": \"original_payment\",\r\n    \"currency\": \"EUR\",\r\n    \"returnShipping\": {\r\n        \"carrier\": \"DHL\",\r\n        \"trackingNumber\": \"DHL-RET-2026-999\",\r\n        \"shippingCost\": 0.00\r\n    },\r\n    \"photos\": [\r\n        \"https://example.com/return-photos/ret-2026-456-1.jpg\",\r\n        \"https://example.com/return-photos/ret-2026-456-2.jpg\"\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/returns/create/shopify",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "returns",
+                "create",
+                "shopify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id13.s4hana.returns.externalret.c.out.async - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:ret=\"http://schemas.sap.com/return\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <ret:CreateReturnRequest>\r\n            <ret:ReturnId>SAP-RET-2026-300</ret:ReturnId>\r\n            <ret:OrderId>ORD-2026-002</ret:OrderId>\r\n            <ret:CustomerId>SAP-12345</ret:CustomerId>\r\n            <ret:ReturnDate>2026-02-05</ret:ReturnDate>\r\n            <ret:Reason>customer_request</ret:Reason>\r\n            <ret:Items>\r\n                <ret:Item>\r\n                    <ret:SKU>PROD-C003</ret:SKU>\r\n                    <ret:Quantity>1</ret:Quantity>\r\n                </ret:Item>\r\n            </ret:Items>\r\n            <ret:RefundAmount currency=\"EUR\">500.00</ret:RefundAmount>\r\n        </ret:CreateReturnRequest>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales/returns/create/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "sales",
+                "returns",
+                "create",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "cpi-dcrp-proxy-domain-finance-r2r",
+      "item": [
+        {
+          "name": "id10.r2r.avalara.tax.s4hana.c.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"s4hana_document\": \"SO-2026-12345\",\r\n  \"target_system\": \"avalara\",\r\n  \"transaction_type\": \"SalesInvoice\",\r\n  \"customer_code\": \"CUST-10001\",\r\n  \"addresses\": {\r\n    \"ship_from\": {\r\n      \"line1\": \"123 Business St\",\r\n      \"city\": \"San Francisco\",\r\n      \"region\": \"CA\",\r\n      \"postalCode\": \"94105\",\r\n      \"country\": \"US\"\r\n    },\r\n    \"ship_to\": {\r\n      \"line1\": \"456 Client Ave\",\r\n      \"city\": \"New York\",\r\n      \"region\": \"NY\",\r\n      \"postalCode\": \"10001\",\r\n      \"country\": \"US\"\r\n    }\r\n  },\r\n  \"lines\": [\r\n    {\r\n      \"amount\": 10000.00,\r\n      \"taxCode\": \"P0000000\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/taxes/create/avalara",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "taxes",
+                "create",
+                "avalara"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id09.r2r.workday.budget.s4hana.s.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <BudgetSyncRequest>\r\n      <FiscalYear>2026</FiscalYear>\r\n      <CostCenter>CC-SALES-01</CostCenter>\r\n      <BudgetAmount>500000.00</BudgetAmount>\r\n      <SpentAmount>125000.00</SpentAmount>\r\n      <RemainingAmount>375000.00</RemainingAmount>\r\n      <Currency>USD</Currency>\r\n    </BudgetSyncRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://2ae152cdtrial-trial.integrationsuitetrial-apim.ap21.hana.ondemand.com/2ae152cdtrial/finances/budgets/sync/workday",
+              "protocol": "https",
+              "host": [
+                "2ae152cdtrial-trial",
+                "integrationsuitetrial-apim",
+                "ap21",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "2ae152cdtrial",
+                "finances",
+                "budgets",
+                "sync",
+                "workday"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id06.r2r.sap.journal.s4hana.c.in.sync- SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <JournalEntryRequest>\r\n      <CompanyCode>1000</CompanyCode>\r\n      <FiscalYear>2026</FiscalYear>\r\n      <DocumentDate>2026-02-08</DocumentDate>\r\n      <PostingDate>2026-02-08</PostingDate>\r\n      <LineItems>\r\n        <LineItem>\r\n          <GLAccount>400000</GLAccount>\r\n          <DebitAmount>5000.00</DebitAmount>\r\n        </LineItem>\r\n        <LineItem>\r\n          <GLAccount>113100</GLAccount>\r\n          <CreditAmount>5000.00</CreditAmount>\r\n        </LineItem>\r\n      </LineItems>\r\n    </JournalEntryRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/journals/create/sap",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "journals",
+                "create",
+                "sap"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id05.r2r.xero.account.s4hana.s.in.sync- REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"account_id\": \"XERO-ACC-789456\",\r\n  \"account_name\": \"Operating Expenses\",\r\n  \"account_type\": \"EXPENSE\",\r\n  \"code\": \"4000\",\r\n  \"tax_type\": \"OUTPUT2\",\r\n  \"balance\": 125000.00,\r\n  \"currency\": \"USD\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/accounts/sync/xero",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "accounts",
+                "sync",
+                "xero"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id04.r2r.s4hana.payment.stripe.n.out.sync- REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"s4hana_payment_id\": \"PMT-2026-00123\",\r\n  \"target_system\": \"stripe\",\r\n  \"amount\": 5000.00,\r\n  \"currency\": \"USD\",\r\n  \"payment_method\": \"pm_card_visa\",\r\n  \"customer\": \"cus_StripeCustomer123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/payments/notify/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "payments",
+                "notify",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id02.r2r.s4hana.invoice.s4hana.c.in.sync- SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <InvoiceOutboundRequest>\r\n      <S4DocumentID>4500012345</S4DocumentID>\r\n      <TargetSystem>QuickBooks</TargetSystem>\r\n      <InvoiceData>\r\n        <Amount>15000.00</Amount>\r\n        <Currency>USD</Currency>\r\n      </InvoiceData>\r\n    </InvoiceOutboundRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/invoices/create/s4hana",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "invoices",
+                "create",
+                "s4hana"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id01.r2r.quickbooks.invoice.s4hana.c.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \r\n                  xmlns:inv=\"http://sap.com/xi/invoice\">\r\n  <soapenv:Header/>\r\n  <soapenv:Body>\r\n    <inv:InvoiceCreateRequest>\r\n      <inv:InvoiceNumber>INV-QB-2026-001</inv:InvoiceNumber>\r\n      <inv:Vendor>QuickBooks</inv:Vendor>\r\n      <inv:Amount>15000.00</inv:Amount>\r\n      <inv:Currency>USD</inv:Currency>\r\n      <inv:DueDate>2026-03-15</inv:DueDate>\r\n      <inv:CustomerID>CUST-10001</inv:CustomerID>\r\n    </inv:InvoiceCreateRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/invoices/create/quickbooks",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "invoices",
+                "create",
+                "quickbooks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id07.r2r.coupa.expense.s4hana.c.in.sync- REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"expense_id\": \"EXP-COUPA-2026-456\",\r\n  \"employee_id\": \"EMP-10203\",\r\n  \"expense_type\": \"Travel\",\r\n  \"amount\": 850.00,\r\n  \"currency\": \"USD\",\r\n  \"expense_date\": \"2026-02-05\",\r\n  \"description\": \"Client meeting - NYC\",\r\n  \"receipt_url\": \"https://coupa.com/receipts/456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/expenses/create/coupa",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "expenses",
+                "create",
+                "coupa"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id08.r2r.concur.receipt.s4hana.u.in.sync",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"receipt_id\": \"RCP-CONCUR-123456\",\r\n  \"expense_report_id\": \"ER-2026-00789\",\r\n  \"merchant\": \"Hilton Hotels\",\r\n  \"amount\": 450.00,\r\n  \"currency\": \"USD\",\r\n  \"receipt_date\": \"2026-02-07\",\r\n  \"receipt_image\": \"base64_encoded_image_data...\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/receipts/update/concur",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "receipts",
+                "update",
+                "concur"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id03.r2r.stripe.payment.s4hana.n.in.sync- REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"payment_id\": \"pi_3QwErTy123456\",\r\n  \"vendor\": \"stripe\",\r\n  \"amount\": 5000.00,\r\n  \"currency\": \"USD\",\r\n  \"customer_id\": \"cus_StripeCustomer123\",\r\n  \"status\": \"succeeded\",\r\n  \"created\": \"2026-02-08T21:32:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances/payments/notify/stripe",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "finances",
+                "payments",
+                "notify",
+                "stripe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "cpi-dcrp-proxy-domain-procurement-s2p",
+      "item": [
+        {
+          "name": "id01.s2p.ariba.requisition.s4hana.c.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/requisitions/create/ariba",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "requisitions",
+                "create",
+                "ariba"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id02.s2p.coupa.po.s4hana.c.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/pos/create/coupa",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "pos",
+                "create",
+                "coupa"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id03.s2p.ariba.rfq.s4hana.c.in.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/rfqs/create/ariba",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "rfqs",
+                "create",
+                "ariba"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id05.s2p.basware.invoice.s4hana.a.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/invoices/approve/basware",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "invoices",
+                "approve",
+                "basware"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id06.s2p.ivalua.supplier.s4hana.s.in.sync- REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/suppliers/sync/ivalua",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "suppliers",
+                "sync",
+                "ivalua"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id07.s2p.tradeshift.catalog.s4hana.u.in.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/catalogs/update/tradeshift",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "catalogs",
+                "update",
+                "tradeshift"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id08.s2p.wms.grn.s4hana.c.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/grns/create/wms",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "grns",
+                "create",
+                "wms"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id09.s2p.oracle.buyer.s4hana.s.in.sync -REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/buyers/sync/oracle",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "buyers",
+                "sync",
+                "oracle"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id10.s2p.ariba.sourcing.s4hana.q.in.sync - SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/sourcings/query/ariba",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "sourcings",
+                "query",
+                "ariba"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id04.r2r.s4hana.payment.stripe.n.out.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <n0:PurchaseOrderERPRequest_In>\r\n            <MessageHeader>\r\n                <ID>MSG_ODETTE_2026_999</ID>\r\n                <CreationDateTime>2026-01-14T12:00:00Z</CreationDateTime>\r\n                <SenderParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"ZZ\" schemeAgencyName=\"ANSI_X12\">BUYERCO</InternalID>\r\n                </SenderParty>\r\n                <RecipientParty>\r\n                    <InternalID schemeID=\"N/A\" schemeAgencyID=\"\" schemeAgencyName=\"SAP\">SAP</InternalID>\r\n                </RecipientParty>\r\n                <BusinessScope>\r\n                    <TypeCode>PROCESS_ID</TypeCode>\r\n                    <InstanceID>ODETTE_D96A_S3</InstanceID>\r\n                </BusinessScope>\r\n            </MessageHeader>\r\n            <PurchaseOrder>\r\n                <Payload>\r\n                    <![CDATA[ISA*00*          *00*          *ZZ*BUYERCO        *ZZ*SAP            *260119*1015*U*00401*000000001*0*P*>~\r\nGS*PO*BUYERCO*SAP*20260119*1015*1*X*004010~\r\nST*850*0001~\r\nBEG*00*NE*PO-12345678**20260119~\r\nCUR*BY*USD~\r\nREF*IA*VEND-99~\r\nREF*DP*DEPT-01~\r\nREF*ZZ*PROJ-777~\r\nPER*BD*JOAO SILVA*EM*JOAO.SILVA@BUYERCORP.COM*TE*5551234567~\r\nITD*01*3*2**30**31~\r\nDTM*002*20260215~\r\nTD5*B*02*UPSN*M*UPS GROUND~\r\nN1*OB*BUYER CORP*9*1234567890123~\r\nN3*100 MAIN STREET~\r\nN4*NEW YORK*NY*10001*US~\r\nN1*ST*SHIP-TO LOCATION*9*9876543210987~\r\nN3*500 DISTRIBUTION WAY~\r\nN4*CHICAGO*IL*60601*US~\r\nN1*BT*BILL-TO SERVICES*9*1122334455667~\r\nN3*900 FINANCIAL PLAZA~\r\nN4*BOSTON*MA*02110*US~\r\nPO1*001*100*EA*15.50*PE*VC*MAT-7788*UP*123456789012~\r\nCTP*RS**15.50~\r\nPID*F****WIDGET TYPE A~\r\nPO1*002*250*EA*42.00*PE*VC*MAT-9944*UP*987654321098~\r\nCTP*RS**42.00~\r\nPID*F****GADGET TYPE B~\r\nCTT*2*350~\r\nSE*27*0001~\r\nGE*1*1~\r\nIEA*1*000000001~\r\n]]>\r\n                </Payload>\r\n            </PurchaseOrder>\r\n        </n0:PurchaseOrderERPRequest_In>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/procurement/contracts/sync/jaggaer",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "procurement",
+                "contracts",
+                "sync",
+                "jaggaer"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "cpi-dcrp-proxy-domain-logistics-scm",
+      "item": [
+        {
+          "name": "id10.scm.wms.inventory.s4hana.s.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <InventorySyncRequest>\r\n      <WarehouseID>WH-CENTRAL-01</WarehouseID>\r\n      <MaterialNumber>MAT-20002</MaterialNumber>\r\n      <OnHandQuantity>1500</OnHandQuantity>\r\n      <AvailableQuantity>1200</AvailableQuantity>\r\n      <ReservedQuantity>300</ReservedQuantity>\r\n      <UnitOfMeasure>EA</UnitOfMeasure>\r\n    </InventorySyncRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/shipments/create/fedex",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "shipments",
+                "create",
+                "fedex"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id08.scm.project44.route.s4hana.s.in.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"route_id\": \"P44-ROUTE-789456\",\r\n  \"shipment_id\": \"SHP-2026-00123\",\r\n  \"route_segments\": [\r\n    {\r\n      \"sequence\": 1,\r\n      \"from\": \"Memphis, TN\",\r\n      \"to\": \"Dallas, TX\",\r\n      \"mode\": \"TRUCK\",\r\n      \"distance_miles\": 450\r\n    },\r\n    {\r\n      \"sequence\": 2,\r\n      \"from\": \"Dallas, TX\",\r\n      \"to\": \"Los Angeles, CA\",\r\n      \"mode\": \"TRUCK\",\r\n      \"distance_miles\": 1400\r\n    }\r\n  ],\r\n  \"total_distance_miles\": 1850,\r\n  \"estimated_transit_days\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/routes/sync/project44",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "routes",
+                "sync",
+                "project44"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id07.scm.coyote.freight.s4hana.c.in.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"load_number\": \"COYOTE-LD-123456\",\r\n  \"pickup_date\": \"2026-02-09\",\r\n  \"pickup_location\": {\r\n    \"address\": \"789 Industrial Blvd\",\r\n    \"city\": \"Dallas\",\r\n    \"state\": \"TX\",\r\n    \"zip\": \"75001\"\r\n  },\r\n  \"delivery_location\": {\r\n    \"address\": \"321 Warehouse Dr\",\r\n    \"city\": \"Atlanta\",\r\n    \"state\": \"GA\",\r\n    \"zip\": \"30301\"\r\n  },\r\n  \"freight_class\": \"CLASS_50\",\r\n  \"weight\": 18000,\r\n  \"weight_unit\": \"LBS\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/freights/create/coyote",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "freights",
+                "create",
+                "coyote"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id06.scm.sf.warehouse.s4hana.u.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <WarehouseUpdateRequest>\r\n      <WarehouseID>WH-SF-001</WarehouseID>\r\n      <MaterialNumber>MAT-10001</MaterialNumber>\r\n      <Quantity>500</Quantity>\r\n      <UnitOfMeasure>EA</UnitOfMeasure>\r\n      <StorageLocation>BIN-A-123</StorageLocation>\r\n    </WarehouseUpdateRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/warehouses/update/sf",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "warehouses",
+                "update",
+                "sf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id05.scm.maersk.container.s4hana.s.in.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"container_number\": \"MAEU1234567\",\r\n  \"vessel_name\": \"Maersk Edinburgh\",\r\n  \"voyage_number\": \"026E\",\r\n  \"port_of_loading\": \"Shanghai\",\r\n  \"port_of_discharge\": \"Los Angeles\",\r\n  \"etd\": \"2026-02-10\",\r\n  \"eta\": \"2026-02-28\",\r\n  \"cargo_weight\": 25000,\r\n  \"cargo_weight_unit\": \"KG\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/containers/sync/maersk",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "containers",
+                "sync",
+                "maersk"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id03.scm.dhl.delivery.s4hana.c.in.sync- SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <DeliveryCreateRequest>\r\n      <TrackingNumber>DHL987654321</TrackingNumber>\r\n      <ShipmentDate>2026-02-08</ShipmentDate>\r\n      <Origin>\r\n        <City>Frankfurt</City>\r\n        <Country>DE</Country>\r\n      </Origin>\r\n      <Destination>\r\n        <City>London</City>\r\n        <Country>GB</Country>\r\n      </Destination>\r\n      <Weight>15.0</Weight>\r\n      <WeightUnit>KG</WeightUnit>\r\n    </DeliveryCreateRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/deliveries/create/dhl",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "deliveries",
+                "create",
+                "dhl"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id04.scm.s4hana.shipment.fedex.q.out.sync - REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"s4hana_shipment_id\": \"SHP-2026-00123\",\r\n  \"query_type\": \"TRACKING_STATUS\",\r\n  \"tracking_number\": \"FDX123456789012\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/shipments/query/fedex",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "shipments",
+                "query",
+                "fedex"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id02.scm.ups.tracking.s4hana.u.in.sync-REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tracking_number\": \"1Z999AA10123456784\",\r\n  \"status\": \"IN_TRANSIT\",\r\n  \"last_location\": {\r\n    \"city\": \"Chicago\",\r\n    \"state\": \"IL\",\r\n    \"country\": \"US\"\r\n  },\r\n  \"timestamp\": \"2026-02-08T18:30:00Z\",\r\n  \"estimated_delivery\": \"2026-02-10T17:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/trackings/update/ups",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "trackings",
+                "update",
+                "ups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id01.scm.fedex.shipment.s4hana.c.in.sync -REST",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tracking_number\": \"FDX123456789012\",\r\n  \"shipment_date\": \"2026-02-08\",\r\n  \"origin\": {\r\n    \"city\": \"Memphis\",\r\n    \"state\": \"TN\",\r\n    \"country\": \"US\"\r\n  },\r\n  \"destination\": {\r\n    \"city\": \"Los Angeles\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"US\"\r\n  },\r\n  \"weight\": 25.5,\r\n  \"weight_unit\": \"KG\",\r\n  \"service_type\": \"FEDEX_GROUND\",\r\n  \"delivery_reference\": \"PO-2026-456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/shipments/create/fedex",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "shipments",
+                "create",
+                "fedex"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "id09.scm.customs.manifest.s4hana.c.in.sync-SOAP",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sb-fc07179b-ba37-4f72-8ce4-e4d21a6c4af4!b106580|it-rt-2ae152cdtrial!b196",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "d3e5122a-5268-420b-902b-2cc0c47a3e85$gDSl_aLFmS64tUfKAGnyGxgzyj4AfV5Lmc0mNnF1wNw=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Sender-ID",
+                "value": "Coke",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soapenv:Body>\r\n    <ManifestCreateRequest>\r\n      <ShipmentID>OCEAN-2026-00456</ShipmentID>\r\n      <ExportCountry>US</ExportCountry>\r\n      <ImportCountry>CN</ImportCountry>\r\n      <CargoDescription>Electronics Components</CargoDescription>\r\n      <HSCode>8542.31.0000</HSCode>\r\n      <DeclaredValue>50000.00</DeclaredValue>\r\n      <Currency>USD</Currency>\r\n    </ManifestCreateRequest>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics/manifests/create/customs",
+              "protocol": "https",
+              "host": [
+                "282cc9datrial-trial",
+                "integrationsuitetrial-apim",
+                "us10",
+                "hana",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "282cc9datrial",
+                "logistics",
+                "manifests",
+                "create",
+                "customs"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
