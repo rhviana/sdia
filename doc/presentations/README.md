@@ -35,7 +35,80 @@ The pattern applied at the **Orchestration** layer (e.g., SAP Cloud Integration)
 ```text
        [ API GATEWAY ]            [ METADATA ]            [ ORCHESTRATION ]
 ```
+# 📂 Folder Structure
 
+## Document Overview
+
+| File | Description |
+|------|-------------|
+| **DCRP.md** | Detailed Gateway route patterns and Semantic Façade definition |
+| **PDCP.md** | Package organization model and domain-based artifact governance |
+| **iFlow-DNA.md** | Deterministic naming convention for integration flows |
+| **Mapping.md** | Interdependency mapping between the seven GDCR core patterns |
+| **Audit-Compliance.md** | Structured traceability model and compliance primitives (SOX / GDPR aligned) |
+
+---
+
+# 🛠 Quick Implementation Guide
+
+## 1. Define Domains
+Map business subprocesses such as:
+- O2C (Order-to-Cash)
+- R2R (Record-to-Report)
+- P2P (Procure-to-Pay)
+- CRM
+- WMS
+
+Domains must reflect stable business capabilities, not vendor systems.
+
+---
+
+## 2. Normalize Actions
+Adopt canonical action codes:
+
+| Code | Meaning |
+|------|---------|
+| C | Create |
+| R | Read |
+| U | Update |
+| D | Delete |
+| S | Sync |
+| A | Approve |
+| N | Notify |
+
+All heterogeneous API verbs must map into this canonical set.
+
+---
+
+## 3. Configure Gateway (DCRP)
+
+- Create domain-level proxies
+- Apply static route guards by entity
+- Forward requests to the Dynamic Router (DDCR)
+- Avoid vendor-specific proxies
+
+The gateway façade must remain stable and business-semantic.
+
+---
+
+## 4. Implement Dynamic Routing (DDCR)
+
+- Extract semantic path context
+- Normalize action
+- Resolve routing key via metadata
+- Bind backend target dynamically
+- Enforce fail-fast validation
+
+No hardcoded vendor logic should exist in the proxy.
+
+---
+
+## 5. Organize Backend (PDCP)
+
+- Create one package per business subprocess
+- Avoid vendor-centric package fragmentation
+- Apply iFlow DNA naming convention
+- Maintain domain-level governance
 ---
 ## ⚖️ Attribution & Intellectual Property
 
