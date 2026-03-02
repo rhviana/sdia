@@ -71,36 +71,11 @@ Permissions are stored as deterministic keys that serve as the hard authorizatio
 | `SND_001:sales:orders:r`   | `http://cpi/orders/query|auth_alias`      | Sender 001 is allowed to **read/query** orders. |
 | `SND_002:fin:inv:a`        | `http://cpi/finance/approve|fin_alias`    | Sender 002 is allowed to **approve** invoices. |
 ```
----
-
-## Architectural Comparison
-
-```mermaid
-
-graph TD
-    subgraph Traditional["TRADITIONAL MODEL (System-Centric)"]
-        direction TB
-        S1[Spec: SAP S/4] --> P1[Proxy A] --> B1[(SAP S4)]
-        S2[Spec: SFDC v1] --> P2[Proxy B] --> B2[(SFDC v1)]
-    end
-
-    subgraph GDCR["GDCR MODEL (Domain-Centric)"]
-        direction TB
-        DS[SINGLE SPEC: Sales Domain] --> DF{DOMAIN FACADE}
-        DF -- Dynamic Metadata --> D1[(SAP S4)]
-        DF -- Dynamic Metadata --> D2[(SFDC v1)]
-    end
-
-    style DF fill:#2d3e50,stroke:#3498db,stroke-width:4px,color:#fff
-    style Traditional fill:#fff5f5,stroke:#e74c3c
-    style GDCR fill:#f5faff,stroke:#3498db
-
-```
 
 The exact adapter URL and alias format are implementation details; the key idea is that `sender:domain:entity:action` is the primary security surface. 
 
 ## Q5 – Pseudocode Illustration (Conceptual Only)
-
+---
 The snippet below is **illustrative pseudocode**, not production code.  
 It shows the Fast-Fail idea: validate the sender/semantic operation combination before any routing or backend call. [file:80][file:81]
 
@@ -135,7 +110,7 @@ if (!routingMetadata) {
 ```
 
 ### Q6 – Why is this secure and efficient?
-
+---
 The GDCR security model provides three core advantages that solve traditional gateway bottlenecks:
 
 * **Strict Isolation:** A credential leak for `SND_001` does not grant access to other domains, entities, or actions. The lookup key enforces exact semantic boundaries.
@@ -145,7 +120,7 @@ The GDCR security model provides three core advantages that solve traditional ga
 ---
 
 ### Q7 – Can OAuth2 Scopes map to Domain/Entity/Action?
-
+---
 **Yes.** This integration creates a robust, layered **defense-in-depth** strategy:
 
 1.  **Identity:** The token is cryptographically valid (Standard OAuth).
