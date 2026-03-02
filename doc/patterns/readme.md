@@ -55,26 +55,31 @@ Permanent, non-reusable identifiers for integration flows. Guarantees traceabili
 
 ## Pattern Interdependency Model
 
-```mermaid
+```text
+       [ 1. DDD Alignment ]
+                |
+                v
+      [ 2. DCRP - Gateway Façade ]
+                |
+                v
+      [ 3. DDCR - Deterministic Router ] <--- [ 6. Action Normalization ]
+                |
+                v
+      [ 5. Metadata Control Plane ]
+                |
+                v
+      [ 4. PDCP - Orchestration Layer ]
+                |
+                v
+      [ 7. Immutable Identity (iFlow DNA) ]
 
-graph TD
-    A[DDD Alignment] --> B[DCRP - Gateway Façade]
-    B --> C[DDCR - Deterministic Router]
-    C --> D[Metadata Control Plane]
-    D --> E[PDCP - Orchestration Layer]
-    E --> F[Immutable Identity - iFlow DNA]
-    
-    subgraph "Semantic Core"
-    G[Action Normalization] -.-> C
-    end
-    
-    subgraph "Governance Shield"
-    H[ADR Governance] -.-> A
-    H -.-> B
-    H -.-> E
-    end
-
+      ---------------------------------------------------------
+      [ ADR Governance ]  --> Spans All Layers (1, 2, 4)
+      ---------------------------------------------------------
 ```
+[!NOTE]
+> Action Normalization opera dentro do motor do DDCR.
+> ADR Governance sustenta a integridade de todas as camadas.
 
 ## 8. Governance Supporting Practice
 
