@@ -77,7 +77,7 @@ Permanent, non-reusable identifiers for integration flows. Guarantees traceabili
       [ ADR Governance ]  --> Spans All Layers (1, 2, 4)
       ---------------------------------------------------------
 ```
-[!NOTE]
+> [!NOTE]
 > Action Normalization opera dentro do motor do DDCR.
 > ADR Governance sustenta a integridade de todas as camadas.
 
