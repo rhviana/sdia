@@ -70,12 +70,13 @@ Permissions are stored as deterministic keys that serve as the hard authorizatio
 | `SND_001:sales:orders:c`   | `http://cpi/orders/create|auth_alias`     | Sender 001 is allowed to **create** orders.   |
 | `SND_001:sales:orders:r`   | `http://cpi/orders/query|auth_alias`      | Sender 001 is allowed to **read/query** orders. |
 | `SND_002:fin:inv:a`        | `http://cpi/finance/approve|fin_alias`    | Sender 002 is allowed to **approve** invoices. |
-
+```
 ---
 
-## 📉 Architectural Comparison
+## Architectural Comparison
 
 ```mermaid
+
 graph TD
     subgraph Traditional["TRADITIONAL MODEL (System-Centric)"]
         direction TB
