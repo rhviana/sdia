@@ -57,7 +57,7 @@ SAP CPI (iFlow id10)
 
 FINANCE - 4 ROUTES
 Item 1:
-
+```json
 Copy{
   "route": {"S": "payments/notify/stripe"},
   "interface_id": {"S": "dcrppaymentsnstripeid03"},
@@ -129,12 +129,12 @@ Copy{
   "protocol": {"S": "http"},
   "domain": {"S": "sales"}
 }
-
+```
 <img width="881" height="433" alt="image" src="https://github.com/user-attachments/assets/66a6ac1c-41a5-4aae-9968-aefffea6b4a0" />
 
 
 kvm-bulk-load.json
-
+```json
 {
   "gdcr-kvm": [
     {"PutRequest": {"Item": {"route": {"S": "payments/notify/stripe"}, "interface_id": {"S": "dcrppaymentsnstripeid03"}, "protocol": {"S": "http"}, "domain": {"S": "finances"}}}},
@@ -148,7 +148,7 @@ kvm-bulk-load.json
     {"PutRequest": {"Item": {"route": {"S": "returns/create/shopify"}, "interface_id": {"S": "dcrpreturnscshopifyid12"}, "protocol": {"S": "http"}, "domain": {"S": "sales"}}}}
   ]
 }
-
+```
 aws dynamodb batch-write-item --request-items file://kvm-bulk-load.json --region ap-northeast-1
 
 
@@ -199,7 +199,7 @@ protocol: http
 domain: sales
 
 Codigo Phyton DybamoDB -
-
+```phyton
 import json
 import urllib.request
 import urllib.error
@@ -291,6 +291,18 @@ def lambda_handler(event, context):
         return {'statusCode': 504, 'body': json.dumps({'error': f'CPI timeout: {str(e)}'})}
     except Exception as e:
         return {'statusCode': 500, 'body': json.dumps({'error': str(e)})}
-
+```
 <img width="1415" height="890" alt="image" src="https://github.com/user-attachments/assets/51e25d5c-8422-40ed-86f7-06df68759a43" />
 
+---
+## ⚖️ Attribution & Intellectual Property
+
+Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+
+**First Public Disclosure:** February 7, 2026  
+**Canonical Version:** v6.0  
+**DOI:** 10.5281/zenodo.xxxxx  
+**ORCID:** 0009-0009-9549-5862  
+**License:** CC BY 4.0  
+
+---
