@@ -1,22 +1,33 @@
+# FAQ-10 — Semantic URL Fakery
 
-# FAQ-10 – What is Semantic URL Fakery?
+This document defines the concept of **Semantic URL Fakery** within the GDCR framework—a deliberate architectural strategy to decouple consumer interfaces from underlying infrastructure.
 
-## Q1 – What does "Semantic URL Fakery" mean in GDCR?
+---
 
-In GDCR, **Semantic URL Fakery** means exposing clean, business‑oriented paths to consumers while completely masking the internal technical complexity.  
-Instead of seeing technical hostnames or system-specific codes, the consumer only interacts with a stable, logical interface:
+### Q1 — What does “Semantic URL Fakery” mean in GDCR?
 
-- Public path: `/sales/orders/create`  
-- Hidden reality (example): `http://cpi-tenant-qa.region.aws.ondemand.com/http/v1/s4/fi/order_creation_v2`
+In **Gateway Domain-Centric Routing (GDCR)**, Semantic URL Fakery is the deliberate architectural strategy of exposing stable, business-semantic paths to API consumers while fully masking internal technical complexity.
 
-## Q2 – What information is hidden from the consumer?
+The consumer interacts only with logical domain routes, while the actual technical destination remains entirely hidden.
 
-By using this abstraction layer, GDCR hides:
+* **Public Path (The "Fake" Semantic URL):** `/sales/orders/create`
+* **Hidden Technical Reality (Example):** `https://cpi-tenant-qa.region.aws.ondemand.com/http/v1/s4/fi/order_creation_v2`
 
-- **Hostnames:** No internal server names or cloud tenant IDs are exposed.  
-- **System codes:** Identifiers like `ECC`, `S4H`, `SFDC` (Salesforce) or `WDAY` (Workday) are masked.  
-- **Environment tags:** The URL does not change based on `dev`, `qa`, `prod` or region identifiers.  
-- **Orchestration IDs:** CPI package names, iFlow technical paths and internal versioning remain private.
+> [!TIP]
+> The public path is intentionally “fake” from an infrastructure perspective—but **true** from a business domain perspective. This is the core principle of the framework.
+
+---
+
+### Q2 — What information is hidden from the consumer?
+
+Semantic URL Fakery abstracts and hides four critical layers of technical debt:
+
+1. **Hostnames:** No exposure of internal tenants, regions, or subaccounts (e.g., SAP, Salesforce, AWS, Workday).
+2. **System Codes:** No leakage of internal identifiers such as `ECC`, `S4H`, `SFDC`, or `WDAY`.
+3. **Environment Tags:** The public URL does not change or expose tags like `dev`, `qa`, `prod`, or specific regional deployment codes.
+4. **Orchestration & Runtime Details:** Technical paths of CPI iFlows, package names, version identifiers, and internal authentication strategies are completely masked.
+
+---
 
 ## Q3 – How is this resolved internally? (Architecture flow)
 
@@ -48,28 +59,47 @@ The gateway acts as a translator: it takes the clean URL, looks up the technical
     [ SAP CPI / BACKEND ]   <--- "Real Path" (Hidden)
 ```
 
-## Q4 – What are the benefits of this “fakery”?
+### Q4 — What are the benefits of this “fakery”?
 
-- Security: Reduces the attack surface; attackers cannot infer backend paths, vendors or environments from the URL.
-- Governance: Enables analytics and monitoring by Domain/Entity/Action instead of cryptic technical IDs.
+The implementation of **Semantic URL Fakery** within the GDCR framework provides four strategic pillars of value:
 
-Agility: You can swap backends (for example, from SAP ECC to S/4HANA) by updating only the KVM entry; the consumer URL remains unchanged.
+#### Security
+* **Reduced attack surface:** Minimizes the exposure of internal routing logic.
+* **No backend fingerprinting:** Prevents attackers from identifying specific server types or versions.
+* **No environment inference:** Hides whether a request is hitting dev, qa, or production.
+* **No vendor exposure:** Keeps internal vendor choices (SAP, AWS, etc.) private.
+* **Zero-Trust alignment:** This enforces Zero-Trust principles directly at the URL layer.
 
-Professionalism: Gives APIs a product-like surface, while the legacy and integration “spaghetti” stays behind the façade.
+#### Governance
+* **Domain-centric monitoring:** Logs and analytics follow business paths like `/sales`, `/orders`, or `/payments`.
+* **Business alignment:** Monitoring reflects business capabilities rather than cryptic infrastructure topology.
+
+#### Agility
+* **Seamless Migrations:** When moving from SAP ECC to S/4HANA or changing integration engines, only the **metadata entry** changes.
+* **Contract Stability:** The consumer URL remains 100% unchanged during backend overhauls.
+* **Architectural Freedom:** Allows internal teams to evolve infrastructure without impacting external partners.
+
+#### Professional API Surface
+* **Product-like Interfaces:** APIs are treated as clean products, not technical exports.
+* **Hidden Complexity:** Legacy debt, orchestration layers, and vendor dependencies remain private and never leak into the public contract.
 
 ---
 
-## Author: Ricardo Luz Holanda Viana
-## Role: Enterprise Integration Architect · SAP BTP Integration Suite
+### Architectural Positioning
 
-Creator of: GDCR · DCRP · PDCP
+**Semantic URL Fakery** is not merely "URL rewriting." It is a foundational principle within **GDCR v6.0** defined as:
 
-Architectural scope: business‑semantic, domain‑centric routing architectures for API gateways and integration orchestration (vendor‑agnostic), with SAP‑specific implementations via DCRP (SAP BTP API Management) and PDCP (SAP BTP Cloud Integration). 
+* **Domain-first abstraction**
+* **Infrastructure masking**
+* **Metadata-driven routing**
+* **Vendor-agnostic façade design**
 
-License: Creative Commons Attribution 4.0 International (CC BY 4.0)
-DOI (Zenodo): zenodo.18661136
-DOI (Figshare): figshare.31331683
+-----------------------------------
 
-This document is part of the Gateway Domain‑Centric Routing (GDCR) framework and represents original architectural work authored by Ricardo Luz Holanda Viana. Reuse, adaptation, and distribution are permitted only with proper attribution; any derivative or equivalent architectural implementation must reference the original work and associated DOIs. 
+### ⚖️ Attribution & Framework Identity
 
----
+> **GDCR Framework** · 2026 · ✍️ [Ricardo Luz Holanda Viana](https://orcid.org/0009-0009-9549-5862) · 🔗 [DOI: 10.5281/zenodo.xxxxx](https://doi.org/10.5281/zenodo.xxxxx) · ⚖️ [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+This framework is an original architectural work. For academic, technical, or professional citations, please use the metadata provided above. Reuse, adaptation, and distribution are permitted provided that proper attribution to the original author and DOI is maintained.
+
+-----------------------------------
