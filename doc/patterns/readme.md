@@ -56,6 +56,7 @@ Permanent, non-reusable identifiers for integration flows. Guarantees traceabili
 ## Pattern Interdependency Model
 
 ```mermaid
+
 graph TD
     A[DDD Alignment] --> B[DCRP - Gateway Façade]
     B --> C[DDCR - Deterministic Router]
@@ -72,7 +73,9 @@ graph TD
     H -.-> B
     H -.-> E
     end
+
 ```
+
 ## 8. Governance Supporting Practice
 
 Although not a routing pattern itself, GDCR adopts **Architectural Decision Record (ADR)** Governance to ensure long-term structural consistency.
