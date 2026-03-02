@@ -46,10 +46,15 @@ any backend
 
 Consolidated results are available in the main white paper:
 
-📄 [GDCR v6.0 — The Foundation](../doc/academic-paper/)  
-🔗 DOI: [10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492)
+---
+## ⚖️ Attribution & Intellectual Property
+
+Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+
+**First Public Disclosure:** February 7, 2026  
+**Canonical Version:** v6.0  
+**DOI:** 10.5281/zenodo.xxxxx  
+**ORCID:** 0009-0009-9549-5862  
+**License:** CC BY 4.0  
 
 ---
-
-*Part of the [GDCR Framework](https://github.com/rhviana/gdcr) — 
-CC BY 4.0 — Ricardo Luz Holanda Viana*
