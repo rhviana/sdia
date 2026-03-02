@@ -1,0 +1,358 @@
+{
+  "info": {
+    "name": "GDCR-Phantom-Finance-R2R",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "invoices/create/quickbooks [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:invoices:create:quickbooks"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/invoices/create/quickbooks",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:InvoicesCreateRequest>\n      <dcrp:id>test-f01</dcrp:id>\n      <dcrp:entity>invoices</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>quickbooks</dcrp:vendor>\n      <dcrp:payload><dcrp:invoiceId>INV-F01</dcrp:invoiceId><dcrp:amount>1000.00</dcrp:amount></dcrp:payload>\n    </dcrp:InvoicesCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "invoices/create/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:invoices:create:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/invoices/create/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:InvoicesCreateRequest>\n      <dcrp:id>test-f02</dcrp:id>\n      <dcrp:entity>invoices</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:invoiceId>INV-F02</dcrp:invoiceId><dcrp:amount>1200.00</dcrp:amount></dcrp:payload>\n    </dcrp:InvoicesCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "payments/notify/stripe [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/payments/notify/stripe",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-f03\",\"entity\":\"payments\",\"action\":\"notify\",\"vendor\":\"stripe\",\"payload\":{\"paymentId\":\"PAY-F03\",\"amount\":300.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "payments/notify/s4hana [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/payments/notify/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-f04\",\"entity\":\"payments\",\"action\":\"notify\",\"vendor\":\"s4hana\",\"payload\":{\"paymentId\":\"PAY-F04\",\"amount\":450.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "accounts/sync/xero [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/accounts/sync/xero",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-f05\",\"entity\":\"accounts\",\"action\":\"sync\",\"vendor\":\"xero\",\"payload\":{\"accountId\":\"ACC-F05\",\"name\":\"Test Account\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "journals/create/sap [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:journals:create:sap"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/journals/create/sap",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:JournalsCreateRequest>\n      <dcrp:id>test-f06</dcrp:id>\n      <dcrp:entity>journals</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>sap</dcrp:vendor>\n      <dcrp:payload><dcrp:journalId>JRN-F06</dcrp:journalId><dcrp:amount>500.00</dcrp:amount></dcrp:payload>\n    </dcrp:JournalsCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "expenses/create/coupa [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/expenses/create/coupa",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-f07\",\"entity\":\"expenses\",\"action\":\"create\",\"vendor\":\"coupa\",\"payload\":{\"expenseId\":\"EXP-F07\",\"amount\":150.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "receipts/update/concur [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:receipts:update:concur"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/receipts/update/concur",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:ReceiptsUpdateRequest>\n      <dcrp:id>test-f08</dcrp:id>\n      <dcrp:entity>receipts</dcrp:entity>\n      <dcrp:action>update</dcrp:action>\n      <dcrp:vendor>concur</dcrp:vendor>\n      <dcrp:payload><dcrp:receiptId>RCP-F08</dcrp:receiptId><dcrp:status>approved</dcrp:status></dcrp:payload>\n    </dcrp:ReceiptsUpdateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "budgets/sync/workday [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:budgets:sync:workday"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/budgets/sync/workday",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:BudgetsSyncRequest>\n      <dcrp:id>test-f09</dcrp:id>\n      <dcrp:entity>budgets</dcrp:entity>\n      <dcrp:action>sync</dcrp:action>\n      <dcrp:vendor>workday</dcrp:vendor>\n      <dcrp:payload><dcrp:budgetId>BDG-F09</dcrp:budgetId><dcrp:amount>50000.00</dcrp:amount></dcrp:payload>\n    </dcrp:BudgetsSyncRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxes/create/avalara [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/taxes/create/avalara",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-f10\",\"entity\":\"taxes\",\"action\":\"create\",\"vendor\":\"avalara\",\"payload\":{\"taxId\":\"TAX-F10\",\"rate\":0.15,\"jurisdiction\":\"US-CA\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/finances"
+    },
+    {
+      "key": "basicAuth",
+      "value": "c2ItZmMwNzE3OWItYmEzNy00ZjcyLThjZTQtZTRkMjFhNmM0YWY0IWIxMDY1ODB8aXQtcnQtMmFlMTUyY2R0cmlhbCFiMTk2OmQzZTUxMjJhLTUyNjgtNDIwYi05MDJiLTJjYzBjNDdhM2U4NSRnRFNsX2FMRm1TNjRVVGZLQUdueUd4Z3p5ajRBZlY1TG1jME1ObkYxd053PQ=="
+    }
+  ]
+}

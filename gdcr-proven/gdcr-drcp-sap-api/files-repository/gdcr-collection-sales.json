@@ -1,0 +1,462 @@
+{
+  "info": {
+    "name": "GDCR-Phantom-Sales-O2C",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "orders/create/salesforce [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/orders/create/salesforce",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s01\",\"entity\":\"orders\",\"action\":\"create\",\"vendor\":\"salesforce\",\"payload\":{\"orderId\":\"ORD-S01\",\"amount\":1000.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "orders/update/salesforceemea [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/orders/update/salesforceemea",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s02\",\"entity\":\"orders\",\"action\":\"update\",\"vendor\":\"salesforceemea\",\"payload\":{\"orderId\":\"ORD-S02\",\"amount\":1200.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "customers/sync/shopify [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/customers/sync/shopify",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s03\",\"entity\":\"customers\",\"action\":\"sync\",\"vendor\":\"shopify\",\"payload\":{\"customerId\":\"CUS-S03\",\"name\":\"Test Customer\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "payments/notify/stripe [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/payments/notify/stripe",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s04\",\"entity\":\"payments\",\"action\":\"notify\",\"vendor\":\"stripe\",\"payload\":{\"paymentId\":\"PAY-S04\",\"amount\":300.00}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "orders/create/microsoft [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:orders:create:microsoft"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/orders/create/microsoft",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:OrdersCreateRequest>\n      <dcrp:id>test-s05</dcrp:id>\n      <dcrp:entity>orders</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>microsoft</dcrp:vendor>\n      <dcrp:payload><dcrp:orderId>ORD-S05</dcrp:orderId><dcrp:amount>900.00</dcrp:amount></dcrp:payload>\n    </dcrp:OrdersCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "deliveries/transfer/fedex [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/deliveries/transfer/fedex",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s06\",\"entity\":\"deliveries\",\"action\":\"transfer\",\"vendor\":\"fedex\",\"payload\":{\"deliveryId\":\"DEL-S06\",\"trackingNo\":\"TRK001\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "customers/sync/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:customers:sync:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/customers/sync/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:CustomersSyncRequest>\n      <dcrp:id>test-s07</dcrp:id>\n      <dcrp:entity>customers</dcrp:entity>\n      <dcrp:action>sync</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:customerId>CUS-S07</dcrp:customerId><dcrp:name>Test Customer</dcrp:name></dcrp:payload>\n    </dcrp:CustomersSyncRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "payments/notify/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:payments:notify:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/payments/notify/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:PaymentsNotifyRequest>\n      <dcrp:id>test-s08</dcrp:id>\n      <dcrp:entity>payments</dcrp:entity>\n      <dcrp:action>notify</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:paymentId>PAY-S08</dcrp:paymentId><dcrp:amount>450.00</dcrp:amount></dcrp:payload>\n    </dcrp:PaymentsNotifyRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "invoices/create/quickbooks [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:invoices:create:quickbooks"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/invoices/create/quickbooks",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:InvoicesCreateRequest>\n      <dcrp:id>test-s09</dcrp:id>\n      <dcrp:entity>invoices</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>quickbooks</dcrp:vendor>\n      <dcrp:payload><dcrp:invoiceId>INV-S09</dcrp:invoiceId><dcrp:amount>1000.00</dcrp:amount></dcrp:payload>\n    </dcrp:InvoicesCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "invoices/create/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:invoices:create:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/invoices/create/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:InvoicesCreateRequest>\n      <dcrp:id>test-s10</dcrp:id>\n      <dcrp:entity>invoices</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:invoiceId>INV-S10</dcrp:invoiceId><dcrp:amount>1200.00</dcrp:amount></dcrp:payload>\n    </dcrp:InvoicesCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "deliveries/transfer/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:deliveries:transfer:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/deliveries/transfer/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:DeliveriesTransferRequest>\n      <dcrp:id>test-s11</dcrp:id>\n      <dcrp:entity>deliveries</dcrp:entity>\n      <dcrp:action>transfer</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:deliveryId>DEL-S11</dcrp:deliveryId><dcrp:status>shipped</dcrp:status></dcrp:payload>\n    </dcrp:DeliveriesTransferRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "returns/create/shopify [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/returns/create/shopify",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-s12\",\"entity\":\"returns\",\"action\":\"create\",\"vendor\":\"shopify\",\"payload\":{\"returnId\":\"RET-S12\",\"orderId\":\"ORD-001\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "returns/create/s4hana [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:returns:create:s4hana"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/returns/create/s4hana",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:ReturnsCreateRequest>\n      <dcrp:id>test-s13</dcrp:id>\n      <dcrp:entity>returns</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>s4hana</dcrp:vendor>\n      <dcrp:payload><dcrp:returnId>RET-S13</dcrp:returnId><dcrp:orderId>ORD-002</dcrp:orderId></dcrp:payload>\n    </dcrp:ReturnsCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/sales"
+    },
+    {
+      "key": "basicAuth",
+      "value": "c2ItZmMwNzE3OWItYmEzNy00ZjcyLThjZTQtZTRkMjFhNmM0YWY0IWIxMDY1ODB8aXQtcnQtMmFlMTUyY2R0cmlhbCFiMTk2OmQzZTUxMjJhLTUyNjgtNDIwYi05MDJiLTJjYzBjNDdhM2U4NSRnRFNsX2FMRm1TNjRVVGZLQUdueUd4Z3p5ajRBZlY1TG1jME1ObkYxd053PQ=="
+    }
+  ]
+}

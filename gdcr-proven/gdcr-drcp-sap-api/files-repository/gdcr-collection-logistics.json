@@ -1,0 +1,354 @@
+{
+  "info": {
+    "name": "GDCR-Phantom-Logistics-LE",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "shipments/create/fedex [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/shipments/create/fedex",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l01\",\"entity\":\"shipments\",\"action\":\"create\",\"vendor\":\"fedex\",\"payload\":{\"shipmentId\":\"SHP-L01\",\"weight\":10.5}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "trackings/update/ups [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/trackings/update/ups",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l02\",\"entity\":\"trackings\",\"action\":\"update\",\"vendor\":\"ups\",\"payload\":{\"trackingId\":\"TRK-L02\",\"status\":\"in-transit\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "deliveries/create/dhl [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:deliveries:create:dhl"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/deliveries/create/dhl",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:DeliveriesCreateRequest>\n      <dcrp:id>test-l03</dcrp:id>\n      <dcrp:entity>deliveries</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>dhl</dcrp:vendor>\n      <dcrp:payload><dcrp:deliveryId>DEL-L03</dcrp:deliveryId><dcrp:destination>Warsaw</dcrp:destination></dcrp:payload>\n    </dcrp:DeliveriesCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "shipments/query/fedex [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/shipments/query/fedex",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l04\",\"entity\":\"shipments\",\"action\":\"query\",\"vendor\":\"fedex\",\"payload\":{\"shipmentId\":\"SHP-L04\",\"filter\":\"active\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "containers/sync/maersk [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/containers/sync/maersk",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l05\",\"entity\":\"containers\",\"action\":\"sync\",\"vendor\":\"maersk\",\"payload\":{\"containerId\":\"CON-L05\",\"port\":\"Rotterdam\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "warehouses/update/sf [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:warehouses:update:sf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/warehouses/update/sf",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:WarehousesUpdateRequest>\n      <dcrp:id>test-l06</dcrp:id>\n      <dcrp:entity>warehouses</dcrp:entity>\n      <dcrp:action>update</dcrp:action>\n      <dcrp:vendor>sf</dcrp:vendor>\n      <dcrp:payload><dcrp:warehouseId>WHS-L06</dcrp:warehouseId><dcrp:capacity>5000</dcrp:capacity></dcrp:payload>\n    </dcrp:WarehousesUpdateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "freights/create/coyote [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/freights/create/coyote",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l07\",\"entity\":\"freights\",\"action\":\"create\",\"vendor\":\"coyote\",\"payload\":{\"freightId\":\"FRT-L07\",\"weight\":500.0}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "routes/sync/project44 [JSON]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/routes/sync/project44",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"test-l08\",\"entity\":\"routes\",\"action\":\"sync\",\"vendor\":\"project44\",\"payload\":{\"routeId\":\"RTE-L08\",\"origin\":\"Warsaw\",\"destination\":\"Berlin\"}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "manifests/create/customs [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:manifests:create:customs"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/manifests/create/customs",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:ManifestsCreateRequest>\n      <dcrp:id>test-l09</dcrp:id>\n      <dcrp:entity>manifests</dcrp:entity>\n      <dcrp:action>create</dcrp:action>\n      <dcrp:vendor>customs</dcrp:vendor>\n      <dcrp:payload><dcrp:manifestId>MAN-L09</dcrp:manifestId><dcrp:country>PL</dcrp:country></dcrp:payload>\n    </dcrp:ManifestsCreateRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "inventory/sync/wms [SOAP]",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "dcrp:inventory:sync:wms"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic {{basicAuth}}"
+          }
+        ],
+        "url": "{{base}}/inventory/sync/wms",
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:dcrp=\"http://dcrp.example.com/\">\n  <soapenv:Header/>\n  <soapenv:Body>\n    <dcrp:InventorySyncRequest>\n      <dcrp:id>test-l10</dcrp:id>\n      <dcrp:entity>inventory</dcrp:entity>\n      <dcrp:action>sync</dcrp:action>\n      <dcrp:vendor>wms</dcrp:vendor>\n      <dcrp:payload><dcrp:inventoryId>INV-L10</dcrp:inventoryId><dcrp:quantity>1000</dcrp:quantity></dcrp:payload>\n    </dcrp:InventorySyncRequest>\n  </soapenv:Body>\n</soapenv:Envelope>"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 2xx', function() { pm.expect(pm.response.code).to.be.oneOf([200,201,202]); });",
+              "pm.globals.set('resp_' + pm.info.requestName + '_' + pm.iteration, pm.response.responseTime);"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "https://282cc9datrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com/282cc9datrial/logistics"
+    },
+    {
+      "key": "basicAuth",
+      "value": "c2ItZmMwNzE3OWItYmEzNy00ZjcyLThjZTQtZTRkMjFhNmM0YWY0IWIxMDY1ODB8aXQtcnQtMmFlMTUyY2R0cmlhbCFiMTk2OmQzZTUxMjJhLTUyNjgtNDIwYi05MDJiLTJjYzBjNDdhM2U4NSRnRFNsX2FMRm1TNjRVVGZLQUdueUd4Z3p5ajRBZlY1TG1jME1ObkYxd053PQ=="
+    }
+  ]
+}
