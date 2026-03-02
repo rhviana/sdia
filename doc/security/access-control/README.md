@@ -2,19 +2,21 @@
 
 ![Access Control Matrix](../../images/security/access-matrix.png)
 
-## 🎯 Problem Statement
+---
 
-**Question from community:**
-> *"If 10 different sender systems call the same domain endpoint (e.g., api.company.com/sales/*), how is access control enforced to prevent cross-sender access?"*
+## Problem Statement
 
-**Answer:**
-> **Scope-based validation + explicit allowed_senders lists per endpoint.**
+**Question:**  
+If 10 different sender systems call the same domain endpoint (e.g., `api.company.com/sales/*`), how is access control enforced to prevent cross-sender access?
+
+**Answer:**  
+Scope-based validation combined with explicit `allowed_senders` lists per endpoint.
 
 ---
 
-## 🔍 Access Control Layers
+## Access Control Layers
 
-```
+```plaintext
 ┌──────────────────────────────────────────────────────┐
 │ Request: GET /sales/orders                           │
 │ Sender: SENDER_A                                     │
@@ -46,7 +48,7 @@
 
 ---
 
-## 📋 Configuration Structure
+## Configuration Structure
 
 ### Endpoint Configuration (KVM or Config DB)
 
@@ -58,13 +60,6 @@
       "required_scopes": ["sales:read"],
       "allowed_senders": ["SENDER_A", "SENDER_C", "SENDER_E"],
       "rate_limit": 1000,
-      "audit_level": "full"
-    },
-    "/sales/customers": {
-      "backend_url": "https://cpi.company.com/sales/customers",
-      "required_scopes": ["sales:read", "sales:write"],
-      "allowed_senders": ["SENDER_A"],
-      "rate_limit": 500,
       "audit_level": "full"
     },
     "/finance/invoices": {
@@ -80,46 +75,34 @@
 
 ---
 
-## 🧪 Validation Logic (JavaScript Policy)
+## Validation Logic (JavaScript Policy)
 
 ```javascript
 // Policy: Sender-Authorization-Check
 // Execution: After OAuth validation, before routing
 
-var senderID = context.getVariable("sender.id"); // From OAuth policy
+var senderID = context.getVariable("sender.id");
 var scopes = context.getVariable("sender.scopes").split(",");
-var requestPath = context.getVariable("proxy.pathsuffix"); // e.g., /sales/orders
+var requestPath = context.getVariable("proxy.pathsuffix");
 
-// Load endpoint configuration
 var configKVM = context.getKeyValueMap("endpoint_config");
 var endpointConfigStr = configKVM.get(requestPath);
 
 if (!endpointConfigStr) {
     context.setVariable("response.status.code", 404);
-    context.setVariable("response.content", 
-        JSON.stringify({"error": "Endpoint not found"}));
     throw new Error("Not Found");
 }
 
 var endpointConfig = JSON.parse(endpointConfigStr);
 
-// Check 1: Is sender in allowed list?
+// Check 1: Sender authorization
 if (!endpointConfig.allowed_senders.includes(senderID)) {
     context.setVariable("response.status.code", 403);
-    context.setVariable("response.content", 
-        JSON.stringify({
-            "error": "Sender not authorized for this endpoint",
-            "sender_id": senderID,
-            "endpoint": requestPath
-        }));
-    
-    // Log security violation
     logAuditEvent("ACCESS_DENIED", senderID, requestPath);
-    
     throw new Error("Forbidden");
 }
 
-// Check 2: Does sender have required scopes?
+// Check 2: Scope validation
 var requiredScopes = endpointConfig.required_scopes;
 var hasAllScopes = requiredScopes.every(function(scope) {
     return scopes.includes(scope);
@@ -127,100 +110,70 @@ var hasAllScopes = requiredScopes.every(function(scope) {
 
 if (!hasAllScopes) {
     context.setVariable("response.status.code", 403);
-    context.setVariable("response.content", 
-        JSON.stringify({
-            "error": "Insufficient scopes",
-            "required": requiredScopes,
-            "available": scopes
-        }));
-    
     logAuditEvent("SCOPE_VIOLATION", senderID, requestPath);
-    
     throw new Error("Forbidden");
 }
 
-// All checks passed - store backend URL for routing
 context.setVariable("target.backend_url", endpointConfig.backend_url);
 context.setVariable("sender.authorized", true);
-
-// Log successful authorization
 logAuditEvent("ACCESS_GRANTED", senderID, requestPath);
 ```
 
 ---
 
-## 🧮 Real-World Example: 10 Senders, 1 Domain
-
-### Scenario
-- **Domain:** `api.company.com/sales/*`
-- **Endpoints:** 5 (orders, customers, products, invoices, reports)
-- **Senders:** 10 (A through J)
+## Real-World Example: 10 Senders, 1 Domain
 
 ### Access Matrix
 
 | Sender | /orders | /customers | /products | /invoices | /reports |
 |--------|---------|------------|-----------|-----------|----------|
-| A      | ✅ R/W  | ✅ R/W     | ✅ R      | ❌        | ❌       |
-| B      | ✅ R    | ❌         | ✅ R      | ✅ R/W    | ❌       |
-| C      | ✅ R    | ❌         | ✅ R      | ❌        | ✅ R     |
-| D      | ❌      | ❌         | ✅ R      | ✅ R      | ❌       |
-| E      | ✅ R/W  | ✅ R       | ✅ R/W    | ❌        | ❌       |
-| F      | ❌      | ❌         | ❌        | ✅ R/W    | ✅ R/W   |
-| G      | ✅ R    | ✅ R       | ❌        | ❌        | ❌       |
-| H      | ❌      | ❌         | ✅ R      | ❌        | ✅ R     |
-| I      | ✅ R/W  | ❌         | ❌        | ❌        | ❌       |
-| J      | ❌      | ❌         | ✅ R      | ✅ R      | ✅ R/W   |
-
-**Legend:** ✅ = Allowed, ❌ = Blocked, R = Read scope, W = Write scope
+| A      | R/W     | R/W        | R         | Blocked   | Blocked  |
+| B      | R       | Blocked    | R         | R/W       | Blocked  |
+| F      | Blocked | Blocked    | Blocked   | R/W       | R/W      |
+| J      | Blocked | Blocked    | R         | R         | R/W      |
 
 ---
 
-## 🔒 Isolation Guarantees
+## Isolation Guarantees
 
-### ✅ What IS Enforced
+Enforced:
 
-1. **Sender A cannot call endpoints where `allowed_senders` excludes "SENDER_A"**
-2. **Even with a valid OAuth2 token, scope check blocks unauthorized paths**
-3. **Cross-sender access attempts are logged as security violations**
-4. **Each sender operates in complete isolation at the routing layer**
+1. A sender cannot call endpoints where it is not explicitly listed.
+2. Scope validation blocks unauthorized operations even with valid tokens.
+3. Cross-sender access attempts are logged as security violations.
+4. Sender context is propagated to the backend for traceability.
 
-### ❌ What Does NOT Happen
+Not possible:
 
-1. ❌ Sender A **cannot** "steal" Sender B's token (KVM binds token to sender_id)
-2. ❌ Sender A **cannot** bypass scope checks (JavaScript policy enforces before routing)
-3. ❌ Sender A **cannot** access another sender's data (backend receives sender context)
+1. Token impersonation (token hash bound to sender_id).
+2. Bypassing scope validation.
+3. Accessing data outside assigned authorization scope.
 
 ---
 
-## 🧪 Testing Cross-Sender Isolation
+## Testing Cross-Sender Isolation
 
 ```bash
-# Scenario: SENDER_A tries to access SENDER_B's endpoint
-
-# Step 1: Get valid token for SENDER_A
+# Obtain token for SENDER_A
 TOKEN_A=$(curl -X POST https://oauth.company.com/token \
   -d "client_id=SENDER_A" \
   -d "client_secret=SECRET_A" \
   -d "grant_type=client_credentials" | jq -r '.access_token')
 
-# Step 2: Try to access endpoint allowed only for SENDER_B
+# Attempt unauthorized endpoint
 curl -X GET https://api.company.com/finance/invoices \
   -H "Authorization: Bearer $TOKEN_A"
+```
 
-# Expected Response:
-# HTTP 403 Forbidden
-# {
-#   "error": "Sender not authorized for this endpoint",
-#   "sender_id": "SENDER_A",
-#   "endpoint": "/finance/invoices"
-# }
+Expected response:
+
+```
+HTTP 403 Forbidden
 ```
 
 ---
 
-## 📊 Audit Trail for Cross-Sender Attempts
-
-Every blocked attempt generates an audit entry:
+## Audit Entry Example
 
 ```json
 {
@@ -229,60 +182,58 @@ Every blocked attempt generates an audit entry:
   "sender_id": "SENDER_A",
   "endpoint": "/finance/invoices",
   "reason": "Sender not in allowed_senders list",
-  "source_ip": "203.0.113.45",
-  "token_hash": "sha256:7f3e9c...",
   "severity": "WARNING"
 }
 ```
 
-See [AUDIT-COMPLIANCE.md](../compliance/AUDIT-COMPLIANCE.md) for full audit structure.
+See `AUDIT-COMPLIANCE.md` for full audit model.
 
 ---
 
-## 🚀 Performance Impact
+## Performance Impact
 
 | Operation | Latency | Scaling |
 |-----------|---------|---------|
-| Load endpoint config | 2-3ms | O(1) KVM lookup |
-| Check allowed_senders | <1ms | Array includes() |
-| Scope validation | 1-2ms | Set intersection |
-| **Total overhead** | **3-6ms** | **Linear with # scopes** |
-
-For 10 senders hitting 1 endpoint:
-- **No additional latency** (each sender validated independently)
-- **No contention** (read-only KVM access)
+| Load endpoint config | 2–3ms | O(1) lookup |
+| Check allowed_senders | <1ms | Array check |
+| Scope validation | 1–2ms | Set comparison |
+| Total overhead | 3–6ms | Linear with # scopes |
 
 ---
 
-## 🔄 Dynamic Access Control Updates
+## Dynamic Access Updates
 
-**Question:** *Can I add/remove senders from allowed_senders without redeploying proxies?*
-
-**Answer:** **YES.** 
-
-Update the KVM entry:
+Update KVM without redeploying proxies:
 
 ```bash
-# Add SENDER_K to /sales/orders
 curl -X PUT https://apim.company.com/kvm/endpoint_config/sales/orders \
   -H "Authorization: Bearer ADMIN_TOKEN" \
   -d '{
     "allowed_senders": ["SENDER_A", "SENDER_C", "SENDER_E", "SENDER_K"]
   }'
-
-# Takes effect immediately (no proxy restart)
 ```
 
----
-
-## ✅ Best Practices
-
-1. **Principle of least privilege:** Only add senders that genuinely need access
-2. **Regular audits:** Review allowed_senders lists quarterly
-3. **Explicit over implicit:** Never use wildcard `"*"` for allowed_senders
-4. **Log everything:** Security violations should trigger alerts
-5. **Rotation:** Rotate sender credentials every 90 days (see [CREDENTIAL-MANAGEMENT.md](./CREDENTIAL-MANAGEMENT.md))
+Takes effect immediately.
 
 ---
 
-**Next:** [CREDENTIAL-MANAGEMENT.md](./CREDENTIAL-MANAGEMENT.md) for credential vault architecture.
+## Best Practices
+
+1. Apply least privilege.
+2. Avoid wildcard allowed_senders.
+3. Review access lists quarterly.
+4. Log and alert on violations.
+5. Rotate sender credentials regularly (see CREDENTIAL-MANAGEMENT.md).
+
+---
+## ⚖️ Attribution & Intellectual Property
+
+Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+
+**First Public Disclosure:** February 7, 2026  
+**Canonical Version:** v6.0  
+**DOI:** 10.5281/zenodo.xxxxx  
+**ORCID:** 0009-0009-9549-5862  
+**License:** CC BY 4.0  
+
+---
