@@ -53,7 +53,7 @@ Gateway Domain-Centric Routing (GDCR) is an original architectural framework aut
 
 **First Public Disclosure:** February 7, 2026  
 **Canonical Version:** v6.0  
-**DOI:** 10.5281/zenodo.xxxxx  
+**DOI:** [10.5281/zenodo.18582492](https://zenodo.org/records/18836272)  
 **ORCID:** 0009-0009-9549-5862  
 **License:** CC BY 4.0  
 
