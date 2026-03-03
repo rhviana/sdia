@@ -9,7 +9,7 @@ Before exploring, reusing, or referencing any content, you are strongly encourag
 
 Please review these files before proceeding to the main technical documentation.
 
-Gateway Domain-Centric Routing (GDCR)
+Gateway Domain-Centric Routing (GDCR™)
 -----------------------------------
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582492.svg)](https://zenodo.org/records/18582492)
@@ -38,10 +38,10 @@ GDCR is vendor-agnostic by design and unifies Domain-Driven Design (DDD) alignme
 
 The objective of this validation was not to benchmark raw throughput, but to prove architectural correctness, deterministic behavior, and measurable governance impact under controlled conditions.
 
-What is GDCR ?
+What is (GDCR™) ?
 -----------------------------------
 
-Gateway Domain-Centric Routing (GDCR) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
+Gateway Domain-Centric Routing (GDCR™) is a vendor-agnostic architectural pattern that routes API traffic based on business domain and business process
 (e.g., Sales (O2C), Finance (R2R), Logistics (LE)) instead of backend endpoints.
 
 This routing logic is applied consistently across both the Gateway layer and the Orchestration layer.
@@ -234,7 +234,7 @@ For commercial inquiries only: rhviana@gmail.com
 
 ## ⚖️ Attribution & Intellectual Property
 
-Gateway Domain-Centric Routing (GDCR) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
+Gateway Domain-Centric Routing (GDCR™) is an original architectural framework authored by **Ricardo Luz Holanda Viana**.
 
 **First Public Disclosure:** February 7, 2026  
 **Canonical Version:** v6.0  
