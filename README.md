@@ -201,16 +201,15 @@ BibTeX
 
 ## No-Support Policy
 
-This repository is published for academic transparency and reproducibility under the Creative Commons Attribution 4.0 (CC BY 4.0) License.
+This repository is published to ensure academic transparency and reproducibility under the Creative Commons Attribution 4.0 (CC BY 4.0) License.
 
-It is not a tutorial repository and does not include implementation support, troubleshooting, or configuration assistance.
+The material documents the GDCR architectural framework at a conceptual and governance level. It is not intended as a step-by-step tutorial and does not provide implementation walkthroughs, configuration guidance, or troubleshooting support.
 
-The framework is intentionally documented at an architectural level.
-Successful implementation requires careful reading of the DOI documentation and prior experience in API Management and integration architecture.
+Successful adoption requires careful review of the DOI publication and prior experience in API Management, distributed systems, and enterprise integration architecture.
 
-No direct support is provided through GitHub issues.
+GitHub issues are not used for implementation support.
 
-For commercial inquiries or consulting engagement, please contact the author directly.
+For research collaboration, academic discussion, or commercial engagement, please contact the author directly.
 
 ----------------------------------
 
