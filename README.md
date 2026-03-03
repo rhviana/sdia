@@ -12,7 +12,7 @@ Please review these files before proceeding to the main technical documentation.
 Gateway Domain-Centric Routing (GDCR)
 -----------------------------------
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582492.svg)](https://zenodo.org/records/18836272)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18582492.svg-brightgreen)](https://zenodo.org/records/18836272)
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.31444984-brightgreen)](https://doi.org/10.6084/m9.figshare.31444984)
 [![Paper](https://img.shields.io/badge/Paper-Zenodo-blue)](https://zenodo.org/records/18836272)
 [![Paper](https://img.shields.io/badge/Paper-Figshare-brightgreen)](https://doi.org/10.6084/m9.figshare.31444984)
