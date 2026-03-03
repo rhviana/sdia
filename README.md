@@ -203,13 +203,21 @@ BibTeX
 
 This repository is published to ensure academic transparency and reproducibility under the Creative Commons Attribution 4.0 (CC BY 4.0) License.
 
-The material documents the GDCR architectural framework at a conceptual and governance level. It is not intended as a step-by-step tutorial and does not provide implementation walkthroughs, configuration guidance, or troubleshooting support.
+It documents the GDCR architectural framework at a conceptual, governance, and implementation-pattern level.
 
-Successful adoption requires careful review of the DOI publication and prior experience in API Management, distributed systems, and enterprise integration architecture.
+It is not intended to function as a step-by-step tutorial or implementation guide.
 
-GitHub issues are not used for implementation support.
+Successful adoption requires:
 
-For research collaboration, academic discussion, or commercial engagement, please contact the author directly.
+Prior experience with API Management platforms
+
+Understanding of distributed systems
+
+Familiarity with metadata-driven routing models
+
+GitHub issues are not used for implementation troubleshooting or configuration support.
+
+For academic collaboration, architectural discussion, or commercial engagement, the author may be contacted directly.
 
 ----------------------------------
 
