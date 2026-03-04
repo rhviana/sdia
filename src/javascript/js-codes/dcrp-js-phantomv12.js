@@ -22,38 +22,138 @@
  * ============================================================================
  */
 
-// ── Canonical Action Map (global = initialized once per worker) ──────────────
+// ── Canonical Action Map — Phantom v12 ──────────────────────────────────────
+// 241 action variants → 15 canonical single-character codes
+// Author: Ricardo Luz Holanda Viana
+// DOI: 10.5281/zenodo.18582492
+
 var GLOBAL_ACTION_MAP = {
-  // Create
-  "create":"c","creating":"c","post":"c","insert":"c","add":"c","new":"c","submit":"c","register":"c",
-  // Read
-  "read":"r","get":"r","fetch":"r","retrieve":"r","view":"r","list":"r","show":"r",
-  // Update
-  "update":"u","put":"u","patch":"u","modify":"u","change":"u","edit":"u","revise":"u",
-  // Delete
-  "delete":"d","remove":"d","cancel":"d","terminate":"d","destroy":"d",
-  // Sync
-  "sync":"s","synchronize":"s","replicate":"s","mirror":"s","refresh":"s",
-  // Approve
-  "approve":"p","authorize":"p","accept":"p","validate":"p","confirm":"p","endorse":"p",
-  // Notify
-  "notify":"a","alert":"a","inform":"a","announce":"a","broadcast":"a",
-  // Enable
-  "enable":"e","activate":"e","start":"e","resume":"e",
-  // Disable
-  "disable":"b","deactivate":"b","stop":"b","pause":"b",
-  // Archive
-  "archive":"v","store":"v",
-  // Restore
-  "restore":"w","unarchive":"w",
-  // Audit
-  "audit":"x","log":"x","trace":"x",
-  // Execute
-  "execute":"z","run":"z","trigger":"z","process":"z",
-  // Flow/Route
-  "flow":"f","route":"f","forward":"f","dispatch":"f"
+
+  // ── c: CREATE (27 variants) ──────────────────────────────────────────────
+  "create":"c",    "created":"c",    "post":"c",
+  "insert":"c",    "add":"c",        "new":"c",
+  "submit":"c",    "register":"c",   "registered":"c",
+  "provision":"c", "provisioning":"c","onboard":"c",
+  "onboarding":"c","publish":"c",    "publishing":"c",
+  "generate":"c",  "build":"c",      "built":"c",
+  "open":"c",      "opening":"c",    "setup":"c",
+  "initialize":"c","initializing":"c","initialized":"c",
+  "draft":"c",
+
+  // ── r: READ (25 variants) ────────────────────────────────────────────────
+  "read":"r",      "get":"r",        "fetch":"r",
+  "retrieve":"r",  "view":"r",       "viewed":"r",
+  "list":"r",      "listing":"r",    "listed":"r",
+  "show":"r",      "showing":"r",    "shown":"r",
+  "search":"r",    "searching":"r",  "searched":"r",
+  "find":"r",      "finding":"r",    "found":"r",
+  "query":"r",     "querying":"r",   "queried":"r",
+  "lookup":"r",    "check":"r",      "inspect":"r",
+
+  // ── u: UPDATE (27 variants) ──────────────────────────────────────────────
+  "update":"u",    "updating":"u",   "updated":"u",
+  "put":"u",       "patch":"u",      "patching":"u",
+  "modify":"u",    "modifying":"u",  "modified":"u",
+  "change":"u",    "changing":"u",   "changed":"u",
+  "edit":"u",      "editing":"u",    "edited":"u",
+  "revise":"u",    "revising":"u",   "revised":"u",
+  "amend":"u",     "amending":"u",   "amended":"u",
+  "replace":"u",   "replacing":"u",  "replaced":"u",
+  "upsert":"u",
+
+  // ── d: DELETE (20 variants) ──────────────────────────────────────────────
+  "delete":"d",    "deleting":"d",   "deleted":"d",
+  "remove":"d",    "removing":"d",   "removed":"d",
+  "cancel":"d",    "cancelling":"d", "cancelled":"d",
+  "terminate":"d", "terminating":"d","terminated":"d",
+  "destroy":"d",   "destroying":"d", "destroyed":"d",
+  "deactivate":"d","purge":"d",      "purging":"d",
+  "purged":"d",    "discard":"d",
+
+  // ── s: SYNC (18 variants) ────────────────────────────────────────────────
+  "sync":"s",         "syncing":"s",       "synced":"s",
+  "synchronize":"s",  "synchronizing":"s", "synchronized":"s",
+  "replicate":"s",    "replicating":"s",   "replicated":"s",
+  "mirror":"s",       "mirroring":"s",     "mirrored":"s",
+  "refresh":"s",      "refreshing":"s",    "refreshed":"s",
+  "reconcile":"s",    "harmonize":"s",     "align":"s",
+
+  // ── a: APPROVE (18 variants) ─────────────────────────────────────────────
+  "approve":"a",    "approving":"a",   "approved":"a",
+  "authorize":"a",  "authorizing":"a", "authorized":"a",
+  "accept":"a",     "accepting":"a",   "accepted":"a",
+  "validate":"a",   "validating":"a",  "validated":"a",
+  "confirm":"a",    "confirming":"a",  "confirmed":"a",
+  "endorse":"a",    "certify":"a",     "signoff":"a",
+
+  // ── n: NOTIFY (18 variants) ──────────────────────────────────────────────
+  "notify":"n",     "notifying":"n",   "notified":"n",
+  "alert":"n",      "alerting":"n",    "alerted":"n",
+  "inform":"n",     "informing":"n",   "informed":"n",
+  "announce":"n",   "announcing":"n",  "announced":"n",
+  "broadcast":"n",  "broadcasting":"n","broadcasted":"n",
+  "emit":"n",       "trigger":"n",     "signal":"n",
+
+  // ── t: TRANSFER (16 variants) ────────────────────────────────────────────
+  "transfer":"t",   "transferring":"t","transferred":"t",
+  "send":"t",       "sending":"t",     "sent":"t",
+  "move":"t",       "moving":"t",      "moved":"t",
+  "migrate":"t",    "migrating":"t",   "migrated":"t",
+  "forward":"t",    "forwarding":"t",  "relay":"t",
+  "handoff":"t",
+
+  // ── e: ENABLE (12 variants) ──────────────────────────────────────────────
+  "enable":"e",     "enabling":"e",    "enabled":"e",
+  "activate":"e",   "activating":"e",  "activated":"e",
+  "start":"e",      "starting":"e",    "started":"e",
+  "resume":"e",     "resuming":"e",    "resumed":"e",
+
+  // ── b: DISABLE (12 variants) ─────────────────────────────────────────────
+  "disable":"b",    "disabling":"b",   "disabled":"b",
+  "deactivate":"b", "deactivating":"b","deactivated":"b",
+  "stop":"b",       "stopping":"b",    "stopped":"b",
+  "pause":"b",      "pausing":"b",     "paused":"b",
+
+  // ── v: ARCHIVE (10 variants) ─────────────────────────────────────────────
+  "archive":"v",    "archiving":"v",   "archived":"v",
+  "store":"v",      "storing":"v",     "stored":"v",
+  "backup":"v",     "backing":"v",     "backed":"v",
+  "retain":"v",
+
+  // ── w: RESTORE (10 variants) ─────────────────────────────────────────────
+  "restore":"w",    "restoring":"w",   "restored":"w",
+  "unarchive":"w",  "recover":"w",     "recovering":"w",
+  "recovered":"w",  "rollback":"w",    "revert":"w",
+  "reinstate":"w",
+
+  // ── x: AUDIT (12 variants) ───────────────────────────────────────────────
+  "audit":"x",      "auditing":"x",    "audited":"x",
+  "log":"x",        "logging":"x",     "logged":"x",
+  "trace":"x",      "tracing":"x",     "traced":"x",
+  "track":"x",      "tracking":"x",    "tracked":"x",
+
+  // ── z: EXECUTE (12 variants) ─────────────────────────────────────────────
+  "execute":"z",    "executing":"z",   "executed":"z",
+  "run":"z",        "running":"z",     "ran":"z",
+  "process":"z",    "processing":"z",  "processed":"z",
+  "compute":"z",    "computing":"z",   "computed":"z",
+
+  // ── f: FLOW/ROUTE (10 variants) ──────────────────────────────────────────
+  "flow":"f",       "flowing":"f",     "flowed":"f",
+  "route":"f",      "routing":"f",     "routed":"f",
+  "dispatch":"f",   "dispatching":"f", "dispatched":"f",
+  "pipeline":"f"
+
 };
 
+// Validation
+var entries = Object.keys(GLOBAL_ACTION_MAP);
+var codes = {};
+entries.forEach(function(k) {
+  var c = GLOBAL_ACTION_MAP[k];
+  codes[c] = (codes[c] || 0) + 1;
+});
+// Total: 241 variants → 15 canonical codes
 // ── Worker-scoped caches (survive across requests on same worker) ────────────
 var _kvmCacheRaw  = null;   // raw KVM string last seen
 var _kvmCacheMap  = null;   // parsed map: {lookupKey -> entry}
