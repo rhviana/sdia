@@ -219,6 +219,8 @@ GitHub issues are not used for implementation troubleshooting or configuration s
 
 For academic collaboration, architectural discussion, or commercial engagement, the author may be contacted directly.
 
+The primary goal of this repository is to influence how enterprise integrations are designed globally. Adoption and adaptations are welcome, but they must preserve attribution to the original author and the SDIA/GDCR/DDCR/ODCP semantic invariants.
+
 ----------------------------------
 
 ### 📞 Contact
