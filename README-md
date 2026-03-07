@@ -1,0 +1,22 @@
+graph TD
+    SDIA["🌐 SDIA\nSemantic Domain Integration Architecture\nzenodo.org/records/18877636"]
+
+    SDIA --> GDCR["⚡ GDCR\nGateway Domain-Centric Router\nGateway Layer\ndoi.org/10.5281/zenodo.18582492"]
+    SDIA --> DDCR["🔧 DDCR\nDomain-Driven Centric Router\nResolution Engine — Phantom v12\nzenodo.org/records/18864833"]
+    SDIA --> ODCP["📦 ODCP\nOrchestration Domain-Centric Pattern\nOrchestration Layer\nzenodo.org/records/18876594"]
+
+    GDCR --> K8S["☸️ K8s\nKubernetes Validation"]
+    GDCR --> KONG["🦍 Kong\n1M requests"]
+    GDCR --> SAP["🔵 SAP BTP\n1.499.869 requests"]
+    GDCR --> AZURE["☁️ Azure APIM\nC#"]
+    GDCR --> AWS["🟠 AWS\nPython"]
+
+    DDCR --> LUA["Lua"]
+    DDCR --> JS["JavaScript"]
+    DDCR --> CS["C#"]
+    DDCR --> PY["Python"]
+
+    style SDIA fill:#003366,color:#fff
+    style GDCR fill:#00518A,color:#fff
+    style DDCR fill:#00518A,color:#fff
+    style ODCP fill:#00518A,color:#fff
