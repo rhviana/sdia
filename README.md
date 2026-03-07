@@ -1,7 +1,7 @@
 # SDIA — Semantic Domain Integration Architecture
 
-> **"Technology changes by the quarter. Business processes last for decades. The domain never lies."**
-> — Ricardo Luz Holanda Viana
+<img width="1536" height="1024" alt="ChatGPT Image Mar 6, 2026, 08_05_37 AM" src="https://github.com/user-attachments/assets/2e5b76e9-6db4-4cf6-8e65-cc5d1fcd525e" />
+
 
 ---
 
