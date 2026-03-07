@@ -26,7 +26,7 @@ You are in the documents. You are the commander in the image. And now you are et
 ### Part I — Before It All: The Soldier Without a War
 **November 2025. Warsaw, Poland.**
 
-New company. ThyssenKrupp. No project assigned. No task. No brief. 
+New company. No project assigned. No task. No brief. 
 Just a laptop, a desk, and two tools available: SAP Integration Advisor and SAP API Management (APIM).
 
 I started studying alone. 
