@@ -1,0 +1,185 @@
+# SDIA for Service Mesh
+### Semantic Domain Integration Architecture — Service Mesh Pattern Validation
+
+> *"The domain never lies — regardless of the mesh beneath it."*
+> — Ricardo Luz Holanda Viana
+
+---
+
+## What is this?
+
+This validation demonstrates that **SDIA semantic routing operates identically inside a Service Mesh architecture** — where every service-to-service communication is intercepted, observed, and governed by a mesh control plane (Istio, Linkerd, Consul Connect).
+
+In a traditional Service Mesh, routing is governed by:
+- Service names (e.g., `orders-service`, `payments-service`)
+- Pod labels and selectors
+- Sidecar proxy configuration (Envoy)
+
+**With SDIA, the governing layer changes:**
+
+| Without SDIA | With SDIA |
+|-------------|-----------|
+| Route by service name | Route by domain semantics |
+| `orders-service:8080` | `/sales/orders/create/salesforce` |
+| Config changes = redeployment | Config changes = 1 metadata entry |
+| Vendor-indexed topology | Domain-indexed topology |
+| Mesh knows the backend | Mesh knows only the domain |
+
+---
+
+## Why Service Mesh + SDIA?
+
+A Service Mesh governs **how** traffic flows between services.
+SDIA governs **what** is being requested — before the mesh routes anything.
+
+```
+Consumer
+    │
+    │  POST /sales/orders/create/salesforce
+    ▼
+┌──────────────────────────────────┐
+│  SDIA Semantic Layer             │  ← Protocol Zero
+│  Domain intent resolved here     │
+└──────────────┬───────────────────┘
+               │
+               ▼
+┌──────────────────────────────────┐
+│  Service Mesh (Istio/Linkerd)    │  ← mTLS, observability, circuit breaker
+│  Envoy sidecar intercepts        │
+└──────────────┬───────────────────┘
+               │
+               ▼
+        Backend Service
+        (never exposed to consumer)
+```
+
+SDIA and Service Mesh are **complementary** — not competing. SDIA adds semantic governance on top of mesh infrastructure.
+
+---
+
+## Semantic URL Pattern
+
+```
+/{domain}/{entity}/{action}/{target}
+    │         │        │        │
+    │         │        │        └── Backend system (Salesforce, SAP, Stripe...)
+    │         │        └─────────── Business action → normalized to canonical code
+    │         └──────────────────── Business entity
+    └────────────────────────────── Business domain
+```
+
+### Action Normalization
+
+| Input | Canonical | Meaning |
+|-------|-----------|---------|
+| create, post, insert | c | Create |
+| read, get, retrieve | r | Read |
+| update, put, modify | u | Update |
+| delete, remove | d | Delete |
+| sync, synchronize | s | Synchronize |
+| transfer, send | t | Transfer |
+| notify, notification | n | Notify |
+| approve, authorize | a | Approve |
+| query, search | q | Query |
+
+---
+
+## Endpoints Validated — 4 Domains, 24 Routes
+
+### Sales Domain (7 routes)
+```
+POST /sales/orders/create/salesforce
+POST /sales/orders/update/salesforceemea
+POST /sales/payments/notify/stripe
+POST /sales/customers/sync/shopify
+POST /sales/invoices/create/quickbooks
+POST /sales/deliveries/transfer/fedex
+POST /sales/returns/create/shopify
+```
+
+### Finance Domain (5 routes)
+```
+POST /finances/taxes/create/avalara
+POST /finances/budgets/sync/workday
+POST /finances/invoices/create/quickbooks
+POST /finances/expenses/create/coupa
+POST /finances/payments/notify/stripe
+```
+
+### Procurement Domain (5 routes)
+```
+POST /procurement/requisitions/create/ariba
+POST /procurement/pos/create/coupa
+POST /procurement/suppliers/sync/ivalua
+POST /procurement/catalogs/update/tradeshift
+POST /procurement/buyers/sync/oracle
+```
+
+### Logistics Domain (6 routes)
+```
+POST /logistics/shipments/create/fedex
+POST /logistics/routes/sync/project44
+POST /logistics/freights/create/coyote
+POST /logistics/trackings/update/ups
+POST /logistics/deliveries/create/dhl
+POST /logistics/manifests/create/customs
+```
+
+### Fast Fail (1 route)
+```
+POST /unknown/entity/action/target  → HTTP 404 — route not found in KVM
+```
+
+---
+
+## What Each Assertion Validates
+
+Every request validates the full semantic conversion chain:
+
+```
+Input:   POST /sales/orders/create/salesforce
+         │
+         ├── [SDIA] Domain = sales          ✓
+         ├── [SDIA] Entity = orders         ✓
+         ├── [SDIA] Action: create → c      ✓  (normalization proven)
+         ├── [SDIA] Target = salesforce     ✓
+         ├── [SDIA] Interface ID present    ✓  (gdcrorderscsalesforceid01)
+         ├── [SDIA] Generated URL present   ✓  (https://cpi-host/http/gdcr/...)
+         ├── [SDIA] KVM source = redis-k8s  ✓  (metadata-driven proven)
+         ├── [SDIA] Protocol present        ✓  (http/soap)
+         └── [SDIA] Version 1.0.0          ✓
+```
+
+---
+
+## Test Execution
+
+```cmd
+newman run SDIA_ServiceMesh_Istio_Newman.json ^
+  --iteration-count 500 ^
+  --reporters cli,json ^
+  --reporter-json-export istio-results.json
+```
+
+**500 iterations × 24 endpoints = 12,000 requests**
+
+---
+
+## Prior Art & Publications
+
+| Document | DOI | IP.com |
+|----------|-----|--------|
+| SDIA v1.0 | [zenodo.org/records/18877636](https://zenodo.org/records/18877636) | IPCOM000277630D |
+| GDCR v6.0 | [doi.org/10.5281/zenodo.18582492](https://doi.org/10.5281/zenodo.18582492) | IPCOM000277632D |
+| DDCR v1.0 | [zenodo.org/records/18864833](https://zenodo.org/records/18864833) | IPCOM000277633D |
+| ODCP v1.0 | [zenodo.org/records/18876594](https://zenodo.org/records/18876594) | IPCOM000277631D |
+
+---
+
+## Author
+
+**Ricardo Luz Holanda Viana**
+Enterprise Integration Architect | SAP Press Author | Independent Researcher
+ORCID: 0009-0009-9549-5862 | Warsaw, Poland | March 2026
+
+*Built alone. Published with evidence. The domain never lies.*
