@@ -1,5 +1,6 @@
 
 ```mermaid
+
 graph TD
     SDIA["🌐 SDIA\nSemantic Domain Integration Architecture\nzenodo.org/records/18877636"]
 
@@ -22,4 +23,5 @@ graph TD
     style GDCR fill:#00518A,color:#fff
     style DDCR fill:#00518A,color:#fff
     style ODCP fill:#00518A,color:#fff
+
 ```
