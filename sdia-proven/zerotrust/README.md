@@ -1,3 +1,9 @@
+
+<img width="1457" height="427" alt="image" src="https://github.com/user-attachments/assets/acb37252-bf26-4a8a-9e9e-7cf3a4a7cb0e" />
+
+<img width="1145" height="732" alt="image" src="https://github.com/user-attachments/assets/e585b9ae-3f33-4821-8673-cdb802277d88" />
+
+
 # SDIA for Zero Trust Architecture
 ### Semantic Domain Integration Architecture — Zero Trust Pattern Validation
 
