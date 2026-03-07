@@ -1,10 +1,4 @@
 
-This repository contains original architectural work, named patterns, and advanced SAP BTP Integration Suite technical material.
-
-Before exploring, reusing, or referencing any content, you are strongly encouraged to read
-
-👤 [ABOUT-ME](./01-ABOUT-ME.md) – To understand the 17-year journey from SAP XI/PI – GRC NF-e (Brazilian electronic invoicing solution) to BTP Expert, and the context of the "The Commander – Viana" methodology.
-
 📜 [NOTICE](./02-NOTICE.md) – Regarding IP rights, DOIs, and usage licenses.
 
 Please review these files before proceeding to the main technical documentation.
