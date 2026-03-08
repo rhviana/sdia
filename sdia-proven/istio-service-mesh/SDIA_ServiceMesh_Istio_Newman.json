@@ -1,0 +1,777 @@
+{
+  "info": {
+    "name": "SDIA for Service Mesh \u2014 Istio Validation",
+    "description": "SDIA semantic routing \u2014 Service Mesh pattern. 24 endpoints. Full conversion chain assertions. Prior Art: IPCOM000277630D | DOI: 10.5281/zenodo.18877636",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "/sales/orders/create/salesforce",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/orders/create/salesforce",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "orders",
+            "create",
+            "salesforce"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource orders', function() { pm.expect(j.resource).to.eql('orders'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend salesforce', function() { pm.expect(j.backend).to.eql('salesforce'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/orders/update/salesforceemea",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/orders/update/salesforceemea",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "orders",
+            "update",
+            "salesforceemea"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource orders', function() { pm.expect(j.resource).to.eql('orders'); });pm.test('action update norm u', function() { pm.expect(j.action_norm).to.eql('u'); });pm.test('backend salesforceemea', function() { pm.expect(j.backend).to.eql('salesforceemea'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/payments/notify/stripe",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/payments/notify/stripe",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "payments",
+            "notify",
+            "stripe"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource payments', function() { pm.expect(j.resource).to.eql('payments'); });pm.test('action notify norm n', function() { pm.expect(j.action_norm).to.eql('n'); });pm.test('backend stripe', function() { pm.expect(j.backend).to.eql('stripe'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/customers/sync/shopify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/customers/sync/shopify",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "customers",
+            "sync",
+            "shopify"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource customers', function() { pm.expect(j.resource).to.eql('customers'); });pm.test('action sync norm s', function() { pm.expect(j.action_norm).to.eql('s'); });pm.test('backend shopify', function() { pm.expect(j.backend).to.eql('shopify'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/invoices/create/quickbooks",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/invoices/create/quickbooks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "invoices",
+            "create",
+            "quickbooks"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource invoices', function() { pm.expect(j.resource).to.eql('invoices'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend quickbooks', function() { pm.expect(j.backend).to.eql('quickbooks'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/deliveries/transfer/fedex",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/deliveries/transfer/fedex",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "deliveries",
+            "transfer",
+            "fedex"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource deliveries', function() { pm.expect(j.resource).to.eql('deliveries'); });pm.test('action transfer norm t', function() { pm.expect(j.action_norm).to.eql('t'); });pm.test('backend fedex', function() { pm.expect(j.backend).to.eql('fedex'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/sales/returns/create/shopify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/returns/create/shopify",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "returns",
+            "create",
+            "shopify"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain sales', function() { pm.expect(j.domain).to.eql('sales'); });pm.test('resource returns', function() { pm.expect(j.resource).to.eql('returns'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend shopify', function() { pm.expect(j.backend).to.eql('shopify'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/finances/taxes/create/avalara",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/taxes/create/avalara",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "taxes",
+            "create",
+            "avalara"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain finances', function() { pm.expect(j.domain).to.eql('finances'); });pm.test('resource taxes', function() { pm.expect(j.resource).to.eql('taxes'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend avalara', function() { pm.expect(j.backend).to.eql('avalara'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/finances/budgets/sync/workday",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/budgets/sync/workday",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "budgets",
+            "sync",
+            "workday"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain finances', function() { pm.expect(j.domain).to.eql('finances'); });pm.test('resource budgets', function() { pm.expect(j.resource).to.eql('budgets'); });pm.test('action sync norm s', function() { pm.expect(j.action_norm).to.eql('s'); });pm.test('backend workday', function() { pm.expect(j.backend).to.eql('workday'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/finances/invoices/create/quickbooks",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/invoices/create/quickbooks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "invoices",
+            "create",
+            "quickbooks"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain finances', function() { pm.expect(j.domain).to.eql('finances'); });pm.test('resource invoices', function() { pm.expect(j.resource).to.eql('invoices'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend quickbooks', function() { pm.expect(j.backend).to.eql('quickbooks'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/finances/expenses/create/coupa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/expenses/create/coupa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "expenses",
+            "create",
+            "coupa"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain finances', function() { pm.expect(j.domain).to.eql('finances'); });pm.test('resource expenses', function() { pm.expect(j.resource).to.eql('expenses'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend coupa', function() { pm.expect(j.backend).to.eql('coupa'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/finances/payments/notify/stripe",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/payments/notify/stripe",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "payments",
+            "notify",
+            "stripe"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain finances', function() { pm.expect(j.domain).to.eql('finances'); });pm.test('resource payments', function() { pm.expect(j.resource).to.eql('payments'); });pm.test('action notify norm n', function() { pm.expect(j.action_norm).to.eql('n'); });pm.test('backend stripe', function() { pm.expect(j.backend).to.eql('stripe'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/procurement/requisitions/create/ariba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/requisitions/create/ariba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "requisitions",
+            "create",
+            "ariba"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain procurement', function() { pm.expect(j.domain).to.eql('procurement'); });pm.test('resource requisitions', function() { pm.expect(j.resource).to.eql('requisitions'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend ariba', function() { pm.expect(j.backend).to.eql('ariba'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/procurement/pos/create/coupa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/pos/create/coupa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "pos",
+            "create",
+            "coupa"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain procurement', function() { pm.expect(j.domain).to.eql('procurement'); });pm.test('resource pos', function() { pm.expect(j.resource).to.eql('pos'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend coupa', function() { pm.expect(j.backend).to.eql('coupa'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/procurement/suppliers/sync/ivalua",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/suppliers/sync/ivalua",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "suppliers",
+            "sync",
+            "ivalua"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain procurement', function() { pm.expect(j.domain).to.eql('procurement'); });pm.test('resource suppliers', function() { pm.expect(j.resource).to.eql('suppliers'); });pm.test('action sync norm s', function() { pm.expect(j.action_norm).to.eql('s'); });pm.test('backend ivalua', function() { pm.expect(j.backend).to.eql('ivalua'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/procurement/catalogs/update/tradeshift",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/catalogs/update/tradeshift",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "catalogs",
+            "update",
+            "tradeshift"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain procurement', function() { pm.expect(j.domain).to.eql('procurement'); });pm.test('resource catalogs', function() { pm.expect(j.resource).to.eql('catalogs'); });pm.test('action update norm u', function() { pm.expect(j.action_norm).to.eql('u'); });pm.test('backend tradeshift', function() { pm.expect(j.backend).to.eql('tradeshift'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/procurement/buyers/sync/oracle",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/buyers/sync/oracle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "buyers",
+            "sync",
+            "oracle"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain procurement', function() { pm.expect(j.domain).to.eql('procurement'); });pm.test('resource buyers', function() { pm.expect(j.resource).to.eql('buyers'); });pm.test('action sync norm s', function() { pm.expect(j.action_norm).to.eql('s'); });pm.test('backend oracle', function() { pm.expect(j.backend).to.eql('oracle'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/shipments/create/fedex",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/shipments/create/fedex",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "shipments",
+            "create",
+            "fedex"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource shipments', function() { pm.expect(j.resource).to.eql('shipments'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend fedex', function() { pm.expect(j.backend).to.eql('fedex'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/routes/sync/project44",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/routes/sync/project44",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "routes",
+            "sync",
+            "project44"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource routes', function() { pm.expect(j.resource).to.eql('routes'); });pm.test('action sync norm s', function() { pm.expect(j.action_norm).to.eql('s'); });pm.test('backend project44', function() { pm.expect(j.backend).to.eql('project44'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/freights/create/coyote",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/freights/create/coyote",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "freights",
+            "create",
+            "coyote"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource freights', function() { pm.expect(j.resource).to.eql('freights'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend coyote', function() { pm.expect(j.backend).to.eql('coyote'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/trackings/update/ups",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/trackings/update/ups",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "trackings",
+            "update",
+            "ups"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource trackings', function() { pm.expect(j.resource).to.eql('trackings'); });pm.test('action update norm u', function() { pm.expect(j.action_norm).to.eql('u'); });pm.test('backend ups', function() { pm.expect(j.backend).to.eql('ups'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/deliveries/create/dhl",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/deliveries/create/dhl",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "deliveries",
+            "create",
+            "dhl"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource deliveries', function() { pm.expect(j.resource).to.eql('deliveries'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend dhl', function() { pm.expect(j.backend).to.eql('dhl'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "/logistics/manifests/create/customs",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/manifests/create/customs",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "manifests",
+            "create",
+            "customs"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('status success', function() { pm.expect(j.status).to.eql('success'); });pm.test('sdia_version 1.0.0', function() { pm.expect(j.sdia_version).to.eql('1.0.0'); });pm.test('domain logistics', function() { pm.expect(j.domain).to.eql('logistics'); });pm.test('resource manifests', function() { pm.expect(j.resource).to.eql('manifests'); });pm.test('action create norm c', function() { pm.expect(j.action_norm).to.eql('c'); });pm.test('backend customs', function() { pm.expect(j.backend).to.eql('customs'); });pm.test('kvm redis-k8s', function() { pm.expect(j.kvm_source).to.eql('redis-k8s'); });pm.test('interface_id present', function() { pm.expect(j.interface_id).to.be.a('string'); });pm.test('generated_url present', function() { pm.expect(j.generated_url).to.include('cpi-host'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "FAST FAIL \u2014 invalid route",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/unknown/entity/action/target",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "unknown",
+            "entity",
+            "action",
+            "target"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var j = pm.response.json();pm.test('FAST FAIL status error', function() { pm.expect(j.status).to.eql('error'); });pm.test('FAST FAIL 404', function() { pm.response.to.have.status(404); });pm.test('FAST FAIL message', function() { pm.expect(j.message).to.include('route not found'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
