@@ -175,6 +175,15 @@ newman run SDIA_ServiceMesh_Istio_Newman.json ^
 | ODCP v1.0 | [zenodo.org/records/18876594](https://zenodo.org/records/18876594) | IPCOM000277631D |
 
 ---
+ ## Newman results:
+
+ 12.000k msgs - 0 Error - DDCR
+ 
+<img width="1457" height="427" alt="image" src="https://github.com/user-attachments/assets/acb37252-bf26-4a8a-9e9e-7cf3a4a7cb0e" />
+
+<img width="1145" height="732" alt="image" src="https://github.com/user-attachments/assets/e585b9ae-3f33-4821-8673-cdb802277d88" />
+
+<img width="1615" height="933" alt="image" src="https://github.com/user-attachments/assets/f7c32e29-ebfa-45cc-9424-1e06fc77a869" />
 
 ## Author
 
