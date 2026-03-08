@@ -1,0 +1,2209 @@
+{
+  "info": {
+    "name": "SDIA K8s \u2014 44 Endpoints Validation",
+    "description": "SDIA for Kubernetes \u2014 Full semantic routing validation. 44 endpoints across 4 domains: sales, finances, procurement, logistics. Prior Art: IPCOM000277630D | DOI: 10.5281/zenodo.18877636",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "id01 \u2014 sales orders create salesforce",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/orders/create/salesforce",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "orders",
+            "create",
+            "salesforce"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/orders/create/salesforce' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id02 \u2014 sales orders update salesforceemea",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/orders/update/salesforceemea",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "orders",
+            "update",
+            "salesforceemea"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/orders/update/salesforceemea' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id03 \u2014 sales customers sync salesforceemea",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/customers/sync/salesforceemea",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "customers",
+            "sync",
+            "salesforceemea"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/customers/sync/salesforceemea' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id05 \u2014 sales orders create microsoft",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/orders/create/microsoft",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "orders",
+            "create",
+            "microsoft"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/orders/create/microsoft' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id04 \u2014 sales payments notify stripe",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/payments/notify/stripe",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "payments",
+            "notify",
+            "stripe"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/payments/notify/stripe' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id08 \u2014 sales payments notify s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/payments/notify/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "payments",
+            "notify",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/payments/notify/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id07 \u2014 sales customers sync s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/customers/sync/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "customers",
+            "sync",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/customers/sync/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id03 \u2014 sales customers sync shopify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/customers/sync/shopify",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "customers",
+            "sync",
+            "shopify"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/customers/sync/shopify' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id09 \u2014 sales invoices create quickbooks",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/invoices/create/quickbooks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "invoices",
+            "create",
+            "quickbooks"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/invoices/create/quickbooks' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id10 \u2014 sales invoices create s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/invoices/create/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "invoices",
+            "create",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/invoices/create/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id06 \u2014 sales deliveries transfer fedex",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/deliveries/transfer/fedex",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "deliveries",
+            "transfer",
+            "fedex"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/deliveries/transfer/fedex' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id11 \u2014 sales deliveries transfer s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/deliveries/transfer/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "deliveries",
+            "transfer",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/deliveries/transfer/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id12 \u2014 sales returns create shopify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/returns/create/shopify",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "returns",
+            "create",
+            "shopify"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/returns/create/shopify' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id13 \u2014 sales returns create s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/sales/returns/create/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "sales",
+            "returns",
+            "create",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/sales/returns/create/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id10 \u2014 finances taxes create avalara",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/taxes/create/avalara",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "taxes",
+            "create",
+            "avalara"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/taxes/create/avalara' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id09 \u2014 finances budgets sync workday",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/budgets/sync/workday",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "budgets",
+            "sync",
+            "workday"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/budgets/sync/workday' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id06 \u2014 finances journals create sap",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/journals/create/sap",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "journals",
+            "create",
+            "sap"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/journals/create/sap' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id05 \u2014 finances accounts sync xero",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/accounts/sync/xero",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "accounts",
+            "sync",
+            "xero"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/accounts/sync/xero' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id04 \u2014 finances payments notify s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/payments/notify/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "payments",
+            "notify",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/payments/notify/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id02 \u2014 finances invoices create s4hana",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/invoices/create/s4hana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "invoices",
+            "create",
+            "s4hana"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/invoices/create/s4hana' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id01 \u2014 finances invoices create quickbooks",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/invoices/create/quickbooks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "invoices",
+            "create",
+            "quickbooks"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/invoices/create/quickbooks' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id07 \u2014 finances expenses create coupa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/expenses/create/coupa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "expenses",
+            "create",
+            "coupa"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/expenses/create/coupa' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id08 \u2014 finances receipts update concur",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/receipts/update/concur",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "receipts",
+            "update",
+            "concur"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/receipts/update/concur' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id03 \u2014 finances payments notify stripe",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/finances/payments/notify/stripe",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "finances",
+            "payments",
+            "notify",
+            "stripe"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/finances/payments/notify/stripe' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id01 \u2014 procurement requisitions create ariba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/requisitions/create/ariba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "requisitions",
+            "create",
+            "ariba"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/requisitions/create/ariba' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id02 \u2014 procurement pos create coupa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/pos/create/coupa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "pos",
+            "create",
+            "coupa"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/pos/create/coupa' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id03 \u2014 procurement rfqs create ariba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/rfqs/create/ariba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "rfqs",
+            "create",
+            "ariba"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/rfqs/create/ariba' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id05 \u2014 procurement invoices approve basware",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/invoices/approve/basware",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "invoices",
+            "approve",
+            "basware"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/invoices/approve/basware' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id06 \u2014 procurement suppliers sync ivalua",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/suppliers/sync/ivalua",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "suppliers",
+            "sync",
+            "ivalua"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/suppliers/sync/ivalua' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id07 \u2014 procurement catalogs update tradeshift",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/catalogs/update/tradeshift",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "catalogs",
+            "update",
+            "tradeshift"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/catalogs/update/tradeshift' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id08 \u2014 procurement grns create wms",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/grns/create/wms",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "grns",
+            "create",
+            "wms"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/grns/create/wms' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id09 \u2014 procurement buyers sync oracle",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/buyers/sync/oracle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "buyers",
+            "sync",
+            "oracle"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/buyers/sync/oracle' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id10 \u2014 procurement sourcings query ariba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/sourcings/query/ariba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "sourcings",
+            "query",
+            "ariba"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/sourcings/query/ariba' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id04 \u2014 procurement contracts sync jaggaer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/procurement/contracts/sync/jaggaer",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "procurement",
+            "contracts",
+            "sync",
+            "jaggaer"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/procurement/contracts/sync/jaggaer' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id01 \u2014 logistics shipments create fedex",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/shipments/create/fedex",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "shipments",
+            "create",
+            "fedex"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/shipments/create/fedex' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id08 \u2014 logistics routes sync project44",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/routes/sync/project44",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "routes",
+            "sync",
+            "project44"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/routes/sync/project44' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id07 \u2014 logistics freights create coyote",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/freights/create/coyote",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "freights",
+            "create",
+            "coyote"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/freights/create/coyote' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id06 \u2014 logistics warehouses update sf",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/warehouses/update/sf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "warehouses",
+            "update",
+            "sf"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/warehouses/update/sf' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id05 \u2014 logistics containers sync maersk",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/containers/sync/maersk",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "containers",
+            "sync",
+            "maersk"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/containers/sync/maersk' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id03 \u2014 logistics deliveries create dhl",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/deliveries/create/dhl",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "deliveries",
+            "create",
+            "dhl"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/deliveries/create/dhl' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id04 \u2014 logistics shipments query fedex",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/shipments/query/fedex",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "shipments",
+            "query",
+            "fedex"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/shipments/query/fedex' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id02 \u2014 logistics trackings update ups",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/trackings/update/ups",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "trackings",
+            "update",
+            "ups"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/trackings/update/ups' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "id09 \u2014 logistics manifests create customs",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/logistics/manifests/create/customs",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "logistics",
+            "manifests",
+            "create",
+            "customs"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/logistics/manifests/create/customs' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "FAST FAIL \u2014 invalid route",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:30800/unknown/entity/action/target",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "30800",
+          "path": [
+            "unknown",
+            "entity",
+            "action",
+            "target"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if ('/unknown/entity/action/target' === '/unknown/entity/action/target') {",
+              "    pm.test('Fast Fail: status error', function() {",
+              "        pm.expect(json.status).to.eql('error');",
+              "    });",
+              "} else {",
+              "    pm.test('Routing success', function() {",
+              "        pm.expect(json.status).to.eql('success');",
+              "    });",
+              "    pm.test('SDIA version present', function() {",
+              "        pm.expect(json.sdia_version).to.eql('1.0.0');",
+              "    });",
+              "    pm.test('KVM source is redis-k8s', function() {",
+              "        pm.expect(json.kvm_source).to.eql('redis-k8s');",
+              "    });",
+              "    pm.test('Domain present', function() {",
+              "        pm.expect(json.domain).to.be.a('string');",
+              "    });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
