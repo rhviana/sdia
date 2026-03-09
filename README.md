@@ -1,7 +1,6 @@
 # SDIA — Semantic Domain Integration Architecture
 
-<img width="1536" height="1024" alt="ChatGPT Image Mar 6, 2026, 08_05_37 AM" src="https://github.com/user-attachments/assets/2e5b76e9-6db4-4cf6-8e65-cc5d1fcd525e" />
-
+<img width="1192" height="788" alt="image" src="https://github.com/user-attachments/assets/e2cdd51f-437b-430e-897b-d3e95fdc81be" />
 
 ---
 
