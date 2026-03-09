@@ -236,8 +236,6 @@ Protocol routing:
 | Node-RED         | 3.1      | IoT Bridge (MQTT → HTTP)                 |
 | Python           | 3.14     | IoT Sensor Simulator + Load Tester       |
 | Kubernetes       | -        | Container Orchestration                  |
-| Istio            | -        | Service Mesh                             |
-| Zero Trust       | -        | Security Layer                           |
 | SAP CPI          | BTP Trial| Integration Runtime — 42 iFlows          |
 | SAP APIM         | BTP Trial| API Management Layer                     |
 | Newman           | 6.2.2    | REST Load Testing                        |
@@ -346,16 +344,16 @@ Redis         →  internal: redis-service.sdia.svc.cluster.local:6379
 +------------------+------------------+------------------+
 | TOTAL            |          200,088 |                0 |
 +------------------+------------------+------------------+
-| SAP BTP 24h      |          200,833 |                0 |
-+------------------+------------------+------------------+
 
-Average response time: 144ms
-Min: 123ms | Max: 5s | Std dev: 41ms
-Runtime: SAP BTP Trial
-Protocols: HTTP + SOAP
+Runtime: Kong K8s (namespace sdia, port 30800) + SAP CPI (BTP Trial)
+Protocols: HTTP + MQTT
 Domains: Sales, Finances, Procurement, Logistics
 ```
+
 <img width="1012" height="1018" alt="image" src="https://github.com/user-attachments/assets/77233430-8594-44b6-8d19-69d231ca4963" />
+<img width="995" height="937" alt="image" src="https://github.com/user-attachments/assets/4e3dc914-ec44-4f37-ba3a-dafc90d2ecd9" />
+<img width="1557" height="492" alt="image" src="https://github.com/user-attachments/assets/f357994a-a71d-41ce-8cfe-fff3a489088b" />
+
 ---
 
 ## SDIA Research — Published
@@ -365,7 +363,7 @@ Domains: Sales, Finances, Procurement, Logistics
 | GDCR | Gateway Domain-Centric Routing | 10.5281/zenodo.18836272 |
 | DDCR | Domain Driven Centric Router | 10.5281/zenodo.18864833 |
 | ODCP | Orchestration Domain-Centric Pattern | 10.5281/zenodo.18876594 |
-| SDIA | Semantic Domain Integration Architecture | Zenodo |
+| SDIA | Semantic Domain Integration Architecture | 10.5281/zenodo.18877636 |
 
 USPTO Trademark Application: **99680660** (GDCR™, DDCR™, ODCP™)
 
@@ -398,6 +396,3 @@ Questions? Reach out. Happy to help. 🤝
 ---
 
 *The domain never lies.* 🎯
-
-
-
