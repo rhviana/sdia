@@ -20,7 +20,7 @@ materials contained in this repository, including all folders and subfolders.**
 </p>
 
 <p align="center">
-  <strong>"Order from Chaos - Leading the SAP BTP Integration Revolution"</strong>
+  <strong>"Order from Chaos - Leading the Semantic Domain Integration Architecture"</strong>
 </p>
 <hr>
 
