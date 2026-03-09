@@ -8,7 +8,39 @@
 
 ## What is this?
 
-This repository proves that **DDCR (Domain Driven Centric Router)** works as a universal routing engine — completely agnostic to the sender protocol. It does not matter if the message comes from a REST client, a SOAP system, an IoT sensor via MQTT, or an LLM agent. The domain resolves. The engine routes. Zero failures.
+This repository proves that **DDCR (Domain Driven Centric Router)** is a deterministic, mathematical routing engine — completely agnostic to sender, protocol, and gateway.
+
+It does not matter if the message comes from a REST client, a SOAP system, an IoT sensor publishing via MQTT, an LLM agent, or any other source. As long as there is a key in the database, the engine resolves. The domain routes. No ambiguity. No coupling. No failure.
+
+**2 + 2 = 4. Eternal.**
+
+```
+SENDER                       DDCR ENGINE              DESTINATION
+────────────────────────     ────────────────────      ──────────────────────────
+ESP32 Temperature Sensor  →  Redis KVM lookup       →  SAP CPI iFlow (HTTP)
+factory/line-a/conveyor/     /sales/orders/             /http/dcrp/orders/c/id01
+  temperature                create/salesforce
+
+REST Client               →  Redis KVM lookup       →  SAP CPI iFlow (HTTP)
+/sales/orders/               /sales/orders/             /http/dcrp/orders/c/id01
+  create/salesforce           create/salesforce
+
+SOAP System               →  Redis KVM lookup       →  SAP CPI iFlow (SOAP)
+/sales/orders/               /sales/orders/             /cxf/dcrp/orders/c/id05
+  create/microsoft            create/microsoft
+
+LLM Agent                 →  Redis KVM lookup       →  SAP CPI iFlow (HTTP)
+/sales/orders/               /sales/orders/             /http/dcrp/orders/c/id01
+  create/salesforce           create/salesforce
+```
+
+The sender never knows the destination. The destination never knows the sender. The DDCR Engine is the only truth — and the truth lives in the KVM.
+
+### Why it never fails
+
+DDCR is not AI. It is not probabilistic. It is not heuristic.
+
+It is a 7-stage deterministic engine. Given the same input, it always produces the same output. There is no ambiguity in the routing decision. The key exists in Redis or it does not. The protocol is http or soap. The path is built by a formula. Mathematics does not fail.
 
 ```
 IoT Sensor (MQTT)          REST Client            SOAP System
@@ -317,15 +349,13 @@ Redis         →  internal: redis-service.sdia.svc.cluster.local:6379
 | SAP BTP 24h      |          200,833 |                0 |
 +------------------+------------------+------------------+
 
-<img width="1012" height="1018" alt="image" src="https://github.com/user-attachments/assets/77233430-8594-44b6-8d19-69d231ca4963" />
-
 Average response time: 144ms
 Min: 123ms | Max: 5s | Std dev: 41ms
 Runtime: SAP BTP Trial
 Protocols: HTTP + SOAP
 Domains: Sales, Finances, Procurement, Logistics
 ```
-
+<img width="1012" height="1018" alt="image" src="https://github.com/user-attachments/assets/77233430-8594-44b6-8d19-69d231ca4963" />
 ---
 
 ## SDIA Research — Published
@@ -368,4 +398,6 @@ Questions? Reach out. Happy to help. 🤝
 ---
 
 *The domain never lies.* 🎯
+
+
 
