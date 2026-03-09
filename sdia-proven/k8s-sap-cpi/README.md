@@ -250,6 +250,10 @@ This entire implementation was built and validated using **SAP BTP Trial**.
 | Domains | Sales, Finances, Procurement, Logistics |
 | Runtime | SAP BTP Trial |
 
+<img width="1757" height="715" alt="image" src="https://github.com/user-attachments/assets/65315bc9-8535-4fc3-8bb0-ec499eaed325" />
+
+<img width="1005" height="732" alt="image" src="https://github.com/user-attachments/assets/53f304e1-471f-4869-b384-cab642bc6f7b" />
+
 ---
 
 ## SDIA Research
@@ -279,5 +283,3 @@ Warsaw, Poland
 
 *The domain never lies.* 🎯
 
-
-<img width="1757" height="715" alt="image" src="https://github.com/user-attachments/assets/65315bc9-8535-4fc3-8bb0-ec499eaed325" />
