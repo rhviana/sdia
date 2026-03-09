@@ -1,0 +1,263 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+  namespace: sdia
+data:
+  mosquitto.conf: |
+    listener 1883
+    allow_anonymous true
+    persistence false
+    log_type all
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  namespace: sdia
+  labels:
+    app: mosquitto
+    component: sdia-mqtt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+        component: sdia-mqtt
+    spec:
+      containers:
+      - name: mosquitto
+        image: eclipse-mosquitto:2.0
+        ports:
+        - containerPort: 1883
+        volumeMounts:
+        - name: mosquitto-config
+          mountPath: /mosquitto/config/mosquitto.conf
+          subPath: mosquitto.conf
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+      volumes:
+      - name: mosquitto-config
+        configMap:
+          name: mosquitto-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mosquitto-service
+  namespace: sdia
+spec:
+  selector:
+    app: mosquitto
+  ports:
+  - name: mqtt
+    port: 1883
+    targetPort: 1883
+    nodePort: 31883
+  type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nodered-flows
+  namespace: sdia
+data:
+  flows.json: |
+    [
+      {"id":"tab1","type":"tab","label":"SDIA IoT → Kong","disabled":false},
+
+      {"id":"mqtt-in-01","type":"mqtt in","z":"tab1","name":"orders/temperature/salesforce","topic":"iot/sales/orders/temperature/salesforce","qos":"1","broker":"mqtt-broker","x":120,"y":40,"wires":[["http-01"]]},
+      {"id":"http-01","type":"http request","z":"tab1","name":"POST /sales/orders/create/salesforce","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/orders/create/salesforce","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":40,"wires":[[]]},
+
+      {"id":"mqtt-in-02","type":"mqtt in","z":"tab1","name":"orders/humidity/salesforceemea","topic":"iot/sales/orders/humidity/salesforceemea","qos":"1","broker":"mqtt-broker","x":120,"y":80,"wires":[["http-02"]]},
+      {"id":"http-02","type":"http request","z":"tab1","name":"POST /sales/orders/update/salesforceemea","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/orders/update/salesforceemea","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":80,"wires":[[]]},
+
+      {"id":"mqtt-in-03","type":"mqtt in","z":"tab1","name":"orders/pressure/microsoft","topic":"iot/sales/orders/pressure/microsoft","qos":"1","broker":"mqtt-broker","x":120,"y":120,"wires":[["http-03"]]},
+      {"id":"http-03","type":"http request","z":"tab1","name":"POST /sales/orders/create/microsoft","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/orders/create/microsoft","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":120,"wires":[[]]},
+
+      {"id":"mqtt-in-04","type":"mqtt in","z":"tab1","name":"invoices/voltage/quickbooks","topic":"iot/sales/invoices/voltage/quickbooks","qos":"1","broker":"mqtt-broker","x":120,"y":160,"wires":[["http-04"]]},
+      {"id":"http-04","type":"http request","z":"tab1","name":"POST /sales/invoices/create/quickbooks","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/invoices/create/quickbooks","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":160,"wires":[[]]},
+
+      {"id":"mqtt-in-05","type":"mqtt in","z":"tab1","name":"invoices/current/s4hana","topic":"iot/sales/invoices/current/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":200,"wires":[["http-05"]]},
+      {"id":"http-05","type":"http request","z":"tab1","name":"POST /sales/invoices/create/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/invoices/create/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":200,"wires":[[]]},
+
+      {"id":"mqtt-in-06","type":"mqtt in","z":"tab1","name":"payments/vibration/stripe","topic":"iot/sales/payments/vibration/stripe","qos":"1","broker":"mqtt-broker","x":120,"y":240,"wires":[["http-06"]]},
+      {"id":"http-06","type":"http request","z":"tab1","name":"POST /sales/payments/notify/stripe","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/payments/notify/stripe","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":240,"wires":[[]]},
+
+      {"id":"mqtt-in-07","type":"mqtt in","z":"tab1","name":"payments/motion/s4hana","topic":"iot/sales/payments/motion/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":280,"wires":[["http-07"]]},
+      {"id":"http-07","type":"http request","z":"tab1","name":"POST /sales/payments/notify/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/payments/notify/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":280,"wires":[[]]},
+
+      {"id":"mqtt-in-08","type":"mqtt in","z":"tab1","name":"customers/proximity/shopify","topic":"iot/sales/customers/proximity/shopify","qos":"1","broker":"mqtt-broker","x":120,"y":320,"wires":[["http-08"]]},
+      {"id":"http-08","type":"http request","z":"tab1","name":"POST /sales/customers/sync/shopify","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/customers/sync/shopify","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":320,"wires":[[]]},
+
+      {"id":"mqtt-in-09","type":"mqtt in","z":"tab1","name":"customers/light/s4hana","topic":"iot/sales/customers/light/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":360,"wires":[["http-09"]]},
+      {"id":"http-09","type":"http request","z":"tab1","name":"POST /sales/customers/sync/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/customers/sync/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":360,"wires":[[]]},
+
+      {"id":"mqtt-in-10","type":"mqtt in","z":"tab1","name":"deliveries/gps/fedex","topic":"iot/sales/deliveries/gps/fedex","qos":"1","broker":"mqtt-broker","x":120,"y":400,"wires":[["http-10"]]},
+      {"id":"http-10","type":"http request","z":"tab1","name":"POST /sales/deliveries/transfer/fedex","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/deliveries/transfer/fedex","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":400,"wires":[[]]},
+
+      {"id":"mqtt-in-11","type":"mqtt in","z":"tab1","name":"deliveries/speed/s4hana","topic":"iot/sales/deliveries/speed/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":440,"wires":[["http-11"]]},
+      {"id":"http-11","type":"http request","z":"tab1","name":"POST /sales/deliveries/transfer/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/deliveries/transfer/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":440,"wires":[[]]},
+
+      {"id":"mqtt-in-12","type":"mqtt in","z":"tab1","name":"returns/weight/shopify","topic":"iot/sales/returns/weight/shopify","qos":"1","broker":"mqtt-broker","x":120,"y":480,"wires":[["http-12"]]},
+      {"id":"http-12","type":"http request","z":"tab1","name":"POST /sales/returns/create/shopify","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/returns/create/shopify","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":480,"wires":[[]]},
+
+      {"id":"mqtt-in-13","type":"mqtt in","z":"tab1","name":"returns/status/s4hana","topic":"iot/sales/returns/status/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":520,"wires":[["http-13"]]},
+      {"id":"http-13","type":"http request","z":"tab1","name":"POST /sales/returns/create/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/sales/returns/create/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":520,"wires":[[]]},
+
+      {"id":"mqtt-in-14","type":"mqtt in","z":"tab1","name":"invoices/power/quickbooks","topic":"iot/finances/invoices/power/quickbooks","qos":"1","broker":"mqtt-broker","x":120,"y":580,"wires":[["http-14"]]},
+      {"id":"http-14","type":"http request","z":"tab1","name":"POST /finances/invoices/create/quickbooks","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/invoices/create/quickbooks","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":580,"wires":[[]]},
+
+      {"id":"mqtt-in-15","type":"mqtt in","z":"tab1","name":"invoices/energy/s4hana","topic":"iot/finances/invoices/energy/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":620,"wires":[["http-15"]]},
+      {"id":"http-15","type":"http request","z":"tab1","name":"POST /finances/invoices/create/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/invoices/create/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":620,"wires":[[]]},
+
+      {"id":"mqtt-in-16","type":"mqtt in","z":"tab1","name":"taxes/co2/avalara","topic":"iot/finances/taxes/co2/avalara","qos":"1","broker":"mqtt-broker","x":120,"y":660,"wires":[["http-16"]]},
+      {"id":"http-16","type":"http request","z":"tab1","name":"POST /finances/taxes/create/avalara","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/taxes/create/avalara","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":660,"wires":[[]]},
+
+      {"id":"mqtt-in-17","type":"mqtt in","z":"tab1","name":"budgets/noise/workday","topic":"iot/finances/budgets/noise/workday","qos":"1","broker":"mqtt-broker","x":120,"y":700,"wires":[["http-17"]]},
+      {"id":"http-17","type":"http request","z":"tab1","name":"POST /finances/budgets/sync/workday","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/budgets/sync/workday","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":700,"wires":[[]]},
+
+      {"id":"mqtt-in-18","type":"mqtt in","z":"tab1","name":"expenses/altitude/coupa","topic":"iot/finances/expenses/altitude/coupa","qos":"1","broker":"mqtt-broker","x":120,"y":740,"wires":[["http-18"]]},
+      {"id":"http-18","type":"http request","z":"tab1","name":"POST /finances/expenses/create/coupa","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/expenses/create/coupa","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":740,"wires":[[]]},
+
+      {"id":"mqtt-in-19","type":"mqtt in","z":"tab1","name":"payments/signal/stripe","topic":"iot/finances/payments/signal/stripe","qos":"1","broker":"mqtt-broker","x":120,"y":780,"wires":[["http-19"]]},
+      {"id":"http-19","type":"http request","z":"tab1","name":"POST /finances/payments/notify/stripe","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/payments/notify/stripe","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":780,"wires":[[]]},
+
+      {"id":"mqtt-in-20","type":"mqtt in","z":"tab1","name":"payments/frequency/s4hana","topic":"iot/finances/payments/frequency/s4hana","qos":"1","broker":"mqtt-broker","x":120,"y":820,"wires":[["http-20"]]},
+      {"id":"http-20","type":"http request","z":"tab1","name":"POST /finances/payments/notify/s4hana","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/payments/notify/s4hana","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":820,"wires":[[]]},
+
+      {"id":"mqtt-in-21","type":"mqtt in","z":"tab1","name":"journals/torque/sap","topic":"iot/finances/journals/torque/sap","qos":"1","broker":"mqtt-broker","x":120,"y":860,"wires":[["http-21"]]},
+      {"id":"http-21","type":"http request","z":"tab1","name":"POST /finances/journals/create/sap","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/journals/create/sap","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":860,"wires":[[]]},
+
+      {"id":"mqtt-in-22","type":"mqtt in","z":"tab1","name":"accounts/flow/xero","topic":"iot/finances/accounts/flow/xero","qos":"1","broker":"mqtt-broker","x":120,"y":900,"wires":[["http-22"]]},
+      {"id":"http-22","type":"http request","z":"tab1","name":"POST /finances/accounts/sync/xero","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/accounts/sync/xero","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":900,"wires":[[]]},
+
+      {"id":"mqtt-in-23","type":"mqtt in","z":"tab1","name":"receipts/level/concur","topic":"iot/finances/receipts/level/concur","qos":"1","broker":"mqtt-broker","x":120,"y":940,"wires":[["http-23"]]},
+      {"id":"http-23","type":"http request","z":"tab1","name":"POST /finances/receipts/update/concur","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/finances/receipts/update/concur","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":940,"wires":[[]]},
+
+      {"id":"mqtt-in-24","type":"mqtt in","z":"tab1","name":"requisitions/stock/ariba","topic":"iot/procurement/requisitions/stock/ariba","qos":"1","broker":"mqtt-broker","x":120,"y":1000,"wires":[["http-24"]]},
+      {"id":"http-24","type":"http request","z":"tab1","name":"POST /procurement/requisitions/create/ariba","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/requisitions/create/ariba","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1000,"wires":[[]]},
+
+      {"id":"mqtt-in-25","type":"mqtt in","z":"tab1","name":"pos/capacity/coupa","topic":"iot/procurement/pos/capacity/coupa","qos":"1","broker":"mqtt-broker","x":120,"y":1040,"wires":[["http-25"]]},
+      {"id":"http-25","type":"http request","z":"tab1","name":"POST /procurement/pos/create/coupa","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/pos/create/coupa","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1040,"wires":[[]]},
+
+      {"id":"mqtt-in-26","type":"mqtt in","z":"tab1","name":"rfqs/demand/ariba","topic":"iot/procurement/rfqs/demand/ariba","qos":"1","broker":"mqtt-broker","x":120,"y":1080,"wires":[["http-26"]]},
+      {"id":"http-26","type":"http request","z":"tab1","name":"POST /procurement/rfqs/create/ariba","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/rfqs/create/ariba","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1080,"wires":[[]]},
+
+      {"id":"mqtt-in-27","type":"mqtt in","z":"tab1","name":"invoices/threshold/basware","topic":"iot/procurement/invoices/threshold/basware","qos":"1","broker":"mqtt-broker","x":120,"y":1120,"wires":[["http-27"]]},
+      {"id":"http-27","type":"http request","z":"tab1","name":"POST /procurement/invoices/approve/basware","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/invoices/approve/basware","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1120,"wires":[[]]},
+
+      {"id":"mqtt-in-28","type":"mqtt in","z":"tab1","name":"contracts/uptime/jaggaer","topic":"iot/procurement/contracts/uptime/jaggaer","qos":"1","broker":"mqtt-broker","x":120,"y":1160,"wires":[["http-28"]]},
+      {"id":"http-28","type":"http request","z":"tab1","name":"POST /procurement/contracts/sync/jaggaer","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/contracts/sync/jaggaer","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1160,"wires":[[]]},
+
+      {"id":"mqtt-in-29","type":"mqtt in","z":"tab1","name":"suppliers/load/ivalua","topic":"iot/procurement/suppliers/load/ivalua","qos":"1","broker":"mqtt-broker","x":120,"y":1200,"wires":[["http-29"]]},
+      {"id":"http-29","type":"http request","z":"tab1","name":"POST /procurement/suppliers/sync/ivalua","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/suppliers/sync/ivalua","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1200,"wires":[[]]},
+
+      {"id":"mqtt-in-30","type":"mqtt in","z":"tab1","name":"catalogs/availability/tradeshift","topic":"iot/procurement/catalogs/availability/tradeshift","qos":"1","broker":"mqtt-broker","x":120,"y":1240,"wires":[["http-30"]]},
+      {"id":"http-30","type":"http request","z":"tab1","name":"POST /procurement/catalogs/update/tradeshift","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/catalogs/update/tradeshift","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1240,"wires":[[]]},
+
+      {"id":"mqtt-in-31","type":"mqtt in","z":"tab1","name":"grns/receipt/wms","topic":"iot/procurement/grns/receipt/wms","qos":"1","broker":"mqtt-broker","x":120,"y":1280,"wires":[["http-31"]]},
+      {"id":"http-31","type":"http request","z":"tab1","name":"POST /procurement/grns/create/wms","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/grns/create/wms","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1280,"wires":[[]]},
+
+      {"id":"mqtt-in-32","type":"mqtt in","z":"tab1","name":"buyers/volume/oracle","topic":"iot/procurement/buyers/volume/oracle","qos":"1","broker":"mqtt-broker","x":120,"y":1320,"wires":[["http-32"]]},
+      {"id":"http-32","type":"http request","z":"tab1","name":"POST /procurement/buyers/sync/oracle","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/buyers/sync/oracle","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1320,"wires":[[]]},
+
+      {"id":"mqtt-in-33","type":"mqtt in","z":"tab1","name":"sourcings/price/ariba","topic":"iot/procurement/sourcings/price/ariba","qos":"1","broker":"mqtt-broker","x":120,"y":1360,"wires":[["http-33"]]},
+      {"id":"http-33","type":"http request","z":"tab1","name":"POST /procurement/sourcings/query/ariba","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/procurement/sourcings/query/ariba","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1360,"wires":[[]]},
+
+      {"id":"mqtt-in-34","type":"mqtt in","z":"tab1","name":"shipments/location/fedex","topic":"iot/logistics/shipments/location/fedex","qos":"1","broker":"mqtt-broker","x":120,"y":1420,"wires":[["http-34"]]},
+      {"id":"http-34","type":"http request","z":"tab1","name":"POST /logistics/shipments/create/fedex","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/shipments/create/fedex","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1420,"wires":[[]]},
+
+      {"id":"mqtt-in-35","type":"mqtt in","z":"tab1","name":"trackings/eta/ups","topic":"iot/logistics/trackings/eta/ups","qos":"1","broker":"mqtt-broker","x":120,"y":1460,"wires":[["http-35"]]},
+      {"id":"http-35","type":"http request","z":"tab1","name":"POST /logistics/trackings/update/ups","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/trackings/update/ups","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1460,"wires":[[]]},
+
+      {"id":"mqtt-in-36","type":"mqtt in","z":"tab1","name":"deliveries/door/dhl","topic":"iot/logistics/deliveries/door/dhl","qos":"1","broker":"mqtt-broker","x":120,"y":1500,"wires":[["http-36"]]},
+      {"id":"http-36","type":"http request","z":"tab1","name":"POST /logistics/deliveries/create/dhl","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/deliveries/create/dhl","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1500,"wires":[[]]},
+
+      {"id":"mqtt-in-37","type":"mqtt in","z":"tab1","name":"shipments/scan/fedex2","topic":"iot/logistics/shipments/scan/fedex2","qos":"1","broker":"mqtt-broker","x":120,"y":1540,"wires":[["http-37"]]},
+      {"id":"http-37","type":"http request","z":"tab1","name":"POST /logistics/shipments/query/fedex","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/shipments/query/fedex","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1540,"wires":[[]]},
+
+      {"id":"mqtt-in-38","type":"mqtt in","z":"tab1","name":"containers/seal/maersk","topic":"iot/logistics/containers/seal/maersk","qos":"1","broker":"mqtt-broker","x":120,"y":1580,"wires":[["http-38"]]},
+      {"id":"http-38","type":"http request","z":"tab1","name":"POST /logistics/containers/sync/maersk","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/containers/sync/maersk","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1580,"wires":[[]]},
+
+      {"id":"mqtt-in-39","type":"mqtt in","z":"tab1","name":"warehouses/rack/sf","topic":"iot/logistics/warehouses/rack/sf","qos":"1","broker":"mqtt-broker","x":120,"y":1620,"wires":[["http-39"]]},
+      {"id":"http-39","type":"http request","z":"tab1","name":"POST /logistics/warehouses/update/sf","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/warehouses/update/sf","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1620,"wires":[[]]},
+
+      {"id":"mqtt-in-40","type":"mqtt in","z":"tab1","name":"freights/load/coyote","topic":"iot/logistics/freights/load/coyote","qos":"1","broker":"mqtt-broker","x":120,"y":1660,"wires":[["http-40"]]},
+      {"id":"http-40","type":"http request","z":"tab1","name":"POST /logistics/freights/create/coyote","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/freights/create/coyote","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1660,"wires":[[]]},
+
+      {"id":"mqtt-in-41","type":"mqtt in","z":"tab1","name":"routes/deviation/project44","topic":"iot/logistics/routes/deviation/project44","qos":"1","broker":"mqtt-broker","x":120,"y":1700,"wires":[["http-41"]]},
+      {"id":"http-41","type":"http request","z":"tab1","name":"POST /logistics/routes/sync/project44","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/routes/sync/project44","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1700,"wires":[[]]},
+
+      {"id":"mqtt-in-42","type":"mqtt in","z":"tab1","name":"manifests/checkpoint/customs","topic":"iot/logistics/manifests/checkpoint/customs","qos":"1","broker":"mqtt-broker","x":120,"y":1740,"wires":[["http-42"]]},
+      {"id":"http-42","type":"http request","z":"tab1","name":"POST /logistics/manifests/create/customs","method":"POST","ret":"txt","paytoqs":"ignore","url":"http://kong-proxy.sdia.svc.cluster.local:8000/logistics/manifests/create/customs","tls":"","persist":false,"proxy":"","authType":"","x":420,"y":1740,"wires":[[]]},
+
+      {"id":"mqtt-broker","type":"mqtt-broker","name":"Mosquitto SDIA","broker":"mosquitto-service.sdia.svc.cluster.local","port":"1883","clientid":"nodered-sdia","usetls":false,"compatmode":false,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closePayload":"","willTopic":"","willQos":"0","willPayload":""}
+    ]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodered
+  namespace: sdia
+  labels:
+    app: nodered
+    component: sdia-iot-bridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodered
+  template:
+    metadata:
+      labels:
+        app: nodered
+        component: sdia-iot-bridge
+    spec:
+      containers:
+      - name: nodered
+        image: nodered/node-red:3.1
+        ports:
+        - containerPort: 1880
+        env:
+        - name: NODE_RED_ENABLE_PROJECTS
+          value: "false"
+        volumeMounts:
+        - name: nodered-flows
+          mountPath: /data/flows.json
+          subPath: flows.json
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: nodered-flows
+        configMap:
+          name: nodered-flows
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodered-service
+  namespace: sdia
+spec:
+  selector:
+    app: nodered
+  ports:
+  - name: ui
+    port: 1880
+    targetPort: 1880
+    nodePort: 31880
+  type: NodePort
