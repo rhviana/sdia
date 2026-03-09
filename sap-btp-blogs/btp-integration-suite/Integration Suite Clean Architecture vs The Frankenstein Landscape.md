@@ -1,4 +1,4 @@
-# The "Frankenstein" Architecture Trap: A Deep Dive into SAP BTP Integration Suite
+# The "Frankenstein" Architecture Trap A Deep Dive into SAP BTP Integration Suite
 
 ### By Ricardo Viana | SAP BTP Integration Suite Expert
 
