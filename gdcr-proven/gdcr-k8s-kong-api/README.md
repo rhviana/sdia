@@ -1,4 +1,4 @@
-# SDIA — Semantic Domain Integration Architecture
+# SDIA — GDCR - Gateway Domain Centric Router
 ## Kong K8s + SAP CPI | End-to-End Integration
 
 > **"The domain never lies."**
