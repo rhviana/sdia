@@ -1,0 +1,18 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: cpi-service
+    url: https://282cc9datrial.it-cpitrial05-rt.cfapps.us10-001.hana.ondemand.com
+    protocol: https
+    port: 443
+    routes:
+      - name: sdia-catch-all
+        paths:
+          - /
+        strip_path: false
+        methods:
+          - POST
+          - GET
+    plugins:
+      - name: gdcr
