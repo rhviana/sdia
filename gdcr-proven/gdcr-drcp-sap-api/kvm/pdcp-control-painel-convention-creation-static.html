@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PDCP · Package & iFlow DNA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --border-subtle: #1f2937;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius: 10px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px 40px;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 40%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell { width: 100%; max-width: 960px; }
+
+    header { margin-bottom: 24px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, .25);
+    }
+
+    h1 {
+      margin: 10px 0 4px;
+      font-size: 26px;
+      letter-spacing: .03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .meta {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .meta strong { color: var(--text-main); }
+
+    .meta a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    .meta a:hover { text-decoration: underline; }
+
+    .disclaimer {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 740px;
+    }
+
+    main {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 880px) {
+      main { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .panel {
+      background: var(--bg-elevated);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.10), transparent 55%);
+      pointer-events: none;
+      opacity: .7;
+    }
+
+    .panel h2 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .panel h2 span {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .panel p {
+      margin: 4px 0 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      font-size: 12px;
+      color: #cbd5f5;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    input, select {
+      border-radius: 6px;
+      border: 1px solid #1f2937;
+      background: #020617;
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+    }
+
+    input::placeholder { color: #4b5563; }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+      background: #020617;
+    }
+
+    .hint { font-size: 11px; color: var(--text-muted); }
+
+    .field-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .field-row > * { flex: 1; }
+
+    .button-row {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #0b1120;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
+      transition: transform .08s ease-out, box-shadow .08s ease-out, opacity .08s;
+    }
+
+    button span.icon { font-size: 14px; }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(56, 189, 248, 0.50);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .result-panel {
+      margin-top: 8px;
+      background: #020617;
+      border-radius: 8px;
+      border: 1px solid #111827;
+      padding: 10px 12px;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      color: #e5e7eb;
+      max-height: 260px;
+      overflow: auto;
+    }
+
+    .result-panel .line-muted { color: var(--text-muted); }
+
+    code {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="shell">
+  <header>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>PDCP · Package & iFlow DNA</span>
+    </div>
+    <h1>pdcp.dna · Package / iFlow Naming Registry</h1>
+    <p class="subtitle">
+      Static demo · builds PDCP package names and iFlow DNA strings, no backend/API calls.
+    </p>
+
+    <div class="meta" style="display:flex; align-items:flex-start; gap:12px; margin-top:12px;">
+      <img
+        src="rlhv-avatar.jpg"
+        alt="Author avatar"
+        style="width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid #38bdf8; flex-shrink:0;"
+      >
+
+      <div>
+        <div><strong>Author:</strong> Ricardo Luz Holanda Viana · Enterprise Integration Architect (SAP BTP Integration Suite)</div>
+        <div><strong>Frameworks:</strong> GDCR · DCRP · PDCP</div>
+        <div><strong>Scope:</strong> Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration.</div>
+        <div><strong>License:</strong> Creative Commons Attribution 4.0 International (CC BY 4.0)</div>
+        <div>
+          <strong>DOI:</strong>
+          <a href="https://doi.org/10.5281/zenodo.18582492" target="_blank" rel="noreferrer">zenodo.18582492</a> ·
+          <a href="https://doi.org/10.6084/m9.figshare.31331683" target="_blank" rel="noreferrer">figshare.31331683</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      This interface is part of the <strong>Package Domain‑Centric Pattern (PDCP)</strong> for SAP BTP Integration Suite.
+      This static demo only illustrates naming patterns for packages and iFlows. No SAP BTP resources are touched.
+    </p>
+  </header>
+
+  <main>
+    <!-- LEFT: INPUTS -->
+    <section class="panel">
+      <h2>
+        Mode 1 · Package Name
+        <span>company.domain.businessProcess.integrations</span>
+      </h2>
+      <p>
+        Compose the PDCP package name using the canonical pattern
+        <code>[company].[domain].[businessProcess].integrations</code>.
+      </p>
+
+      <div class="fields">
+        <div class="field-row">
+          <label>
+            Company
+            <input id="pkgCompany" type="text" placeholder="acme" autocomplete="off">
+          </label>
+          <label>
+            Domain
+            <input id="pkgDomain" type="text" placeholder="sales" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label>
+            Business process
+            <input id="pkgProcess" type="text" placeholder="o2c" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="pkgBuildBtn">
+            <span class="icon">⟳</span>
+            Build package name
+          </button>
+        </div>
+      </div>
+
+      <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(31,41,55,0.9);">
+
+      <h2>
+        Mode 2 · iFlow DNA
+        <span>id[seq].[subdomain].[sender].[entity].[action].[receiver].[direction].[processing]</span>
+      </h2>
+      <p>
+        Compose the iFlow name using the PDCP DNA convention
+        <code>id[seq].[subdomain].[sender].[entity].[action].[receiver].[direction].[processing]</code>.
+      </p>
+
+      <div class="fields">
+        <div class="field-row">
+          <label>
+            Sequence
+            <input id="dnaSeq" type="text" placeholder="01" autocomplete="off">
+            <span class="hint">Numeric or alphanumeric sequence, e.g. <code>01</code>, <code>02a</code>.</span>
+          </label>
+          <label>
+            Subdomain
+            <input id="dnaSubdomain" type="text" placeholder="orders" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label>
+            Sender
+            <input id="dnaSender" type="text" placeholder="salesforce" autocomplete="off">
+          </label>
+          <label>
+            Entity
+            <input id="dnaEntity" type="text" placeholder="order" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label>
+            Action
+            <input id="dnaAction" type="text" placeholder="create" autocomplete="off">
+          </label>
+          <label>
+            Receiver
+            <input id="dnaReceiver" type="text" placeholder="s4hana" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label>
+            Direction
+            <input id="dnaDirection" type="text" placeholder="inbound, outbound, sync..." autocomplete="off">
+          </label>
+          <label>
+            Processing
+            <input id="dnaProcessing" type="text" placeholder="realtime, batch, routing..." autocomplete="off">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="dnaBuildBtn">
+            <span class="icon">⟳</span>
+            Build iFlow DNA
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: RESULT -->
+    <section class="panel">
+      <h2>
+        Naming Output
+        <span>Static preview · PDCP</span>
+      </h2>
+      <p>The result panel shows the generated PDCP package name and iFlow DNA string.</p>
+
+      <div class="result-panel" id="result">
+        <span class="line-muted">Ready. No name generated yet.</span>
+      </div>
+
+      <p class="hint" style="margin-top: 10px;">
+        Package pattern:
+        <code>[company].[domain].[businessProcess].integrations</code>.<br>
+        iFlow pattern:
+        <code>id[seq].[subdomain].[sender].[entity].[action].[receiver].[direction].[processing]</code>.
+      </p>
+    </section>
+  </main>
+</div>
+
+<script>
+  const resultEl = document.getElementById("result");
+
+  function updateResult(pkgName, dnaName) {
+    const lines = [];
+
+    if (!pkgName && !dnaName) {
+      resultEl.textContent = "No package or iFlow DNA has been generated yet.";
+      return;
+    }
+
+    lines.push("PDCP Naming Result");
+    lines.push("--------------------------------");
+
+    if (pkgName) {
+      lines.push("Package name");
+      lines.push("  " + pkgName);
+      lines.push("");
+    }
+
+    if (dnaName) {
+      lines.push("iFlow DNA");
+      lines.push("  " + dnaName);
+      lines.push("");
+    }
+
+    resultEl.textContent = lines.join("\n");
+  }
+
+  function buildPackageName() {
+    const company = document.getElementById("pkgCompany").value.trim().toLowerCase();
+    const domain = document.getElementById("pkgDomain").value.trim().toLowerCase();
+    const process = document.getElementById("pkgProcess").value.trim().toLowerCase();
+
+    if (!company || !domain || !process) {
+      resultEl.textContent = "Please provide company, domain and business process to build the package name.";
+      return null;
+    }
+
+    return company + "." + domain + "." + process + ".integrations";
+  }
+
+  function buildDnaName() {
+    const seq        = document.getElementById("dnaSeq").value.trim();
+    const subdomain  = document.getElementById("dnaSubdomain").value.trim().toLowerCase();
+    const sender     = document.getElementById("dnaSender").value.trim().toLowerCase();
+    const entity     = document.getElementById("dnaEntity").value.trim().toLowerCase();
+    const action     = document.getElementById("dnaAction").value.trim().toLowerCase();
+    const receiver   = document.getElementById("dnaReceiver").value.trim().toLowerCase();
+    const direction  = document.getElementById("dnaDirection").value.trim().toLowerCase();
+    const processing = document.getElementById("dnaProcessing").value.trim().toLowerCase();
+
+    if (!seq || !subdomain || !sender || !entity || !action || !receiver || !direction || !processing) {
+      resultEl.textContent = "Please fill all iFlow DNA fields to build the name.";
+      return null;
+    }
+
+    // id[seq].[subdomain].[sender].[entity].[action].[receiver].[direction].[processing]
+    return "id" + seq + "." +
+           subdomain + "." +
+           sender + "." +
+           entity + "." +
+           action + "." +
+           receiver + "." +
+           direction + "." +
+           processing;
+  }
+
+  // Event handlers
+  document.getElementById("pkgBuildBtn").addEventListener("click", () => {
+    const pkg = buildPackageName();
+    if (!pkg) return;
+
+    // Preserve last DNA if already built
+    const previousText = resultEl.textContent || "";
+    const dnaMatch = previousText.match(/iFlow DNA\s+(.+)/);
+    const lastDna = dnaMatch ? dnaMatch[1].trim() : "";
+
+    updateResult(pkg, lastDna || null);
+  });
+
+  document.getElementById("dnaBuildBtn").addEventListener("click", () => {
+    const dna = buildDnaName();
+    if (!dna) return;
+
+    // Preserve last package if already built
+    const previousText = resultEl.textContent || "";
+    const pkgMatch = previousText.match(/Package name\s+(.+)/);
+    const lastPkg = pkgMatch ? pkgMatch[1].trim() : "";
+
+    updateResult(lastPkg || null, dna);
+  });
+</script>
+</body>
+</html>

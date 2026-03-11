@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GDCR · KVM Control Plane (kvm.idinterface)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --border-subtle: #1f2937;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --error: #f97373;
+      --success: #22c55e;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius: 10px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px 40px;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 40%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell { width: 100%; max-width: 960px; }
+
+    header { margin-bottom: 24px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, .25);
+    }
+
+    h1 {
+      margin: 10px 0 4px;
+      font-size: 26px;
+      letter-spacing: .03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .meta {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .meta strong { color: var(--text-main); }
+
+    .meta a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    .meta a:hover { text-decoration: underline; }
+
+    .disclaimer {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 740px;
+    }
+
+    main {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 880px) {
+      main { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .panel {
+      background: var(--bg-elevated);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.10), transparent 55%);
+      pointer-events: none;
+      opacity: .7;
+    }
+
+    .panel h2 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .panel h2 span {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .panel p {
+      margin: 4px 0 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      font-size: 12px;
+      color: #cbd5f5;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    input, select {
+      border-radius: 6px;
+      border: 1px solid #1f2937;
+      background: #020617;
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+    }
+
+    input::placeholder { color: #4b5563; }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+      background: #020617;
+    }
+
+    .hint { font-size: 11px; color: var(--text-muted); }
+
+    .field-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .field-row > * { flex: 1; }
+
+    .button-row {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .operation-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 4px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .operation-row label {
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #0b1120;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
+      transition: transform .08s ease-out, box-shadow .08s ease-out, opacity .08s;
+    }
+
+    button span.icon { font-size: 14px; }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(56, 189, 248, 0.50);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    button[disabled] {
+      opacity: .6;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4b5563;
+      box-shadow: 0 0 0 3px transparent;
+      transition: background .15s, box-shadow .15s;
+    }
+
+    .status-dot--loading {
+      background: #eab308;
+      box-shadow: 0 0 0 3px rgba(234, 179, 8, .30);
+    }
+
+    .status-dot--success {
+      background: var(--success);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, .35);
+    }
+
+    .status-dot--error {
+      background: var(--error);
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, .35);
+    }
+
+    .status-text {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .result-panel {
+      margin-top: 8px;
+      background: #020617;
+      border-radius: 8px;
+      border: 1px solid #111827;
+      padding: 10px 12px;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      color: #e5e7eb;
+      max-height: 260px;
+      overflow: auto;
+    }
+
+    .result-panel .line-muted { color: var(--text-muted); }
+
+    code {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="shell">
+  <header>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>GDCR · KVM Control Plane</span>
+    </div>
+    <h1>kvm.idinterface · Semantic ID String Registry</h1>
+    <p class="subtitle">
+      Toggle semantic routing entries for GDCR (DCRP / PDCP) via SAP BTP API Management.
+    </p>
+
+    <!-- META + FOTO -->
+    <div class="meta" style="display:flex; align-items:flex-start; gap:12px; margin-top:12px;">
+      <img
+        src="rlhv-avatar.jpg"
+        alt="Ricardo Luz Holanda Viana"
+        style="width:96px; height:96px; border-radius:50%; object-fit:cover; border:2px solid #38bdf8; flex-shrink:0;"
+      >
+
+      <div>
+        <div><strong>Author:</strong> Ricardo Luz Holanda Viana · Enterprise Integration Architect (SAP BTP Integration Suite)</div>
+        <div><strong>Frameworks:</strong> GDCR · DCRP · PDCP</div>
+        <div><strong>Scope:</strong> Business‑semantic, domain‑centric routing architectures for API Gateways and Integration Orchestration.</div>
+        <div><strong>License:</strong> Creative Commons Attribution 4.0 International (CC BY 4.0)</div>
+        <div>
+          <strong>DOI:</strong>
+          <a href="https://doi.org/10.5281/zenodo.18582492" target="_blank" rel="noreferrer">zenodo.18582492</a> ·
+          <a href="https://doi.org/10.6084/m9.figshare.31331683" target="_blank" rel="noreferrer">figshare.31331683</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      This interface is part of the <strong>Gateway Domain‑Centric Routing (GDCR)</strong> reference architecture.
+      Reuse and adaptation are permitted with proper attribution to the original work and associated DOIs.
+    </p>
+  </header>
+  <main>
+    <!-- LEFT: MODES -->
+    <section class="panel">
+      <!-- KVM NAME FIELD -->
+      <div style="margin-top:10px; max-width:420px;">
+        <label style="font-size:12px; color:#cbd5f5; display:flex; flex-direction:column; gap:4px;">
+          Target KVM name
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+          <input id="kvmNameInput"
+                 type="text"
+                 value="cpipackage-nx.sales.o2c.integrations"
+                 style="border-radius:6px; border:1px solid #1f2937; background:#020617; padding:6px 8px; font-size:13px; color:#e5e7eb;">
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+          <span class="hint">Used as the KVM target in the API URL and in the response message.</span>
+        </label>
+      </div>
+      <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <!-- OPERATION GLOBAL PARA OS DOIS MODOS -->
+      <div class="operation-row">
+        <span>Operation:</span>
+        <label>
+          <input type="radio" name="opMode" value="add" checked>
+          Add / upsert
+        </label>
+        <label>
+          <input type="radio" name="opMode" value="delete">
+          Delete
+        </label>
+      </div>
+      <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <h2>
+        Mode 1 · HTTP Facade
+        <span>Canonical path → kvm.idinterface</span>
+      </h2>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <p>
+        Example: <code>/orders/create/salesforce</code> → <code>dcrporderscsalesforceid01:http</code>
+      </p>
+
+      <div class="fields" style="margin-top:8px;">
+        <label>
+          HTTP Facade
+          <input id="facade" type="text" placeholder="/orders/create/salesforce" autocomplete="off">
+          <span class="hint">Format: <code>/entity/action/vendor</code></span>
+        </label>
+
+        <div class="field-row">
+          <label>
+            Adapter
+            <select id="facadeAdapter">
+              <option value="http">http</option>
+              <option value="cxf">cxf</option>
+            </select>
+          </label>
+
+          <label style="max-width: 120px;">
+            ID suffix
+            <input id="facadeIdSuffix" type="text" placeholder="id<number>" autocomplete="off">
+            <span class="hint">e.g. <code>id01</code>, <code>id02</code></span>
+          </label>
+        </div>
+        <div class="button-row">
+          <button id="facadeToggleBtn">
+            <span class="icon">⟳</span>
+            Execute operation
+          </button>
+          <div class="status-dot" id="statusDot"></div>
+          <div class="status-text" id="statusText">Idle</div>
+        </div>
+      </div>
+
+      <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(31,41,55,0.9);">
+
+      <h2>
+        Mode 2 · Manual Semantic
+        <span>Explicit entity / action / vendor</span>
+      </h2>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <p>
+        Compose the semantic key manually, using the same canonical mapping as the GDCR engine.
+        The selected operation (Add / Delete) above is also applied here.
+      </p>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <div class="fields">
+        <div class="field-row">
+          <label>
+            Business process / domain (entity)
+            <input id="manualEntity" type="text" placeholder="orders" autocomplete="off">
+          </label>
+          <label>
+            Action
+            <input id="manualAction" type="text" placeholder="create, read, update, ..." autocomplete="off">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label>
+            Vendor
+            <input id="manualVendor" type="text" placeholder="salesforce" autocomplete="off">
+          </label>
+          <label>
+            Adapter
+            <select id="manualAdapter">
+              <option value="http">http</option>
+              <option value="cxf">cxf</option>
+            </select>
+          </label>
+          <label style="max-width: 120px;">
+            ID suffix
+            <input id="manualIdSuffix" type="text" placeholder="id<number>" autocomplete="off">
+	    <span class="hint">e.g. <code>id01</code>, <code>id02</code></span>
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="manualToggleBtn">
+            <span class="icon">⟳</span>
+            Execute operation
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: RESULT -->
+    <section class="panel">
+      <h2>
+        Control Plane Output Response - API Management
+      </h2>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <p>All operations target the KVM <code>kvm.idinterface</code> via the configured API facade.</p>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <div class="result-panel" id="result">
+        <span class="line-muted">Ready. No operation executed yet.</span>
+      </div>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+      <p class="hint" style="margin-top: 10px;">
+        Canonical key pattern:
+        <code>dcrp&lt;entity&gt;&lt;canonical‑action&gt;&lt;vendor&gt;id&lt;suffix&gt;:&lt;adapter&gt;</code>.
+      </p>
+   <hr style="margin:16px 0; border:0; border-top:1px solid #1f2937;">
+    </section>
+  </main>
+</div>
+
+<script>
+  // Canonical action map
+  const GLOBAL_ACTION_MAP = {
+    "create": "c", "creates": "c", "creating": "c", "post": "c", "insert": "c",
+    "add": "c", "submit": "c", "new": "c",
+    "read": "r", "reads": "r", "reading": "r", "get": "r", "retrieve": "r",
+    "fetch": "r", "view": "r", "show": "r",
+    "query": "q", "queries": "q", "querying": "q", "search": "q", "find": "q",
+    "list": "q", "filter": "q",
+    "update": "u", "updates": "u", "updating": "u", "put": "u", "modify": "u",
+    "edit": "u", "patch": "u", "change": "u", "revise": "u",
+    "delete": "d", "deletes": "d", "deleting": "d", "remove": "d", "cancel": "d",
+    "terminate": "d", "destroy": "d",
+    "sync": "s", "syncs": "s", "syncing": "s", "synchronize": "s", "replicate": "s",
+    "mirror": "s", "refresh": "s",
+    "transfer": "t", "transfers": "t", "transferring": "t", "send": "t", "forward": "t",
+    "dispatch": "t", "ship": "t", "deliver": "t", "move": "t",
+    "approve": "a", "approves": "a", "approving": "a", "authorize": "a", "confirm": "a",
+    "validate": "a", "accept": "a", "endorse": "a",
+    "notify": "n", "notifies": "n", "notifying": "n", "notification": "n", "alert": "n",
+    "inform": "n", "announce": "n"
+  };
+
+  function normalizeAction(actionRaw) {
+    if (!actionRaw) return "";
+    const a = actionRaw.toLowerCase().trim();
+    const mapped = GLOBAL_ACTION_MAP[a];
+    if (mapped) return mapped;
+    return a.charAt(0);
+  }
+
+  const resultEl = document.getElementById("result");
+  const statusDot = document.getElementById("statusDot");
+  const statusText = document.getElementById("statusText");
+
+  function getOperationMode() {
+    const radios = document.querySelectorAll('input[name="opMode"]');
+    for (const r of radios) {
+      if (r.checked) return r.value === "delete" ? "delete" : "add";
+    }
+    return "add";
+  }
+
+  function setStatus(mode, text) {
+    statusDot.className = "status-dot " + mode;
+    statusText.textContent = text || "Idle";
+  }
+
+  function buildSuccessMessage(valueString, kvmNameFromField, opMode) {
+    const targetKvm = kvmNameFromField || "kvm.idinterface";
+    const isDelete = opMode === "delete";
+
+    const msgLines = [];
+    msgLines.push("Resposta");
+    msgLines.push("  status  : 200 OK");
+    msgLines.push("");
+    msgLines.push("Resumo");
+    if (isDelete) {
+      msgLines.push("  String kvm.idinterface removida com sucesso.");
+    } else {
+      msgLines.push("  String kvm.idinterface adicionada/atualizada com sucesso.");
+    }
+    msgLines.push("  Operação : " + (isDelete ? "delete" : "add"));
+    msgLines.push("  KVM alvo : " + targetKvm);
+    msgLines.push("  Valor    : " + valueString);
+
+    return msgLines.join("\n");
+  }
+
+  async function callToggleApi(valueString) {
+    if (!valueString) {
+      resultEl.textContent = "Nothing to send (empty value).";
+      return;
+    }
+
+    const kvmNameFromField =
+      (document.getElementById("kvmNameInput")?.value || "").trim() ||
+      "cpipackage-nx.sales.o2c.integrations";
+
+    const opMode = getOperationMode(); // "add" | "delete"
+
+    setStatus("status-dot--loading", "Sending " + opMode + " request…");
+
+    const apiUrl =
+      "https://apisb.test01.apimanagement.eu20.hana.ondemand.com/insert/kvm?kvmname=" +
+      encodeURIComponent(kvmNameFromField);
+
+    // Basic Auth – manter assim por enquanto
+    const user = "sb-6b9088a3-68ba-44db-91a2-6d2c9eb680db!b20836|it-rt-steeleurope!b259";
+    const pass = "63dae917-2041-4e7c-8216-1714183b083a$Q3MvLNaJ5E2GwF6wDqVndtrIRsb-zBrtNXmrLxe-1WY=";
+    const token = btoa(user + ":" + pass);
+
+    const facadeBtn = document.getElementById("facadeToggleBtn");
+    const manualBtn = document.getElementById("manualToggleBtn");
+    facadeBtn.disabled = true;
+    manualBtn.disabled = true;
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic " + token
+        },
+        body: JSON.stringify({
+          name: "kvm.idinterface",
+          value: valueString,
+          mode: opMode          // backend/proxy decide add x delete
+        })
+      });
+
+      const text = await response.text();
+
+      if (response.ok) {
+        setStatus("status-dot--success", "Success (200)");
+        resultEl.textContent = buildSuccessMessage(valueString, kvmNameFromField, opMode);
+      } else {
+        const maxBodyLen = 400;
+        const prettyBody = text.length > maxBodyLen
+          ? text.substring(0, maxBodyLen) + "\n\n[... body truncated ...]"
+          : text;
+
+        setStatus("status-dot--error", "Error (" + response.status + ")");
+        resultEl.textContent =
+          "Resposta\n" +
+          "  status : " + response.status + " " + (response.statusText || "") + "\n\n" +
+          "Corpo (debug)\n" +
+          "--------------------------------\n" +
+          prettyBody;
+      }
+    } catch (e) {
+      setStatus("status-dot--error", "Network / CORS error");
+      resultEl.textContent =
+        "Erro ao chamar API\n" +
+        "  mensagem : " + e.message + "\n" +
+        "  dica     : verifique CORS, rede e credenciais.";
+    } finally {
+      facadeBtn.disabled = false;
+      manualBtn.disabled = false;
+      setTimeout(() => setStatus("", "Idle"), 4000);
+    }
+  }
+
+  // Mode 1 – HTTP facade
+  document.getElementById("facadeToggleBtn").addEventListener("click", () => {
+    const facade = document.getElementById("facade").value.trim();
+    const adapter = document.getElementById("facadeAdapter").value;
+    const idSuffixRaw = document.getElementById("facadeIdSuffix").value.trim();
+    const idSuffix = idSuffixRaw.replace(/^id/i, "") || "01";
+
+    if (!facade || !adapter || !idSuffix) {
+      resultEl.textContent = "Please provide facade, adapter and ID suffix.";
+      return;
+    }
+
+    const parts = facade.split("/").filter(Boolean);
+    if (parts.length < 3) {
+      resultEl.textContent = "Facade must be in the form /entity/action/vendor, e.g. /orders/create/salesforce.";
+      return;
+    }
+
+    const entity = parts[0].toLowerCase();
+    const actionRaw = parts[1];
+    const vendor = parts[2].toLowerCase();
+    const actionNorm = normalizeAction(actionRaw);
+
+    const key = "dcrp" + entity + actionNorm + vendor + "id" + idSuffix;
+    const value = key + ":" + adapter;
+
+    callToggleApi(value);
+  });
+
+  // Mode 2 – manual
+  document.getElementById("manualToggleBtn").addEventListener("click", () => {
+    const entity = document.getElementById("manualEntity").value.trim().toLowerCase();
+    const actionRaw = document.getElementById("manualAction").value.trim();
+    const vendor = document.getElementById("manualVendor").value.trim().toLowerCase();
+    const adapter = document.getElementById("manualAdapter").value;
+    const idSuffixRaw = document.getElementById("manualIdSuffix").value.trim();
+    const idSuffix = idSuffixRaw.replace(/^id/i, "") || "01";
+
+    if (!entity || !actionRaw || !vendor || !adapter || !idSuffix) {
+      resultEl.textContent = "Please fill all manual fields.";
+      return;
+    }
+
+    const actionNorm = normalizeAction(actionRaw);
+    const key = "dcrp" + entity + actionNorm + vendor + "id" + idSuffix;
+    const value = key + ":" + adapter;
+
+    callToggleApi(value);
+  });
+</script>
+</body>
+</html>
